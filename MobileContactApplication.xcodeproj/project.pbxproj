@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DAEF9F403FBC45CFA15AE3B9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2CD10FC8C34550BF23C3B9 /* libPods.a */; };
 		FA2167D717CC98AB0026F1CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167D617CC98AB0026F1CD /* UIKit.framework */; };
 		FA2167D917CC98AB0026F1CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167D817CC98AB0026F1CD /* Foundation.framework */; };
 		FA2167DB17CC98AB0026F1CD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167DA17CC98AB0026F1CD /* CoreGraphics.framework */; };
@@ -23,6 +24,9 @@
 		FA2167FD17CC98AB0026F1CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167D817CC98AB0026F1CD /* Foundation.framework */; };
 		FA21680517CC98AB0026F1CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA21680317CC98AB0026F1CD /* InfoPlist.strings */; };
 		FA21680817CC98AB0026F1CD /* MobileContactApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA21680717CC98AB0026F1CD /* MobileContactApplicationTests.m */; };
+		FA21681317CC98D10026F1CD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA21681117CC98D10026F1CD /* Model.xcdatamodeld */; };
+		FA21681517CC993A0026F1CD /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA21681417CC993A0026F1CD /* AddressBook.framework */; };
+		FA21681717CC993F0026F1CD /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA21681617CC993F0026F1CD /* AddressBookUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D6B351CD0B344F4AD360484 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		DF2CD10FC8C34550BF23C3B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA2167D317CC98AB0026F1CD /* MobileContactApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileContactApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA2167D617CC98AB0026F1CD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FA2167D817CC98AB0026F1CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -58,6 +64,9 @@
 		FA21680417CC98AB0026F1CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA21680617CC98AB0026F1CD /* MobileContactApplicationTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileContactApplicationTests.h; sourceTree = "<group>"; };
 		FA21680717CC98AB0026F1CD /* MobileContactApplicationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileContactApplicationTests.m; sourceTree = "<group>"; };
+		FA21681217CC98D10026F1CD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		FA21681417CC993A0026F1CD /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		FA21681617CC993F0026F1CD /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,9 +74,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA21681717CC993F0026F1CD /* AddressBookUI.framework in Frameworks */,
+				FA21681517CC993A0026F1CD /* AddressBook.framework in Frameworks */,
 				FA2167D717CC98AB0026F1CD /* UIKit.framework in Frameworks */,
 				FA2167D917CC98AB0026F1CD /* Foundation.framework in Frameworks */,
 				FA2167DB17CC98AB0026F1CD /* CoreGraphics.framework in Frameworks */,
+				DAEF9F403FBC45CFA15AE3B9 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +103,7 @@
 				FA21680017CC98AB0026F1CD /* MobileContactApplicationTests */,
 				FA2167D517CC98AB0026F1CD /* Frameworks */,
 				FA2167D417CC98AB0026F1CD /* Products */,
+				1D6B351CD0B344F4AD360484 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,10 +119,13 @@
 		FA2167D517CC98AB0026F1CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA21681617CC993F0026F1CD /* AddressBookUI.framework */,
+				FA21681417CC993A0026F1CD /* AddressBook.framework */,
 				FA2167D617CC98AB0026F1CD /* UIKit.framework */,
 				FA2167D817CC98AB0026F1CD /* Foundation.framework */,
 				FA2167DA17CC98AB0026F1CD /* CoreGraphics.framework */,
 				FA2167FA17CC98AB0026F1CD /* SenTestingKit.framework */,
+				DF2CD10FC8C34550BF23C3B9 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -119,9 +135,10 @@
 			children = (
 				FA2167E517CC98AB0026F1CD /* ISUAppDelegate.h */,
 				FA2167E617CC98AB0026F1CD /* ISUAppDelegate.m */,
+				FA21681117CC98D10026F1CD /* Model.xcdatamodeld */,
+				FA21682217CC99B10026F1CD /* Resources */,
+				FA21682317CC99E40026F1CD /* Classes */,
 				FA2167EE17CC98AB0026F1CD /* MainStoryboard.storyboard */,
-				FA2167F117CC98AB0026F1CD /* ISUViewController.h */,
-				FA2167F217CC98AB0026F1CD /* ISUViewController.m */,
 				FA2167DD17CC98AB0026F1CD /* Supporting Files */,
 			);
 			path = MobileContactApplication;
@@ -160,6 +177,70 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		FA21681817CC99500026F1CD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FA21681917CC99550026F1CD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FA21681A17CC995A0026F1CD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA2167F117CC98AB0026F1CD /* ISUViewController.h */,
+				FA2167F217CC98AB0026F1CD /* ISUViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		FA21682217CC99B10026F1CD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FA21682617CC9A560026F1CD /* Icons */,
+				FA21682517CC9A4D0026F1CD /* Themes */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		FA21682317CC99E40026F1CD /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FA21682417CC9A230026F1CD /* Categories */,
+				FA21681A17CC995A0026F1CD /* Controllers */,
+				FA21681917CC99550026F1CD /* Views */,
+				FA21681817CC99500026F1CD /* Models */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		FA21682417CC9A230026F1CD /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		FA21682517CC9A4D0026F1CD /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Themes;
+			sourceTree = "<group>";
+		};
+		FA21682617CC9A560026F1CD /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -167,9 +248,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA21680B17CC98AB0026F1CD /* Build configuration list for PBXNativeTarget "MobileContactApplication" */;
 			buildPhases = (
+				27DA90CA5BEA44A6BCB13AFF /* Check Pods Manifest.lock */,
 				FA2167CF17CC98AB0026F1CD /* Sources */,
 				FA2167D017CC98AB0026F1CD /* Frameworks */,
 				FA2167D117CC98AB0026F1CD /* Resources */,
+				9ED363E2E6AB461A91313E7F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -251,6 +334,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		27DA90CA5BEA44A6BCB13AFF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9ED363E2E6AB461A91313E7F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FA2167F717CC98AB0026F1CD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -274,6 +387,7 @@
 				FA2167E317CC98AB0026F1CD /* main.m in Sources */,
 				FA2167E717CC98AB0026F1CD /* ISUAppDelegate.m in Sources */,
 				FA2167F317CC98AB0026F1CD /* ISUViewController.m in Sources */,
+				FA21681317CC98D10026F1CD /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +495,7 @@
 		};
 		FA21680C17CC98AB0026F1CD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D6B351CD0B344F4AD360484 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileContactApplication/MobileContactApplication-Prefix.pch";
@@ -392,6 +507,7 @@
 		};
 		FA21680D17CC98AB0026F1CD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D6B351CD0B344F4AD360484 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileContactApplication/MobileContactApplication-Prefix.pch";
@@ -454,6 +570,7 @@
 				FA21680D17CC98AB0026F1CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA21680E17CC98AB0026F1CD /* Build configuration list for PBXNativeTarget "MobileContactApplicationTests" */ = {
 			isa = XCConfigurationList;
@@ -462,8 +579,22 @@
 				FA21681017CC98AB0026F1CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FA21681117CC98D10026F1CD /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FA21681217CC98D10026F1CD /* Model.xcdatamodel */,
+			);
+			currentVersion = FA21681217CC98D10026F1CD /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FA2167CB17CC98AB0026F1CD /* Project object */;
 }
