@@ -28,20 +28,7 @@
     return self;
 }
 
-- (void)_setupSaveNotification
-{
-    [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextDidSaveNotification
-                                                      object:nil
-                                                       queue:nil
-                                                  usingBlock:^(NSNotification *note) {
-        NSManagedObjectContext *moc = self.mainManagedObjectContext;
-        if (note.object != moc) {
-            [moc performBlock:^() {
-                [moc mergeChangesFromContextDidSaveNotification:note];
-            }];
-        }
-    }];
-}
+#pragma mark - Public Methods
 
 - (void)saveContext
 {
@@ -71,6 +58,15 @@
     return _mainManagedObjectContext;
 }
 
+- (NSManagedObjectContext *)newPrivateContext
+{
+    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    context.persistentStoreCoordinator = self.persistentStoreCoordinator;
+    return context;
+}
+
+#pragma mark - Private Properties
+
 // Returns the managed object model for the application.
 // If the model doesn't already exist, it is created from the application's model.
 - (NSManagedObjectModel *)managedObjectModel
@@ -78,7 +74,7 @@
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"TransitDataImport" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
@@ -91,7 +87,7 @@
         return _persistentStoreCoordinator;
     }
 
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"TransitDataImport.sqlite"];
+    NSURL *storeURL = [[self _applicationDocumentsDirectory] URLByAppendingPathComponent:@"MobileContactApplication.sqlite"];
 
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
@@ -103,19 +99,27 @@
     return _persistentStoreCoordinator;
 }
 
-#pragma mark - Application's Documents directory
+#pragma mark - Private Methods
 
 // Returns the URL to the application's Documents directory.
-- (NSURL *)applicationDocumentsDirectory
+- (NSURL *)_applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-- (NSManagedObjectContext *)newPrivateContext
+- (void)_setupSaveNotification
 {
-    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    context.persistentStoreCoordinator = self.persistentStoreCoordinator;
-    return context;
+    [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextDidSaveNotification
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      NSManagedObjectContext *moc = self.mainManagedObjectContext;
+                                                      if (note.object != moc) {
+                                                          [moc performBlock:^() {
+                                                              [moc mergeChangesFromContextDidSaveNotification:note];
+                                                          }];
+                                                      }
+                                                  }];
 }
 
 @end
