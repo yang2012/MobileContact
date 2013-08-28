@@ -7,6 +7,7 @@
 //
 
 #import "ISUViewController.h"
+#import "ISUAddressBookUtility.h"
 
 @interface ISUViewController ()
 
@@ -24,6 +25,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[[ISUAddressBookUtility alloc] init] importFromAddressBook];
 }
 
 @end
