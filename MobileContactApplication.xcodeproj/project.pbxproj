@@ -28,11 +28,11 @@
 		FA21681717CC993F0026F1CD /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA21681617CC993F0026F1CD /* AddressBookUI.framework */; };
 		FAE8216117CCB2F7003C39B0 /* ISUAddressBookUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */; };
 		FAE8217C17CCB595003C39B0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAE8217A17CCB595003C39B0 /* Model.xcdatamodeld */; };
-		FAE8217F17CCB5E6003C39B0 /* ISUPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE8217E17CCB5E6003C39B0 /* ISUPerson.m */; };
 		FAE8218217CCB5E6003C39B0 /* ISUGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE8218117CCB5E6003C39B0 /* ISUGroup.m */; };
 		FAE8218A17CCB8EB003C39B0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE8218917CCB8EB003C39B0 /* CoreData.framework */; };
 		FAE8218D17CCB981003C39B0 /* ISUGroup+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE8218C17CCB981003C39B0 /* ISUGroup+function.m */; };
 		FAE8219017CCB98F003C39B0 /* ISUPerson+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE8218F17CCB98F003C39B0 /* ISUPerson+function.m */; };
+		FAFC0ABC17CDE45F00A21274 /* ISUPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFC0ABB17CDE45F00A21274 /* ISUPerson.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,8 +75,6 @@
 		FAE8215F17CCB2F7003C39B0 /* ISUAddressBookUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAddressBookUtility.h; sourceTree = "<group>"; };
 		FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAddressBookUtility.m; sourceTree = "<group>"; };
 		FAE8217B17CCB595003C39B0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		FAE8217D17CCB5E6003C39B0 /* ISUPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUPerson.h; sourceTree = "<group>"; };
-		FAE8217E17CCB5E6003C39B0 /* ISUPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPerson.m; sourceTree = "<group>"; };
 		FAE8218017CCB5E6003C39B0 /* ISUGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUGroup.h; sourceTree = "<group>"; };
 		FAE8218117CCB5E6003C39B0 /* ISUGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUGroup.m; sourceTree = "<group>"; };
 		FAE8218917CCB8EB003C39B0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -84,6 +82,8 @@
 		FAE8218C17CCB981003C39B0 /* ISUGroup+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISUGroup+function.m"; sourceTree = "<group>"; };
 		FAE8218E17CCB98F003C39B0 /* ISUPerson+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISUPerson+function.h"; sourceTree = "<group>"; };
 		FAE8218F17CCB98F003C39B0 /* ISUPerson+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISUPerson+function.m"; sourceTree = "<group>"; };
+		FAFC0ABA17CDE45F00A21274 /* ISUPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUPerson.h; sourceTree = "<group>"; };
+		FAFC0ABB17CDE45F00A21274 /* ISUPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPerson.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,10 +152,10 @@
 		FA2167DC17CC98AB0026F1CD /* MobileContactApplication */ = {
 			isa = PBXGroup;
 			children = (
-				FAE8217A17CCB595003C39B0 /* Model.xcdatamodeld */,
 				FA2167E517CC98AB0026F1CD /* ISUAppDelegate.h */,
 				FA2167E617CC98AB0026F1CD /* ISUAppDelegate.m */,
 				FA2167EE17CC98AB0026F1CD /* MainStoryboard.storyboard */,
+				FAE8217A17CCB595003C39B0 /* Model.xcdatamodeld */,
 				FA21682217CC99B10026F1CD /* Resources */,
 				FA21682317CC99E40026F1CD /* Classes */,
 				FA2167DD17CC98AB0026F1CD /* Supporting Files */,
@@ -277,10 +277,10 @@
 		FAE8215D17CCB2B0003C39B0 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				FAFC0ABA17CDE45F00A21274 /* ISUPerson.h */,
+				FAFC0ABB17CDE45F00A21274 /* ISUPerson.m */,
 				FAE8218017CCB5E6003C39B0 /* ISUGroup.h */,
 				FAE8218117CCB5E6003C39B0 /* ISUGroup.m */,
-				FAE8217D17CCB5E6003C39B0 /* ISUPerson.h */,
-				FAE8217E17CCB5E6003C39B0 /* ISUPerson.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -442,10 +442,10 @@
 				FA2167F317CC98AB0026F1CD /* ISUViewController.m in Sources */,
 				FAE8216117CCB2F7003C39B0 /* ISUAddressBookUtility.m in Sources */,
 				FAE8217C17CCB595003C39B0 /* Model.xcdatamodeld in Sources */,
-				FAE8217F17CCB5E6003C39B0 /* ISUPerson.m in Sources */,
 				FAE8218217CCB5E6003C39B0 /* ISUGroup.m in Sources */,
 				FAE8218D17CCB981003C39B0 /* ISUGroup+function.m in Sources */,
 				FAE8219017CCB98F003C39B0 /* ISUPerson+function.m in Sources */,
+				FAFC0ABC17CDE45F00A21274 /* ISUPerson.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

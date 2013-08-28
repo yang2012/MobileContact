@@ -4,11 +4,12 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="ISUPerson" representedClassName="ISUPerson" syncable="YES">
+        <attribute name="frequence" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ISUPerson" positionX="160" positionY="192" width="128" height="75"/>
         <element name="ISUGroup" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="ISUPerson" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>
