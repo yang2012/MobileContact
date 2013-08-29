@@ -11,8 +11,10 @@ build/
 !default.perspectivev3
 *.xcworkspace
 !default.xcworkspace
-xcuserdata
 profile
+xcuserdata
+xcdebugger
+UserInterfaceState.xcuserstate
 *.moved-aside
 DerivedData
 .idea/
