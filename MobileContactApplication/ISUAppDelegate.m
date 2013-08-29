@@ -7,26 +7,32 @@
 //
 
 #import "ISUAppDelegate.h"
-#import "ISUPersistentManager.h"
-
-#ifdef DEBUG
-#import <PDDebugger.h>
-#endif
 
 @interface ISUAppDelegate ()
 
-@property (nonatomic, strong) ISUPersistentManager *persistentManager;
+@property (nonatomic, strong, readwrite) ISUPersistentManager *persistentManager;
 
 @end
 
 @implementation ISUAppDelegate
 
++ (ISUAppDelegate *)sharedInstance
+{
+    return (ISUAppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
+- (ISUPersistentManager *)persistentManager
+{
+    if (_persistentManager == nil) {
+        _persistentManager = [[ISUPersistentManager alloc] init];
+    }
+    return _persistentManager;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
-    self.persistentManager = [[ISUPersistentManager alloc] init];
-    
+        
     // Pony Debug
 #ifdef DEBUG
     PDDebugger *debugger = [PDDebugger defaultInstance];
@@ -72,7 +78,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self.persistentManager saveContext];
 }
 
 @end

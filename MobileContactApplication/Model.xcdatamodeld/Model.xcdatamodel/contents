@@ -2,14 +2,17 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ISUGroup" representedClassName="ISUGroup" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="members" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ISUPerson" inverseName="groups" inverseEntity="ISUPerson" syncable="YES"/>
     </entity>
     <entity name="ISUPerson" representedClassName="ISUPerson" syncable="YES">
         <attribute name="frequence" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recordId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ISUGroup" inverseName="members" inverseEntity="ISUGroup" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ISUGroup" positionX="160" positionY="192" width="128" height="60"/>
-        <element name="ISUPerson" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="ISUGroup" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="ISUPerson" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>

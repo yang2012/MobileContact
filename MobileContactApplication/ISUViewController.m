@@ -8,28 +8,70 @@
 
 #import "ISUViewController.h"
 #import "ISUAddressBookUtility.h"
+#import "ISUAddressBookImportOperation.h"
+#import "ISUFetchedResultsTableDataSource.h"
+#import "ISUPerson+function.h"
+#import "ISUAppDelegate.h"
 
 @interface ISUViewController ()
-
+@property (nonatomic, strong) NSOperationQueue* operationQueue;
+@property (nonatomic, strong) ISUFetchedResultsTableDataSource *dataSource;
 @end
 
 @implementation ISUViewController
 
+- (ISUPersistentManager *)persistentManager
+{
+    if (_persistentManager == nil) {
+        _persistentManager = [ISUAppDelegate sharedInstance].persistentManager;
+    }
+    return _persistentManager;
+}
+
+- (NSOperationQueue *)operationQueue
+{
+    if (_operationQueue == nil) {
+        _operationQueue = [[NSOperationQueue alloc] init];
+    }
+    return _operationQueue;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([ISUPerson class])];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"fullName" ascending:YES]];
+    NSFetchedResultsController* fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.persistentManager.mainManagedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    self.dataSource = [[ISUFetchedResultsTableDataSource alloc] initWithTableView:self.contentTableView fetchedResultsController:fetchedResultsController];
+    self.dataSource.configureCellBlock = ^(UITableViewCell*  cell, ISUPerson *person)
+    {
+        cell.textLabel.text = person.fullName;
+        cell.detailTextLabel.text = [person.phoneNumber description];
+    };
+    self.contentTableView.dataSource = self.dataSource;
+    [self.contentTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)startImport:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.importProgressbar.progress = 0;
+    
+    ISUAddressBookImportOperation *importOperation = [[ISUAddressBookImportOperation alloc] initWithPersistentManager:self.persistentManager];
+    
+    importOperation.progressCallback = ^(float progress) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+         {
+             self.importProgressbar.progress = progress;
+         }];
+    };
+    
+    [self.operationQueue addOperation:importOperation];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (IBAction)cancelImport:(id)sender
 {
-    [[[ISUAddressBookUtility alloc] init] importFromAddressBook];
+    [self.operationQueue cancelAllOperations];
 }
 
 @end

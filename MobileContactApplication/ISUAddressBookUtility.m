@@ -10,10 +10,26 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBook/ABPerson.h>
 #import <addressbook/ABGroup.h>
+#import "Constants.h"
+
+NSString *const kISURecordId = @"ISURecordId";
+NSString *const kISUPersonFirstName = @"ISUFirstNameKey";
+NSString *const kISUPersonLastName = @"ISULastNameKey";
+NSString *const kISUPersonFullName = @"ISUFullNameKey";
+NSString *const kISUPersonPhoneNumbers = @"ISUPhonesKey";
 
 @implementation ISUAddressBookUtility
 
-- (void)importFromAddressBook
+- (NSInteger)allPeopleCount
+{
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+
+    NSMutableArray *people = (__bridge_transfer NSMutableArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
+    return [people count];
+}
+
+- (void)importFromAddressBookWithPersonProcessBlock:(ISUPersonProceessBlock)personProcessBlock
+                                  groupProcessBlock:(ISUGroupProceessBlock)groupProcessBlock
 {
     ABAddressBookRef addressBook;
     bool wantToSaveChanges = YES;
@@ -27,12 +43,16 @@
         NSLog(@"Do not be allowed to access contacts");
         return;
     }
+    
+    if (self.canceled) {
+        return;
+    }
 
     NSMutableArray *people = (__bridge_transfer NSMutableArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
-    [self _exploreInfoFromPeople:people];
-    
+    [self _exploreInfoFromPeople:people processBlock:personProcessBlock];
+
     NSMutableArray *groups = (__bridge_transfer NSMutableArray *)ABAddressBookCopyArrayOfAllGroups(addressBook);
-    [self _exploreInfoFromGroups:groups];
+    [self _exploreInfoFromGroups:groups processBlock:groupProcessBlock];
 
     if (ABAddressBookHasUnsavedChanges(addressBook)) {
         if (wantToSaveChanges) {
@@ -48,123 +68,150 @@
 }
 
 - (void)_exploreInfoFromPeople:(NSArray *)people
+                  processBlock:(ISUPersonProceessBlock)processBlock
 {
     for (int i = 0; i < [people count]; i++) {
         @autoreleasepool {
-            ABRecordRef person = (__bridge ABRecordRef)[people objectAtIndex:i];
+            if (self.canceled) {
+                return;
+            }
             
+            NSMutableDictionary *infoDict = [NSMutableDictionary dictionary];
+
+            ABRecordRef person = (__bridge ABRecordRef)[people objectAtIndex:i];
+            ABRecordID recordId = ABRecordGetRecordID(person);
+            NSLog(@"Record Id: %i", recordId);
+            [infoDict setValue:[NSNumber numberWithInteger:recordId] forKey:kISURecordId];
+
             NSString *fullName;
             NSString *firstName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
             NSString *lastName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
-            
+
             if (([firstName isEqualToString:@""] || [firstName isEqualToString:@"(null)"] || firstName == nil) &&
                 ([lastName isEqualToString:@""] || [lastName isEqualToString:@"(null)"] || lastName == nil)) {
                 // do nothing
             } else {
                 fullName = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
-                
+
                 if ([firstName isEqualToString:@""] || [firstName isEqualToString:@"(null)"] || firstName == nil) {
                     fullName = [NSString stringWithFormat:@"%@", lastName];
                 }
-                
+
                 if ([lastName isEqualToString:@""] || [lastName isEqualToString:@"(null)"] || lastName == nil) {
                     fullName = [NSString stringWithFormat:@"%@", firstName];
                 }
             }
-            
-            NSLog(@"Full Name: %@", fullName);
-            
+
+            PDLog(@"Full Name: %@", fullName);
+            [infoDict setValue:fullName forKey:kISUPersonFullName];
+
             ABMutableMultiValueRef phones = (ABMutableMultiValueRef)ABRecordCopyValue(person, kABPersonPhoneProperty);
-            
-            CFStringRef phoneLabel, phoneNumber;
+
+            NSString *phoneLabel, *phoneNumber;
+            NSMutableArray *phonesArray = [NSMutableArray array];
             for (CFIndex i = 0; i < ABMultiValueGetCount(phones); i++) {
-                phoneLabel = ABMultiValueCopyLabelAtIndex(phones, i);
-                phoneNumber = ABMultiValueCopyValueAtIndex(phones, i);
-                
-                NSLog(@"Phone: %@-%@", phoneLabel, phoneNumber);
-                
-                CFRelease(phoneLabel);
-                CFRelease(phoneNumber);
+                phoneLabel = (__bridge_transfer NSString *)(ABMultiValueCopyLabelAtIndex(phones, i));
+                phoneNumber = (__bridge_transfer NSString *)(ABMultiValueCopyValueAtIndex(phones, i));
+
+                PDLog(@"Phone: %@-%@", phoneLabel, phoneNumber);
+                [phonesArray addObject:@[phoneLabel, phoneNumber]];
             }
-            
+            [infoDict setValue:phonesArray forKey:kISUPersonPhoneNumbers];
+
             NSString *department = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonDepartmentProperty);
-            NSLog(@"Department: %@", department);
-            
+            PDLog(@"Department: %@", department);
+
             ABMutableMultiValueRef address = (ABMutableMultiValueRef)ABRecordCopyValue(person, kABPersonAddressProperty);
-            
+
             if (ABMultiValueGetCount(address) > 0) {
                 CFDictionaryRef addressDictionary = ABMultiValueCopyValueAtIndex(address, 0);
                 NSString *street = CFDictionaryGetValue(addressDictionary, kABPersonAddressStreetKey);
-                NSLog(@"Stree: %@", street);
-                
+                PDLog(@"Stree: %@", street);
+
                 NSString *city = CFDictionaryGetValue(addressDictionary, kABPersonAddressCityKey);
-                NSLog(@"City: %@", city);
-                
+                PDLog(@"City: %@", city);
+
                 NSString *country = CFDictionaryGetValue(addressDictionary, kABPersonAddressCountryKey);
-                NSLog(@"Country: %@", country);
-                
+                PDLog(@"Country: %@", country);
+
                 NSString *state = CFDictionaryGetValue(addressDictionary, kABPersonAddressStateKey);
-                NSLog(@"State: %@", state);
-                
+                PDLog(@"State: %@", state);
+
                 NSString *zip = CFDictionaryGetValue(addressDictionary, kABPersonAddressZIPKey);
-                NSLog(@"Zip: %@", zip);
+                PDLog(@"Zip: %@", zip);
             }
-            
+
             ABMutableMultiValueRef emails = (ABMutableMultiValueRef)ABRecordCopyValue(person, kABPersonEmailProperty);
-            
+
             CFStringRef emailLabel, emailAddress;
             for (CFIndex i = 0; i < ABMultiValueGetCount(emails); i++) {
                 emailLabel = ABMultiValueCopyLabelAtIndex(emails, i);
                 emailAddress = ABMultiValueCopyValueAtIndex(emails, i);
-                
-                NSLog(@"Email: %@-%@", emailLabel, emailAddress);
-                
+
+                PDLog(@"Email: %@-%@", emailLabel, emailAddress);
+
                 CFRelease(emailLabel);
                 CFRelease(emailAddress);
             }
-            
+
             if (ABPersonHasImageData(person)) {
                 UIImage *addressVookImage = [UIImage imageWithData:(__bridge NSData *)ABPersonCopyImageData(person)];
-                NSLog(@"Image Size: %f %f", addressVookImage.size.height, addressVookImage.size.width);
+                PDLog(@"Image Size: %f %f", addressVookImage.size.height, addressVookImage.size.width);
             }
-            
+
             ABMutableMultiValueRef dates = ABRecordCopyValue(person, kABPersonDateProperty);
             CFStringRef dateLabel, dateValue;
             for (CFIndex index = 0; index < ABMultiValueGetCount(dates); index++) {
                 dateLabel = ABMultiValueCopyLabelAtIndex(dates, index);
                 dateValue = ABMultiValueCopyValueAtIndex(dates, index);
-                
-                NSLog(@"Date: %@-%@", dateLabel, dateValue);
-                
+
+                PDLog(@"Date: %@-%@", dateLabel, dateValue);
+
                 CFRelease(dateLabel);
                 CFRelease(dateValue);
             }
-            
+
             NSDate *birthday = (__bridge NSDate *)ABRecordCopyValue(person, kABPersonBirthdayProperty);
             if (birthday) {
-                NSLog(@"Birthday: %@", birthday.description);
+                PDLog(@"Birthday: %@", birthday.description);
+            }
+
+            if (processBlock) {
+                processBlock(infoDict);
             }
         }
     }
 }
 
 - (void)_exploreInfoFromGroups:(NSArray *)groups
+                  processBlock:(ISUGroupProceessBlock)processBlock
 {
     for (int indexOfGroup = 0; indexOfGroup < [groups count]; indexOfGroup++) {
         @autoreleasepool {
+            if (self.canceled) {
+                return;
+            }
+            
+            NSMutableDictionary *infoDict = [NSMutableDictionary dictionary];
+
             ABRecordRef group = (__bridge ABRecordRef)[groups objectAtIndex:indexOfGroup];
             NSString *name = (__bridge_transfer NSString *)ABRecordCopyValue(group, kABGroupNameProperty);
-            NSLog(@"Group Name: %@", name);
-            
-            NSArray *members = (__bridge_transfer NSArray*)ABGroupCopyArrayOfAllMembers(group);
+            PDLog(@"Group Name: %@", name);
+
+            NSArray *members = (__bridge_transfer NSArray *)ABGroupCopyArrayOfAllMembers(group);
             for (CFIndex indexOfMember = 0; indexOfMember < [members count]; indexOfMember++) {
                 ABRecordRef member = (__bridge ABRecordRef)([members objectAtIndex:indexOfMember]);
                 NSString *firstName = (__bridge_transfer NSString *)ABRecordCopyValue(member, kABPersonFirstNameProperty);
-                NSLog(@"Member: %@", firstName);
+                PDLog(@"Member: %@", firstName);
+                CFRelease(member);
+            }
+            CFRelease(group);
+
+            if (processBlock) {
+                processBlock(infoDict);
             }
         }
     }
-    
 }
 
 - (BOOL)_askContactsPermissionForAddressBook:(ABAddressBookRef)addressBook

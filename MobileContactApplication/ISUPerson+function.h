@@ -10,4 +10,9 @@
 
 @interface ISUPerson (function)
 
++ (ISUPerson *)findOrCreatePersonWithRecordId:(NSNumber *)recordId
+                                    inContext:(NSManagedObjectContext*)context;
+
+- (void)updateWithInfo:(NSDictionary *)info;
+
 @end

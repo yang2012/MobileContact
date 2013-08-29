@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ISUPersistentManager.h"
 
 @interface ISUViewController : UIViewController
+
+@property (nonatomic, strong) ISUPersistentManager *persistentManager;
+
+@property (strong, nonatomic) IBOutlet UIButton *importButton;
+@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
+@property (strong, nonatomic) IBOutlet UIProgressView *importProgressbar;
+@property (strong, nonatomic) IBOutlet UITableView *contentTableView;
 
 @end
