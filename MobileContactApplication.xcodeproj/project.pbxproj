@@ -31,6 +31,20 @@
 		FA787DFD17CF112A00F676E2 /* ISUGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = FA787DFC17CF112A00F676E2 /* ISUGroup.m */; };
 		FA787E0017CF2A4300F676E2 /* ISUFetchedResultsTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA787DFF17CF2A4300F676E2 /* ISUFetchedResultsTableDataSource.m */; };
 		FA787E0317CF3E5D00F676E2 /* ISUPersonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA787E0217CF3E5D00F676E2 /* ISUPersonTests.m */; };
+		FA787E0D17CF7FE900F676E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167D617CC98AB0026F1CD /* UIKit.framework */; };
+		FA787E0E17CF7FE900F676E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167D817CC98AB0026F1CD /* Foundation.framework */; };
+		FA787E0F17CF7FE900F676E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167DA17CC98AB0026F1CD /* CoreGraphics.framework */; };
+		FA787E1517CF7FE900F676E2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA787E1317CF7FE900F676E2 /* InfoPlist.strings */; };
+		FA787E1717CF7FE900F676E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA787E1617CF7FE900F676E2 /* main.m */; };
+		FA787E2C17CF82A100F676E2 /* ISUPersonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA787E2B17CF82A100F676E2 /* ISUPersonTest.m */; };
+		FA787E3017CF895900F676E2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA787E2F17CF895900F676E2 /* libPods.a */; };
+		FA787E3B17CF9C1B00F676E2 /* ISUPerson+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE8218F17CCB98F003C39B0 /* ISUPerson+function.m */; };
+		FA787E3C17CF9C4100F676E2 /* ISUPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = FA787DF917CF112A00F676E2 /* ISUPerson.m */; };
+		FA787E3D17CF9C5E00F676E2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAE8217A17CCB595003C39B0 /* Model.xcdatamodeld */; };
+		FA787E3E17CF9CC000F676E2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE8218917CCB8EB003C39B0 /* CoreData.framework */; };
+		FA787E3F17CF9D3A00F676E2 /* ISUAddressBookUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */; };
+		FA787E4017CF9D5000F676E2 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA21681417CC993A0026F1CD /* AddressBook.framework */; };
+		FA787E4117CF9D5800F676E2 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA21681617CC993F0026F1CD /* AddressBookUI.framework */; };
 		FAE8216117CCB2F7003C39B0 /* ISUAddressBookUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */; };
 		FAE8217C17CCB595003C39B0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAE8217A17CCB595003C39B0 /* Model.xcdatamodeld */; };
 		FAE8218A17CCB8EB003C39B0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE8218917CCB8EB003C39B0 /* CoreData.framework */; };
@@ -86,6 +100,13 @@
 		FA787DFF17CF2A4300F676E2 /* ISUFetchedResultsTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUFetchedResultsTableDataSource.m; sourceTree = "<group>"; };
 		FA787E0117CF3E5D00F676E2 /* ISUPersonTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUPersonTests.h; sourceTree = "<group>"; };
 		FA787E0217CF3E5D00F676E2 /* ISUPersonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPersonTests.m; sourceTree = "<group>"; };
+		FA787E0C17CF7FE800F676E2 /* MobileContactApplication Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MobileContactApplication Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA787E1217CF7FE900F676E2 /* MobileContactApplication Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MobileContactApplication Tests-Info.plist"; sourceTree = "<group>"; };
+		FA787E1417CF7FE900F676E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FA787E1617CF7FE900F676E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FA787E1817CF7FE900F676E2 /* MobileContactApplication Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobileContactApplication Tests-Prefix.pch"; sourceTree = "<group>"; };
+		FA787E2B17CF82A100F676E2 /* ISUPersonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPersonTest.m; sourceTree = "<group>"; };
+		FA787E2F17CF895900F676E2 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "../Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		FAE8215F17CCB2F7003C39B0 /* ISUAddressBookUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAddressBookUtility.h; sourceTree = "<group>"; };
 		FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAddressBookUtility.m; sourceTree = "<group>"; };
 		FAE8217B17CCB595003C39B0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -121,6 +142,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA787E0917CF7FE800F676E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA787E4117CF9D5800F676E2 /* AddressBookUI.framework in Frameworks */,
+				FA787E4017CF9D5000F676E2 /* AddressBook.framework in Frameworks */,
+				FA787E3E17CF9CC000F676E2 /* CoreData.framework in Frameworks */,
+				FA787E3017CF895900F676E2 /* libPods.a in Frameworks */,
+				FA787E0D17CF7FE900F676E2 /* UIKit.framework in Frameworks */,
+				FA787E0E17CF7FE900F676E2 /* Foundation.framework in Frameworks */,
+				FA787E0F17CF7FE900F676E2 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -129,6 +164,7 @@
 			children = (
 				FA2167DC17CC98AB0026F1CD /* MobileContactApplication */,
 				FA21680017CC98AB0026F1CD /* MobileContactApplicationTests */,
+				FA787E1017CF7FE900F676E2 /* MobileContactApplication Tests */,
 				FA2167D517CC98AB0026F1CD /* Frameworks */,
 				FA2167D417CC98AB0026F1CD /* Products */,
 				1D6B351CD0B344F4AD360484 /* Pods.xcconfig */,
@@ -140,6 +176,7 @@
 			children = (
 				FA2167D317CC98AB0026F1CD /* MobileContactApplication.app */,
 				FA2167F917CC98AB0026F1CD /* MobileContactApplicationTests.octest */,
+				FA787E0C17CF7FE800F676E2 /* MobileContactApplication Tests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -286,6 +323,27 @@
 			name = Operations;
 			sourceTree = "<group>";
 		};
+		FA787E1017CF7FE900F676E2 /* MobileContactApplication Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FA787E2F17CF895900F676E2 /* libPods.a */,
+				FA787E1117CF7FE900F676E2 /* Supporting Files */,
+				FA787E2B17CF82A100F676E2 /* ISUPersonTest.m */,
+			);
+			path = "MobileContactApplication Tests";
+			sourceTree = "<group>";
+		};
+		FA787E1117CF7FE900F676E2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA787E1217CF7FE900F676E2 /* MobileContactApplication Tests-Info.plist */,
+				FA787E1317CF7FE900F676E2 /* InfoPlist.strings */,
+				FA787E1617CF7FE900F676E2 /* main.m */,
+				FA787E1817CF7FE900F676E2 /* MobileContactApplication Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		FAE8215617CCAB45003C39B0 /* Functions */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +418,23 @@
 			productReference = FA2167F917CC98AB0026F1CD /* MobileContactApplicationTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		FA787E0B17CF7FE800F676E2 /* MobileContactApplication Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA787E2217CF7FE900F676E2 /* Build configuration list for PBXNativeTarget "MobileContactApplication Tests" */;
+			buildPhases = (
+				FA787E0817CF7FE800F676E2 /* Sources */,
+				FA787E0917CF7FE800F676E2 /* Frameworks */,
+				FA787E0A17CF7FE800F676E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MobileContactApplication Tests";
+			productName = "MobileContactApplication Tests";
+			productReference = FA787E0C17CF7FE800F676E2 /* MobileContactApplication Tests.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -384,6 +459,7 @@
 			targets = (
 				FA2167D217CC98AB0026F1CD /* MobileContactApplication */,
 				FA2167F817CC98AB0026F1CD /* MobileContactApplicationTests */,
+				FA787E0B17CF7FE800F676E2 /* MobileContactApplication Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -406,6 +482,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA21680517CC98AB0026F1CD /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA787E0A17CF7FE800F676E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA787E1517CF7FE900F676E2 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +569,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA787E0817CF7FE800F676E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA787E3F17CF9D3A00F676E2 /* ISUAddressBookUtility.m in Sources */,
+				FA787E3D17CF9C5E00F676E2 /* Model.xcdatamodeld in Sources */,
+				FA787E3C17CF9C4100F676E2 /* ISUPerson.m in Sources */,
+				FA787E3B17CF9C1B00F676E2 /* ISUPerson+function.m in Sources */,
+				FA787E1717CF7FE900F676E2 /* main.m in Sources */,
+				FA787E2C17CF82A100F676E2 /* ISUPersonTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -516,6 +613,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				FA21680417CC98AB0026F1CD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FA787E1317CF7FE900F676E2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA787E1417CF7FE900F676E2 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -638,6 +743,43 @@
 			};
 			name = Release;
 		};
+		FA787E2317CF7FE900F676E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D6B351CD0B344F4AD360484 /* Pods.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MobileContactApplication Tests/MobileContactApplication Tests-Prefix.pch";
+				INFOPLIST_FILE = "MobileContactApplication Tests/MobileContactApplication Tests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+					"-framework",
+					CFNetwork,
+					"-framework",
+					CoreData,
+					"-framework",
+					Foundation,
+					"-framework",
+					Security,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		FA787E2417CF7FE900F676E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MobileContactApplication Tests/MobileContactApplication Tests-Prefix.pch";
+				INFOPLIST_FILE = "MobileContactApplication Tests/MobileContactApplication Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -667,6 +809,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		FA787E2217CF7FE900F676E2 /* Build configuration list for PBXNativeTarget "MobileContactApplication Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA787E2317CF7FE900F676E2 /* Debug */,
+				FA787E2417CF7FE900F676E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+//#import <SenTestingKit/SenTestingKit.h>
 
 @interface ISUPersonTests : SenTestCase
 

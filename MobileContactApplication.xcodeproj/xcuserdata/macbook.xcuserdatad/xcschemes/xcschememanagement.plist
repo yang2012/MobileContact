@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>MobileContactApplication Tests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>MobileContactApplication.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,11 @@
 			<true/>
 		</dict>
 		<key>FA2167F817CC98AB0026F1CD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA787E0B17CF7FE800F676E2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
