@@ -762,6 +762,8 @@
 			baseConfigurationReference = 1D6B351CD0B344F4AD360484 /* Pods.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileContactApplication Tests/MobileContactApplication Tests-Prefix.pch";
 				INFOPLIST_FILE = "MobileContactApplication Tests/MobileContactApplication Tests-Info.plist";
@@ -787,6 +789,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileContactApplication Tests/MobileContactApplication Tests-Prefix.pch";
 				INFOPLIST_FILE = "MobileContactApplication Tests/MobileContactApplication Tests-Info.plist";
