@@ -833,6 +833,7 @@
 				FA787E2417CF7FE900F676E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
