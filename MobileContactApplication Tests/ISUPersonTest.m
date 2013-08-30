@@ -20,9 +20,7 @@
 @implementation ISUPersonTest
 
 - (void)setUp
-{
-//    [super setUp];
-    
+{    
     NSBundle *frameworkBundle = [NSBundle bundleForClass:[ISUPerson class]];
     NSURL *modelURL = [frameworkBundle URLForResource:@"Model" withExtension:@"momd"];
     NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
@@ -44,7 +42,6 @@
 {
     // Tear-down code here.
     
-//    [super tearDown];
 }
 
 - (void)testFindOrCreatePerson
