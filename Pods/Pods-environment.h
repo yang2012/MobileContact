@@ -6,6 +6,24 @@
 // project.
 
 
+// DAKeyboardControl
+#define COCOAPODS_POD_AVAILABLE_DAKeyboardControl
+#define COCOAPODS_VERSION_MAJOR_DAKeyboardControl 2
+#define COCOAPODS_VERSION_MINOR_DAKeyboardControl 2
+#define COCOAPODS_VERSION_PATCH_DAKeyboardControl 0
+
+// DKLiveBlur
+#define COCOAPODS_POD_AVAILABLE_DKLiveBlur
+#define COCOAPODS_VERSION_MAJOR_DKLiveBlur 0
+#define COCOAPODS_VERSION_MINOR_DKLiveBlur 0
+#define COCOAPODS_VERSION_PATCH_DKLiveBlur 1
+
+// MJNIndexView
+#define COCOAPODS_POD_AVAILABLE_MJNIndexView
+#define COCOAPODS_VERSION_MAJOR_MJNIndexView 0
+#define COCOAPODS_VERSION_MINOR_MJNIndexView 0
+#define COCOAPODS_VERSION_PATCH_MJNIndexView 1
+
 // OCMock
 #define COCOAPODS_POD_AVAILABLE_OCMock
 #define COCOAPODS_VERSION_MAJOR_OCMock 2
@@ -29,4 +47,10 @@
 #define COCOAPODS_VERSION_MAJOR_SocketRocket 0
 #define COCOAPODS_VERSION_MINOR_SocketRocket 3
 #define COCOAPODS_VERSION_PATCH_SocketRocket 1
+
+// WSCoachMarksView
+#define COCOAPODS_POD_AVAILABLE_WSCoachMarksView
+#define COCOAPODS_VERSION_MAJOR_WSCoachMarksView 0
+#define COCOAPODS_VERSION_MINOR_WSCoachMarksView 2
+#define COCOAPODS_VERSION_PATCH_WSCoachMarksView 0
 

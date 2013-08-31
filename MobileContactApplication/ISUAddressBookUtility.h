@@ -12,7 +12,7 @@ extern NSString *const kISURecordId;            // Unique record id - NSNumber(i
 extern NSString *const kISUPersonFirstName;     // First name - NSString
 extern NSString *const kISUPersonLastName;      // Last name - NSString
 extern NSString *const kISUPersonFullName;      // Full name - NSString
-extern NSString *const kISUPersonPhoneNumbers;  // Generic phone number - NSArray
+extern NSString *const kISUPersonPhoneNumbers;  // Generic phone number - NSArray (ex. [[phonelable, phoneNumber], [phoneLabel, phoneNumber], ...]])
 
 extern NSString *const kISUGroupName;           // Group name - NSString
 

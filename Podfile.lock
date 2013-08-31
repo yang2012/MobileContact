@@ -1,26 +1,38 @@
 PODS:
+  - DAKeyboardControl (2.2.0)
+  - DKLiveBlur (0.0.1)
   - Kiwi (2.2.1):
     - Kiwi/ARC
     - Kiwi/NonARC
   - Kiwi/ARC (2.2.1)
   - Kiwi/NonARC (2.2.1)
+  - MJNIndexView (0.0.1)
   - OCMock (2.2.1)
   - OHHTTPStubs (2.0.0)
   - PonyDebugger (0.3.0):
     - SocketRocket
   - SocketRocket (0.3.1-beta2)
+  - WSCoachMarksView (0.2)
 
 DEPENDENCIES:
+  - DAKeyboardControl (~> 2.2.0)
+  - DKLiveBlur (~> 0.0.1)
   - Kiwi
+  - MJNIndexView (~> 0.0.1)
   - OCMock (~> 2.2.1)
   - OHHTTPStubs (~> 2.0.0)
   - PonyDebugger (~> 0.3.0)
+  - WSCoachMarksView (~> 0.2)
 
 SPEC CHECKSUMS:
+  DAKeyboardControl: 3f58b2958b4d6785ee395211c6f175af7eb9de8d
+  DKLiveBlur: 0107f6bf5c4447066317a83101fee0e35ac00716
   Kiwi: e6524ba0eaa1b28af7af146bdee5314b32aa3edb
+  MJNIndexView: 955e28b696209f8ebcc8c76cd17b773ed4a06df0
   OCMock: 80e4cfbc71a0e1bd28caf10a9fda27da7c4c8402
   OHHTTPStubs: 921de87847a4ebd7ff8642715a7eb12a29e1e0f7
   PonyDebugger: bafc25809ade389d0d1c1f1147877145cc26bd78
   SocketRocket: 7ac946bcce46287a791dfff3c1f8daa692821dae
+  WSCoachMarksView: 93657355c87e88d0fea622ee45e9733d2242b080
 
 COCOAPODS: 0.23.0

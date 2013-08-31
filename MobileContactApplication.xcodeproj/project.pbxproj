@@ -198,7 +198,7 @@
 		FA21680017CC98AB0026F1CD /* MobileContactApplicationTests */ = {
 			isa = PBXGroup;
 			children = (
-				FABE9FB017D1AB9700EF3F2B /* ISUPersonTest.m */,
+				FABE9FB317D1D56E00EF3F2B /* TestClasses */,
 				FA21680117CC98AB0026F1CD /* Supporting Files */,
 			);
 			path = MobileContactApplicationTests;
@@ -290,6 +290,14 @@
 				FA787DF517CE3CC400F676E2 /* ISUAddressBookImportOperation.m */,
 			);
 			name = Operations;
+			sourceTree = "<group>";
+		};
+		FABE9FB317D1D56E00EF3F2B /* TestClasses */ = {
+			isa = PBXGroup;
+			children = (
+				FABE9FB017D1AB9700EF3F2B /* ISUPersonTest.m */,
+			);
+			name = TestClasses;
 			sourceTree = "<group>";
 		};
 		FAE8215617CCAB45003C39B0 /* Functions */ = {
