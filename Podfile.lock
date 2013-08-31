@@ -1,5 +1,4 @@
 PODS:
-  - GHUnitIOS (0.5.6)
   - Kiwi (2.2.1):
     - Kiwi/ARC
     - Kiwi/NonARC
@@ -12,14 +11,12 @@ PODS:
   - SocketRocket (0.3.1-beta2)
 
 DEPENDENCIES:
-  - GHUnitIOS (~> 0.5.6)
   - Kiwi
   - OCMock (~> 2.2.1)
   - OHHTTPStubs (~> 2.0.0)
   - PonyDebugger (~> 0.3.0)
 
 SPEC CHECKSUMS:
-  GHUnitIOS: bf149b2c44084eee2785ce4ac3675c3a699e509d
   Kiwi: e6524ba0eaa1b28af7af146bdee5314b32aa3edb
   OCMock: 80e4cfbc71a0e1bd28caf10a9fda27da7c4c8402
   OHHTTPStubs: 921de87847a4ebd7ff8642715a7eb12a29e1e0f7
