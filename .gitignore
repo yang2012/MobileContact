@@ -18,5 +18,5 @@ UserInterfaceState.xcuserstate
 *.moved-aside
 DerivedData
 .idea/
-
+test-reports/*
 
