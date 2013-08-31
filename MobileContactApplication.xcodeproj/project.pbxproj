@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F27D717246646EFAC969D00 /* libPods-MobileContactApplicationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9103198C5D4CA492FDB4F4 /* libPods-MobileContactApplicationTests.a */; };
 		DAEF9F403FBC45CFA15AE3B9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2CD10FC8C34550BF23C3B9 /* libPods.a */; };
 		FA2167D717CC98AB0026F1CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167D617CC98AB0026F1CD /* UIKit.framework */; };
 		FA2167D917CC98AB0026F1CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167D817CC98AB0026F1CD /* Foundation.framework */; };
@@ -45,6 +46,8 @@
 		FA787E4017CF9D5000F676E2 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA21681417CC993A0026F1CD /* AddressBook.framework */; };
 		FA787E4117CF9D5800F676E2 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA21681617CC993F0026F1CD /* AddressBookUI.framework */; };
 		FA787E4617D062A100F676E2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA787E4517D062A100F676E2 /* Default-568h@2x.png */; };
+		FABE9FB117D1AB9700EF3F2B /* ISUPersonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FABE9FB017D1AB9700EF3F2B /* ISUPersonTest.m */; };
+		FABE9FB217D1C1D800EF3F2B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE8218917CCB8EB003C39B0 /* CoreData.framework */; };
 		FAE8216117CCB2F7003C39B0 /* ISUAddressBookUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */; };
 		FAE8217C17CCB595003C39B0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAE8217A17CCB595003C39B0 /* Model.xcdatamodeld */; };
 		FAE8218A17CCB8EB003C39B0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE8218917CCB8EB003C39B0 /* CoreData.framework */; };
@@ -64,6 +67,8 @@
 
 /* Begin PBXFileReference section */
 		1D6B351CD0B344F4AD360484 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		77C2CC6186CF4BFC8CD009D8 /* Pods-MobileContactApplicationTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileContactApplicationTests.xcconfig"; path = "Pods/Pods-MobileContactApplicationTests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		8E9103198C5D4CA492FDB4F4 /* libPods-MobileContactApplicationTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MobileContactApplicationTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2CD10FC8C34550BF23C3B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA2167D317CC98AB0026F1CD /* MobileContactApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileContactApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA2167D617CC98AB0026F1CD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -106,6 +111,7 @@
 		FA787E2B17CF82A100F676E2 /* ISUPersonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPersonTest.m; sourceTree = "<group>"; };
 		FA787E2F17CF895900F676E2 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "../Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		FA787E4517D062A100F676E2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		FABE9FB017D1AB9700EF3F2B /* ISUPersonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPersonTest.m; sourceTree = "<group>"; };
 		FAE8215F17CCB2F7003C39B0 /* ISUAddressBookUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAddressBookUtility.h; sourceTree = "<group>"; };
 		FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAddressBookUtility.m; sourceTree = "<group>"; };
 		FAE8217B17CCB595003C39B0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -135,9 +141,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABE9FB217D1C1D800EF3F2B /* CoreData.framework in Frameworks */,
 				FA2167FB17CC98AB0026F1CD /* SenTestingKit.framework in Frameworks */,
 				FA2167FC17CC98AB0026F1CD /* UIKit.framework in Frameworks */,
 				FA2167FD17CC98AB0026F1CD /* Foundation.framework in Frameworks */,
+				9F27D717246646EFAC969D00 /* libPods-MobileContactApplicationTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +175,7 @@
 				FA2167D517CC98AB0026F1CD /* Frameworks */,
 				FA2167D417CC98AB0026F1CD /* Products */,
 				1D6B351CD0B344F4AD360484 /* Pods.xcconfig */,
+				77C2CC6186CF4BFC8CD009D8 /* Pods-MobileContactApplicationTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -191,6 +200,7 @@
 				FA2167DA17CC98AB0026F1CD /* CoreGraphics.framework */,
 				FA2167FA17CC98AB0026F1CD /* SenTestingKit.framework */,
 				DF2CD10FC8C34550BF23C3B9 /* libPods.a */,
+				8E9103198C5D4CA492FDB4F4 /* libPods-MobileContactApplicationTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -227,6 +237,7 @@
 		FA21680017CC98AB0026F1CD /* MobileContactApplicationTests */ = {
 			isa = PBXGroup;
 			children = (
+				FABE9FB017D1AB9700EF3F2B /* ISUPersonTest.m */,
 				FA21680117CC98AB0026F1CD /* Supporting Files */,
 			);
 			path = MobileContactApplicationTests;
@@ -401,10 +412,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA21680E17CC98AB0026F1CD /* Build configuration list for PBXNativeTarget "MobileContactApplicationTests" */;
 			buildPhases = (
+				077C31EFFA7949B0A6BEA02B /* Check Pods Manifest.lock */,
 				FA2167F417CC98AB0026F1CD /* Sources */,
 				FA2167F517CC98AB0026F1CD /* Frameworks */,
 				FA2167F617CC98AB0026F1CD /* Resources */,
 				FA2167F717CC98AB0026F1CD /* ShellScript */,
+				22ADC53197ED46A0B738CA5B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -496,6 +509,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		077C31EFFA7949B0A6BEA02B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		22ADC53197ED46A0B738CA5B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-MobileContactApplicationTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		27DA90CA5BEA44A6BCB13AFF /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -537,7 +580,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+			shellScript = "if [ \"$RUN_APPLICATION_TESTS_WITH_IOS_SIM\" = \"YES\" ]; then\ntest_bundle_path=\"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION\"\nenvironment_args=\"--setenv DYLD_INSERT_LIBRARIES=/../../Library/PrivateFrameworks/IDEBundleInjection.framework/IDEBundleInjection --setenv XCInjectBundle=$test_bundle_path --setenv XCInjectBundleInto=$TEST_HOST\"\nios-sim launch $(dirname $TEST_HOST) $environment_args --args -SenTest All $test_bundle_path\necho \"Finished running tests with ios-sim\"\nelse\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\nfi";
 		};
 		FA787E4217D048CC00F676E2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -550,7 +593,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$SRCROOT/Runtests.sh\"";
+			shellScript = "\"$SRCROOT/RunTestsUsingWaxSim.sh\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -578,6 +621,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABE9FB117D1AB9700EF3F2B /* ISUPersonTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,7 +768,7 @@
 		};
 		FA21680F17CC98AB0026F1CD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D6B351CD0B344F4AD360484 /* Pods.xcconfig */;
+			baseConfigurationReference = 77C2CC6186CF4BFC8CD009D8 /* Pods-MobileContactApplicationTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MobileContactApplication.app/MobileContactApplication";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -742,6 +786,7 @@
 		};
 		FA21681017CC98AB0026F1CD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77C2CC6186CF4BFC8CD009D8 /* Pods-MobileContactApplicationTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MobileContactApplication.app/MobileContactApplication";
 				FRAMEWORK_SEARCH_PATHS = (

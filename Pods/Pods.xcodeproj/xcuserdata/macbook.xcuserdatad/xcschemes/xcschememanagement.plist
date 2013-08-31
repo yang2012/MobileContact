@@ -9,6 +9,16 @@
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
+		<key>Pods-MobileContactApplicationTests-Kiwi.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>Pods-MobileContactApplicationTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 		<key>Pods-OCMock.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -37,6 +47,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>033DAC1E26974D6AA6196200</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>18E98504A5064F67839864CA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1A3716FFE3A842F2819C40E3</key>
 		<dict>
 			<key>primary</key>
@@ -47,7 +67,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>326E13A398C4477F837F10BB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>377476374B0E4DF0B010D4A5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>38979905E8624D52A387BBA1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,12 +102,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>590BCA7BC9944737AB84CAB7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>67D957F589AA4231B656BE62</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>7B768EDF7394499690F39817</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9CA552B888C8439CA8D65AD8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -103,6 +143,16 @@
 			<true/>
 		</dict>
 		<key>DA3098566C9147F8B398437F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DFD54623BF52478BBA3BAED2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E1077CA0CAD0478DAA2540B6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

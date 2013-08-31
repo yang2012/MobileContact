@@ -22,7 +22,7 @@ NSString *const kISUPersonPhoneNumbers = @"ISUPhonesKey";
 
 - (NSInteger)allPeopleCount
 {
-    ABAddressBookRef addressBook = ABAddressBookCreate();
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
 
     NSMutableArray *people = (__bridge_transfer NSMutableArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
     NSInteger count = [people count];
@@ -38,7 +38,7 @@ NSString *const kISUPersonPhoneNumbers = @"ISUPhonesKey";
     bool didSave;
     CFErrorRef error = NULL;
 
-    addressBook = ABAddressBookCreate();
+    addressBook = ABAddressBookCreateWithOptions(NULL, &error);
 
     BOOL granted = [self _askContactsPermissionForAddressBook:addressBook];
     if (granted == NO) {
@@ -220,18 +220,17 @@ NSString *const kISUPersonPhoneNumbers = @"ISUPhonesKey";
 {
     __block BOOL granted = NO;
     
-    // TODO: comment following lines in order to fix error when executing test cases from command line
-//    if (ABAddressBookRequestAccessWithCompletion != NULL) { // we're on iOS6
-//        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-//        ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool allowed, CFErrorRef error) {
-//            granted = allowed;
-//            dispatch_semaphore_signal(sema);
-//        });
-//
-//        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-//    } else { // we're on iOS5 or older
-//        granted = YES;
-//    }
+    if (ABAddressBookRequestAccessWithCompletion != NULL) { // we're on iOS6
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+        ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool allowed, CFErrorRef error) {
+            granted = allowed;
+            dispatch_semaphore_signal(sema);
+        });
+
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    } else { // we're on iOS5 or older
+        granted = YES;
+    }
 
     granted = YES;
     return granted;
