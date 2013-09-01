@@ -31,6 +31,8 @@
 		FA787DFA17CF112A00F676E2 /* ISUPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = FA787DF917CF112A00F676E2 /* ISUPerson.m */; };
 		FA787DFD17CF112A00F676E2 /* ISUGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = FA787DFC17CF112A00F676E2 /* ISUGroup.m */; };
 		FA787E0017CF2A4300F676E2 /* ISUFetchedResultsTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA787DFF17CF2A4300F676E2 /* ISUFetchedResultsTableDataSource.m */; };
+		FA85369017D2368D00696D28 /* ISUDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85368F17D2368D00696D28 /* ISUDefines.m */; };
+		FA85369317D319AF00696D28 /* ISULogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85369217D319AF00696D28 /* ISULogger.m */; };
 		FABE9FB117D1AB9700EF3F2B /* ISUPersonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FABE9FB017D1AB9700EF3F2B /* ISUPersonTest.m */; };
 		FABE9FB217D1C1D800EF3F2B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE8218917CCB8EB003C39B0 /* CoreData.framework */; };
 		FAE8216117CCB2F7003C39B0 /* ISUAddressBookUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */; };
@@ -88,6 +90,10 @@
 		FA787DFC17CF112A00F676E2 /* ISUGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUGroup.m; sourceTree = "<group>"; };
 		FA787DFE17CF2A4300F676E2 /* ISUFetchedResultsTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUFetchedResultsTableDataSource.h; sourceTree = "<group>"; };
 		FA787DFF17CF2A4300F676E2 /* ISUFetchedResultsTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUFetchedResultsTableDataSource.m; sourceTree = "<group>"; };
+		FA85368E17D2368D00696D28 /* ISUDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUDefines.h; sourceTree = "<group>"; };
+		FA85368F17D2368D00696D28 /* ISUDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUDefines.m; sourceTree = "<group>"; };
+		FA85369117D319AE00696D28 /* ISULogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISULogger.h; sourceTree = "<group>"; };
+		FA85369217D319AF00696D28 /* ISULogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISULogger.m; sourceTree = "<group>"; };
 		FABE9FB017D1AB9700EF3F2B /* ISUPersonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPersonTest.m; sourceTree = "<group>"; };
 		FAE8215F17CCB2F7003C39B0 /* ISUAddressBookUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAddressBookUtility.h; sourceTree = "<group>"; };
 		FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAddressBookUtility.m; sourceTree = "<group>"; };
@@ -171,6 +177,10 @@
 			children = (
 				FA2167E517CC98AB0026F1CD /* ISUAppDelegate.h */,
 				FA2167E617CC98AB0026F1CD /* ISUAppDelegate.m */,
+				FA85368E17D2368D00696D28 /* ISUDefines.h */,
+				FA85368F17D2368D00696D28 /* ISUDefines.m */,
+				FA85369117D319AE00696D28 /* ISULogger.h */,
+				FA85369217D319AF00696D28 /* ISULogger.m */,
 				FA2167EE17CC98AB0026F1CD /* MainStoryboard.storyboard */,
 				FAE8217A17CCB595003C39B0 /* Model.xcdatamodeld */,
 				FA787DF717CE416600F676E2 /* Constants.h */,
@@ -244,8 +254,8 @@
 		FA21682217CC99B10026F1CD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FA21682617CC9A560026F1CD /* Icons */,
 				FA21682517CC9A4D0026F1CD /* Themes */,
+				FA21682617CC9A560026F1CD /* Icons */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -520,6 +530,8 @@
 				FA787DFA17CF112A00F676E2 /* ISUPerson.m in Sources */,
 				FA787DFD17CF112A00F676E2 /* ISUGroup.m in Sources */,
 				FA787E0017CF2A4300F676E2 /* ISUFetchedResultsTableDataSource.m in Sources */,
+				FA85369017D2368D00696D28 /* ISUDefines.m in Sources */,
+				FA85369317D319AF00696D28 /* ISULogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

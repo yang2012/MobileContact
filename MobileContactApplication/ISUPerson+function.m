@@ -41,7 +41,8 @@
     NSArray *phoneNumbers = [info valueForKey:kISUPersonPhoneNumbers];
     for (NSArray *phone in phoneNumbers) {
         if ([phone count] != 2) {
-            PDLog(@"Invalid phone values: %@", phone);
+            NSString *logMessage = [NSString stringWithFormat:@"Invalid phone values: %@", phone];
+            ISULog(logMessage, ISULogPriorityHigh);
             return;
         }
 

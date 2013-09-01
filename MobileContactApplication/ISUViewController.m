@@ -50,7 +50,9 @@
         cell.detailTextLabel.text = [person.phoneNumber description];
     };
     self.contentTableView.dataSource = self.dataSource;
-    [self.contentTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
+        [self.contentTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    }
 }
 
 - (IBAction)startImport:(id)sender

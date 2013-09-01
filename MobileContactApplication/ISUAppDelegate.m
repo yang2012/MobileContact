@@ -7,6 +7,9 @@
 //
 
 #import "ISUAppDelegate.h"
+#ifdef DEBUG
+#import <PDDebugger.h>
+#endif
 
 @interface ISUAppDelegate ()
 

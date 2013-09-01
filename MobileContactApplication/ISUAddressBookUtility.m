@@ -22,10 +22,8 @@ NSString *const kISUPersonPhoneNumbers = @"ISUPhonesKey";
 
 - (NSInteger)allPeopleCount
 {
-    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
-
-    NSMutableArray *people = (__bridge_transfer NSMutableArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
-    NSInteger count = [people count];
+    ABAddressBookRef addressBook = [self _createAddressBook];
+    NSInteger count = ABAddressBookGetPersonCount(addressBook);
     CFRelease(addressBook);
     return count;
 }
@@ -33,27 +31,26 @@ NSString *const kISUPersonPhoneNumbers = @"ISUPhonesKey";
 - (void)importFromAddressBookWithPersonProcessBlock:(ISUPersonProceessBlock)personProcessBlock
                                   groupProcessBlock:(ISUGroupProceessBlock)groupProcessBlock
 {
-    ABAddressBookRef addressBook;
+    ABAddressBookRef addressBook = [self _createAddressBook];
     bool wantToSaveChanges = YES;
     bool didSave;
     CFErrorRef error = NULL;
 
-    addressBook = ABAddressBookCreateWithOptions(NULL, &error);
 
     BOOL granted = [self _askContactsPermissionForAddressBook:addressBook];
     if (granted == NO) {
         NSLog(@"Do not be allowed to access contacts");
         return;
     }
-    
+
     if (self.canceled) {
         return;
     }
 
-    NSMutableArray *people = (__bridge_transfer NSMutableArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
+    NSMutableArray *people = (NSMutableArray *)CFBridgingRelease(ABAddressBookCopyArrayOfAllPeople(addressBook));
     [self _exploreInfoFromPeople:people processBlock:personProcessBlock];
 
-    NSMutableArray *groups = (__bridge_transfer NSMutableArray *)ABAddressBookCopyArrayOfAllGroups(addressBook);
+    NSMutableArray *groups = (NSMutableArray *)CFBridgingRelease(ABAddressBookCopyArrayOfAllGroups(addressBook));
     [self _exploreInfoFromGroups:groups processBlock:groupProcessBlock];
 
     if (ABAddressBookHasUnsavedChanges(addressBook)) {
@@ -77,17 +74,17 @@ NSString *const kISUPersonPhoneNumbers = @"ISUPhonesKey";
             if (self.canceled) {
                 return;
             }
-            
+
             NSMutableDictionary *infoDict = [NSMutableDictionary dictionary];
 
             ABRecordRef person = (__bridge ABRecordRef)[people objectAtIndex:i];
             ABRecordID recordId = ABRecordGetRecordID(person);
-            NSLog(@"Record Id: %i", recordId);
+            ISULogWithLowPriority(@"Record Id: %i", recordId);
             [infoDict setValue:[NSNumber numberWithInteger:recordId] forKey:kISURecordId];
 
             NSString *fullName;
-            NSString *firstName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-            NSString *lastName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
+            NSString *firstName = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonFirstNameProperty));
+            NSString *lastName = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonLastNameProperty));
 
             if (([firstName isEqualToString:@""] || [firstName isEqualToString:@"(null)"] || firstName == nil) &&
                 ([lastName isEqualToString:@""] || [lastName isEqualToString:@"(null)"] || lastName == nil)) {
@@ -104,78 +101,61 @@ NSString *const kISUPersonPhoneNumbers = @"ISUPhonesKey";
                 }
             }
 
-            PDLog(@"Full Name: %@", fullName);
+            ISULogWithLowPriority(@"Full Name: %@", fullName);
             [infoDict setValue:fullName forKey:kISUPersonFullName];
 
-            ABMutableMultiValueRef phones = (ABMutableMultiValueRef)ABRecordCopyValue(person, kABPersonPhoneProperty);
-
-            NSString *phoneLabel, *phoneNumber;
             NSMutableArray *phonesArray = [NSMutableArray array];
-            for (CFIndex i = 0; i < ABMultiValueGetCount(phones); i++) {
-                phoneLabel = (__bridge_transfer NSString *)(ABMultiValueCopyLabelAtIndex(phones, i));
-                phoneNumber = (__bridge_transfer NSString *)(ABMultiValueCopyValueAtIndex(phones, i));
-
-                PDLog(@"Phone: %@-%@", phoneLabel, phoneNumber);
+            ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
+            for (CFIndex i = 0; i < ABMultiValueGetCount(phoneNumbers); i++) {
+                NSString* phoneLabel = (NSString*)CFBridgingRelease(ABMultiValueCopyLabelAtIndex(phoneNumbers, i));
+                NSString* phoneNumber = (NSString*)CFBridgingRelease(ABMultiValueCopyValueAtIndex(phoneNumbers, i));
+                ISULogWithLowPriority(@"Phone: %@-%@", phoneLabel, phoneNumber);
                 [phonesArray addObject:@[phoneLabel, phoneNumber]];
-            }
+            }            
+            CFRelease(phoneNumbers);
             [infoDict setValue:phonesArray forKey:kISUPersonPhoneNumbers];
 
-            NSString *department = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonDepartmentProperty);
-            PDLog(@"Department: %@", department);
+            
+            NSString *department = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonDepartmentProperty));
+            ISULogWithLowPriority(@"Department: %@", department);
 
-            ABMutableMultiValueRef address = (ABMutableMultiValueRef)ABRecordCopyValue(person, kABPersonAddressProperty);
-
-            if (ABMultiValueGetCount(address) > 0) {
-                CFDictionaryRef addressDictionary = ABMultiValueCopyValueAtIndex(address, 0);
-                NSString *street = CFBridgingRelease(CFDictionaryGetValue(addressDictionary, kABPersonAddressStreetKey));
-                PDLog(@"Stree: %@", street);
-
-                NSString *city = CFBridgingRelease(CFDictionaryGetValue(addressDictionary, kABPersonAddressCityKey));
-                PDLog(@"City: %@", city);
-
-                NSString *country = CFBridgingRelease(CFDictionaryGetValue(addressDictionary, kABPersonAddressCountryKey));
-                PDLog(@"Country: %@", country);
-
-                NSString *state = CFBridgingRelease(CFDictionaryGetValue(addressDictionary, kABPersonAddressStateKey));
-                PDLog(@"State: %@", state);
-
-                NSString *zip = CFBridgingRelease(CFDictionaryGetValue(addressDictionary, kABPersonAddressZIPKey));
-                PDLog(@"Zip: %@", zip);
+            CFTypeRef addressesReference = ABRecordCopyValue(person, kABPersonAddressProperty);
+            NSArray *addressesArray  = (NSArray *)CFBridgingRelease(ABMultiValueCopyArrayOfAllValues(addressesReference));
+            CFRelease(addressesReference);
+            
+            for (NSString *adress in addressesArray) {
+                ISULogWithLowPriority(@"Adresse: %@", adress);
             }
 
             ABMutableMultiValueRef emails = (ABMutableMultiValueRef)ABRecordCopyValue(person, kABPersonEmailProperty);
 
-            CFStringRef emailLabel, emailAddress;
+            NSString *emailLabel, *emailAddress;
             for (CFIndex i = 0; i < ABMultiValueGetCount(emails); i++) {
-                emailLabel = ABMultiValueCopyLabelAtIndex(emails, i);
-                emailAddress = ABMultiValueCopyValueAtIndex(emails, i);
+                emailLabel = (NSString *)CFBridgingRelease(ABMultiValueCopyLabelAtIndex(emails, i));
+                emailAddress = (NSString *)CFBridgingRelease(ABMultiValueCopyValueAtIndex(emails, i));
 
-                PDLog(@"Email: %@-%@", emailLabel, emailAddress);
-
-                CFRelease(emailLabel);
-                CFRelease(emailAddress);
+                ISULogWithLowPriority(@"Email: %@-%@", emailLabel, emailAddress);
             }
+            CFRelease(emails);
 
             if (ABPersonHasImageData(person)) {
-                UIImage *addressVookImage = [UIImage imageWithData:(__bridge NSData *)ABPersonCopyImageData(person)];
-                PDLog(@"Image Size: %f %f", addressVookImage.size.height, addressVookImage.size.width);
+                UIImage *addressVookImage = [UIImage imageWithData:(NSData *)CFBridgingRelease(ABPersonCopyImageData(person))];
+                ISULogWithLowPriority(@"Image Size: %f %f", addressVookImage.size.height, addressVookImage.size.width);
             }
 
             ABMutableMultiValueRef dates = ABRecordCopyValue(person, kABPersonDateProperty);
-            CFStringRef dateLabel, dateValue;
+            NSString *dateLabel, *dateValue;
             for (CFIndex index = 0; index < ABMultiValueGetCount(dates); index++) {
-                dateLabel = ABMultiValueCopyLabelAtIndex(dates, index);
-                dateValue = ABMultiValueCopyValueAtIndex(dates, index);
+                dateLabel = (NSString *)CFBridgingRelease(ABMultiValueCopyLabelAtIndex(dates, index));
+                dateValue = (NSString *)CFBridgingRelease(ABMultiValueCopyValueAtIndex(dates, index));
 
-                PDLog(@"Date: %@-%@", dateLabel, dateValue);
-
-                CFRelease(dateLabel);
-                CFRelease(dateValue);
+                ISULogWithLowPriority(@"Date: %@-%@", dateLabel, dateValue);
             }
+            CFRelease(dates);
 
-            NSDate *birthday = (__bridge NSDate *)ABRecordCopyValue(person, kABPersonBirthdayProperty);
+            NSDate *birthday = (NSDate *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonBirthdayProperty));
             if (birthday) {
-                PDLog(@"Birthday: %@", birthday.description);
+                ISULogWithLowPriority(@"Birthday: %@", birthday.description);
             }
 
             if (processBlock) {
@@ -193,21 +173,20 @@ NSString *const kISUPersonPhoneNumbers = @"ISUPhonesKey";
             if (self.canceled) {
                 return;
             }
-            
+
             NSMutableDictionary *infoDict = [NSMutableDictionary dictionary];
 
             ABRecordRef group = (__bridge ABRecordRef)[groups objectAtIndex:indexOfGroup];
-            NSString *name = (__bridge_transfer NSString *)ABRecordCopyValue(group, kABGroupNameProperty);
-            PDLog(@"Group Name: %@", name);
+            NSString *name = (NSString *)CFBridgingRelease(ABRecordCopyValue(group, kABGroupNameProperty));
+            ISULogWithLowPriority(@"Group Name: %@", name);
 
-            NSArray *members = (__bridge_transfer NSArray *)ABGroupCopyArrayOfAllMembers(group);
+            NSArray *members = (NSArray *)CFBridgingRelease(ABGroupCopyArrayOfAllMembers(group));
+            ABRecordRef member = nil;
             for (CFIndex indexOfMember = 0; indexOfMember < [members count]; indexOfMember++) {
-                ABRecordRef member = (__bridge ABRecordRef)([members objectAtIndex:indexOfMember]);
-                NSString *firstName = (__bridge_transfer NSString *)ABRecordCopyValue(member, kABPersonFirstNameProperty);
-                PDLog(@"Member: %@", firstName);
-                CFRelease(member);
+                member = (__bridge ABRecordRef)([members objectAtIndex:indexOfMember]);
+                NSString *firstName = (NSString *)CFBridgingRelease(ABRecordCopyValue(member, kABPersonFirstNameProperty));
+                ISULogWithLowPriority(@"Member: %@", firstName);
             }
-            CFRelease(group);
 
             if (processBlock) {
                 processBlock(infoDict);
@@ -216,10 +195,19 @@ NSString *const kISUPersonPhoneNumbers = @"ISUPhonesKey";
     }
 }
 
+- (ABAddressBookRef)_createAddressBook
+{
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.1")) {
+        return ABAddressBookCreateWithOptions(NULL, NULL);
+    } else {
+        return ABAddressBookCreate();
+    }
+}
+
 - (BOOL)_askContactsPermissionForAddressBook:(ABAddressBookRef)addressBook
 {
     __block BOOL granted = NO;
-    
+
     if (ABAddressBookRequestAccessWithCompletion != NULL) { // we're on iOS6
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
         ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool allowed, CFErrorRef error) {
@@ -228,6 +216,7 @@ NSString *const kISUPersonPhoneNumbers = @"ISUPhonesKey";
         });
 
         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+        dispatch_release(sema);
     } else { // we're on iOS5 or older
         granted = YES;
     }
@@ -235,5 +224,50 @@ NSString *const kISUPersonPhoneNumbers = @"ISUPhonesKey";
     granted = YES;
     return granted;
 }
+
+//- (void)_mergeLinkedPersons
+//{
+//    ABAddressBookRef addressBook = [self _createAddressBook];
+//
+//    NSArray *allPersonRecords = (NSArray *) CFBridgingRelease(ABAddressBookCopyArrayOfAllPeople(addressBook));
+//    NSMutableSet *linkedPersonsToSkip = [[NSMutableSet alloc] init];
+//    
+//    for (int i=0; i<[allPersonRecords count]; i++){
+//        
+//        ABRecordRef personRecordRef = CFBridgingRetain([allPersonRecords objectAtIndex:i]);
+//        
+//        // skip if contact has already been merged
+//        //
+//        if ([linkedPersonsToSkip containsObject:personRecordRef]) {
+//            continue;
+//        }
+//        
+//        // Create object representing this person
+//        //
+//        Person *thisPerson = [[Person alloc] initWithPersonRef:personRecordRef];
+//        
+//        // check if there are linked contacts & merge their contact information
+//        //
+//        NSArray *linked = (NSArray *) ABPersonCopyArrayOfAllLinkedPeople(personRecordRef);
+//        if ([linked count] > 1) {
+//            [linkedPersonsToSkip addObjectsFromArray:linked];
+//            
+//            // merge linked contact info
+//            for (int m = 0; m < [linked count]; m++) {
+//                ABRecordRef iLinkedPerson = [linked objectAtIndex:m];
+//                // don't merge the same contact
+//                if (iLinkedPerson == personRecordRef) {
+//                    continue;
+//                }
+//                [thisPerson mergeInfoFromPersonRef:iLinkedPerson];
+//            }
+//        }
+//        [self.addressBookDictionary setObject:thisPerson forKey:thisPerson.recordID];
+//        [thisPerson release];
+//        [linked release];
+//    }
+//    [linkedPersonsToSkip release];
+//    [allPersonRecords release];
+//}
 
 @end
