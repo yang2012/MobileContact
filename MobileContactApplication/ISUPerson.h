@@ -6,12 +6,11 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "SSManagedObject.h"
 
 @class ISUGroup;
 
-@interface ISUPerson : NSManagedObject
+@interface ISUPerson : SSManagedObject
 
 @property (nonatomic, retain) NSNumber * frequence;
 @property (nonatomic, retain) NSString * fullName;

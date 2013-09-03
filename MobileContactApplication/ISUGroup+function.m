@@ -10,4 +10,39 @@
 
 @implementation ISUGroup (function)
 
++ (ISUGroup *)findOrCreateGroupWithRecordId:(NSNumber *)recordId
+                                  inContext:(NSManagedObjectContext *)context
+{
+    if (recordId == nil || recordId == 0) {
+        NSLog(@"Invalid recrodId when calling findOrCreateGroupWithRecordId:inContext: : %@", recordId);
+        return nil;
+    }
+    
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[ISUGroup entityName]];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"recordId=%@", recordId];
+    fetchRequest.fetchLimit = 1;
+    id object = [[context executeFetchRequest:fetchRequest error:NULL] lastObject];
+    if (object == nil) {
+        object = [NSEntityDescription insertNewObjectForEntityForName:[ISUGroup entityName] inManagedObjectContext:context];
+        ((ISUGroup *)object).recordId = recordId;
+    }
+    return object;
+}
+
++ (NSArray *)allGroupInContext:(NSManagedObjectContext *)context
+{
+    if (context == nil) {
+        ISULog(@"Nil context when calling allGroupInContext:", ISULogPriorityHigh);
+        return nil;
+    }
+    
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[ISUGroup entityName]];
+    fetchRequest.predicate = [NSPredicate predicateWithValue:YES];
+    NSArray *groups = [[context executeFetchRequest:fetchRequest error:NULL] lastObject];
+    if (groups.count == 0) {
+        ISULog(@"Can't find any group", ISULogPriorityNormal);
+    }
+    return groups;
+}
+
 @end

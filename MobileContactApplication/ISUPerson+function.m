@@ -19,13 +19,12 @@
         return nil;
     }
     
-    NSString *entityName = NSStringFromClass(self);
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:entityName];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[ISUPerson entityName]];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"recordId=%@", recordId];
     fetchRequest.fetchLimit = 1;
     id object = [[context executeFetchRequest:fetchRequest error:NULL] lastObject];
     if (object == nil) {
-        object = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
+        object = [NSEntityDescription insertNewObjectForEntityForName:[ISUPerson entityName] inManagedObjectContext:context];
         ((ISUPerson *)object).recordId = recordId;
     }
     return object;
@@ -38,19 +37,15 @@
         self.fullName = fullName;
     }
 
-    NSArray *phoneNumbers = [info valueForKey:kISUPersonPhoneNumbers];
-    for (NSArray *phone in phoneNumbers) {
-        if ([phone count] != 2) {
-            NSString *logMessage = [NSString stringWithFormat:@"Invalid phone values: %@", phone];
-            ISULog(logMessage, ISULogPriorityHigh);
-            return;
-        }
+//    NSDictionary *phoneNumbers = [info valueForKey:kISUPersonPhoneNumbers];
+//    NSString *phoneNumber = [phoneNumbers objectForKey:kISUPersonPhoneIPhoneLabel];
+//    self.phoneNumber = phoneNumber;
+}
 
-//        NSString *phoneLabel = [phone objectAtIndex:0];
-        NSString *phoneNumber = [phone objectAtIndex:1];
-        
-        self.phoneNumber = phoneNumber;
-    }
++ (NSArray *)defaultSortDescriptors
+{
+    return [NSArray arrayWithObjects:
+            [NSSortDescriptor sortDescriptorWithKey:@"fullName" ascending:NO], nil];
 }
 
 @end

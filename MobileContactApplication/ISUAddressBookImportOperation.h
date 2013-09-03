@@ -13,7 +13,4 @@
 
 - (id)initWithPersistentManager:(ISUPersistentManager *)persistentManager;
 
-@property (nonatomic) float progress;
-@property (nonatomic, copy) void (^progressCallback) (float progress);
-
 @end

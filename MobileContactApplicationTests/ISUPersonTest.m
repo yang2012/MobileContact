@@ -6,7 +6,6 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import <CoreData/CoreData.h>
 #import "Kiwi.h"
 #import "ISUPerson+function.h"
 #import "ISUAddressBookUtility.h"
@@ -22,7 +21,7 @@
 
 @end
 
-SPEC_BEGIN(MobileContactApplicationTests)
+SPEC_BEGIN(ISUPersonTests)
 
 describe(@"ISUPersonTest", ^{
 

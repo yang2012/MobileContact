@@ -10,4 +10,9 @@
 
 @interface ISUGroup (function)
 
++ (ISUGroup *)findOrCreateGroupWithRecordId:(NSNumber *)recordId
+                                  inContext:(NSManagedObjectContext*)context;
+
++ (NSArray *)allGroupInContext:(NSManagedObjectContext*)context;
+
 @end
