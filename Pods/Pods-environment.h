@@ -78,3 +78,9 @@
 #define COCOAPODS_VERSION_MINOR_WSCoachMarksView 2
 #define COCOAPODS_VERSION_PATCH_WSCoachMarksView 0
 
+// iPhoneContacts
+#define COCOAPODS_POD_AVAILABLE_iPhoneContacts
+#define COCOAPODS_VERSION_MAJOR_iPhoneContacts 0
+#define COCOAPODS_VERSION_MINOR_iPhoneContacts 0
+#define COCOAPODS_VERSION_PATCH_iPhoneContacts 1
+

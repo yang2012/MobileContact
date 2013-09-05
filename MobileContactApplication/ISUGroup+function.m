@@ -8,6 +8,8 @@
 
 #import "ISUGroup+function.h"
 
+NSInteger const kRecordIdOfDefaultGroup = 0;
+
 @implementation ISUGroup (function)
 
 + (ISUGroup *)findOrCreateGroupWithRecordId:(NSNumber *)recordId
@@ -43,6 +45,14 @@
         ISULog(@"Can't find any group", ISULogPriorityNormal);
     }
     return groups;
+}
+
+- (void)updateWithCoreGroup:(ISUABCoreGroup *)coreGroup inContext:(NSManagedObjectContext *)context
+{
+    NSString *newGroupName = coreGroup.name;
+    if (newGroupName && ![self.name isEqualToString:newGroupName]) {
+        self.name = newGroupName;
+    }
 }
 
 @end

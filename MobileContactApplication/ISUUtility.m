@@ -7,12 +7,14 @@
 //
 
 #import "ISUUtility.h"
+#import "ABPerson.h"
 
 @implementation ISUUtility
 
-+ (NSString *)keyForAvatarOfPerson:(ABRecordRef)person
++ (NSString *)keyForAvatarOfPerson:(ABPerson *)person
 {
-    ABRecordID recordId = ABRecordGetRecordID(person);
-    return [NSString stringWithFormat:@"avatar/%@", [NSNumber numberWithInt:recordId]];
+    ABRecordID recordId = person.recordID;
+    NSString *compositeName = [person compositeName];
+    return [NSString stringWithFormat:@"avatar/%i-%@", recordId, compositeName];
 }
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "ISUCollectionContactViewController.h"
-#import "ISUPerson.h"
+#import "ISUContact+function.h"
 #import "ISUCollectionContactViewCell.h"
 
 @implementation ISUCollectionContactViewController
@@ -34,9 +34,9 @@
 
 - (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     ISUCollectionContactViewCell *contactCell = (ISUCollectionContactViewCell *)cell;
-	ISUPerson *person = (ISUPerson *)[self objectForViewIndexPath:indexPath];
+	ISUContact *person = (ISUContact *)[self objectForViewIndexPath:indexPath];
     contactCell.frame = CGRectMake(0, 0, 50, 50);
-    contactCell.name = person.fullName;
+    contactCell.name = person.contactName;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -70,7 +70,7 @@
 
 - (Class)entityClass
 {
-    return [ISUPerson class];
+    return [ISUContact class];
 }
 
 - (NSPredicate *)predicate

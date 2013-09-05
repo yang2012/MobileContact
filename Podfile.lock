@@ -2,6 +2,7 @@ PODS:
   - DAKeyboardControl (2.2.0)
   - DKLiveBlur (0.0.1)
   - FXBlurView (1.3.1)
+  - iPhoneContacts (0.0.1)
   - JDDroppableView (1.1.0)
   - Kiwi (2.2.1):
     - Kiwi/ARC
@@ -22,6 +23,7 @@ DEPENDENCIES:
   - DAKeyboardControl (~> 2.2.0)
   - DKLiveBlur (~> 0.0.1)
   - FXBlurView (~> 1.3.1)
+  - iPhoneContacts (~> 0.0.1)
   - JDDroppableView (~> 1.1.0)
   - Kiwi
   - MJNIndexView (~> 0.0.1)
@@ -36,6 +38,7 @@ SPEC CHECKSUMS:
   DAKeyboardControl: 3f58b2958b4d6785ee395211c6f175af7eb9de8d
   DKLiveBlur: 0107f6bf5c4447066317a83101fee0e35ac00716
   FXBlurView: 60baf79587689edb216a9521165cc0b360e012b8
+  iPhoneContacts: 1638ffb889b179df729bedfb2251069c66245d03
   JDDroppableView: 07e46a73cf7374d6b912688a9ec5a95ec6fe43e8
   Kiwi: e6524ba0eaa1b28af7af146bdee5314b32aa3edb
   MJNIndexView: 955e28b696209f8ebcc8c76cd17b773ed4a06df0

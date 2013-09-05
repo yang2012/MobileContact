@@ -6,12 +6,14 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import "ISUAddressBookUtility.h"
-#import <AddressBook/AddressBook.h>
-#import <AddressBook/ABPerson.h>
-#import <TMCache.h>
-#import "ISUUtility.h"
 #import "Constants.h"
+#import "ISUABCoreContact.h"
+#import "ISUAddressBookUtility.h"
+#import "ISUUtility.h"
+#import "AddressBook.h"
+#import "ABAddressBook.h"
+#import "ABRecord+function.h"
+#import <TMCache.h>
 
 NSString *const kISURecordId = @"ISURecordIdKey";
 NSString *const kISUPersonFirstName = @"ISUFirstNameKey";
@@ -35,13 +37,7 @@ NSString *const kISUPersonPhoneHomeFAXLabel = @"home fax";
 NSString *const kISUPersonPhoneWorkFAXLabel = @"work fax";
 NSString *const kISUPersonPhoneOtherFAXLabel = @"other fax";
 
-
-// Default value for group with empty name
-NSString *const kDefaultGroupName = @"Empty";
-
 @interface ISUAddressBookUtility ()
-
-@property (nonatomic, assign) ABAddressBookRef addressBook;
 
 @end
 
@@ -57,25 +53,6 @@ NSString *const kDefaultGroupName = @"Empty";
     }
 
     return self;
-}
-
-- (void)dealloc
-{
-    if (_addressBook) {
-        CFRelease(_addressBook);
-    }
-}
-
-- (ABAddressBookRef)addressBook
-{
-    if (_addressBook == NULL) {
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.1")) {
-            _addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
-        } else {
-            _addressBook = ABAddressBookCreate();
-        }
-    }
-    return _addressBook;
 }
 
 //- (void)_mergeLinkedPersons
@@ -172,37 +149,49 @@ NSString *const kDefaultGroupName = @"Empty";
 
 - (NSInteger)allPeopleCount
 {
-    CFIndex count = ABAddressBookGetPersonCount(self.addressBook);
-    return count;
+    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
+    return addressBook.personCount;
 }
 
-- (NSArray *)fetchSourceInfosInAddressBook
+- (NSArray *)allPeopleInSourceWithRecordId:(NSNumber *)recordId
 {
-    NSMutableArray *sourceInfos = [NSMutableArray arrayWithCapacity:0];
-    // Get all the sources from the address book
-    NSArray *allSources = (NSArray *)CFBridgingRelease(ABAddressBookCopyArrayOfAllSources(self.addressBook));
-    if ([allSources count] > 0) {
-        for (id aSource in allSources) {
-            NSMutableDictionary *sourceDict = [NSMutableDictionary dictionaryWithCapacity:2];
+    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
+    ABRecordID sourceRecordId = (ABRecordID)recordId.intValue;
+    ABSource *source = [addressBook sourceWithRecordID:sourceRecordId];
+    NSArray *members = source.allMembers;
+    NSMutableArray *coreContacts = [NSMutableArray arrayWithCapacity:members.count];
+    for (ABPerson *member in members) {
+        ISUABCoreContact *coreContact = [[ISUABCoreContact alloc] init];
+        [self _updateInfoOfCoreContact:coreContact fromPerson:member];
+        [coreContacts addObject:coreContact];
+    }
+    return coreContacts;
+}
 
-            ABRecordRef source = (ABRecordRef)CFBridgingRetain(aSource);
+- (void)fetchSourceInfosInAddressBookWithProcessBlock:(ISUSourceProceessBlock)processBlock
+{
+    // Get all the sources from the address book
+    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
+    NSArray *allSources =  [addressBook allSources];
+    if ([allSources count] > 0) {
+        for (ABSource *aSource in allSources) {
+            ISUABCoreSource *coreSource = [[ISUABCoreSource alloc] init];
             // Fetch the source record id
-            ABRecordID recordId = ABRecordGetRecordID(source);
-            [sourceDict setValue:[NSNumber numberWithInt:recordId] forKey:kISURecordId];
+            ABRecordID recordId = [aSource recordID];
+            coreSource.recordId = [NSNumber numberWithInt:recordId];
 
             // Fetch the source name
-            NSString *sourceName = [self _nameForSource:source];
-            [sourceDict setValue:sourceName forKey:kISUSourceName];
+            NSString *sourceName = [aSource valueForProperty:kABSourceNameProperty];
+            coreSource.name = sourceName;
 
-            if (source) {
-                CFRelease(source);
+            if (processBlock) {
+                BOOL shouldContinue = processBlock(coreSource);
+                if (shouldContinue == NO) {
+                    break;
+                }
             }
-
-            [sourceInfos addObject:sourceDict];
         }
     }
-
-    return sourceInfos;
 }
 
 - (void)fetchGroupInfosInSourceWithRecordId:(NSNumber *)recordId
@@ -212,19 +201,14 @@ NSString *const kDefaultGroupName = @"Empty";
         ISULog(@"Nil record id when calling fetchGroupInfosInSourceWithRecordId:processBlock:", ISULogPriorityHigh);
         return;
     }
-
     ABRecordID sRecordId = (ABRecordID)[recordId intValue];
-    ABRecordRef source = ABAddressBookGetSourceWithRecordID(self.addressBook, sRecordId);
-    if (source != NULL) {
+    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
+    ABSource *source = [addressBook sourceWithRecordID:sRecordId];
+    if (source != nil) {
         // Fetch all groups included in the source
-        CFArrayRef result = ABAddressBookCopyArrayOfAllGroupsInSource(self.addressBook, source);
-        if ((result) && (CFArrayGetCount(result) > 0)) {
-            NSArray *groups = (__bridge NSArray *)result;
-
+        NSArray *groups = source.groups;
+        if (groups.count > 0) {
             [self _exploreInfoFromGroups:groups processBlock:processBlock];
-        }
-        if (result) {
-            CFRelease(result);
         }
     }
 }
@@ -237,21 +221,43 @@ NSString *const kDefaultGroupName = @"Empty";
         return;
     }
 
-    ABRecordID sRecordId = (ABRecordID)[recordId intValue];
-    ABRecordRef group = ABAddressBookGetGroupWithRecordID(self.addressBook, sRecordId);
-    if (group != NULL) {
+    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
+    ABRecordID groupId = (ABRecordID)[recordId intValue];
+    ABGroup *group = [addressBook groupWithRecordID:groupId];
+    if (group != nil) {
         // Fetch all members included in the group
-        CFArrayRef result = ABGroupCopyArrayOfAllMembers(group);
-        if ((result) && (CFArrayGetCount(result) > 0)) {
-            NSArray *members = (__bridge NSArray *)result;
-
+        NSArray *members = [group allMembers];
+        if (members.count > 0) {
             [self _exploreInfoFromPeople:members processBlock:processBlock];
         }
-        if (result) {
-            CFRelease(result);
-        }
     }
+    
 }
+//+ (BOOL)addContact:(ISUContact *)person withError:(NSError **) error
+//{
+//    
+//}
+//
+//+ (BOOL)addGroup:(ISUGroup *)group withError:(NSError **) error
+//{
+//}
+
+//+ (BOOL)removeContactFromAddressBookWithRecordId:(NSNumber *)recordId error:(NSError *__autoreleasing *)error
+//{
+//    ABAddressBookRef addressBook = ABAddressBookCreate();
+//    ABRecordID recordIdRef = (ABRecordID)recordId.intValue;
+//    ABRecordRef record = ABAddressBookGetPersonWithRecordID(addressBook, recordIdRef);
+//    CFErrorRef errorRef = NULL;
+//    BOOL success = ABAddressBookRemoveRecord(addressBook, record, &errorRef);
+//    if (success) {
+//        success = ABAddressBookSave(addressBook,  &errorRef);
+//    }
+//
+//    if (!success && error != NULL) {
+//        *error = CFBridgingRelease(errorRef);
+//    }
+//    return success;
+//}
 
 #pragma mark - Private Methods
 
@@ -259,24 +265,26 @@ NSString *const kDefaultGroupName = @"Empty";
                   processBlock:(ISUGroupProceessBlock)processBlock
 {
     for (int i = 0; i < [groups count]; i++) {
-        NSMutableDictionary *groupInfoDict = [NSMutableDictionary dictionaryWithCapacity:2];
-
-        ABRecordRef group = (__bridge ABRecordRef)([groups objectAtIndex:i]);
+        ISUABCoreGroup *coreGroup = [[ISUABCoreGroup alloc] init];
+        
+        ABGroup *group = [groups objectAtIndex:i];
 
         // Fetch the group record id
-        ABRecordID recordId = ABRecordGetRecordID(group);
-        [groupInfoDict setValue:[NSNumber numberWithInt:recordId] forKey:kISURecordId];
+        ABRecordID recordId = [group recordID];
+        coreGroup.recordId = [NSNumber numberWithInt:recordId];
 
         // Fetch the group name
-        NSString *groupName = [self _nameForGroup:group];
+        NSString *groupName = [group valueOfGroupForProperty:kABGroupNameProperty];
         if (groupName.length == 0) {
             ISULog(@"Empty group name in address book", ISULogPriorityNormal);
-            groupName = kDefaultGroupName;
         }
-        [groupInfoDict setValue:groupName forKey:kISUGroupName];
+        coreGroup.name = groupName;
 
         if (processBlock) {
-            processBlock(groupInfoDict);
+            BOOL shouldContinue = processBlock(coreGroup);
+            if (shouldContinue == NO) {
+                break;
+            }
         }
     }
 }
@@ -286,68 +294,48 @@ NSString *const kDefaultGroupName = @"Empty";
 {
     for (int i = 0; i < [people count]; i++) {
         @autoreleasepool {
-            NSMutableDictionary *infoDict = [NSMutableDictionary dictionary];
-
-            ABRecordRef person = (__bridge ABRecordRef)[people objectAtIndex:i];
-            ABRecordID recordId = ABRecordGetRecordID(person);
+            ISUABCoreContact *coreContact = [[ISUABCoreContact alloc] init];
+            ABPerson *person = [people objectAtIndex:i];
+            [self _updateInfoOfCoreContact:coreContact fromPerson:person];
             
-            // Record id
-            ISULogWithLowPriority(@"Record Id: %i", recordId);
-            [infoDict setValue:[NSNumber numberWithInteger:recordId] forKey:kISURecordId];
-
-            // Full name
-            NSString *fullName = [self _infoForName:person];
-            ISULogWithLowPriority(@"Full Name: %@", fullName);
-            [infoDict setValue:fullName forKey:kISUPersonFullName];
-            
-            NSArray *phonetics = [self _phoneticsForNames:person];
-            infoDict setValue:phonetics forKey:kisupersonphoneti
-
-            // Phones
-            NSArray *phones = [self _infoForPhones:person];
-            [infoDict setValue:phones forKey:kISUPersonPhoneNumbers];
-
-            // Department
-            NSString *department = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonDepartmentProperty));
-            ISULogWithLowPriority(@"Department: %@", department);
-            
-            // Address
-            NSArray *addresses = [self _infoForAddress:person];
-            [infoDict setValue:addresses forKey:kISUPersonAddresses];
-            
-            // Emails
-            NSArray *emails = [self _infoForEmails:person];
-            [infoDict setValue:emails forKey:kISUPersonMails];
-
-            // Dates
-            NSArray *dates = [self _infoForDates:person];
-            [infoDict setValue:dates forKey:kISUPersonDates];
-            
-            // Avatar
-            NSString *keyForAvatar = [self _keyForAvatar:person];
-            [infoDict setValue:keyForAvatar forKey:kISUPersonAvatarKey];
-
             if (processBlock) {
-                processBlock(infoDict);
+                BOOL shouldContinue = processBlock(coreContact);
+                if (shouldContinue == NO) {
+                    break;
+                }
             }
         }
     }
 }
 
-// Return the name of a given source
-- (NSString *)_nameForSource:(ABRecordRef)source
+- (void)_updateInfoOfCoreContact:(ISUABCoreContact *)coreContact fromPerson:(ABPerson *)person
 {
-    // Fetch the source type
-    CFNumberRef sourceType = ABRecordCopyValue(source, kABSourceTypeProperty);
-
-    // Fetch and return the name associated with the source type
-    return [self _nameForSourceWithIdentifier:[(NSNumber *)CFBridgingRelease(sourceType) intValue]];
-}
-
-// Return the name of a given group
-- (NSString *)_nameForGroup:(ABRecordRef)group
-{
-    return (NSString *)CFBridgingRelease(ABRecordCopyCompositeName(group));
+    // Record id
+    ABRecordID recordId = [person recordID];
+    ISULogWithLowPriority(@"Record Id: %i", recordId);
+    coreContact.recordId = [NSNumber numberWithInt:recordId];
+    
+    // Names
+    [self _getNamesOfContact:coreContact fromRecord:person];
+    
+    // Phones
+    [self _getPhonesOfContact:coreContact fromRecord:person];
+    
+    // Department
+    NSString *department = [person valueForProperty:kABPersonDepartmentProperty];
+    ISULogWithLowPriority(@"Department: %@", department);
+    
+    // Address
+    [self _getAddressOfContact:coreContact fromRecord:person];
+    
+    // Emails
+    [self _getEmailsOfContact:coreContact fromRecord:person];
+    
+    // Dates
+    [self _getDatesOfContact:coreContact fromRecord:person];
+    
+    // Avatar
+    [self _getAvatarKeyOfContact:coreContact fromRecord:person];
 }
 
 // Return the name associated with the given identifier
@@ -381,122 +369,137 @@ NSString *const kDefaultGroupName = @"Empty";
     return nil;
 }
 
-- (NSString *)_infoForName:(ABRecordRef)person
+- (void)_getNamesOfContact:(ISUABCoreContact *)coreContact fromRecord:(ABPerson *)person
 {
-    NSString *fullName;
-    NSString *firstName = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonFirstNameProperty));
-    NSString *lastName = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonLastNameProperty));
+    NSString *firstName = [person valueOfPersonForProperty:kABPersonFirstNameProperty];
+    coreContact.firstName = firstName;
     
-    if (([firstName isEqualToString:@""] || [firstName isEqualToString:@"(null)"] || firstName == nil) &&
-        ([lastName isEqualToString:@""] || [lastName isEqualToString:@"(null)"] || lastName == nil)) {
-        // do nothing
-    } else {
-        fullName = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
-        
-        if ([firstName isEqualToString:@""] || [firstName isEqualToString:@"(null)"] || firstName == nil) {
-            fullName = [NSString stringWithFormat:@"%@", lastName];
-        }
-        
-        if ([lastName isEqualToString:@""] || [lastName isEqualToString:@"(null)"] || lastName == nil) {
-            fullName = [NSString stringWithFormat:@"%@", firstName];
-        }
-    }
-    return fullName;
+    NSString *lastName = [person valueOfPersonForProperty:kABPersonLastNameProperty];
+    coreContact.lastName = lastName;
+    
+    NSString *middleName = [person valueOfPersonForProperty:kABPersonMiddleNameProperty];
+    coreContact.middleName = middleName;
+
+    NSString *firstNamePhonetic = [person valueOfPersonForProperty:kABPersonFirstNamePhoneticProperty];
+    coreContact.firstNamePhonetic = firstNamePhonetic;
+    
+    NSString *lastNamePhonetic = [person valueOfPersonForProperty:kABPersonLastNamePhoneticProperty];
+    coreContact.lastNamePhonetic = lastNamePhonetic;
+    
+    NSString *middleNamePhonetic = [person valueOfPersonForProperty:kABPersonMiddleNamePhoneticProperty];
+    coreContact.middleNamePhonetic = middleNamePhonetic;
+    
+    NSString *nickName = [person valueOfPersonForProperty:kABPersonNicknameProperty];
+    coreContact.nickName = nickName;
+    
+    NSString *suffix = [person valueOfPersonForProperty:kABPersonSuffixProperty];
+    coreContact.suffix = suffix;
+    
+    NSString *prefix = [person valueOfPersonForProperty:kABPersonPrefixProperty];
+    coreContact.prefix = prefix;
 }
 
-- (NSArray *)_phoneticsForNames:(ABRecordRef)person
+- (void)_getPhonesOfContact:(ISUABCoreContact *)coreContact fromRecord:(ABPerson *)person
 {
-    NSString *firstNamePhonetic = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonFirstNamePhoneticProperty));
-    NSString *lastNamePhonetc = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonLastNamePhoneticProperty));
-    return @[firstNamePhonetic, lastNamePhonetc];
-}
-
-- (NSArray *)_infoForPhones:(ABRecordRef)person
-{
-    NSMutableArray *infos = [NSMutableArray array];
-    ABMultiValueRef phones = ABRecordCopyValue(person, kABPersonPhoneProperty);
+    ABMultiValue *phones = [person valueOfPersonForProperty:kABPersonPhoneProperty];
     if (phones) {
-        NSString *mobile= nil;
-        NSString *mobileLabel = nil;
-        for (int i=0; i < ABMultiValueGetCount(phones); i++) {
-            mobileLabel = (NSString *)CFBridgingRelease(ABMultiValueCopyLabelAtIndex(phones, i));
-            mobile = (NSString *)CFBridgingRelease(ABMultiValueCopyValueAtIndex(phones, i));
-            [infos addObject:@[mobileLabel, mobile]];
+        NSMutableArray *phoneLabels = [NSMutableArray array];
+        NSMutableArray *phoneNumbers = [NSMutableArray array];
+        NSUInteger count = phones.count;
+        NSString *phoneLabel, *phoneNumber;
+        for (NSUInteger i = 0; i < count; i++) {
+            phoneLabel = [phones labelAtIndex:i];
+            phoneNumber = [phones valueAtIndex:i];
+            
+            [phoneLabels addObject:phoneLabel];
+            [phoneNumbers addObject:phoneNumber];
         }
-        CFRelease(phones);
+        
+        coreContact.phoneLabels = phoneLabels;
+        coreContact.phoneValues = phoneNumbers;
     }
-    return infos;
 }
 
-- (NSArray *)_infoForEmails:(ABRecordRef)person
+- (void)_getEmailsOfContact:(ISUABCoreContact *)coreContact fromRecord:(ABPerson *)person
 {
-    NSMutableArray *infos = [NSMutableArray array];
-    ABMutableMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
-    
-    NSString *emailLabel, *emailAddress;
-    for (CFIndex i = 0; i < ABMultiValueGetCount(emails); i++) {
-        emailLabel = (NSString *)CFBridgingRelease(ABMultiValueCopyLabelAtIndex(emails, i));
-        emailAddress = (NSString *)CFBridgingRelease(ABMultiValueCopyValueAtIndex(emails, i));
-        
-        ISULogWithLowPriority(@"Email: %@-%@", emailLabel, emailAddress);
-        [infos addObject:@[emailLabel, emailAddress]];
-    }
+    ABMultiValue *emails = [person valueOfPersonForProperty:kABPersonEmailProperty];
+
     if (emails) {
-        CFRelease(emails);
+        NSMutableArray *emailLabels = [NSMutableArray array];
+        NSMutableArray *emailAddresses = [NSMutableArray array];
+        NSUInteger count = emails.count;
+        NSString *emailLabel, *emailAddress;
+        for (NSUInteger i = 0; i < count; i++) {
+            emailLabel = [emails labelAtIndex:i];
+            emailAddress = [emails valueAtIndex:i];
+            
+            ISULogWithLowPriority(@"Email: %@-%@", emailLabel, emailAddress);
+            [emailLabels addObject:emailLabel];
+            [emailAddresses addObject:emailAddress];
+        }
+        
+        coreContact.emailLabels = emailLabels;
+        coreContact.emailValues = emailAddresses;
     }
-    return infos;
 }
 
-- (NSArray *)_infoForAddress:(ABRecordRef)person
+- (void)_getAddressOfContact:(ISUABCoreContact *)coreContact fromRecord:(ABPerson *)person
 {
-    NSMutableArray *infos = [NSMutableArray array];
-    ABMultiValueRef addresses = ABRecordCopyValue(person, kABPersonAddressProperty);
-    int count = ABMultiValueGetCount(addresses);
-    NSString *addressLabel, *address;
-    for (int indexOfAddresses = 0; indexOfAddresses < count; indexOfAddresses++) {
-        addressLabel = (NSString *)CFBridgingRelease(ABMultiValueCopyLabelAtIndex(addresses, indexOfAddresses));
-        address = (NSString *)CFBridgingRelease(ABMultiValueCopyValueAtIndex(addresses, indexOfAddresses));
-        
-        ISULogWithLowPriority(@"%@ %@", addressLabel, address);
-        [infos addObject:@[addressLabel, address]];
-    }
+    ABMultiValue *addresses = [person valueOfPersonForProperty:kABPersonAddressProperty];
     
     if (addresses) {
-        CFRelease(addresses);
+        NSMutableArray *addressLabels = [NSMutableArray array];
+        NSMutableArray *addressValues = [NSMutableArray array];
+        int count = addresses.count;
+        NSString *addressLabel, *address;
+        for (NSUInteger indexOfAddresses = 0; indexOfAddresses < count; indexOfAddresses++) {
+            addressLabel = [addresses labelAtIndex:indexOfAddresses];
+            address = [addresses valueAtIndex:indexOfAddresses];
+            
+            ISULogWithLowPriority(@"%@ %@", addressLabel, address);
+            [addressLabels addObject:addressLabel];
+            [addressValues addObject:address];
+        }
+        
+        coreContact.addressLabels = addressLabels;
+        coreContact.addressValues = addressValues;
     }
-    return infos;
 }
 
-- (NSArray *)_infoForDates:(ABRecordRef)person
+- (void)_getDatesOfContact:(ISUABCoreContact *)coreContact fromRecord:(ABPerson *)person
 {
-    NSMutableArray *infos = [NSMutableArray array];
-    ABMultiValueRef dates = ABRecordCopyValue(person, kABPersonDateProperty);
-    NSString *dateLabel, *dateValue;
-    for (CFIndex index = 0; index < ABMultiValueGetCount(dates); index++) {
-        dateLabel = (NSString *)CFBridgingRelease(ABMultiValueCopyLabelAtIndex(dates, index));
-        dateValue = (NSString *)CFBridgingRelease(ABMultiValueCopyValueAtIndex(dates, index));
-        
-        ISULogWithLowPriority(@"%@ %@", dateLabel, dateValue);
-        [infos addObject:@[dateLabel, dateValue]];
-    }
+    ABMultiValue *dates = [person valueOfPersonForProperty:kABPersonDateProperty];
     if (dates) {
-        CFRelease(dates);
+        NSMutableArray *dateLabels = [NSMutableArray array];
+        NSMutableArray *dateValues = [NSMutableArray array];
+        NSUInteger count = dates.count;
+        NSString *dateLabel;
+        NSDate *dateValue;
+        for (NSUInteger index = 0; index < count; index++) {
+            dateLabel = [dates labelAtIndex:index];
+            dateValue = [dates valueAtIndex:index];
+            
+            ISULogWithLowPriority(@"%@ %@", dateLabel, dateValue);
+            [dateLabels addObject:dateLabel];
+            [dateValues addObject:dateValue];
+        }
+
+        coreContact.dateLabels = dateLabels;
+        coreContact.dateValues = dateValues;
     }
-    
-    NSDate *birthday = (NSDate *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonBirthdayProperty));
+
+    NSDate *birthday = [person valueForProperty:kABPersonBirthdayProperty];
     if (birthday) {
         ISULogWithLowPriority(@"Birthday: %@", birthday.description);
-        [infos addObject:@[@"Birthday", birthday.description]];
+        coreContact.birthday = birthday;
     }
-    
-    return infos;
 }
 
-- (NSString *)_keyForAvatar:(ABRecordRef)person
+- (void)_getAvatarKeyOfContact:(ISUABCoreContact *)coreContact fromRecord:(ABPerson *)person
 {
     NSString *avatarKey = nil;
-    if (ABPersonHasImageData(person)) {
-        NSData *imageData = (NSData *)CFBridgingRelease(ABPersonCopyImageData(person));
+    if ([person hasImageData]) {
+        NSData *imageData = [person imageData];
         if (imageData.length > 0) {
             UIImage *addressVookImage = [UIImage imageWithData:imageData];
             ISULogWithLowPriority(@"Image Size: %f %f", addressVookImage.size.height, addressVookImage.size.width);
@@ -504,14 +507,20 @@ NSString *const kDefaultGroupName = @"Empty";
             [[TMCache sharedCache] setObject:addressVookImage forKey:keyForAvatar block:nil];
         }
     }
-    return avatarKey;
+    coreContact.avatarKey = avatarKey;
 }
 
 // Prompt the user for access to their Address Book data
 - (void)_requestAddressBookAccessWithSuccessBlock:(ISUAccessSuccessBlock)successBlock
                                         failBlock:(ISUAccessFailBlock)failBlock
 {
-    ABAddressBookRequestAccessWithCompletion(self.addressBook, ^(bool granted, CFErrorRef cfError)
+    ABAddressBookRef addressBookRef;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.1")) {
+        addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
+    } else {
+        addressBookRef = ABAddressBookCreate();
+    }
+    ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef cfError)
     {
         if (granted) {
             dispatch_async(dispatch_get_main_queue(), ^{

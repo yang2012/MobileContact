@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import "ISUContactResource+function.h"
+#import "ISUContactSource+function.h"
 
 @implementation ISUContactSource (function)
 
@@ -27,6 +27,15 @@
         ((ISUContactSource *)object).recordId = recordId;
     }
     return object;
+}
+
+- (void)updateWithCoreSource:(ISUABCoreSource *)coreSource
+                   inContext:(NSManagedObjectContext *)context
+{
+    NSString *sourceName = coreSource.name;
+    if (sourceName && ![self.name isEqualToString:sourceName]) {
+        self.name = sourceName;
+    }
 }
 
 @end

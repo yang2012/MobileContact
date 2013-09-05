@@ -1,5 +1,5 @@
 //
-//  ISUContactResource.h
+//  ISUContactSource.h
 //  MobileContactApplication
 //
 //  Created by macbook on 13-9-3.

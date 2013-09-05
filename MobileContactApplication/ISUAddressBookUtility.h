@@ -8,7 +8,10 @@
 
 #import <addressbook/ABGroup.h>
 #import "ISUGroup+function.h"
-#import "ISUPerson+function.h"
+#import "ISUContact+function.h"
+#import "ISUABCoreSource.h"
+#import "ISUABCoreContact.h"
+#import "ISUABCoreGroup.h"
 
 extern NSString *const kISURecordId;            // Unique record id - NSNumber(int 32)
 extern NSString *const kISUPersonFirstName;     // First name - NSString
@@ -35,8 +38,9 @@ extern NSString *const kISUPersonPhoneOtherFAXLabel;
 typedef void (^ISUAccessSuccessBlock)();
 typedef void (^ISUAccessFailBlock)(NSError *error);
 
-typedef void (^ISUPersonProceessBlock)(NSDictionary *personInfo);
-typedef void (^ISUGroupProceessBlock)(NSDictionary *groupInfo);
+typedef BOOL (^ISUSourceProceessBlock)(ISUABCoreSource *coreSource);
+typedef BOOL (^ISUGroupProceessBlock)(ISUABCoreGroup *coreGroup);
+typedef BOOL (^ISUPersonProceessBlock)(ISUABCoreContact *coreContact);
 
 @interface ISUAddressBookUtility : NSObject
 
@@ -46,7 +50,9 @@ typedef void (^ISUGroupProceessBlock)(NSDictionary *groupInfo);
                                      failBlock:(ISUAccessFailBlock)failBlock;
 - (NSInteger)allPeopleCount;
 
-- (NSArray *)fetchSourceInfosInAddressBook;
+- (NSArray *)allPeopleInSourceWithRecordId:(NSNumber *)recordId;
+
+- (void)fetchSourceInfosInAddressBookWithProcessBlock:(ISUSourceProceessBlock)processBlock;;
 
 - (void)fetchGroupInfosInSourceWithRecordId:(NSNumber *)recordId
                                processBlock:(ISUGroupProceessBlock)processBlock;
@@ -54,7 +60,9 @@ typedef void (^ISUGroupProceessBlock)(NSDictionary *groupInfo);
 - (void)fetchMemberInfosInGroupWithRecordId:(NSNumber *)recordId
                                processBlock:(ISUPersonProceessBlock)processBlock;
 
-+ (BOOL)addContact:(ISUPerson *)person withError:(NSError **) error;
-+ (BOOL)addGroup:(ISUGroup *)group withError:(NSError **) error;
+//+ (BOOL)addContact:(ISUContact *)person withError:(NSError **) error;
+//+ (BOOL)addGroup:(ISUGroup *)group withError:(NSError **) error;
+
+//+ (BOOL)removeContactFromAddressBookWithRecordId:(NSNumber *)recordId error:(NSError *__autoreleasing *)error;
 
 @end

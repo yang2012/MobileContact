@@ -7,9 +7,13 @@
 //
 
 #import "ISUContactSource.h"
+#import "ISUABCoreSource.h"
 
 @interface ISUContactSource (function)
 
 + (ISUContactSource *)findOrCreatePersonWithRecordId:(NSNumber *)recordId
                                              inContext:(NSManagedObjectContext *)context;
+
+- (void)updateWithCoreSource:(ISUABCoreSource *)coreSource
+                   inContext:(NSManagedObjectContext *)context;
 @end

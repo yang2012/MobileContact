@@ -10,7 +10,7 @@
 #import "ISUAddressBookUtility.h"
 #import "ISUAddressBookImportOperation.h"
 #import "ISUFetchedResultsTableDataSource.h"
-#import "ISUPerson+function.h"
+#import "ISUContact+function.h"
 #import "ISUAppDelegate.h"
 #import "ISUCollectionContactViewController.h"
 
@@ -41,6 +41,19 @@
 {
     [super viewDidLoad];
     
+    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([ISUContact class])];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES]];
+    NSFetchedResultsController* fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.persistentManager.mainManagedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    self.dataSource = [[ISUFetchedResultsTableDataSource alloc] initWithTableView:self.contentTableView fetchedResultsController:fetchedResultsController];
+    self.dataSource.configureCellBlock = ^(UITableViewCell*  cell, ISUContact *person)
+    {
+        cell.textLabel.text = person.contactName;
+    };
+    self.contentTableView.dataSource = self.dataSource;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
+        [self.contentTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    }
+    
     ISUAddressBookUtility *addressBookUtility = [[ISUAddressBookUtility alloc] init];
     
     [addressBookUtility checkAddressBookAccessWithSuccessBlock:^{
@@ -57,19 +70,7 @@
 
 -(void)_accessGrantedForAddressBook
 {
-    NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([ISUPerson class])];
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"fullName" ascending:YES]];
-    NSFetchedResultsController* fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.persistentManager.mainManagedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    self.dataSource = [[ISUFetchedResultsTableDataSource alloc] initWithTableView:self.contentTableView fetchedResultsController:fetchedResultsController];
-    self.dataSource.configureCellBlock = ^(UITableViewCell*  cell, ISUPerson *person)
-    {
-        cell.textLabel.text = person.fullName;
-        cell.detailTextLabel.text = [person.phoneNumber description];
-    };
-    self.contentTableView.dataSource = self.dataSource;
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
-        [self.contentTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-    }
+    NSLog(@"Access granted");
 }
 
 - (IBAction)startImport:(id)sender

@@ -7,12 +7,24 @@
 //
 
 #import "ISUGroup.h"
+#import "ISUContact+function.h"
+#import "ISUABCoreGroup.h"
+
+extern NSInteger const kRecordIdOfDefaultGroup;
 
 @interface ISUGroup (function)
 
 + (ISUGroup *)findOrCreateGroupWithRecordId:(NSNumber *)recordId
-                                  inContext:(NSManagedObjectContext*)context;
+                                  inContext:(NSManagedObjectContext *)context;
 
-+ (NSArray *)allGroupInContext:(NSManagedObjectContext*)context;
+- (void)updateWithCoreGroup:(ISUABCoreGroup *)coreGroup
+                  inContext:(NSManagedObjectContext *)context;
+
++ (NSArray *)allGroupInContext:(NSManagedObjectContext *)context;
+
+//- (BOOL)addMember:(ISUContact *)contact withError:(NSError **)error;
+//- (BOOL)removeMember:(ISUContact *)contact withError:(NSError **)error;
+//
+//- (BOOL)removeSelfFromAddressBook:(NSError **)error;
 
 @end

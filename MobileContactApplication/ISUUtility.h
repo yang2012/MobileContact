@@ -6,11 +6,10 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <AddressBook/AddressBook.h>
+#import "ABPerson.h"
 
 @interface ISUUtility : NSObject
 
-+ (NSString *)keyForAvatarOfPerson:(ABRecordRef)person;
++ (NSString *)keyForAvatarOfPerson:(ABPerson *)person;
 
 @end
