@@ -59,46 +59,68 @@ describe(@"ISUPersonTest", ^{
         afterEach(^{ // Occurs after each enclosed "it"
         });
         
-        it(@"Test creation of ISUPerson", ^{
+        it(@"Test findOrCreatePersonWithRecordId:inContext:", ^{
             ISUContact *person = person = [ISUContact findOrCreatePersonWithRecordId:[NSNumber numberWithInteger:1] inContext:personTest.context];
             [[person should] beNonNil];
-//            person.fullName = @"justin";
-//            person.phoneNumber = @"123123123";
-//            
-//            BOOL success = [personTest.context save:nil];
-//            [[theValue(success) should] beTrue];
-//            
-//            person = [ISUContact findOrCreatePersonWithRecordId:[NSNumber numberWithInteger:1] inContext:personTest.context];
-//            [[person should] beNonNil];
-//            
-//            [[person.fullName should] equal:@"justin"];
-//            [[person.phoneNumber should] equal:@"123123123"];
+            [[person.recordId should] equal:@1];
+            person.firstName = @"justin";
+            person.lastName = @"123123123";
+            
+            BOOL success = [personTest.context save:nil];
+            [[theValue(success) should] beTrue];
+            
+            person = [ISUContact findOrCreatePersonWithRecordId:[NSNumber numberWithInteger:1] inContext:personTest.context];
+            [[person should] beNonNil];
+            
+            [[person.recordId should] equal:@1];
+            [[person.firstName should] equal:@"justin"];
+            [[person.lastName should] equal:@"123123123"];
         });
         
-        it(@"Test updation of ISUPerson info", ^{
-//            NSError *error = nil;
+        it(@"Test findPersonWithRecordId:inContext:", ^{
+            ISUContact *person = person = [ISUContact findOrCreatePersonWithRecordId:[NSNumber numberWithInteger:1] inContext:personTest.context];
+            [[person should] beNonNil];
+            
+            BOOL success = [personTest.context save:nil];
+            [[theValue(success) should] beTrue];
+            
+            person = [ISUContact findOrCreatePersonWithRecordId:[NSNumber numberWithInteger:1] inContext:personTest.context];
+            [[person should] beNonNil];
+            [[person.recordId should] equal:@1];
+        });
+        
+        it(@"Test createPersonWithRecordId:inContext:", ^{
+            ISUContact *person = person = [ISUContact findOrCreatePersonWithRecordId:[NSNumber numberWithInteger:1] inContext:personTest.context];
+            [[person should] beNonNil];
+            [[person.recordId should] equal:@1];
+        });
+        
+        it(@"Test updateWithCoreContact:inContext:", ^{
+            NSError *error = nil;
             
             ISUContact *person = person = [ISUContact findOrCreatePersonWithRecordId:[NSNumber numberWithInteger:1] inContext:personTest.context];
             [[person should] beNonNil];
-//            person.fullName = @"justin";
-//            person.phoneNumber = @"123123123";
-//            
-//            BOOL success = [personTest.context save:&error];
-//            [[theValue(success) should] beTrue];
-//            
-//            NSMutableDictionary *infoDict = [NSMutableDictionary dictionary];
-//            [infoDict setValue:@"yang" forKey:kISUPersonFullName];
-//            [infoDict setValue:@[@[@"normal", @"12345678"]] forKey:kISUPersonPhoneNumbers];
-//            [person updateWithInfo:infoDict];
+            person.firstName = @"justin";
+            person.lastName = @"123123123";
             
-//            success = [personTest.context save:&error];
-//            [[theValue(success) should] beTrue];
-//            
-//            person = [ISUContact findOrCreatePersonWithRecordId:[NSNumber numberWithInteger:1] inContext:personTest.context];
-//            [[person should] beNonNil];
-//            
-//            [[person.fullName should] equal:@"yang"];
-//            [[person.phoneNumber should] equal:@"12345678"];
+            BOOL success = [personTest.context save:&error];
+            [[theValue(success) should] beTrue];
+            
+            ISUABCoreContact *coreContact = [[ISUABCoreContact alloc] init];
+            coreContact.firstName = @"yang";
+            coreContact.lastName = @"hello";
+            [person updateWithCoreContact:coreContact inContext:personTest.context];
+            [[person.firstName should] equal:@"yang"];
+            [[person.lastName should] equal:@"hello"];
+            
+            success = [personTest.context save:&error];
+            [[theValue(success) should] beTrue];
+            
+            person = [ISUContact findOrCreatePersonWithRecordId:[NSNumber numberWithInteger:1] inContext:personTest.context];
+            [[person should] beNonNil];
+            
+            [[person.firstName should] equal:@"yang"];
+            [[person.lastName should] equal:@"hello"];
         });
     });
 });

@@ -59,8 +59,45 @@ describe(@"ISUGroupTest", ^{
         afterEach(^{ // Occurs after each enclosed "it"
         });
         
-        it(@"Test get all groups", ^{
+        it(@"Test findOrCreateGroupWithRecordId:inContext:", ^{
+            ISUGroup *group = [ISUGroup findOrCreateGroupWithRecordId:@1 inContext:groupTest.context];
             
+            [[group should] beNonNil];
+            [[group.recordId should] equal:@1];
+            
+            group.name = @"justin";
+            BOOL success = [groupTest.context save:nil];
+            
+            [[theValue(success) should] beTrue];
+            
+            group = [ISUGroup findOrCreateGroupWithRecordId:@1 inContext:groupTest.context];
+            
+            [[group should] beNonNil];
+            
+            [[group.recordId should] equal:@1];
+            [[group.name should] equal:@"justin"];
+        });
+        
+        it(@"Test updateWithCoreGroup:inContext:", ^{
+            ISUGroup *group = [ISUGroup findOrCreateGroupWithRecordId:@1 inContext:groupTest.context];
+            
+            [[group should] beNonNil];
+            [[group.recordId should] equal:@1];
+            
+            ISUABCoreGroup *coreGroup = [[ISUABCoreGroup alloc] init];
+            coreGroup.name = @"hello";
+            
+            [group updateWithCoreGroup:coreGroup inContext:groupTest.context];
+            
+            [[group.name should] equal:@"hello"];
+        });
+        
+        it(@"Test allGroupInContext:", ^{
+            [ISUGroup findOrCreateGroupWithRecordId:@1 inContext:groupTest.context];
+            
+            NSArray *groups = [ISUGroup allGroupInContext:groupTest.context];
+            [[groups should] beNonNil];
+            [[@(groups.count) should] beGreaterThan:@0];
         });
     });
 });

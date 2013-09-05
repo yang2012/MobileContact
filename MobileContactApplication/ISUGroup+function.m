@@ -39,8 +39,7 @@ NSInteger const kRecordIdOfDefaultGroup = 0;
     }
     
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[ISUGroup entityName]];
-    fetchRequest.predicate = [NSPredicate predicateWithValue:YES];
-    NSArray *groups = [[context executeFetchRequest:fetchRequest error:NULL] lastObject];
+    NSArray *groups = [context executeFetchRequest:fetchRequest error:NULL];
     if (groups.count == 0) {
         ISULog(@"Can't find any group", ISULogPriorityNormal);
     }
