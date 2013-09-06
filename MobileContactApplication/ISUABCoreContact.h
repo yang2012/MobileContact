@@ -27,7 +27,8 @@
 @property (nonatomic, strong) NSString *jobTitle;
 @property (nonatomic, strong) NSString *department;
 @property (nonatomic, strong) NSString *note;
-@property (nonatomic, strong) NSString *avatarKey;
+
+@property (nonatomic, strong) NSString *avatarDataKey;
 
 @property (nonatomic, strong) NSArray *emailLabels;
 @property (nonatomic, strong) NSArray *emailValues;
@@ -47,7 +48,6 @@
 @property (nonatomic, strong) NSArray *addressLabels;
 @property (nonatomic, strong) NSArray *addressValues;
 
-@property (nonatomic, strong) NSArray *smsLabels;
-@property (nonatomic, strong) NSArray *smsValues;
+@property (nonatomic, strong) NSArray *smsDictionaries;
 
 @end

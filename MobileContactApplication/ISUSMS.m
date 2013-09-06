@@ -2,7 +2,7 @@
 //  ISUSMS.m
 //  MobileContactApplication
 //
-//  Created by macbook on 13-9-3.
+//  Created by macbook on 13-9-6.
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
@@ -12,8 +12,10 @@
 
 @implementation ISUSMS
 
-@dynamic label;
-@dynamic value;
+@dynamic service;
+@dynamic url;
+@dynamic username;
+@dynamic userIdentifier;
 @dynamic contact;
 
 @end

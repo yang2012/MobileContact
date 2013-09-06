@@ -11,7 +11,7 @@
         <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ISUContact" inverseName="addresses" inverseEntity="ISUContact" syncable="YES"/>
     </entity>
     <entity name="ISUContact" representedClassName="ISUContact" syncable="YES">
-        <attribute name="avatarKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="avatarDataKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="department" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -69,8 +69,10 @@
         <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ISUContact" inverseName="relatedPeople" inverseEntity="ISUContact" syncable="YES"/>
     </entity>
     <entity name="ISUSMS" representedClassName="ISUSMS" syncable="YES">
-        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="service" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ISUContact" inverseName="sms" inverseEntity="ISUContact" syncable="YES"/>
     </entity>
     <entity name="ISUUrl" representedClassName="ISUUrl" syncable="YES">
@@ -87,7 +89,7 @@
         <element name="ISUGroup" positionX="0" positionY="0" width="128" height="105"/>
         <element name="ISUPhone" positionX="160" positionY="192" width="128" height="90"/>
         <element name="ISURelatedPeople" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="ISUSMS" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="ISUSMS" positionX="160" positionY="192" width="128" height="120"/>
         <element name="ISUUrl" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>

@@ -103,9 +103,10 @@ static const int ImportBatchSize = 100;
                 ISULog(msg, ISULogPriorityHigh);
                 continue;
             }
-            
-            [person updateWithCoreContact:coreContact inContext:self.context];
         }
+        
+        // Update info
+        [person updateWithCoreContact:coreContact inContext:self.context];
         
         // Establish relationship
         [person addGroupsObject:defaultGroup];

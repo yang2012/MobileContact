@@ -8,6 +8,14 @@
 
 #import "Kiwi.h"
 #import "ISUAddressBookUtility.h"
+#import "ISUEmail.h"
+#import "ISUUrl.h"
+#import "ISUDate.h"
+#import "ISUAddress.h"
+#import "ISURelatedPeople.h"
+#import "ISUSMS.h"
+#import "ISUPhone.h"
+#import <AddressBook/AddressBook.h>
 
 SPEC_BEGIN(ISUAddressBookUtilityTests)
 
@@ -35,13 +43,11 @@ describe(@"ISUAddressBookUtilityTest", ^{
         });
         
         it(@"Test checkAddressBookAccessWithSuccessBlock:failBlock:", ^{
-            __block NSNumber *granted = @NO;
-            [addressBookUtilityTest checkAddressBookAccessWithSuccessBlock:^{
-                granted = @YES;
-            } failBlock:^(NSError *error) {
-                granted = @NO;
+            __block NSNumber *bGranted = @NO;
+            [addressBookUtilityTest checkAddressBookAccessWithBlock:^(bool granted, NSError *error) {
+                bGranted = [NSNumber numberWithBool:granted];
             }];
-            [[expectFutureValue(granted) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:@YES];
+            [[expectFutureValue(bGranted) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:@YES];
         });
         
         it(@"Test allPeopleInSourceWithRecordId:", ^{
@@ -61,6 +67,59 @@ describe(@"ISUAddressBookUtilityTest", ^{
             }];
         });
         
+        it(@"Test addContact:inSource:", ^{
+            ISUContact *contact = [[ISUContact alloc] init];
+            contact.firstName = @"Hello";
+            contact.lastName = @"World";
+            
+            ISUEmail *email1 = [[ISUEmail alloc] init];
+            email1.label = @"email1";
+            email1.value = @"yyj@helloworld.com";
+            ISUEmail *email2 = [[ISUEmail alloc] init];
+            email2.label = @"email2";
+            email2.value = @"yyj2@helloworld.com";
+            contact.emails = [NSSet setWithObjects:email1, email2, nil];
+            
+            ISUUrl *url =  [[ISUUrl alloc] init];
+            url.label = @"url";
+            url.value = @"192.168.1.1";
+            contact.urls = [NSSet setWithObject:url];
+            
+            ISUPhone *phone = [[ISUPhone alloc] init];
+            phone.label = @"home";
+            phone.value = @"123123123";
+            contact.phones = [NSSet setWithObject:phone];
+            
+            ISURelatedPeople *relatedPeople = [[ISURelatedPeople alloc] init];
+            relatedPeople.label = @"Brother";
+            relatedPeople.value = @"Jiege";
+            contact.relatedPeople = [NSSet setWithObject:relatedPeople];
+            
+            ISUDate *date = [[ISUDate alloc] init];
+            date.label = @"University";
+            date.value = [NSDate date];
+            contact.dates = [NSSet setWithObject:date];
+            
+            ISUSMS *sms = [[ISUSMS alloc] init];
+            sms.label = @"Weibo";
+            sms.value = @"Love fly";
+            contact.sms = [NSSet setWithObject:sms];
+            
+            __block NSNumber *result = nil;
+            [addressBookUtilityTest fetchSourceInfosInAddressBookWithProcessBlock:^BOOL(ISUABCoreSource *coreSource) {
+                [[coreSource should] beNonNil];
+                ISUContactSource *source = [[ISUContactSource alloc] init];
+                source.recordId = coreSource.recordId;
+                BOOL success = [addressBookUtilityTest addContact:contact inSource:source withError:nil];
+                [addressBookUtilityTest save:nil];
+                result = [NSNumber numberWithBool:success];
+                
+                return NO;
+            }];
+            
+            [[expectFutureValue(result) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:@(YES)];
+        });
+        
         it(@"Test fetchGroupInfosInSourceWithRecordId:processBlock:", ^{
             __block ISUABCoreGroup *group = nil;
             [addressBookUtilityTest fetchSourceInfosInAddressBookWithProcessBlock:^BOOL(ISUABCoreSource *coreSource) {
@@ -75,7 +134,7 @@ describe(@"ISUAddressBookUtilityTest", ^{
             [[expectFutureValue(group) shouldEventuallyBeforeTimingOutAfter(2.0)] beNonNil];
         });
         
-        it(@"fetchMemberInfosInGroupWithRecordId:processBlock:", ^{
+        it(@"fetch MemberInfosInGroupWithRecordId:processBlock:", ^{
             __block ISUABCoreContact *contact = nil;
             [addressBookUtilityTest fetchSourceInfosInAddressBookWithProcessBlock:^BOOL(ISUABCoreSource *coreSource) {
                 [[coreSource should] beNonNil];

@@ -24,7 +24,6 @@
     if ( wrapperClass != Nil )
         result = [[wrapperClass alloc] initWithABRef: value];
     else
-//        result = (id)CFBridgingRelease(value);
         result = (__bridge id)value;
 	   
     CFRelease(value);
@@ -45,7 +44,6 @@
         result = [[wrapperClass alloc] initWithABRef: value];
     else
         result = (__bridge id)(value);
-//        result = (id)CFBridgingRelease(value);
     
     CFRelease(value);
 
@@ -56,7 +54,7 @@
 {
     if (propID == kABPersonEmailProperty || propID == kABPersonAddressProperty || propID == kABPersonDateProperty ||
         propID == kABPersonPhoneProperty || propID == kABPersonInstantMessageProperty || propID == kABPersonURLProperty ||
-        propID == kABPersonRelatedNamesProperty) {
+        propID == kABPersonRelatedNamesProperty || propID == kABPersonSocialProfileProperty) {
         return ( [ABMultiValue class] );
     } else {
         return ( Nil );

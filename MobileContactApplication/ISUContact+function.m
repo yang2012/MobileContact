@@ -16,7 +16,7 @@
 #import "ISUUrl.h"
 #import "ISUSMS.h"
 
-#import <ABAddressBook.h>
+#import <AddressBook/AddressBook.h>
 
 @implementation ISUContact (function)
 
@@ -161,141 +161,216 @@
     if (newNote && ![self.note isEqualToString:newNote]) {
         self.note = newNote;
     }
-    NSString *newAvatarKey = coreContact.avatarKey;
-    if (newAvatarKey && ![self.avatarKey isEqualToString:newAvatarKey]) {
-        self.avatarKey = newAvatarKey;
+    NSString *newAvatarDataKey = coreContact.avatarDataKey;
+    if (newAvatarDataKey && ![self.avatarDataKey isEqualToString:newAvatarDataKey]) {
+        self.avatarDataKey = newAvatarDataKey;
     }
 }
 
 - (void)_updatePhonesWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
-    NSArray *phoneLabels = [self.phones valueForKey:@"label"];
     NSInteger count = coreContact.phoneLabels.count;
     for (NSInteger indexOfNewPhone = 0; indexOfNewPhone < count; indexOfNewPhone++) {
         NSString *newPhoneLabel = [coreContact.phoneLabels objectAtIndex:indexOfNewPhone];
         NSString *newPhoneValue = [coreContact.phoneValues objectAtIndex:indexOfNewPhone];
-        if (![phoneLabels containsObject:newPhoneLabel]) {
-            ISUPhone *newPhone = [[ISUPhone alloc] initWithContext:context];
-            newPhone.label = newPhoneLabel;
-            newPhone.value = newPhoneValue;
-            
-            newPhone.contact = self;
+        
+        BOOL found = NO;
+        for (ISUPhone *phone in [self.phones allObjects]) {
+            if ([phone.label isEqualToString:newPhoneLabel] && [phone.value isEqualToString:newPhoneValue]) {
+                found = YES;
+                break;
+            }
         }
+        
+        if (found) {
+            continue; // had existed and just continue to next one
+        }
+        
+        ISUPhone *newPhone = [[ISUPhone alloc] initWithContext:context];
+        newPhone.label = newPhoneLabel;
+        newPhone.value = newPhoneValue;
+        
+        newPhone.contact = self;
     }
     [context save:nil];
 }
 
 - (void)_updateEmailsWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
-    NSArray *emailLabels = [self.emails valueForKey:@"label"];
     NSInteger count = coreContact.emailLabels.count;
     for (NSInteger indexOfNewEmail = 0; indexOfNewEmail < count; indexOfNewEmail++) {
         NSString *newEmailLabel = [coreContact.emailLabels objectAtIndex:indexOfNewEmail];
         NSString *newEmailValue = [coreContact.emailValues objectAtIndex:indexOfNewEmail];
-        if (![emailLabels containsObject:newEmailLabel]) {
-            ISUEmail *newEmail = [[ISUEmail alloc] initWithContext:context];
-            newEmail.label = newEmailLabel;
-            newEmail.value = newEmailValue;
-            
-            newEmail.contact = self;
+        
+        BOOL found = NO;
+        for (ISUEmail *email in [self.emails allObjects]) {
+            if ([email.label isEqualToString:newEmailLabel] && [email.value isEqualToString:newEmailValue]) {
+                found = YES;
+                break;
+            }
         }
+        
+        if (found) {
+            continue; // had existed and just continue to next one
+        }
+        
+        ISUEmail *newEmail = [[ISUEmail alloc] initWithContext:context];
+        newEmail.label = newEmailLabel;
+        newEmail.value = newEmailValue;
+        
+        newEmail.contact = self;
     }
-    [context save:nil];
 }
 
 - (void)_updateDatesWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
-    NSArray *dateLabels = [self.dates valueForKey:@"label"];
     NSInteger count = coreContact.dateLabels.count;
     for (NSInteger indexOfNewDate = 0; indexOfNewDate < count; indexOfNewDate++) {
         NSString *newDateLabel = [coreContact.dateLabels objectAtIndex:indexOfNewDate];
         NSDate *newDateValue = [coreContact.dateValues objectAtIndex:indexOfNewDate];
-        if (![dateLabels containsObject:newDateLabel]) {
-            ISUDate *newDate = [[ISUDate alloc] initWithContext:context];
-            newDate.label = newDateLabel;
-            newDate.value = newDateValue;
-            
-            newDate.contact = self;
+        
+        BOOL found = NO;
+        for (ISUDate *date in [self.dates allObjects]) {
+            if ([date.label isEqualToString:newDateLabel] && [date.value isEqualToDate:newDateValue]) {
+                found = YES;
+                break;
+            }
         }
+        
+        if (found) {
+            continue; // had existed and just continue to next one
+        }
+        
+        ISUDate *newDate = [[ISUDate alloc] initWithContext:context];
+        newDate.label = newDateLabel;
+        newDate.value = newDateValue;
+        
+        newDate.contact = self;
     }
-    [context save:nil];
 }
 
 - (void)_updateRelatedPeopleWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
-    NSArray *relatedPeopleLabels = [self.relatedPeople valueForKey:@"label"];
     NSInteger count = coreContact.relatedPeopleLabels.count;
     for (NSInteger index = 0; index < count; index++) {
         NSString *newLabel = [coreContact.relatedPeopleLabels objectAtIndex:index];
         NSString *newValue = [coreContact.relatedPeopleValues objectAtIndex:index];
-        if (![relatedPeopleLabels containsObject:newLabel]) {
-            ISURelatedPeople *newOne = [[ISURelatedPeople alloc] initWithContext:context];
-            newOne.label = newLabel;
-            newOne.value = newValue;
-            
-            newOne.contact = self;
+        
+        BOOL found = NO;
+        for (ISURelatedPeople *relatedPeople in [self.relatedPeople allObjects]) {
+            if ([relatedPeople.label isEqualToString:newLabel] && [relatedPeople.value isEqualToString:newValue]) {
+                found = YES;
+                break;
+            }
         }
+        
+        if (found) {
+            continue; // had existed and just continue to next one
+        }
+        
+        ISURelatedPeople *newOne = [[ISURelatedPeople alloc] initWithContext:context];
+        newOne.label = newLabel;
+        newOne.value = newValue;
+        
+        newOne.contact = self;
     }
-    [context save:nil];
 }
 
 - (void)_updateUrlsWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
-    NSArray *urlLabels = [self.urls valueForKey:@"label"];
     NSInteger count = coreContact.urlLabels.count;
     for (NSInteger index = 0; index < count; index++) {
         NSString *newLabel = [coreContact.urlLabels objectAtIndex:index];
         NSString *newValue = [coreContact.urlValues objectAtIndex:index];
-        if (![urlLabels containsObject:newLabel]) {
-            ISUUrl *newOne = [[ISUUrl alloc] initWithContext:context];
-            newOne.label = newLabel;
-            newOne.value = newValue;
-            
-            newOne.contact = self;
+        
+        BOOL found = NO;
+        for (ISUUrl *url in [self.urls allObjects]) {
+            if ([url.label isEqualToString:newLabel] && [url.value isEqualToString:newValue]) {
+                found = YES;
+                break;
+            }
         }
+        
+        if (found) {
+            continue; // had existed and just continue to next one
+        }
+        
+        ISUUrl *newOne = [[ISUUrl alloc] initWithContext:context];
+        newOne.label = newLabel;
+        newOne.value = newValue;
+        
+        newOne.contact = self;
     }
-    [context save:nil];
 }
 
 - (void)_updateSMSWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
-    NSArray *smsLabels = [self.sms valueForKey:@"label"];
-    NSInteger count = coreContact.smsLabels.count;
+    NSInteger count = coreContact.smsDictionaries.count;
     for (NSInteger index = 0; index < count; index++) {
-        NSString *newLabel = [coreContact.smsLabels objectAtIndex:index];
-        NSString *newValue = [coreContact.smsValues objectAtIndex:index];
-        if (![smsLabels containsObject:newLabel]) {
-            ISUSMS *newOne = [[ISUSMS alloc] initWithContext:context];
-            newOne.label = newLabel;
-            newOne.value = newValue;
-            
-            newOne.contact = self;
+        NSDictionary *smsDictionary = [coreContact.smsDictionaries objectAtIndex:index];
+        NSString *service = [smsDictionary objectForKey:(NSString *)kABPersonSocialProfileServiceKey];
+        NSString *username = [smsDictionary objectForKey:(NSString *)kABPersonSocialProfileUsernameKey];
+        
+        BOOL found = NO;
+        for (ISUSMS *sms in [self.sms allObjects]) {
+            if ([sms.service isEqualToString:service] && [sms.username isEqualToString:username]) {
+                found = YES;
+                break;
+            }
         }
+        
+        if (found) {
+            continue; // had existed and just continue to next one
+        }
+        
+        // none existed
+        ISUSMS *newOne = [[ISUSMS alloc] initWithContext:context];
+        newOne.service = service;
+        newOne.username = username;
+        newOne.url = [smsDictionary objectForKey:(NSString *)kABPersonSocialProfileURLKey];
+        newOne.userIdentifier = [smsDictionary objectForKey:(NSString *)kABPersonSocialProfileUserIdentifierKey];
+        
+        newOne.contact = self;
     }
-    [context save:nil];
 }
 
 - (void)_updateAddressesWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
-    NSArray *addressLabels = [self.addresses valueForKey:@"label"];
     NSInteger count = coreContact.addressLabels.count;
     for (NSInteger index = 0; index < count; index++) {
         NSString *newLabel = [coreContact.addressLabels objectAtIndex:index];
         NSDictionary *newValueDict = [coreContact.addressValues objectAtIndex:index];
-        if (![addressLabels containsObject:newLabel]) {
-            ISUAddress *newOne = [[ISUAddress alloc] initWithContext:context];
-            newOne.label = newLabel;
-            newOne.city = [newValueDict objectForKey:(NSString *)kABPersonAddressCityKey];
-            newOne.state = [newValueDict objectForKey:(NSString *)kABPersonAddressStateKey];
-            newOne.street = [newValueDict objectForKey:(NSString *)kABPersonAddressStreetKey];
-            newOne.zip = [newValueDict objectForKey:(NSString *)kABPersonAddressZIPKey];
-            newOne.country = [newValueDict objectForKey:(NSString *)kABPersonAddressCountryKey];
-            newOne.countryCode = [newValueDict objectForKey:(NSString *)kABPersonAddressCountryCodeKey];
-            
-            newOne.contact = self;
+        NSString *city = [newValueDict objectForKey:(NSString *)kABPersonAddressCityKey];
+        NSString *state = [newValueDict objectForKey:(NSString *)kABPersonAddressStateKey];
+        NSString *street = [newValueDict objectForKey:(NSString *)kABPersonAddressStreetKey];
+        NSString *zip = [newValueDict objectForKey:(NSString *)kABPersonAddressZIPKey];
+        NSString *country = [newValueDict objectForKey:(NSString *)kABPersonAddressCountryKey];
+        NSString *countryCode = [newValueDict objectForKey:(NSString *)kABPersonAddressCountryCodeKey];
+        
+        BOOL found = NO;
+        for (ISUAddress *address in [self.addresses allObjects]) {
+            if ([address.city isEqualToString:city] && [address.state isEqualToString:state] && [address.street isEqualToString:street] &&
+                [address.zip isEqualToString:zip] && [address.country isEqualToString:country] && [address.countryCode isEqualToString:countryCode]) {
+                found = YES;
+                break;
+            }
         }
+        
+        if (found) {
+            continue; // had existed and just continue to next one
+        }
+        
+        ISUAddress *newOne = [[ISUAddress alloc] initWithContext:context];
+        newOne.label = newLabel;
+        newOne.city = city;
+        newOne.state = state;
+        newOne.street = street;
+        newOne.zip = zip;
+        newOne.country = country;
+        newOne.countryCode = countryCode;
+        
+        newOne.contact = self;
     }
-    [context save:nil];
 }
 
 #pragma make - SSManagedObject
