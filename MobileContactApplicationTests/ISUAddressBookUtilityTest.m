@@ -101,16 +101,28 @@ describe(@"ISUAddressBookUtilityTest", ^{
             contact.dates = [NSSet setWithObject:date];
             
             ISUSMS *sms = [[ISUSMS alloc] init];
-            sms.label = @"Weibo";
-            sms.value = @"Love fly";
+            sms.service = @"Weibo";
+            sms.username = @"Love fly";
+            sms.url = @"weibo/weibao";
+            sms.userIdentifier = @"http://weibo/weibao";
             contact.sms = [NSSet setWithObject:sms];
+            
+            ISUAddress *address = [[ISUAddress alloc] init];
+            address.label = @"Home";
+            address.street = @"Silver River";
+            address.state = @"CN";
+            address.country = @"China";
+            address.countryCode = @"+86";
+            address.city = @"Zhanjiang";
+            address.zip = @"unknown";
+            contact.addresses = [NSSet setWithObject:address];
             
             __block NSNumber *result = nil;
             [addressBookUtilityTest fetchSourceInfosInAddressBookWithProcessBlock:^BOOL(ISUABCoreSource *coreSource) {
                 [[coreSource should] beNonNil];
                 ISUContactSource *source = [[ISUContactSource alloc] init];
                 source.recordId = coreSource.recordId;
-                BOOL success = [addressBookUtilityTest addContact:contact inSource:source withError:nil];
+                BOOL success = [addressBookUtilityTest addContact:contact withError:nil];
                 [addressBookUtilityTest save:nil];
                 result = [NSNumber numberWithBool:success];
                 

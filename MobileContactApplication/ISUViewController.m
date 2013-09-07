@@ -55,16 +55,19 @@
     }
     
     ISUAddressBookUtility *addressBookUtility = [[ISUAddressBookUtility alloc] init];
-    
-    [addressBookUtility checkAddressBookAccessWithSuccessBlock:^{
-        [self _accessGrantedForAddressBook];
-    } failBlock:^(NSError *error) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Privacy Warning"
-                                                        message:@"Permission was not granted for Contacts."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+    [addressBookUtility checkAddressBookAccessWithBlock:^(bool granted, NSError *error) {
+        if (granted) {
+            [self _accessGrantedForAddressBook];
+        } else {
+            NSString *msg = [NSString stringWithFormat:@"%@", error.description];
+            ISULog(msg, ISULogPriorityLow);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Privacy Warning"
+                                                            message:@"Permission was not granted for Contacts."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
     }];
 }
 

@@ -6,9 +6,13 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
+#import "ABGroup.h"
+
 @interface ISUABCoreGroup : NSObject
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSNumber *recordId;
+
+- (void)updateInfoFromABGroup:(ABGroup *)group;
 
 @end

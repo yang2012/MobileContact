@@ -6,6 +6,8 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
+#import "ABPerson.h"
+
 @interface ISUABCoreContact : NSObject
 
 @property (nonatomic, strong) NSNumber *frequence;
@@ -49,5 +51,7 @@
 @property (nonatomic, strong) NSArray *addressValues;
 
 @property (nonatomic, strong) NSArray *smsDictionaries;
+
+- (void)updateInfoFromPerson:(ABPerson *)person;
 
 @end

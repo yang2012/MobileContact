@@ -52,6 +52,11 @@
 		FA85370417D82FDB00696D28 /* ISUAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85370317D82FDB00696D28 /* ISUAddress.m */; };
 		FA85370717D8BFF700696D28 /* ISUContact.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85370617D8BFF600696D28 /* ISUContact.m */; };
 		FA85370A17D9B75000696D28 /* ISUSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85370917D9B74F00696D28 /* ISUSMS.m */; };
+		FA85370D17DA074600696D28 /* ISUAddress+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85370C17DA074500696D28 /* ISUAddress+function.m */; };
+		FA85371017DA091400696D28 /* ISUSMS+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85370F17DA091200696D28 /* ISUSMS+function.m */; };
+		FA85371317DA0D0000696D28 /* ABPerson+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85371217DA0CFF00696D28 /* ABPerson+function.m */; };
+		FA85371617DA0E9F00696D28 /* ABGroup+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85371517DA0E9D00696D28 /* ABGroup+function.m */; };
+		FA85371917DA102700696D28 /* ABSource+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85371817DA102500696D28 /* ABSource+function.m */; };
 		FABE9FB117D1AB9700EF3F2B /* ISUPersonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FABE9FB017D1AB9700EF3F2B /* ISUPersonTest.m */; };
 		FABE9FB217D1C1D800EF3F2B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE8218917CCB8EB003C39B0 /* CoreData.framework */; };
 		FAE8216117CCB2F7003C39B0 /* ISUAddressBookUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */; };
@@ -148,6 +153,16 @@
 		FA85370617D8BFF600696D28 /* ISUContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUContact.m; sourceTree = "<group>"; };
 		FA85370817D9B74E00696D28 /* ISUSMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUSMS.h; sourceTree = "<group>"; };
 		FA85370917D9B74F00696D28 /* ISUSMS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUSMS.m; sourceTree = "<group>"; };
+		FA85370B17DA074400696D28 /* ISUAddress+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISUAddress+function.h"; sourceTree = "<group>"; };
+		FA85370C17DA074500696D28 /* ISUAddress+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISUAddress+function.m"; sourceTree = "<group>"; };
+		FA85370E17DA091100696D28 /* ISUSMS+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISUSMS+function.h"; sourceTree = "<group>"; };
+		FA85370F17DA091200696D28 /* ISUSMS+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISUSMS+function.m"; sourceTree = "<group>"; };
+		FA85371117DA0CFE00696D28 /* ABPerson+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABPerson+function.h"; sourceTree = "<group>"; };
+		FA85371217DA0CFF00696D28 /* ABPerson+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ABPerson+function.m"; sourceTree = "<group>"; };
+		FA85371417DA0E9C00696D28 /* ABGroup+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABGroup+function.h"; sourceTree = "<group>"; };
+		FA85371517DA0E9D00696D28 /* ABGroup+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ABGroup+function.m"; sourceTree = "<group>"; };
+		FA85371717DA102300696D28 /* ABSource+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABSource+function.h"; sourceTree = "<group>"; };
+		FA85371817DA102500696D28 /* ABSource+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ABSource+function.m"; sourceTree = "<group>"; };
 		FABE9FB017D1AB9700EF3F2B /* ISUPersonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPersonTest.m; sourceTree = "<group>"; };
 		FAE8215F17CCB2F7003C39B0 /* ISUAddressBookUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAddressBookUtility.h; sourceTree = "<group>"; };
 		FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAddressBookUtility.m; sourceTree = "<group>"; };
@@ -384,6 +399,12 @@
 				FA8536FB17D7061F00696D28 /* ISUABCoreSource.m */,
 				FA8536FF17D78B2A00696D28 /* ABRecord+function.h */,
 				FA85370017D78B2A00696D28 /* ABRecord+function.m */,
+				FA85371117DA0CFE00696D28 /* ABPerson+function.h */,
+				FA85371217DA0CFF00696D28 /* ABPerson+function.m */,
+				FA85371417DA0E9C00696D28 /* ABGroup+function.h */,
+				FA85371517DA0E9D00696D28 /* ABGroup+function.m */,
+				FA85371717DA102300696D28 /* ABSource+function.h */,
+				FA85371817DA102500696D28 /* ABSource+function.m */,
 			);
 			name = ABCoreModels;
 			sourceTree = "<group>";
@@ -407,6 +428,10 @@
 				FAE8218F17CCB98F003C39B0 /* ISUContact+function.m */,
 				FA8536B317D4900A00696D28 /* ISUContactSource+function.h */,
 				FA8536B417D4900A00696D28 /* ISUContactSource+function.m */,
+				FA85370B17DA074400696D28 /* ISUAddress+function.h */,
+				FA85370C17DA074500696D28 /* ISUAddress+function.m */,
+				FA85370E17DA091100696D28 /* ISUSMS+function.h */,
+				FA85370F17DA091200696D28 /* ISUSMS+function.m */,
 			);
 			name = Functions;
 			sourceTree = "<group>";
@@ -662,6 +687,11 @@
 				FA85370417D82FDB00696D28 /* ISUAddress.m in Sources */,
 				FA85370717D8BFF700696D28 /* ISUContact.m in Sources */,
 				FA85370A17D9B75000696D28 /* ISUSMS.m in Sources */,
+				FA85370D17DA074600696D28 /* ISUAddress+function.m in Sources */,
+				FA85371017DA091400696D28 /* ISUSMS+function.m in Sources */,
+				FA85371317DA0D0000696D28 /* ABPerson+function.m in Sources */,
+				FA85371617DA0E9F00696D28 /* ABGroup+function.m in Sources */,
+				FA85371917DA102700696D28 /* ABSource+function.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

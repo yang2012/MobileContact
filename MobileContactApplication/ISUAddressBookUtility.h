@@ -41,8 +41,9 @@ typedef BOOL (^ISUPersonProceessBlock)(ISUABCoreContact *coreContact);
 - (void)fetchMemberInfosInGroupWithRecordId:(NSNumber *)recordId
                                processBlock:(ISUPersonProceessBlock)processBlock;
 
-- (BOOL)addContact:(ISUContact *)contact inSource:(ISUContactSource *)source withError:(NSError **)error;
-//+ (BOOL)addGroup:(ISUGroup *)group withError:(NSError **) error;
+- (BOOL)addContact:(ISUContact *)contact withError:(NSError **)error;
+
+- (BOOL)addGroup:(ISUGroup *)group withError:(NSError **)error;
 
 //+ (BOOL)removeContactFromAddressBookWithRecordId:(NSNumber *)recordId error:(NSError *__autoreleasing *)error;
 
