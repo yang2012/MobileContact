@@ -56,6 +56,9 @@
 		FA85371317DA0D0000696D28 /* ABPerson+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85371217DA0CFF00696D28 /* ABPerson+function.m */; };
 		FA85371617DA0E9F00696D28 /* ABGroup+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85371517DA0E9D00696D28 /* ABGroup+function.m */; };
 		FA85371917DA102700696D28 /* ABSource+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85371817DA102500696D28 /* ABSource+function.m */; };
+		FA85ECC917DC5C8700F6FC7F /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA85ECC817DC5C8700F6FC7F /* Icon@2x.png */; };
+		FA85ECCB17DC601500F6FC7F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA85ECCA17DC601500F6FC7F /* Icon.png */; };
+		FA85ECCD17DC610100F6FC7F /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA85ECCC17DC610100F6FC7F /* Crashlytics.framework */; };
 		FABE9FB117D1AB9700EF3F2B /* ISUPersonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FABE9FB017D1AB9700EF3F2B /* ISUPersonTest.m */; };
 		FABE9FB217D1C1D800EF3F2B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE8218917CCB8EB003C39B0 /* CoreData.framework */; };
 		FAE8216117CCB2F7003C39B0 /* ISUAddressBookUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */; };
@@ -160,6 +163,9 @@
 		FA85371517DA0E9D00696D28 /* ABGroup+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ABGroup+function.m"; sourceTree = "<group>"; };
 		FA85371717DA102300696D28 /* ABSource+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABSource+function.h"; sourceTree = "<group>"; };
 		FA85371817DA102500696D28 /* ABSource+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ABSource+function.m"; sourceTree = "<group>"; };
+		FA85ECC817DC5C8700F6FC7F /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
+		FA85ECCA17DC601500F6FC7F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		FA85ECCC17DC610100F6FC7F /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		FABE9FB017D1AB9700EF3F2B /* ISUPersonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPersonTest.m; sourceTree = "<group>"; };
 		FAE8215F17CCB2F7003C39B0 /* ISUAddressBookUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAddressBookUtility.h; sourceTree = "<group>"; };
 		FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAddressBookUtility.m; sourceTree = "<group>"; };
@@ -183,6 +189,7 @@
 				FA2167D917CC98AB0026F1CD /* Foundation.framework in Frameworks */,
 				DAEF9F403FBC45CFA15AE3B9 /* libPods.a in Frameworks */,
 				FA2167D717CC98AB0026F1CD /* UIKit.framework in Frameworks */,
+				FA85ECCD17DC610100F6FC7F /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +232,7 @@
 		FA2167D517CC98AB0026F1CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA85ECCC17DC610100F6FC7F /* Crashlytics.framework */,
 				FA21681417CC993A0026F1CD /* AddressBook.framework */,
 				FA21681617CC993F0026F1CD /* AddressBookUI.framework */,
 				FAE8218917CCB8EB003C39B0 /* CoreData.framework */,
@@ -355,6 +363,8 @@
 		FA21682617CC9A560026F1CD /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				FA85ECC817DC5C8700F6FC7F /* Icon@2x.png */,
+				FA85ECCA17DC601500F6FC7F /* Icon.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -488,6 +498,7 @@
 				FA2167D017CC98AB0026F1CD /* Frameworks */,
 				FA2167D117CC98AB0026F1CD /* Resources */,
 				9ED363E2E6AB461A91313E7F /* Copy Pods Resources */,
+				FA85ECC517DC5AED00F6FC7F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -558,6 +569,8 @@
 				FA2167E117CC98AB0026F1CD /* InfoPlist.strings in Resources */,
 				FA8536A317D4230000696D28 /* ISUCollectionContactViewCell.xib in Resources */,
 				FA2167F017CC98AB0026F1CD /* MainStoryboard.storyboard in Resources */,
+				FA85ECC917DC5C8700F6FC7F /* Icon@2x.png in Resources */,
+				FA85ECCB17DC601500F6FC7F /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +657,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"$RUN_APPLICATION_TESTS_WITH_IOS_SIM\" = \"YES\" ]; then\ntest_bundle_path=\"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION\"\nenvironment_args=\"--setenv DYLD_INSERT_LIBRARIES=/../../Library/PrivateFrameworks/IDEBundleInjection.framework/IDEBundleInjection --setenv XCInjectBundle=$test_bundle_path --setenv XCInjectBundleInto=$TEST_HOST\"\nios-sim launch $(dirname $TEST_HOST) $environment_args --args -SenTest All $test_bundle_path\necho \"Finished running tests with ios-sim\"\nelse\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\nfi";
+		};
+		FA85ECC517DC5AED00F6FC7F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run a06c5e4fd9a36dd27f5ebcaf32c33688decba42c";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -799,6 +825,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileContactApplication/MobileContactApplication-Prefix.pch";
 				INFOPLIST_FILE = "MobileContactApplication/MobileContactApplication-Info.plist";
@@ -814,6 +844,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileContactApplication/MobileContactApplication-Prefix.pch";
 				INFOPLIST_FILE = "MobileContactApplication/MobileContactApplication-Info.plist";

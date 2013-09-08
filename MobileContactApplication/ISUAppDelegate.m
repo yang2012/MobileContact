@@ -7,6 +7,7 @@
 //
 
 #import "ISUAppDelegate.h"
+#import <Crashlytics/Crashlytics.h>
 #ifdef DEBUG
 #import <PDDebugger.h>
 #endif
@@ -53,7 +54,8 @@
     
     [debugger addManagedObjectContext:self.persistentManager.mainManagedObjectContext withName:@"Main Context"];
 #endif
-        
+    
+    [Crashlytics startWithAPIKey:@"a06c5e4fd9a36dd27f5ebcaf32c33688decba42c"];
     return YES;
 }
 
