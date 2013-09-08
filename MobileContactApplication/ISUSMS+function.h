@@ -11,6 +11,12 @@
 
 @interface ISUSMS (function)
 
-- (NSDictionary *)infoDictionary;
+- (NSString *)label;
+
+- (void)setLabel:(NSString *)label;
+
+- (NSDictionary *)value;
+
+- (void)setValue:(NSDictionary *)valueDict;
 
 @end

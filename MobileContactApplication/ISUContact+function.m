@@ -79,6 +79,8 @@
     [self _updateAddressesWithCoreContact:coreContact inContext:context];
     
     [self _updateSMSWithCoreContact:coreContact inContext:context];
+    
+    [context save:nil];
 }
 
 - (NSString *)contactName
@@ -169,14 +171,10 @@
 
 - (void)_updatePhonesWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
-    NSInteger count = coreContact.phoneLabels.count;
-    for (NSInteger indexOfNewPhone = 0; indexOfNewPhone < count; indexOfNewPhone++) {
-        NSString *newPhoneLabel = [coreContact.phoneLabels objectAtIndex:indexOfNewPhone];
-        NSString *newPhoneValue = [coreContact.phoneValues objectAtIndex:indexOfNewPhone];
-        
+    for (ISUPhone *abPhone in coreContact.phones) {
         BOOL found = NO;
         for (ISUPhone *phone in [self.phones allObjects]) {
-            if ([phone.label isEqualToString:newPhoneLabel] && [phone.value isEqualToString:newPhoneValue]) {
+            if ([phone.label isEqualToString:abPhone.label] && [phone.value isEqualToString:abPhone.value]) {
                 found = YES;
                 break;
             }
@@ -187,24 +185,19 @@
         }
         
         ISUPhone *newPhone = [[ISUPhone alloc] initWithContext:context];
-        newPhone.label = newPhoneLabel;
-        newPhone.value = newPhoneValue;
+        newPhone.label = abPhone.label;
+        newPhone.value = abPhone.value;
         
         newPhone.contact = self;
     }
-    [context save:nil];
 }
 
 - (void)_updateEmailsWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
-    NSInteger count = coreContact.emailLabels.count;
-    for (NSInteger indexOfNewEmail = 0; indexOfNewEmail < count; indexOfNewEmail++) {
-        NSString *newEmailLabel = [coreContact.emailLabels objectAtIndex:indexOfNewEmail];
-        NSString *newEmailValue = [coreContact.emailValues objectAtIndex:indexOfNewEmail];
-        
+    for (ISUEmail *abEmail in coreContact.emails) {
         BOOL found = NO;
         for (ISUEmail *email in [self.emails allObjects]) {
-            if ([email.label isEqualToString:newEmailLabel] && [email.value isEqualToString:newEmailValue]) {
+            if ([email.label isEqualToString:abEmail.label] && [email.value isEqualToString:abEmail.value]) {
                 found = YES;
                 break;
             }
@@ -215,8 +208,8 @@
         }
         
         ISUEmail *newEmail = [[ISUEmail alloc] initWithContext:context];
-        newEmail.label = newEmailLabel;
-        newEmail.value = newEmailValue;
+        newEmail.label = abEmail.label;
+        newEmail.value = abEmail.value;
         
         newEmail.contact = self;
     }
@@ -224,14 +217,10 @@
 
 - (void)_updateDatesWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
-    NSInteger count = coreContact.dateLabels.count;
-    for (NSInteger indexOfNewDate = 0; indexOfNewDate < count; indexOfNewDate++) {
-        NSString *newDateLabel = [coreContact.dateLabels objectAtIndex:indexOfNewDate];
-        NSDate *newDateValue = [coreContact.dateValues objectAtIndex:indexOfNewDate];
-        
+    for (ISUDate *abDate in coreContact.dates) {
         BOOL found = NO;
         for (ISUDate *date in [self.dates allObjects]) {
-            if ([date.label isEqualToString:newDateLabel] && [date.value isEqualToDate:newDateValue]) {
+            if ([date.label isEqualToString:abDate.label] && [date.value isEqualToDate:abDate.value]) {
                 found = YES;
                 break;
             }
@@ -242,8 +231,8 @@
         }
         
         ISUDate *newDate = [[ISUDate alloc] initWithContext:context];
-        newDate.label = newDateLabel;
-        newDate.value = newDateValue;
+        newDate.label = abDate.label;
+        newDate.value = abDate.value;
         
         newDate.contact = self;
     }
@@ -251,14 +240,10 @@
 
 - (void)_updateRelatedPeopleWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
-    NSInteger count = coreContact.relatedPeopleLabels.count;
-    for (NSInteger index = 0; index < count; index++) {
-        NSString *newLabel = [coreContact.relatedPeopleLabels objectAtIndex:index];
-        NSString *newValue = [coreContact.relatedPeopleValues objectAtIndex:index];
-        
+    for (ISURelatedPeople *abPerson in coreContact.relatedPeople) {
         BOOL found = NO;
-        for (ISURelatedPeople *relatedPeople in [self.relatedPeople allObjects]) {
-            if ([relatedPeople.label isEqualToString:newLabel] && [relatedPeople.value isEqualToString:newValue]) {
+        for (ISURelatedPeople *relatedPerson in [self.relatedPeople allObjects]) {
+            if ([relatedPerson.label isEqualToString:abPerson.label] && [relatedPerson.value isEqualToString:abPerson.value]) {
                 found = YES;
                 break;
             }
@@ -269,8 +254,8 @@
         }
         
         ISURelatedPeople *newOne = [[ISURelatedPeople alloc] initWithContext:context];
-        newOne.label = newLabel;
-        newOne.value = newValue;
+        newOne.label = abPerson.label;
+        newOne.value = abPerson.value;
         
         newOne.contact = self;
     }
@@ -278,14 +263,10 @@
 
 - (void)_updateUrlsWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
-    NSInteger count = coreContact.urlLabels.count;
-    for (NSInteger index = 0; index < count; index++) {
-        NSString *newLabel = [coreContact.urlLabels objectAtIndex:index];
-        NSString *newValue = [coreContact.urlValues objectAtIndex:index];
-        
+    for (ISUUrl *abUrl in coreContact.urls) {
         BOOL found = NO;
         for (ISUUrl *url in [self.urls allObjects]) {
-            if ([url.label isEqualToString:newLabel] && [url.value isEqualToString:newValue]) {
+            if ([url.label isEqualToString:abUrl.label] && [url.value isEqualToString:abUrl.value]) {
                 found = YES;
                 break;
             }
@@ -296,8 +277,8 @@
         }
         
         ISUUrl *newOne = [[ISUUrl alloc] initWithContext:context];
-        newOne.label = newLabel;
-        newOne.value = newValue;
+        newOne.label = abUrl.label;
+        newOne.value = abUrl.value;
         
         newOne.contact = self;
     }
@@ -305,15 +286,10 @@
 
 - (void)_updateSMSWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
-    NSInteger count = coreContact.smsDictionaries.count;
-    for (NSInteger index = 0; index < count; index++) {
-        NSDictionary *smsDictionary = [coreContact.smsDictionaries objectAtIndex:index];
-        NSString *service = [smsDictionary objectForKey:(NSString *)kABPersonSocialProfileServiceKey];
-        NSString *username = [smsDictionary objectForKey:(NSString *)kABPersonSocialProfileUsernameKey];
-        
+    for (ISUSMS *abSms in coreContact.sms) {
         BOOL found = NO;
         for (ISUSMS *sms in [self.sms allObjects]) {
-            if ([sms.service isEqualToString:service] && [sms.username isEqualToString:username]) {
+            if ([sms.service isEqualToString:abSms.service] && [sms.username isEqualToString:abSms.username]) {
                 found = YES;
                 break;
             }
@@ -325,10 +301,10 @@
         
         // none existed
         ISUSMS *newOne = [[ISUSMS alloc] initWithContext:context];
-        newOne.service = service;
-        newOne.username = username;
-        newOne.url = [smsDictionary objectForKey:(NSString *)kABPersonSocialProfileURLKey];
-        newOne.userIdentifier = [smsDictionary objectForKey:(NSString *)kABPersonSocialProfileUserIdentifierKey];
+        newOne.service = abSms.service;
+        newOne.username = abSms.username;
+        newOne.url = abSms.url;
+        newOne.userIdentifier = abSms.userIdentifier;
         
         newOne.contact = self;
     }
@@ -336,21 +312,11 @@
 
 - (void)_updateAddressesWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
-    NSInteger count = coreContact.addressLabels.count;
-    for (NSInteger index = 0; index < count; index++) {
-        NSString *newLabel = [coreContact.addressLabels objectAtIndex:index];
-        NSDictionary *newValueDict = [coreContact.addressValues objectAtIndex:index];
-        NSString *city = [newValueDict objectForKey:(NSString *)kABPersonAddressCityKey];
-        NSString *state = [newValueDict objectForKey:(NSString *)kABPersonAddressStateKey];
-        NSString *street = [newValueDict objectForKey:(NSString *)kABPersonAddressStreetKey];
-        NSString *zip = [newValueDict objectForKey:(NSString *)kABPersonAddressZIPKey];
-        NSString *country = [newValueDict objectForKey:(NSString *)kABPersonAddressCountryKey];
-        NSString *countryCode = [newValueDict objectForKey:(NSString *)kABPersonAddressCountryCodeKey];
-        
+    for (ISUAddress *abAddress in coreContact.addresses) {
         BOOL found = NO;
         for (ISUAddress *address in [self.addresses allObjects]) {
-            if ([address.city isEqualToString:city] && [address.state isEqualToString:state] && [address.street isEqualToString:street] &&
-                [address.zip isEqualToString:zip] && [address.country isEqualToString:country] && [address.countryCode isEqualToString:countryCode]) {
+            if ([address.city isEqualToString:abAddress.city] && [address.state isEqualToString:abAddress.state] && [address.street isEqualToString:abAddress.street] &&
+                [address.zip isEqualToString:abAddress.zip] && [address.country isEqualToString:abAddress.country] && [address.countryCode isEqualToString:abAddress.countryCode]) {
                 found = YES;
                 break;
             }
@@ -361,13 +327,13 @@
         }
         
         ISUAddress *newOne = [[ISUAddress alloc] initWithContext:context];
-        newOne.label = newLabel;
-        newOne.city = city;
-        newOne.state = state;
-        newOne.street = street;
-        newOne.zip = zip;
-        newOne.country = country;
-        newOne.countryCode = countryCode;
+        newOne.label = abAddress.label;
+        newOne.city = abAddress.city;
+        newOne.state = abAddress.state;
+        newOne.street = abAddress.street;
+        newOne.zip = abAddress.zip;
+        newOne.country = abAddress.country;
+        newOne.countryCode = abAddress.countryCode;
         
         newOne.contact = self;
     }

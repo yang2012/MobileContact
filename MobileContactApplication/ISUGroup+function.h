@@ -14,6 +14,8 @@ extern NSInteger const kRecordIdOfDefaultGroup;
 
 @interface ISUGroup (function)
 
+@property (nonatomic, assign, readonly) BOOL isLocal;
+
 + (ISUGroup *)findOrCreateGroupWithRecordId:(NSNumber *)recordId
                                   inContext:(NSManagedObjectContext *)context;
 

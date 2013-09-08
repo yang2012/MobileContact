@@ -10,7 +10,7 @@
 
 @implementation ISUAddress (function)
 
-- (NSDictionary *)infoDictionary
+- (NSDictionary *)value
 {
     NSMutableDictionary *infoDict = [[NSMutableDictionary alloc] init];
     if (self.city) {
@@ -32,6 +32,44 @@
         [infoDict setObject:self.street forKey:(NSString *)kABPersonAddressStreetKey];
     }
     return infoDict;
+}
+
+- (void)setValue:(NSDictionary *)valueDict
+{
+    if (valueDict == nil) {
+        ISULog(@"nil value when calling setValue: of ISUAddress class", ISULogPriorityNormal);
+        return;
+    }
+    
+    NSString *city = [valueDict objectForKey:(NSString *)kABPersonAddressCityKey];
+    if (city && ![self.city isEqualToString:city]) {
+        self.city = city;
+    }
+    
+    NSString *state = [valueDict objectForKey:(NSString *)kABPersonAddressStateKey];
+    if (state && ![self.state isEqualToString:state]) {
+        self.state = state;
+    }
+    
+    NSString *country = [valueDict objectForKey:(NSString *)kABPersonAddressCountryKey];
+    if (country && ![self.country isEqualToString:country]) {
+        self.country = country;
+    }
+    
+    NSString *countryCode = [valueDict objectForKey:(NSString *)kABPersonAddressCountryCodeKey];
+    if (countryCode && ![self.countryCode isEqualToString:countryCode]) {
+        self.countryCode = countryCode;
+    }
+    
+    NSString *zip = [valueDict objectForKey:(NSString *)kABPersonAddressZIPKey];
+    if (zip && ![self.zip isEqualToString:zip]) {
+        self.zip = zip;
+    }
+    
+    NSString *street = [valueDict objectForKey:(NSString *)kABPersonAddressStreetKey];
+    if (street && ![self.street isEqualToString:street]) {
+        self.street = street;
+    }
 }
 
 @end

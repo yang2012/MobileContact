@@ -48,7 +48,6 @@
 		FA8536F617D6E02C00696D28 /* ISUDate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8536F517D6E02A00696D28 /* ISUDate.m */; };
 		FA8536F917D6E19B00696D28 /* ISUABCoreGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8536F817D6E19B00696D28 /* ISUABCoreGroup.m */; };
 		FA8536FC17D7061F00696D28 /* ISUABCoreSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8536FB17D7061F00696D28 /* ISUABCoreSource.m */; };
-		FA85370117D78B2A00696D28 /* ABRecord+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85370017D78B2A00696D28 /* ABRecord+function.m */; };
 		FA85370417D82FDB00696D28 /* ISUAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85370317D82FDB00696D28 /* ISUAddress.m */; };
 		FA85370717D8BFF700696D28 /* ISUContact.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85370617D8BFF600696D28 /* ISUContact.m */; };
 		FA85370A17D9B75000696D28 /* ISUSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85370917D9B74F00696D28 /* ISUSMS.m */; };
@@ -145,8 +144,6 @@
 		FA8536F817D6E19B00696D28 /* ISUABCoreGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUABCoreGroup.m; sourceTree = "<group>"; };
 		FA8536FA17D7061E00696D28 /* ISUABCoreSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUABCoreSource.h; sourceTree = "<group>"; };
 		FA8536FB17D7061F00696D28 /* ISUABCoreSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUABCoreSource.m; sourceTree = "<group>"; };
-		FA8536FF17D78B2A00696D28 /* ABRecord+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABRecord+function.h"; sourceTree = "<group>"; };
-		FA85370017D78B2A00696D28 /* ABRecord+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ABRecord+function.m"; sourceTree = "<group>"; };
 		FA85370217D82FDA00696D28 /* ISUAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAddress.h; sourceTree = "<group>"; };
 		FA85370317D82FDB00696D28 /* ISUAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAddress.m; sourceTree = "<group>"; };
 		FA85370517D8BFF500696D28 /* ISUContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUContact.h; sourceTree = "<group>"; };
@@ -395,8 +392,6 @@
 				FA85371517DA0E9D00696D28 /* ABGroup+function.m */,
 				FA85371117DA0CFE00696D28 /* ABPerson+function.h */,
 				FA85371217DA0CFF00696D28 /* ABPerson+function.m */,
-				FA8536FF17D78B2A00696D28 /* ABRecord+function.h */,
-				FA85370017D78B2A00696D28 /* ABRecord+function.m */,
 				FA85371717DA102300696D28 /* ABSource+function.h */,
 				FA85371817DA102500696D28 /* ABSource+function.m */,
 				FA8536EB17D6D66900696D28 /* ISUABCoreContact.h */,
@@ -659,7 +654,6 @@
 			files = (
 				FA85371617DA0E9F00696D28 /* ABGroup+function.m in Sources */,
 				FA85371317DA0D0000696D28 /* ABPerson+function.m in Sources */,
-				FA85370117D78B2A00696D28 /* ABRecord+function.m in Sources */,
 				FA85371917DA102700696D28 /* ABSource+function.m in Sources */,
 				FA8536ED17D6D66900696D28 /* ISUABCoreContact.m in Sources */,
 				FA8536F917D6E19B00696D28 /* ISUABCoreGroup.m in Sources */,

@@ -7,10 +7,11 @@
 //
 
 #import "ABPerson.h"
+#import "ISUContact.h"
 
 @interface ISUABCoreContact : NSObject
 
-@property (nonatomic, strong) NSNumber *frequence;
+//@property (nonatomic, strong) NSNumber *frequence;
 
 @property (nonatomic, strong) NSNumber *recordId;
 
@@ -32,26 +33,23 @@
 
 @property (nonatomic, strong) NSString *avatarDataKey;
 
-@property (nonatomic, strong) NSArray *emailLabels;
-@property (nonatomic, strong) NSArray *emailValues;
+@property (nonatomic, strong) NSArray *emails;
 
-@property (nonatomic, strong) NSArray *phoneLabels;
-@property (nonatomic, strong) NSArray *phoneValues;
+@property (nonatomic, strong) NSArray *phones;
 
-@property (nonatomic, strong) NSArray *urlLabels;
-@property (nonatomic, strong) NSArray *urlValues;
+@property (nonatomic, strong) NSArray *urls;
 
-@property (nonatomic, strong) NSArray *dateLabels;
-@property (nonatomic, strong) NSArray *dateValues;
+@property (nonatomic, strong) NSArray *dates;
 
-@property (nonatomic, strong) NSArray *relatedPeopleLabels;
-@property (nonatomic, strong) NSArray *relatedPeopleValues;
+@property (nonatomic, strong) NSArray *relatedPeople;
 
-@property (nonatomic, strong) NSArray *addressLabels;
-@property (nonatomic, strong) NSArray *addressValues;
+@property (nonatomic, strong) NSArray *addresses;
 
-@property (nonatomic, strong) NSArray *smsDictionaries;
+@property (nonatomic, strong) NSArray *sms;
 
+- (id)initWithContact:(ISUContact *)contact;
+
+- (void)updateInfoFromContact:(ISUContact *)contact;
 - (void)updateInfoFromPerson:(ABPerson *)person;
 
 @end

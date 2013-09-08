@@ -11,6 +11,8 @@
 
 @interface ISUAddress (function)
 
-- (NSDictionary *)infoDictionary;
+- (NSDictionary *)value;
+
+- (void)setValue:(NSDictionary *)valueDict;
 
 @end

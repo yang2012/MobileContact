@@ -10,7 +10,17 @@
 
 @implementation ISUSMS (function)
 
-- (NSDictionary *)infoDictionary
+- (NSString *)label
+{
+    return NULL;
+}
+
+- (void)setLabel:(NSString *)label
+{
+    return;
+}
+
+- (NSDictionary *)value
 {
     NSMutableDictionary *info = [[NSMutableDictionary alloc] init];
     if (self.service) {
@@ -26,6 +36,34 @@
         [info setObject:self.userIdentifier forKey:(NSString *)kABPersonSocialProfileUserIdentifierKey];
     }
     return info;
+}
+
+- (void)setValue:(NSDictionary *)valueDict
+{
+    if (valueDict == nil) {
+        ISULog(@"Nil value dict when calling setValue: of ISUSMS", ISULogPriorityNormal);
+        return;
+    }
+    
+    NSString *service = [valueDict objectForKey:(NSString *)kABPersonSocialProfileServiceKey];
+    if (service && ![self.service isEqualToString:service]) {
+        self.service = service;
+    }
+    
+    NSString *username = [valueDict objectForKey:(NSString *)kABPersonSocialProfileUsernameKey];
+    if (username && ![self.username isEqualToString:username]) {
+        self.username = username;
+    }
+    
+    NSString *url = [valueDict objectForKey:(NSString *)kABPersonSocialProfileURLKey];
+    if (url && ![self.url isEqualToString:url]) {
+        self.url = url;
+    }
+    
+    NSString *userIdentifier = [valueDict objectForKey:(NSString *)kABPersonSocialProfileUserIdentifierKey];
+    if (userIdentifier && ![self.userIdentifier isEqualToString:userIdentifier]) {
+        self.userIdentifier = userIdentifier;
+    }
 }
 
 @end

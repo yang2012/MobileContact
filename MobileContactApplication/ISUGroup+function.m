@@ -12,6 +12,11 @@ NSInteger const kRecordIdOfDefaultGroup = 0;
 
 @implementation ISUGroup (function)
 
+- (BOOL)isLocal
+{
+    return ![self.recordId isEqualToNumber:[NSNumber numberWithInteger:kRecordIdOfDefaultGroup]];
+}
+
 + (ISUGroup *)findOrCreateGroupWithRecordId:(NSNumber *)recordId
                                   inContext:(NSManagedObjectContext *)context
 {

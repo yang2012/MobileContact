@@ -7,10 +7,12 @@
 //
 
 #import "ABGroup.h"
-#import "ISUGroup+function.h"
+#import "ISUABCoreGroup.h"
 
 @interface ABGroup (function)
 
-- (void)updateInfoFromGroup:(ISUGroup *)group withError:(NSError **)error;
+- (id)valueOfGroupForProperty:(ABPropertyID)property;
+
+- (void)updateInfoFromGroup:(ISUABCoreGroup *)group withError:(NSError **)error;
 
 @end

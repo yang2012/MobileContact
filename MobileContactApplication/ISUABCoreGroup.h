@@ -7,12 +7,16 @@
 //
 
 #import "ABGroup.h"
+#import "ISUGroup.h"
 
 @interface ISUABCoreGroup : NSObject
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSNumber *recordId;
 
+- (id)initWithGroup:(ISUGroup *)group;
+
+- (void)updateInfoFromGroup:(ISUGroup *)group;
 - (void)updateInfoFromABGroup:(ABGroup *)group;
 
 @end

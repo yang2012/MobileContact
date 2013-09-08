@@ -6,13 +6,57 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import "ISUABCoreContact.h"
-#import "ABRecord+function.h"
 #import "ABMultiValue.h"
+#import "ABPerson+function.h"
+#import "ISUABCoreContact.h"
 #import "ISUUtility.h"
+#import "ISUEmail.h"
+#import "ISUPhone.h"
+#import "ISUAddress.h"
+#import "ISURelatedPeople.h"
+#import "ISUUrl.h"
+#import "ISUDate.h"
+#import "ISUSMS.h"
 #import <TMCache.h>
 
 @implementation ISUABCoreContact
+
+- (id)initWithContact:(ISUContact *)contact
+{
+    self = [super init];
+    
+    if (self) {
+        [self updateInfoFromContact:contact];
+    }
+    
+    return self;
+}
+
+- (void)updateInfoFromContact:(ISUContact *)contact
+{
+    self.recordId = [contact.recordId copy];
+    self.firstName = [contact.firstName copy];
+    self.lastName = [contact.lastName copy];
+    self.middleName = [contact.middleName copy];
+    self.firstNamePhonetic = [contact.firstNamePhonetic copy];
+    self.lastNamePhonetic = [contact.lastNamePhonetic copy];
+    self.middleNamePhonetic = [contact.middleNamePhonetic copy];
+    self.prefix = [contact.prefix copy];
+    self.suffix = [contact.suffix copy];
+    self.nickName = [contact.nickName copy];
+    self.jobTitle = [contact.jobTitle copy];
+    self.organization = [contact.organization copy];
+    self.department = [contact.department copy];
+    self.birthday = [contact.birthday copy];
+    self.note = [contact.note copy];
+    self.emails = [contact.emails copy];
+    self.addresses = [contact.addresses copy];
+    self.phones = [contact.phones copy];
+    self.urls = [contact.urls copy];
+    self.relatedPeople = [contact.relatedPeople copy];
+    self.sms = [contact.sms copy];
+    self.dates = [contact.dates copy];
+}
 
 - (void)updateInfoFromPerson:(ABPerson *)person
 {
@@ -96,81 +140,94 @@
 - (void)_getPhonesFromRecord:(ABPerson *)person
 {
     NSArray *phones = [self _valuesFromRecord:person ofProperty:kABPersonPhoneProperty];
-    self.phoneLabels = phones[0];
-    self.phoneValues = phones[1];
+    self.phones = phones;
 }
 
 - (void)_getEmailsFromRecord:(ABPerson *)person
 {
     NSArray *emails = [self _valuesFromRecord:person ofProperty:kABPersonEmailProperty];
-    self.emailLabels = emails[0];
-    self.emailValues = emails[1];
+    self.emails = emails;
 }
 
 - (void)_getAddressFromRecord:(ABPerson *)person
 {
     NSArray *addresses = [self _valuesFromRecord:person ofProperty:kABPersonAddressProperty];
-    self.addressLabels = addresses[0];
-    self.addressValues = addresses[1];
+    self.addresses = addresses;
 }
 
 - (void)_getSocialProfilesFromRecord:(ABPerson *)person
 {
     // Cannot call _valuesFromRecord:ofProperty: because social profile has not label
-    NSMutableArray *values = [NSMutableArray array];
-    
-    ABMultiValue *multiValue = [person valueOfPersonForProperty:kABPersonSocialProfileProperty];
-    if (multiValue) {
-        NSUInteger count = multiValue.count;
-        id value;
-        for (NSUInteger index = 0; index < count; index++) {
-            value = [multiValue valueAtIndex:index];
-            
-            [values addObject:value];
-        }
-    }
-    self.smsDictionaries = values;
+    NSArray *sms = [self _valuesFromRecord:person ofProperty:kABPersonSocialProfileProperty];
+    self.sms = sms;
 }
 
 - (void)_getDatesFromRecord:(ABPerson *)person
 {
     NSArray *dates = [self _valuesFromRecord:person ofProperty:kABPersonDateProperty];
-    self.dateLabels = dates[0];
-    self.dateValues = dates[1];
+    self.dates = dates;
 }
 
 - (void)_getUrlsFromRecord:(ABPerson *)person
 {
     NSArray *urls = [self _valuesFromRecord:person ofProperty:kABPersonURLProperty];
-    self.urlLabels = urls[0];
-    self.urlValues = urls[1];
+    self.urls = urls;
 }
 
 - (void)_getRelativedPeopleFromRecord:(ABPerson *)person
 {
     NSArray *relativedPeople = [self _valuesFromRecord:person ofProperty:kABPersonRelatedNamesProperty];
-    self.relatedPeopleLabels = relativedPeople[0];
-    self.relatedPeopleValues = relativedPeople[1];
+    self.relatedPeople = relativedPeople;
 }
 
 - (NSArray *)_valuesFromRecord:(ABPerson *)person ofProperty:(ABPropertyID)property
 {
-    NSMutableArray *labels = [NSMutableArray array];
     NSMutableArray *values = [NSMutableArray array];
-    
     ABMultiValue *multiValue = [person valueOfPersonForProperty:property];
     if (multiValue) {
         NSUInteger count = multiValue.count;
         id label, value;
         for (NSUInteger index = 0; index < count; index++) {
+            id obj = [self _objectForProperty:property];
+
             label = [multiValue labelAtIndex:index];
             value = [multiValue valueAtIndex:index];
             
-            [labels addObject:label];
-            [values addObject:value];
+            [obj setValue:label forKey:@"label"];
+            [obj setValue:value forKey:@"value"];
+            
+            [values addObject:obj];
         }
     }
-    return @[labels, values];
+    return values;
+}
+
+- (id)_objectForProperty:(ABPropertyID)property
+{
+    id obj = nil;
+    if (property == kABPersonEmailProperty) {
+        obj = [[ISUEmail alloc] init];
+    }
+    else if (property == kABPersonRelatedNamesProperty) {
+        obj = [[ISURelatedPeople alloc] init];
+    }
+    else if (property == kABPersonURLProperty) {
+        obj = [[ISUUrl alloc] init];
+    }
+    else if (property == kABPersonDateProperty) {
+        obj = [[ISUDate alloc] init];
+    }
+    else if (property == kABPersonPhoneProperty) {
+        obj = [[ISUPhone alloc] init];
+    }
+    else if (property == kABPersonAddressProperty) {
+        obj = [[ISUAddress alloc] init];
+    }
+    else if (property == kABPersonSocialProfileProperty) {
+        obj = [[ISUSMS alloc] init];
+    }
+    
+    return obj;
 }
 
 - (void)_getAvatarKeyFromRecord:(ABPerson *)person
