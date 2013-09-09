@@ -11,6 +11,7 @@ pod 'FXBlurView', '~> 1.3.1'
 pod 'JDDroppableView', '~> 1.1.0'
 pod 'TMCache', '~> 1.2.0'
 pod 'iPhoneContacts', '~> 0.0.1'
+pod 'Reveal-iOS-SDK', '~> 0.9.1'
 
 # Add Kiwi as an exclusive dependency for the MobileContactApplicationTests target
 target :MobileContactApplicationTests, :exclusive => true do

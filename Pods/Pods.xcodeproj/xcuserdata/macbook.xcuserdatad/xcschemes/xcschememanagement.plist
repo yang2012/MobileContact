@@ -59,6 +59,11 @@
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
+		<key>Pods-Reveal-iOS-SDK.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>19</integer>
+		</dict>
 		<key>Pods-SSDataKit.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -93,6 +98,16 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>01D1B1F969664A9C8C1E3988</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0299FE17D60D4D5A873B9517</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>02A9CA4ACF2E4AA192743E19</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -157,6 +172,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>154358E035284FE9BE1BB7D8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>18B4D132D6084CF39FF12AA8</key>
 		<dict>
 			<key>primary</key>
@@ -188,6 +208,11 @@
 			<true/>
 		</dict>
 		<key>21090738B5894C64B37A08AB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>282E0A29EBAB41D291AAF33A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -247,6 +272,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>437704440E184160886401F6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>45CCCAB19F894DFDA77BC86F</key>
 		<dict>
 			<key>primary</key>
@@ -287,6 +317,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>58996EFE715A421BB85403F1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>590BCA7BC9944737AB84CAB7</key>
 		<dict>
 			<key>primary</key>
@@ -307,7 +342,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>5DF31EDF7A4A4A628801C7B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>60ADA1FD444149A5957AD1F5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>62CFAA7D1A8F4B54A3A129C0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -407,7 +452,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>85DFD4BA8FBD449A92B1848B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>89262CA0F2B74CB9AE076BFE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8ACBCE77BBFB4B3B8F491951</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -452,12 +507,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>A77336D111464678A0047A22</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A8592E6D77F24039A3BE2B0F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>A85CF43D57D84447A34E0F84</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A8614C5107D74929BC0B0DA4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -487,6 +552,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B10F08A14C6D4F08BAC42C48</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>BD1AA935AE5A4161BD07A31C</key>
 		<dict>
 			<key>primary</key>
@@ -498,6 +568,11 @@
 			<true/>
 		</dict>
 		<key>BEB00DD1BE074098BD2E1DC7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C07B20000C044D769A60CE5F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -537,12 +612,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>D08D85702E694B3E90317BED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D3B0BBBC214E44FD92C16150</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>D49D7157EA274E3BB799F46B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D5AEE69682984740ADD6E8AC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -573,6 +658,11 @@
 			<true/>
 		</dict>
 		<key>DD29C44381184A2E8319824B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DDB35D246B8E4449B202D143</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -14,6 +14,7 @@ PODS:
   - OHHTTPStubs (2.0.0)
   - PonyDebugger (0.3.0):
     - SocketRocket
+  - Reveal-iOS-SDK (0.9.1)
   - SocketRocket (0.3.1-beta2)
   - SSDataKit (0.1.5)
   - TMCache (1.2.0)
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - OCMock (~> 2.2.1)
   - OHHTTPStubs (~> 2.0.0)
   - PonyDebugger (~> 0.3.0)
+  - Reveal-iOS-SDK (~> 0.9.1)
   - SSDataKit (~> 0.1.5)
   - TMCache (~> 1.2.0)
   - WSCoachMarksView (~> 0.2)
@@ -45,6 +47,7 @@ SPEC CHECKSUMS:
   OCMock: 80e4cfbc71a0e1bd28caf10a9fda27da7c4c8402
   OHHTTPStubs: 921de87847a4ebd7ff8642715a7eb12a29e1e0f7
   PonyDebugger: bafc25809ade389d0d1c1f1147877145cc26bd78
+  Reveal-iOS-SDK: 7396a20e743807b1e6f1caae664e1a9dc0cc442c
   SocketRocket: 7ac946bcce46287a791dfff3c1f8daa692821dae
   SSDataKit: f5fdb3617925a5b8a30afad0496ac58b39c6c517
   TMCache: 78eabf36d9993431243007da2e9ba58b462eb43e
