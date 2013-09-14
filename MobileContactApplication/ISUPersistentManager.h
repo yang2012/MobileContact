@@ -10,9 +10,17 @@
 
 @interface ISUPersistentManager : NSObject
 
-@property (nonatomic,strong,readonly) NSManagedObjectContext* mainManagedObjectContext;
+@property (nonatomic, strong, readonly) NSString *sourceStoreType;
+@property (nonatomic, strong, readonly) NSURL *sourceStoreURL;
+
+@property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+@property (nonatomic, strong, readonly) NSManagedObjectContext *mainManagedObjectContext;
+
+- (NSDictionary *)sourceMetadata:(NSError **)error;
 
 - (void)saveContext;
-- (NSManagedObjectContext*)newPrivateContext;
+- (NSManagedObjectContext *)newPrivateContext;
 
 @end

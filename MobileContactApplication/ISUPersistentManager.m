@@ -7,10 +7,15 @@
 //
 
 #import "ISUPersistentManager.h"
+#import "NSFileManager+ISUAdditions.h"
 
 @interface ISUPersistentManager ()
 
-@property (nonatomic, strong, readwrite) NSManagedObjectContext *mainManagedObjectContext;
+@property (nonatomic, strong) NSManagedObjectContext *mainManagedObjectContext;
+
+@property (nonatomic, strong) NSURL *sourceStoreURL;
+@property (nonatomic, strong) NSString *sourceStoreType;
+
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
@@ -87,25 +92,47 @@
         return _persistentStoreCoordinator;
     }
 
-    NSURL *storeURL = [[self _applicationDocumentsDirectory] URLByAppendingPathComponent:@"MobileContactApplication.sqlite"];
+    NSURL *storeURL = self.sourceStoreURL;
 
     NSError *error = nil;
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:self.sourceStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+        NSString *msg = [NSString stringWithFormat:@"Cannot add persistent with error: %@", error];
+        ISULog(msg, ISULogPriorityHigh);
+        NSFileManager *fileManager = [[NSFileManager alloc] init];
+        [fileManager removeItemAtPath:storeURL.path error:nil];
+        
+        [[[UIAlertView alloc] initWithTitle:@"Ouch"
+                                    message:error.localizedDescription
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] show];
     }
 
     return _persistentStoreCoordinator;
 }
 
-#pragma mark - Private Methods
-
-// Returns the URL to the application's Documents directory.
-- (NSURL *)_applicationDocumentsDirectory
+- (NSString *)sourceStoreType
 {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return NSSQLiteStoreType;
 }
+
+- (NSURL *)sourceStoreURL
+{
+    if (_sourceStoreURL == nil) {
+        _sourceStoreURL = [[NSFileManager urlToApplicationSupportDirectory]URLByAppendingPathComponent:@"MobileContactApplication.sqlite"];
+    }
+    return _sourceStoreURL;
+}
+
+- (NSDictionary *)sourceMetadata:(NSError **)error
+{
+    return [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:self.sourceStoreType
+                                                                      URL:self.sourceStoreURL
+                                                                    error:error];
+}
+
+#pragma mark - Private Methods
 
 - (void)_setupSaveNotification
 {
@@ -113,13 +140,13 @@
                                                       object:nil
                                                        queue:nil
                                                   usingBlock:^(NSNotification *note) {
-                                                      NSManagedObjectContext *moc = self.mainManagedObjectContext;
-                                                      if (note.object != moc) {
-                                                          [moc performBlock:^() {
-                                                              [moc mergeChangesFromContextDidSaveNotification:note];
-                                                          }];
-                                                      }
-                                                  }];
+        NSManagedObjectContext *moc = self.mainManagedObjectContext;
+        if (note.object != moc) {
+            [moc performBlock:^() {
+                [moc mergeChangesFromContextDidSaveNotification:note];
+            }];
+        }
+    }];
 }
 
 @end

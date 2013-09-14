@@ -7,12 +7,15 @@
 //
 
 #import "ISUAppDelegate.h"
+#import "ISUMigrationManager.h"
+#import "NSManagedObjectModel+ISUAddiction.h"
+
 #import <Crashlytics/Crashlytics.h>
 #ifdef DEBUG
 #import <PDDebugger.h>
 #endif
 
-@interface ISUAppDelegate ()
+@interface ISUAppDelegate () <ISUMigrationManagerDelegate>
 
 @property (nonatomic, strong, readwrite) ISUPersistentManager *persistentManager;
 
@@ -36,7 +39,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-        
+    
+    // Check whether need to migrate from database of old version to new one
+    ISUMigrationManager *migrationManager = [ISUMigrationManager sharedInstance];
+    if (migrationManager.isMigrationNeeded) {
+        migrationManager.delegate = self;
+        [migrationManager migrate:nil];
+    }
+    
     // Pony Debug
 #ifdef DEBUG
     PDDebugger *debugger = [PDDebugger defaultInstance];
@@ -84,6 +94,37 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     [self.persistentManager saveContext];
+}
+
+- (void)migrationManager:(ISUMigrationManager *)migrationManager migrationProgress:(float)migrationProgress
+{
+    NSLog(@"migration progress: %f", migrationProgress);
+}
+
+- (NSArray *)migrationManager:(ISUMigrationManager *)migrationManager
+  mappingModelsForSourceModel:(NSManagedObjectModel *)sourceModel
+{
+    // TODO: Manage migration
+//    NSMutableArray *mappingModels = [@[] mutableCopy];
+//    NSString *modelName = [sourceModel modelName];
+//    if ([modelName isEqual:@"Model2"]) {
+//        // Migrating to Model3
+//        NSArray *urls = [[NSBundle bundleForClass:[self class]]
+//                         URLsForResourcesWithExtension:@"cdm"
+//                         subdirectory:nil];
+//        for (NSURL *url in urls) {
+//            if ([url.lastPathComponent rangeOfString:@"Model2_to_Model"].length != 0) {
+//                NSMappingModel *mappingModel = [[NSMappingModel alloc] initWithContentsOfURL:url];
+//                if ([url.lastPathComponent rangeOfString:@"User"].length != 0) {
+//                    // User first so we create new relationship
+//                    [mappingModels insertObject:mappingModel atIndex:0];
+//                } else {
+//                    [mappingModels addObject:mappingModel];
+//                }
+//            }
+//        }
+//    }
+//    return mappingModels;
 }
 
 @end
