@@ -2,7 +2,7 @@
 //  ISUContact.h
 //  MobileContactApplication
 //
-//  Created by macbook on 13-9-5.
+//  Created by macbook on 13-9-15.
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
@@ -29,6 +29,7 @@
 @property (nonatomic, retain) NSString * prefix;
 @property (nonatomic, retain) NSNumber * recordId;
 @property (nonatomic, retain) NSString * suffix;
+@property (nonatomic, retain) NSString * contactName;
 @property (nonatomic, retain) NSSet *addresses;
 @property (nonatomic, retain) NSSet *dates;
 @property (nonatomic, retain) NSSet *emails;

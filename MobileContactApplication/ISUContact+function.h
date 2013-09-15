@@ -11,7 +11,7 @@
 
 @interface ISUContact (function)
 
-- (NSString *)contactName;
+- (NSMutableSet *)mutableAddresses;
 
 + (ISUContact *)findOrCreatePersonWithRecordId:(NSNumber *)recordId
                                      inContext:(NSManagedObjectContext *)context;

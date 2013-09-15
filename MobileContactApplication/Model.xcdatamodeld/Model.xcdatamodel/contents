@@ -13,6 +13,7 @@
     <entity name="ISUContact" representedClassName="ISUContact" syncable="YES">
         <attribute name="avatarDataKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="contactName" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
         <attribute name="department" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstNamePhonetic" optional="YES" attributeType="String" syncable="YES"/>
@@ -82,7 +83,7 @@
     </entity>
     <elements>
         <element name="ISUAddress" positionX="160" positionY="192" width="128" height="165"/>
-        <element name="ISUContact" positionX="0" positionY="0" width="128" height="420"/>
+        <element name="ISUContact" positionX="0" positionY="0" width="128" height="435"/>
         <element name="ISUContactSource" positionX="0" positionY="0" width="128" height="90"/>
         <element name="ISUDate" positionX="160" positionY="192" width="128" height="90"/>
         <element name="ISUEmail" positionX="160" positionY="192" width="128" height="90"/>

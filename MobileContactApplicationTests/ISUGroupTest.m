@@ -9,6 +9,7 @@
 #import "Kiwi.h"
 #import "ISUGroup+function.h"
 #import "ISUAddressBookUtility.h"
+#import "ISUPersistentManager.h"
 
 @interface ISUGroupTest : SenTestCase
 
@@ -39,10 +40,8 @@ describe(@"ISUGroupTest", ^{
         });
         
         beforeEach(^{ // Occurs before each enclosed "it"
-            NSBundle *frameworkBundle = [NSBundle bundleForClass:[ISUGroup class]];
-            NSURL *modelURL = [frameworkBundle URLForResource:@"Model" withExtension:@"momd"];
-            NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-            groupTest.storeCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+            ISUPersistentManager *persistentManager = [[ISUPersistentManager alloc] init];
+            groupTest.storeCoordinator = persistentManager.persistentStoreCoordinator;
             
             NSError *error = nil;
             NSPersistentStore *store = [groupTest.storeCoordinator addPersistentStoreWithType:NSInMemoryStoreType

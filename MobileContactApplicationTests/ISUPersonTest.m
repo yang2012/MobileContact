@@ -9,6 +9,7 @@
 #import "Kiwi.h"
 #import "ISUContact+function.h"
 #import "ISUAddressBookUtility.h"
+#import "ISUPersistentManager.h"
 
 @interface ISUPersonTest : SenTestCase
 
@@ -39,10 +40,9 @@ describe(@"ISUPersonTest", ^{
         });
         
         beforeEach(^{ // Occurs before each enclosed "it"
-            NSBundle *frameworkBundle = [NSBundle bundleForClass:[ISUContact class]];
-            NSURL *modelURL = [frameworkBundle URLForResource:@"Model" withExtension:@"momd"];
-            NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-            personTest.storeCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+            ISUPersistentManager *persistentManager = [[ISUPersistentManager alloc] init];
+
+            personTest.storeCoordinator = persistentManager.persistentStoreCoordinator;
             
             NSError *error = nil;
             NSPersistentStore *store = [personTest.storeCoordinator addPersistentStoreWithType:NSInMemoryStoreType

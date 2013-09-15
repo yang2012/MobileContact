@@ -12,13 +12,18 @@
 #import "ISUDate.h"
 #import "ISUPhone.h"
 #import "ISURelatedPeople.h"
-#import "ISUAddress.h"
+#import "ISUAddress+function.h"
 #import "ISUUrl.h"
 #import "ISUSMS.h"
 
 #import <AddressBook/AddressBook.h>
 
 @implementation ISUContact (function)
+
+- (NSMutableSet *)mutableAddresses
+{
+    return [self mutableSetValueForKey:@"addresses"];
+}
 
 + (ISUContact *)findOrCreatePersonWithRecordId:(NSNumber *)recordId
                                     inContext:(NSManagedObjectContext *)context
@@ -79,8 +84,6 @@
     [self _updateAddressesWithCoreContact:coreContact inContext:context];
     
     [self _updateSMSWithCoreContact:coreContact inContext:context];
-    
-    [context save:nil];
 }
 
 - (NSString *)contactName
@@ -104,7 +107,9 @@
 	return [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
+
 #pragma mark - Private methods
+
 - (void)_updateBaseInfoWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
     NSString *newFirstName = coreContact.firstName;
@@ -312,11 +317,11 @@
 
 - (void)_updateAddressesWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
 {
+    NSArray *allAddresses = [self.addresses allObjects];
     for (ISUAddress *abAddress in coreContact.addresses) {
         BOOL found = NO;
-        for (ISUAddress *address in [self.addresses allObjects]) {
-            if ([address.city isEqualToString:abAddress.city] && [address.state isEqualToString:abAddress.state] && [address.street isEqualToString:abAddress.street] &&
-                [address.zip isEqualToString:abAddress.zip] && [address.country isEqualToString:abAddress.country] && [address.countryCode isEqualToString:abAddress.countryCode]) {
+        for (ISUAddress *address in allAddresses) {
+            if ([address isEqual:abAddress]) {
                 found = YES;
                 break;
             }
@@ -326,15 +331,7 @@
             continue; // had existed and just continue to next one
         }
         
-        ISUAddress *newOne = [[ISUAddress alloc] initWithContext:context];
-        newOne.label = abAddress.label;
-        newOne.city = abAddress.city;
-        newOne.state = abAddress.state;
-        newOne.street = abAddress.street;
-        newOne.zip = abAddress.zip;
-        newOne.country = abAddress.country;
-        newOne.countryCode = abAddress.countryCode;
-        
+        ISUAddress *newOne = [[ISUAddress alloc] initWithAddress:abAddress context:context];
         newOne.contact = self;
     }
 }
