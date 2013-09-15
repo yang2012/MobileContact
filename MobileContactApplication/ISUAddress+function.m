@@ -10,6 +10,53 @@
 
 @implementation ISUAddress (function)
 
+- (id)initWithAddress:(ISUAddress *)address context:(NSManagedObjectContext *)context
+{
+    self = [super init];
+    
+    if (self) {
+        [self updateWithAddress:address];
+    }
+    
+    return self;
+}
+
+- (void)updateWithAddress:(ISUAddress *)address
+{
+    NSString *label = address.label;
+    if (label && ![self.label isEqual:label]) {
+        self.label = [label copy];
+    }
+    NSString *city = address.city;
+    if (city && ![self.city isEqual:city]) {
+        self.city = [city copy];
+    }
+    NSString *state = address.state;
+    if (state && ![self.state isEqual:state]) {
+        self.state = [state copy];
+    }
+    NSString *street = address.street;
+    if (street && ![self.street isEqual:street]) {
+        self.street = [street copy];
+    }
+    NSString *zip = address.zip;
+    if (zip && ![self.zip isEqual:zip]) {
+        self.zip = [zip copy];
+    }
+    NSString *country = address.country;
+    if (country && ![self.country isEqual:country]) {
+        self.country = [country copy];
+    }
+    NSString *countryCode = address.countryCode;
+    if (countryCode && ![self.countryCode isEqual:countryCode]) {
+        self.countryCode = [countryCode copy];
+    }
+    
+    if (address.contact) {
+        self.contact = address.contact;
+    }
+}
+
 - (NSDictionary *)value
 {
     NSMutableDictionary *infoDict = [[NSMutableDictionary alloc] init];
@@ -70,6 +117,20 @@
     if (street && ![self.street isEqualToString:street]) {
         self.street = street;
     }
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@%@%@%@%@%@", self.street, self.city, self.state, self.country, self.countryCode, self.zip];
+}
+
+- (BOOL)isEqualWithValues:(ISUAddress *)address
+{
+    BOOL equal = NO;
+    if (address && [address isKindOfClass:[self class]]) {
+        equal = [address.description isEqual:self.description];
+    }
+    return equal;
 }
 
 @end

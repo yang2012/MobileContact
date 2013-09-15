@@ -11,8 +11,14 @@
 
 @interface ISUAddress (function)
 
+- (id)initWithAddress:(ISUAddress *)address context:(NSManagedObjectContext *)context;
+
 - (NSDictionary *)value;
 
+/**
+ Set value from dictionary containing key/value pairs from Address Book
+ @param valueDict NSDictionary containing key/value pairs from Address Book
+ */
 - (void)setValue:(NSDictionary *)valueDict;
 
 @end
