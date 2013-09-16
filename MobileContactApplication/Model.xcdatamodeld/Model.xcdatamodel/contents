@@ -42,6 +42,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recordId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ISUGroup" inverseName="source" inverseEntity="ISUGroup" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ISUUser" inverseName="contactSources" inverseEntity="ISUUser" syncable="YES"/>
     </entity>
     <entity name="ISUDate" representedClassName="ISUDate" syncable="YES">
         <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
@@ -81,10 +82,14 @@
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ISUContact" inverseName="urls" inverseEntity="ISUContact" syncable="YES"/>
     </entity>
+    <entity name="ISUUser" representedClassName="ISUUser" syncable="YES">
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="contactSources" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ISUContactSource" inverseName="user" inverseEntity="ISUContactSource" syncable="YES"/>
+    </entity>
     <elements>
         <element name="ISUAddress" positionX="160" positionY="192" width="128" height="165"/>
         <element name="ISUContact" positionX="0" positionY="0" width="128" height="435"/>
-        <element name="ISUContactSource" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="ISUContactSource" positionX="0" positionY="0" width="128" height="105"/>
         <element name="ISUDate" positionX="160" positionY="192" width="128" height="90"/>
         <element name="ISUEmail" positionX="160" positionY="192" width="128" height="90"/>
         <element name="ISUGroup" positionX="0" positionY="0" width="128" height="105"/>
@@ -92,5 +97,6 @@
         <element name="ISURelatedPeople" positionX="160" positionY="192" width="128" height="90"/>
         <element name="ISUSMS" positionX="160" positionY="192" width="128" height="120"/>
         <element name="ISUUrl" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="ISUUser" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>

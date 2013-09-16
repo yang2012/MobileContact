@@ -12,7 +12,7 @@
 
 - (id)initWithAddress:(ISUAddress *)address context:(NSManagedObjectContext *)context
 {
-    self = [super init];
+    self = [super initWithContext:context];
     
     if (self) {
         [self updateWithAddress:address];

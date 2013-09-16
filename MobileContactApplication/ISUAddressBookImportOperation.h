@@ -6,11 +6,8 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "ISUPersistentManager.h"
+#import "ISUAbstractOperation.h"
 
-@interface ISUAddressBookImportOperation : NSOperation
-
-- (id)initWithPersistentManager:(ISUPersistentManager *)persistentManager;
+@interface ISUAddressBookImportOperation : ISUAbstractOperation
 
 @end

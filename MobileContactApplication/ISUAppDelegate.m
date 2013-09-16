@@ -8,7 +8,8 @@
 
 #import "ISUAppDelegate.h"
 #import "ISUMigrationManager.h"
-#import "NSManagedObjectModel+ISUAddiction.h"
+#import "ISUPersistentManager.h"
+#import "ISUGroupTableViewController.h"
 
 #import <Crashlytics/Crashlytics.h>
 #ifdef DEBUG
@@ -17,8 +18,6 @@
 
 @interface ISUAppDelegate () <ISUMigrationManagerDelegate>
 
-@property (nonatomic, strong, readwrite) ISUPersistentManager *persistentManager;
-
 @end
 
 @implementation ISUAppDelegate
@@ -26,14 +25,6 @@
 + (ISUAppDelegate *)sharedInstance
 {
     return (ISUAppDelegate *)[[UIApplication sharedApplication] delegate];
-}
-
-- (ISUPersistentManager *)persistentManager
-{
-    if (_persistentManager == nil) {
-        _persistentManager = [[ISUPersistentManager alloc] init];
-    }
-    return _persistentManager;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -62,9 +53,25 @@
     
     [debugger enableRemoteLogging];
     
-    [debugger addManagedObjectContext:self.persistentManager.mainManagedObjectContext withName:@"Main Context"];
+    [debugger addManagedObjectContext:[ISUPersistentManager mainQueueContext] withName:@"Main Context"];
 #endif
     
+    // Set Uncaught Exception Handler
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    
+    [self registerForPushNotification];
+    
+    // Manage Push Notification
+    [self clearNotifications];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor blackColor];
+    ISUGroupTableViewController *groupTabelViewController = [[ISUGroupTableViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:groupTabelViewController];
+    self.window.rootViewController = navigationController;
+    [self.window makeKeyAndVisible];
+    
+    // Crashlytics (must be the last line)
     [Crashlytics startWithAPIKey:@"a06c5e4fd9a36dd27f5ebcaf32c33688decba42c"];
     return YES;
 }
@@ -93,8 +100,17 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [self.persistentManager saveContext];
+    [self saveContext];
 }
+
+#pragma mark - Public
+
+- (void)saveContext
+{
+    [ISUPersistentManager saveContext];
+}
+
+#pragma mark - Migration
 
 - (void)migrationManager:(ISUMigrationManager *)migrationManager migrationProgress:(float)migrationProgress
 {
@@ -105,7 +121,7 @@
   mappingModelsForSourceModel:(NSManagedObjectModel *)sourceModel
 {
     // TODO: Manage migration
-//    NSMutableArray *mappingModels = [@[] mutableCopy];
+    NSMutableArray *mappingModels = [@[] mutableCopy];
 //    NSString *modelName = [sourceModel modelName];
 //    if ([modelName isEqual:@"Model2"]) {
 //        // Migrating to Model3
@@ -124,7 +140,31 @@
 //            }
 //        }
 //    }
-//    return mappingModels;
+    return mappingModels;
+}
+
+#pragma mark - Push Notification
+
+- (void)registerForPushNotification
+{
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge
+                                                                           | UIRemoteNotificationTypeAlert
+                                                                           | UIRemoteNotificationTypeSound)];
+}
+
+- (void)clearNotifications
+{
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
+
+#pragma mark - Application's Uncaught Exception Handler
+
+void uncaughtExceptionHandler(NSException *exception)
+{
+    NSLog(@"CRASH: %@", exception);
+    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+    // Internal error reporting
 }
 
 @end

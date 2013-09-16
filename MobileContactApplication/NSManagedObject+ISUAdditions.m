@@ -1,14 +1,14 @@
 //
-//  NSManagedObjectModel+ISUAddiction.m
+//  NSManagedObject+ISUAdditions.m
 //  MobileContactApplication
 //
-//  Created by macbook on 13-9-14.
+//  Created by macbook on 13-9-16.
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import "NSManagedObjectModel+ISUAddiction.h"
+#import "NSManagedObject+ISUAdditions.h"
 
-@implementation NSManagedObjectModel (ISUAddiction)
+@implementation NSManagedObject (ISUAdditions)
 
 + (NSArray *)allModelPaths
 {
@@ -29,7 +29,7 @@
 }
 
 
-- (NSString *)modelName
++ (NSString *)modelName
 {
     NSString *modelName = nil;
     NSArray *modelPaths = [[self class] allModelPaths];

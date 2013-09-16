@@ -13,14 +13,18 @@
 
 - (NSMutableSet *)mutableAddresses;
 
+- (NSString *)fullName;
+
+- (char)sectionTitle;
+
 + (ISUContact *)findOrCreatePersonWithRecordId:(NSNumber *)recordId
-                                     inContext:(NSManagedObjectContext *)context;
+                                       context:(NSManagedObjectContext *)context;
 
 + (ISUContact *)findPersonWithRecordId:(NSNumber *)recordId
-                             inContext:(NSManagedObjectContext *)context;
+                               context:(NSManagedObjectContext *)context;
 
 + (ISUContact *)createPersonWithRecordId:(NSNumber *)recordId
-                               inContext:(NSManagedObjectContext *)context;
+                                 context:(NSManagedObjectContext *)context;
 
 - (void)updateWithCoreContact:(ISUABCoreContact *)coreContact
                     inContext:(NSManagedObjectContext *)context;

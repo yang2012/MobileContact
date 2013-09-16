@@ -18,7 +18,7 @@ NSInteger const kRecordIdOfDefaultGroup = 0;
 }
 
 + (ISUGroup *)findOrCreateGroupWithRecordId:(NSNumber *)recordId
-                                  inContext:(NSManagedObjectContext *)context
+                                    context:(NSManagedObjectContext *)context
 {
     if (recordId == nil || recordId == 0) {
         NSLog(@"Invalid recrodId when calling findOrCreateGroupWithRecordId:inContext: : %@", recordId);
@@ -51,12 +51,20 @@ NSInteger const kRecordIdOfDefaultGroup = 0;
     return groups;
 }
 
-- (void)updateWithCoreGroup:(ISUABCoreGroup *)coreGroup inContext:(NSManagedObjectContext *)context
+- (void)updateWithCoreGroup:(ISUABCoreGroup *)coreGroup context:(NSManagedObjectContext *)context
 {
     NSString *newGroupName = coreGroup.name;
     if (newGroupName && ![self.name isEqualToString:newGroupName]) {
         self.name = newGroupName;
     }
+}
+
+#pragma make - SSManagedObject
+
++ (NSArray *)defaultSortDescriptors
+{
+    return [NSArray arrayWithObjects:
+            [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:NO], nil];
 }
 
 @end

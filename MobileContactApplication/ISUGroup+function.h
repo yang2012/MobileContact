@@ -17,10 +17,10 @@ extern NSInteger const kRecordIdOfDefaultGroup;
 @property (nonatomic, assign, readonly) BOOL isLocal;
 
 + (ISUGroup *)findOrCreateGroupWithRecordId:(NSNumber *)recordId
-                                  inContext:(NSManagedObjectContext *)context;
+                                    context:(NSManagedObjectContext *)context;
 
 - (void)updateWithCoreGroup:(ISUABCoreGroup *)coreGroup
-                  inContext:(NSManagedObjectContext *)context;
+                    context:(NSManagedObjectContext *)context;
 
 + (NSArray *)allGroupInContext:(NSManagedObjectContext *)context;
 

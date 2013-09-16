@@ -6,21 +6,18 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @interface ISUPersistentManager : NSObject
 
-@property (nonatomic, strong, readonly) NSString *sourceStoreType;
-@property (nonatomic, strong, readonly) NSURL *sourceStoreURL;
++ (NSManagedObjectModel *)managedObjectModel;
++ (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
++ (NSString *)persistentStoreType;
++ (NSURL *)persistentStoreURL;
 
-@property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
++ (NSDictionary *)sourceMetadata:(NSError **)error;
 
-@property (nonatomic, strong, readonly) NSManagedObjectContext *mainManagedObjectContext;
++ (NSManagedObjectContext *)mainQueueContext;
++ (NSManagedObjectContext *)newPrivateQueueContext;
 
-- (NSDictionary *)sourceMetadata:(NSError **)error;
-
-- (void)saveContext;
-- (NSManagedObjectContext *)newPrivateContext;
++ (void)saveContext;
 
 @end

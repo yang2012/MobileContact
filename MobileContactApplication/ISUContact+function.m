@@ -15,6 +15,7 @@
 #import "ISUAddress+function.h"
 #import "ISUUrl.h"
 #import "ISUSMS.h"
+#import "NSString+ChineseCharacter.h"
 
 #import <AddressBook/AddressBook.h>
 
@@ -25,65 +26,17 @@
     return [self mutableSetValueForKey:@"addresses"];
 }
 
-+ (ISUContact *)findOrCreatePersonWithRecordId:(NSNumber *)recordId
-                                    inContext:(NSManagedObjectContext *)context
+- (NSString *)fullName
 {
-    if (recordId == nil || recordId == 0) {
-        NSLog(@"Invalid recrodId: %@", recordId);
-        return nil;
-    }
-    
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[ISUContact entityName]];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"recordId=%@", recordId];
-    fetchRequest.fetchLimit = 1;
-    id object = [[context executeFetchRequest:fetchRequest error:NULL] lastObject];
-    if (object == nil) {
-        object = [NSEntityDescription insertNewObjectForEntityForName:[ISUContact entityName] inManagedObjectContext:context];
-        ((ISUContact *)object).recordId = recordId;
-    }
-    return object;
-}
-
-+ (ISUContact *)findPersonWithRecordId:(NSNumber *)recordId
-                             inContext:(NSManagedObjectContext *)context
-{
-    if (recordId == nil || recordId == 0) {
-        NSLog(@"Invalid recrodId: %@", recordId);
-        return nil;
-    }
-    
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[ISUContact entityName]];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"recordId=%@", recordId];
-    fetchRequest.fetchLimit = 1;
-    return [[context executeFetchRequest:fetchRequest error:NULL] lastObject];
-}
-
-+ (ISUContact *)createPersonWithRecordId:(NSNumber *)recordId
-                               inContext:(NSManagedObjectContext *)context
-{
-    id object = [NSEntityDescription insertNewObjectForEntityForName:[ISUContact entityName] inManagedObjectContext:context];
-    ((ISUContact *)object).recordId = recordId;
-    return object;
-}
-
-- (void)updateWithCoreContact:(ISUABCoreContact *)coreContact
-                    inContext:(NSManagedObjectContext *)context
-{
-    [self _updateBaseInfoWithCoreContact:coreContact inContext:context];
-    
-    [self _updatePhonesWithCoreContact:coreContact inContext:context];
-    
-    [self _updateDatesWithCoreContact:coreContact inContext:context];
-    
-    [self _updateEmailsWithCoreContact:coreContact inContext:context];
-    
-    [self _updateRelatedPeopleWithCoreContact:coreContact inContext:context];
-    
-    [self _updateUrlsWithCoreContact:coreContact inContext:context];
-    
-    [self _updateAddressesWithCoreContact:coreContact inContext:context];
-    
-    [self _updateSMSWithCoreContact:coreContact inContext:context];
+	NSMutableString *name = [NSMutableString string];
+	
+	if (self.firstName || self.lastName)
+	{
+		if (self.firstName) [name appendFormat:@"%@ ", self.firstName];
+		if (self.nickName) [name appendFormat:@"\"%@\" ", self.nickName];
+	}
+	
+	return [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 - (NSString *)contactName
@@ -107,10 +60,78 @@
 	return [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
+- (char)sectionTitle
+{
+    return [NSString sortSectionTitle:self.fullName];
+}
+
++ (ISUContact *)findOrCreatePersonWithRecordId:(NSNumber *)recordId
+                                       context:(NSManagedObjectContext *)context
+{
+    if (recordId == nil || recordId == 0) {
+        NSLog(@"Invalid recrodId: %@", recordId);
+        return nil;
+    }
+    
+    ISUContact *contact = [ISUContact findPersonWithRecordId:recordId context:context];
+    if (contact == nil) {
+        contact = [ISUContact createPersonWithRecordId:recordId context:context];
+        contact.recordId = recordId;
+    }
+    return contact;
+}
+
++ (ISUContact *)findPersonWithRecordId:(NSNumber *)recordId
+                               context:(NSManagedObjectContext *)context
+{
+    if (recordId == nil || recordId == 0) {
+        NSLog(@"Invalid recrodId: %@", recordId);
+        return nil;
+    }
+    
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[ISUContact entityName]];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"recordId=%@", recordId];
+    fetchRequest.fetchLimit = 1;
+    return [[context executeFetchRequest:fetchRequest error:NULL] lastObject];
+}
+
++ (ISUContact *)createPersonWithRecordId:(NSNumber *)recordId
+                                 context:(NSManagedObjectContext *)context
+{
+    if (recordId == nil || recordId == 0) {
+        ISULogWithLowPriority(@"Invalid recordId: %@", recordId);
+        return nil;
+    }
+    
+    id object = [NSEntityDescription insertNewObjectForEntityForName:[ISUContact entityName] inManagedObjectContext:context];
+    ((ISUContact *)object).recordId = recordId;
+    return object;
+}
+
+- (void)updateWithCoreContact:(ISUABCoreContact *)coreContact
+                    inContext:(NSManagedObjectContext *)context
+{
+    [self _updateBaseInfoWithCoreContact:coreContact context:context];
+    
+    [self _updatePhonesWithCoreContact:coreContact context:context];
+    
+    [self _updateDatesWithCoreContact:coreContact context:context];
+    
+    [self _updateEmailsWithCoreContact:coreContact context:context];
+    
+    [self _updateRelatedPeopleWithCoreContact:coreContact context:context];
+    
+    [self _updateUrlsWithCoreContact:coreContact context:context];
+    
+    [self _updateAddressesWithCoreContact:coreContact context:context];
+    
+    [self _updateSMSWithCoreContact:coreContact context:context];
+}
+
 
 #pragma mark - Private methods
 
-- (void)_updateBaseInfoWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
+- (void)_updateBaseInfoWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
 {
     NSString *newFirstName = coreContact.firstName;
     if (newFirstName && ![self.firstName isEqualToString:newFirstName]) {
@@ -174,7 +195,7 @@
     }
 }
 
-- (void)_updatePhonesWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
+- (void)_updatePhonesWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
 {
     for (ISUPhone *abPhone in coreContact.phones) {
         BOOL found = NO;
@@ -197,7 +218,7 @@
     }
 }
 
-- (void)_updateEmailsWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
+- (void)_updateEmailsWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
 {
     for (ISUEmail *abEmail in coreContact.emails) {
         BOOL found = NO;
@@ -220,7 +241,7 @@
     }
 }
 
-- (void)_updateDatesWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
+- (void)_updateDatesWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
 {
     for (ISUDate *abDate in coreContact.dates) {
         BOOL found = NO;
@@ -243,7 +264,7 @@
     }
 }
 
-- (void)_updateRelatedPeopleWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
+- (void)_updateRelatedPeopleWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
 {
     for (ISURelatedPeople *abPerson in coreContact.relatedPeople) {
         BOOL found = NO;
@@ -266,7 +287,7 @@
     }
 }
 
-- (void)_updateUrlsWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
+- (void)_updateUrlsWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
 {
     for (ISUUrl *abUrl in coreContact.urls) {
         BOOL found = NO;
@@ -289,7 +310,7 @@
     }
 }
 
-- (void)_updateSMSWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
+- (void)_updateSMSWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
 {
     for (ISUSMS *abSms in coreContact.sms) {
         BOOL found = NO;
@@ -315,7 +336,7 @@
     }
 }
 
-- (void)_updateAddressesWithCoreContact:(ISUABCoreContact *)coreContact inContext:(NSManagedObjectContext *)context
+- (void)_updateAddressesWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
 {
     NSArray *allAddresses = [self.addresses allObjects];
     for (ISUAddress *abAddress in coreContact.addresses) {
@@ -341,7 +362,7 @@
 + (NSArray *)defaultSortDescriptors
 {
     return [NSArray arrayWithObjects:
-            [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:NO], nil];
+            [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:NO], nil];
 }
 
 @end

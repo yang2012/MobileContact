@@ -6,11 +6,11 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import "ISUCollectionContactViewController.h"
+#import "ISUContactCollectionViewController.h"
 #import "ISUContact+function.h"
 #import "ISUCollectionContactViewCell.h"
 
-@implementation ISUCollectionContactViewController
+@implementation ISUContactCollectionViewController
 
 - (ISUGroup *)group
 {
@@ -62,10 +62,6 @@
     [self.fetchedResultsController performFetch:nil];
     [self.collectionView reloadData];
     self.ignoreChange = NO;
-}
-
-- (NSArray *)sortDescriptors {
-    return [super sortDescriptors];
 }
 
 - (Class)entityClass

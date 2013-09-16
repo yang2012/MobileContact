@@ -9,7 +9,7 @@
 #import "SSManagedCollectionViewController.h"
 #import "ISUGroup.h"
 
-@interface ISUCollectionContactViewController : SSManagedCollectionViewController
+@interface ISUContactCollectionViewController : SSManagedCollectionViewController
 
 @property (nonatomic, strong) ISUGroup *group;
 

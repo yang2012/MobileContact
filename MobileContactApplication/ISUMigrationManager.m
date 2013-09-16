@@ -7,8 +7,9 @@
 //
 
 #import "ISUMigrationManager.h"
-#import "ISUPersistentManager.h"
 #import "ISUAppDelegate.h"
+#import "ISUPersistentManager.h"
+#import "NSManagedObject+ISUAdditions.h"
 
 @implementation ISUMigrationManager
 
@@ -27,12 +28,11 @@
     NSError *error = nil;
 
     // Check if we need to migrate
-    ISUPersistentManager *persistentManager = [ISUAppDelegate sharedInstance].persistentManager;
-    NSDictionary *sourceMetadata = [persistentManager sourceMetadata:&error];
+    NSDictionary *sourceMetadata = [ISUPersistentManager sourceMetadata:&error];
     BOOL isMigrationNeeded = NO;
 
     if (sourceMetadata != nil) {
-        NSManagedObjectModel *destinationModel = persistentManager.managedObjectModel;
+        NSManagedObjectModel *destinationModel = [ISUPersistentManager managedObjectModel];
         // Migration is needed if destinationModel is NOT compatible
         isMigrationNeeded = ![destinationModel isConfiguration:nil
                                    compatibleWithStoreMetadata:sourceMetadata];
@@ -50,10 +50,9 @@
         bgTask = UIBackgroundTaskInvalid;
     }];
 
-    ISUPersistentManager *persistentManager = [ISUAppDelegate sharedInstance].persistentManager;
-    BOOL OK = [self progressivelyMigrateURL:persistentManager.sourceStoreURL
-                                     ofType:persistentManager.sourceStoreType
-                                    toModel:persistentManager.managedObjectModel
+    BOOL OK = [self progressivelyMigrateURL:[ISUPersistentManager persistentStoreURL]
+                                     ofType:[ISUPersistentManager persistentStoreType]
+                                    toModel:[ISUPersistentManager managedObjectModel]
                                       error:error];
     if (OK) {
         NSLog(@"migration complete");

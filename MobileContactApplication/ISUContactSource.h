@@ -2,19 +2,20 @@
 //  ISUContactSource.h
 //  MobileContactApplication
 //
-//  Created by macbook on 13-9-3.
+//  Created by macbook on 13-9-15.
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
 #import "SSManagedObject.h"
 
-@class ISUGroup;
+@class ISUGroup, ISUUser;
 
 @interface ISUContactSource : SSManagedObject
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * recordId;
 @property (nonatomic, retain) NSSet *groups;
+@property (nonatomic, retain) ISUUser *user;
 @end
 
 @interface ISUContactSource (CoreDataGeneratedAccessors)

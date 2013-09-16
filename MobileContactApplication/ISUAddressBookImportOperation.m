@@ -18,32 +18,15 @@ static const int ImportBatchSize = 100;
 
 @property (nonatomic, strong) ISUAddressBookUtility *addressBookUtility;
 
-@property (nonatomic, strong) ISUPersistentManager *persistentManager;
-@property (nonatomic, strong) NSManagedObjectContext *context;
-
 @end
 
 @implementation ISUAddressBookImportOperation
 
-- (id)initWithPersistentManager:(ISUPersistentManager *)persistentManager
+- (void)execute
 {
-    self = [super init];
-    if (self) {
-        self.persistentManager = persistentManager;
-        self.addressBookUtility = [[ISUAddressBookUtility alloc] init];
-    }
-    return self;
-}
-
-- (void)main
-{
-    self.context = [self.persistentManager newPrivateContext];
-    self.context.undoManager = nil;
-
-    [self.context performBlockAndWait:^
-    {
-        [self _import];
-    }];
+    self.addressBookUtility = [[ISUAddressBookUtility alloc] init];
+    
+    [self _import];
 }
 
 - (void)_import
@@ -60,7 +43,7 @@ static const int ImportBatchSize = 100;
             return YES; // Continue handling other sources
         }
         
-        ISUContactSource *source = [ISUContactSource findOrCreatePersonWithRecordId:sourceRecordId inContext:self.context];
+        ISUContactSource *source = [ISUContactSource findOrCreatePersonWithRecordId:sourceRecordId inContext:self.operationContext];
         
         if (source == nil) {
             NSString *msg = [NSString stringWithFormat:@"Fail to find/create source with record id %@", sourceRecordId];
@@ -69,7 +52,7 @@ static const int ImportBatchSize = 100;
         }
         
         // Update info
-        [source updateWithCoreSource:coreSource inContext:self.context];
+        [source updateWithCoreSource:coreSource inContext:self.operationContext];
         
         // Fetch groups in source
         [self _getGroupsInSource:source];
@@ -79,8 +62,6 @@ static const int ImportBatchSize = 100;
         
         return YES;
     }];
-    
-    [self.context save:NULL];
 }
 
 - (void)_addDefaultGroupsInSource:(ISUContactSource *)source
@@ -90,14 +71,14 @@ static const int ImportBatchSize = 100;
     NSArray *results = [groups filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"recordId=%i and source=%@", kRecordIdOfDefaultGroup, source]];
     ISUGroup *defaultGroup = nil;
     if (results.count == 0) {
-        defaultGroup = [ISUGroup findOrCreateGroupWithRecordId:[NSNumber numberWithInt:kRecordIdOfDefaultGroup] inContext:self.context];
+        defaultGroup = [ISUGroup findOrCreateGroupWithRecordId:[NSNumber numberWithInt:kRecordIdOfDefaultGroup] context:self.operationContext];
     } else {
         defaultGroup = results[0];
     }
     for (ISUABCoreContact *coreContact in allMembersInSource) {
-        ISUContact *person = [ISUContact findPersonWithRecordId:coreContact.recordId inContext:self.context];
+        ISUContact *person = [ISUContact findPersonWithRecordId:coreContact.recordId context:self.operationContext];
         if (person == nil) {
-            person = [ISUContact createPersonWithRecordId:coreContact.recordId inContext:self.context];
+            person = [ISUContact createPersonWithRecordId:coreContact.recordId context:self.operationContext];
             if (person == nil) {
                 NSString *msg = [NSString stringWithFormat:@"Cannot find/create person with record id %@", coreContact.recordId];
                 ISULog(msg, ISULogPriorityHigh);
@@ -106,12 +87,11 @@ static const int ImportBatchSize = 100;
         }
         
         // Update info
-        [person updateWithCoreContact:coreContact inContext:self.context];
+        [person updateWithCoreContact:coreContact inContext:self.operationContext];
         
         // Establish relationship
         [person addGroupsObject:defaultGroup];
     }
-    [self.context save:NULL];
 }
 
 - (void)_getGroupsInSource:(ISUContactSource *)source
@@ -128,7 +108,7 @@ static const int ImportBatchSize = 100;
             return YES; // Continue handling other groups
         }
         
-        ISUGroup *group = [ISUGroup findOrCreateGroupWithRecordId:coreGroup.recordId inContext:self.context];
+        ISUGroup *group = [ISUGroup findOrCreateGroupWithRecordId:coreGroup.recordId context:self.operationContext];
         if (group == nil) {
             NSString *msg = [NSString stringWithFormat:@"Cannot find/create group with record id %@", source.recordId];
             ISULog(msg, ISULogPriorityHigh);
@@ -136,7 +116,7 @@ static const int ImportBatchSize = 100;
         }
         
         // Update info
-        [group updateWithCoreGroup:coreGroup inContext:self.context];
+        [group updateWithCoreGroup:coreGroup context:self.operationContext];
         
         // Establish relationship with members in this group
         [self _getMembersInGroup:group];
@@ -161,7 +141,7 @@ static const int ImportBatchSize = 100;
             return YES; // Continue handling other contacts
         }
         
-        ISUContact *person = [ISUContact findOrCreatePersonWithRecordId:recordId inContext:self.context];
+        ISUContact *person = [ISUContact findOrCreatePersonWithRecordId:recordId context:self.operationContext];
         if (person == nil) {
             NSString *msg = [NSString stringWithFormat:@"Cannot find/create person with record id %@", recordId];
             ISULog(msg, ISULogPriorityHigh);
@@ -169,14 +149,14 @@ static const int ImportBatchSize = 100;
         }
         
         // Update info
-        [person updateWithCoreContact:coreContact inContext:self.context];
+        [person updateWithCoreContact:coreContact inContext:self.operationContext];
         
         // Establish relationship
         [person addGroupsObject:group];
         
         // Batch Size Save
         if (index % ImportBatchSize == 0) {
-            [self.context save:NULL];
+            [self.operationContext save:NULL];
         }
         
         return YES; // Continue handling other groups

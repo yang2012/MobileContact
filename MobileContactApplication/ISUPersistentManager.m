@@ -7,38 +7,16 @@
 //
 
 #import "ISUPersistentManager.h"
-#import "NSFileManager+ISUAdditions.h"
-
-@interface ISUPersistentManager ()
-
-@property (nonatomic, strong) NSManagedObjectContext *mainManagedObjectContext;
-
-@property (nonatomic, strong) NSURL *sourceStoreURL;
-@property (nonatomic, strong) NSString *sourceStoreType;
-
-@property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
-@end
+#import "SSManagedObject.h"
 
 @implementation ISUPersistentManager
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        [self _setupSaveNotification];
-    }
-
-    return self;
-}
-
 #pragma mark - Public Methods
 
-- (void)saveContext
++ (void)saveContext
 {
     NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.mainManagedObjectContext;
+    NSManagedObjectContext *managedObjectContext = [SSManagedObject mainQueueContext];
 
     if (managedObjectContext != nil) {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
@@ -52,21 +30,15 @@
 
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-- (NSManagedObjectContext *)mainManagedObjectContext
++ (NSManagedObjectContext *)mainQueueContext
 {
-    if (_mainManagedObjectContext != nil) {
-        return _mainManagedObjectContext;
-    }
-
-    _mainManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    _mainManagedObjectContext.persistentStoreCoordinator = [self persistentStoreCoordinator];
-    return _mainManagedObjectContext;
+    return [SSManagedObject mainQueueContext];
 }
 
-- (NSManagedObjectContext *)newPrivateContext
++ (NSManagedObjectContext *)newPrivateQueueContext
 {
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    context.persistentStoreCoordinator = self.persistentStoreCoordinator;
+    context.parentContext = [self mainQueueContext];
     return context;
 }
 
@@ -74,79 +46,33 @@
 
 // Returns the managed object model for the application.
 // If the model doesn't already exist, it is created from the application's model.
-- (NSManagedObjectModel *)managedObjectModel
++ (NSManagedObjectModel *)managedObjectModel
 {
-    if (_managedObjectModel != nil) {
-        return _managedObjectModel;
-    }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return _managedObjectModel;
+    return [SSManagedObject managedObjectModel];
 }
 
 // Returns the persistent store coordinator for the application.
 // If the coordinator doesn't already exist, it is created and the application's store added to it.
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
++ (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-    if (_persistentStoreCoordinator != nil) {
-        return _persistentStoreCoordinator;
-    }
-
-    NSURL *storeURL = self.sourceStoreURL;
-
-    NSError *error = nil;
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:self.sourceStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        NSString *msg = [NSString stringWithFormat:@"Cannot add persistent with error: %@", error];
-        ISULog(msg, ISULogPriorityHigh);
-        NSFileManager *fileManager = [[NSFileManager alloc] init];
-        [fileManager removeItemAtPath:storeURL.path error:nil];
-        
-        [[[UIAlertView alloc] initWithTitle:@"Ouch"
-                                    message:error.localizedDescription
-                                   delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil] show];
-    }
-
-    return _persistentStoreCoordinator;
+    return [SSManagedObject persistentStoreCoordinator];
 }
 
-- (NSString *)sourceStoreType
++ (NSString *)persistentStoreType
 {
-    return NSSQLiteStoreType;
+    return [SSManagedObject persistentStoreType];
 }
 
-- (NSURL *)sourceStoreURL
++ (NSURL *)persistentStoreURL
 {
-    if (_sourceStoreURL == nil) {
-        _sourceStoreURL = [[NSFileManager urlToApplicationSupportDirectory]URLByAppendingPathComponent:@"MobileContactApplication.sqlite"];
-    }
-    return _sourceStoreURL;
+    return [SSManagedObject persistentStoreURL];
 }
 
-- (NSDictionary *)sourceMetadata:(NSError **)error
+
++ (NSDictionary *)sourceMetadata:(NSError **)error
 {
-    return [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:self.sourceStoreType
-                                                                      URL:self.sourceStoreURL
+    return [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:[SSManagedObject persistentStoreType]
+                                                                      URL:[SSManagedObject persistentStoreURL]
                                                                     error:error];
 }
-
-#pragma mark - Private Methods
-
-- (void)_setupSaveNotification
-{
-    [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextDidSaveNotification
-                                                      object:nil
-                                                       queue:nil
-                                                  usingBlock:^(NSNotification *note) {
-        NSManagedObjectContext *moc = self.mainManagedObjectContext;
-        if (note.object != moc) {
-            [moc performBlock:^() {
-                [moc mergeChangesFromContextDidSaveNotification:note];
-            }];
-        }
-    }];
-}
-
 @end
