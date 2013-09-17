@@ -8,7 +8,7 @@
 
 #import "ISUSMS+function.h"
 
-@implementation ISUSMS (function)
+@implementation ISUSocialProfile (function)
 
 - (NSString *)label
 {

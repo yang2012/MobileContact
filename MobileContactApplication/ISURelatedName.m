@@ -6,11 +6,11 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import "ISURelatedPeople.h"
+#import "ISURelatedName.h"
 #import "ISUContact.h"
 
 
-@implementation ISURelatedPeople
+@implementation ISURelatedName
 
 @dynamic label;
 @dynamic value;

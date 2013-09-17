@@ -2,7 +2,7 @@
 //  ISUContact.m
 //  MobileContactApplication
 //
-//  Created by macbook on 13-9-15.
+//  Created by macbook on 13-9-17.
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
@@ -12,8 +12,8 @@
 #import "ISUEmail.h"
 #import "ISUGroup.h"
 #import "ISUPhone.h"
-#import "ISURelatedPeople.h"
-#import "ISUSMS.h"
+#import "ISURelatedName.h"
+#import "ISUSocialProfile.h"
 #import "ISUUrl.h"
 
 
@@ -21,6 +21,7 @@
 
 @dynamic avatarDataKey;
 @dynamic birthday;
+@dynamic contactName;
 @dynamic department;
 @dynamic firstName;
 @dynamic firstNamePhonetic;
@@ -36,14 +37,13 @@
 @dynamic prefix;
 @dynamic recordId;
 @dynamic suffix;
-@dynamic contactName;
 @dynamic addresses;
 @dynamic dates;
 @dynamic emails;
 @dynamic groups;
 @dynamic phones;
-@dynamic relatedPeople;
-@dynamic sms;
+@dynamic relatedNames;
+@dynamic socialProfiles;
 @dynamic urls;
 
 @end

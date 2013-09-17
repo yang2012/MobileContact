@@ -13,10 +13,10 @@
 #import "ISUEmail.h"
 #import "ISUPhone.h"
 #import "ISUAddress.h"
-#import "ISURelatedPeople.h"
+#import "ISURelatedName.h"
 #import "ISUUrl.h"
 #import "ISUDate.h"
-#import "ISUSMS.h"
+#import "ISUSocialProfile.h"
 #import <TMCache.h>
 
 @implementation ISUABCoreContact
@@ -53,8 +53,8 @@
     self.addresses = [contact.addresses copy];
     self.phones = [contact.phones copy];
     self.urls = [contact.urls copy];
-    self.relatedPeople = [contact.relatedPeople copy];
-    self.sms = [contact.sms copy];
+    self.relatedNames = [contact.relatedNames copy];
+    self.socialProfiles = [contact.socialProfiles copy];
     self.dates = [contact.dates copy];
 }
 
@@ -158,8 +158,8 @@
 - (void)_getSocialProfilesFromRecord:(ABPerson *)person
 {
     // Cannot call _valuesFromRecord:ofProperty: because social profile has not label
-    NSArray *sms = [self _valuesFromRecord:person ofProperty:kABPersonSocialProfileProperty];
-    self.sms = sms;
+    NSArray *socialProfiles = [self _valuesFromRecord:person ofProperty:kABPersonSocialProfileProperty];
+    self.socialProfiles = socialProfiles;
 }
 
 - (void)_getDatesFromRecord:(ABPerson *)person
@@ -176,8 +176,8 @@
 
 - (void)_getRelativedPeopleFromRecord:(ABPerson *)person
 {
-    NSArray *relativedPeople = [self _valuesFromRecord:person ofProperty:kABPersonRelatedNamesProperty];
-    self.relatedPeople = relativedPeople;
+    NSArray *relatedNames = [self _valuesFromRecord:person ofProperty:kABPersonRelatedNamesProperty];
+    self.relatedNames = relatedNames;
 }
 
 - (NSArray *)_valuesFromRecord:(ABPerson *)person ofProperty:(ABPropertyID)property
@@ -209,7 +209,7 @@
         obj = [[ISUEmail alloc] init];
     }
     else if (property == kABPersonRelatedNamesProperty) {
-        obj = [[ISURelatedPeople alloc] init];
+        obj = [[ISURelatedName alloc] init];
     }
     else if (property == kABPersonURLProperty) {
         obj = [[ISUUrl alloc] init];
@@ -224,7 +224,7 @@
         obj = [[ISUAddress alloc] init];
     }
     else if (property == kABPersonSocialProfileProperty) {
-        obj = [[ISUSMS alloc] init];
+        obj = [[ISUSocialProfile alloc] init];
     }
     
     return obj;

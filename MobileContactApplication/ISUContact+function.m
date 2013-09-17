@@ -11,10 +11,10 @@
 #import "ISUEmail.h"
 #import "ISUDate.h"
 #import "ISUPhone.h"
-#import "ISURelatedPeople.h"
+#import "ISURelatedName.h"
 #import "ISUAddress+function.h"
 #import "ISUUrl.h"
-#import "ISUSMS.h"
+#import "ISUSocialProfile.h"
 #import "NSString+ChineseCharacter.h"
 
 #import <AddressBook/AddressBook.h>
@@ -266,9 +266,9 @@
 
 - (void)_updateRelatedPeopleWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
 {
-    for (ISURelatedPeople *abPerson in coreContact.relatedPeople) {
+    for (ISURelatedName *abPerson in coreContact.relatedNames) {
         BOOL found = NO;
-        for (ISURelatedPeople *relatedPerson in [self.relatedPeople allObjects]) {
+        for (ISURelatedName *relatedPerson in [self.relatedNames allObjects]) {
             if ([relatedPerson.label isEqualToString:abPerson.label] && [relatedPerson.value isEqualToString:abPerson.value]) {
                 found = YES;
                 break;
@@ -279,7 +279,7 @@
             continue; // had existed and just continue to next one
         }
         
-        ISURelatedPeople *newOne = [[ISURelatedPeople alloc] initWithContext:context];
+        ISURelatedName *newOne = [[ISURelatedName alloc] initWithContext:context];
         newOne.label = abPerson.label;
         newOne.value = abPerson.value;
         
@@ -312,9 +312,9 @@
 
 - (void)_updateSMSWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
 {
-    for (ISUSMS *abSms in coreContact.sms) {
+    for (ISUSocialProfile *abSms in coreContact.socialProfiles) {
         BOOL found = NO;
-        for (ISUSMS *sms in [self.sms allObjects]) {
+        for (ISUSocialProfile *sms in [self.socialProfiles allObjects]) {
             if ([sms.service isEqualToString:abSms.service] && [sms.username isEqualToString:abSms.username]) {
                 found = YES;
                 break;
@@ -326,7 +326,7 @@
         }
         
         // none existed
-        ISUSMS *newOne = [[ISUSMS alloc] initWithContext:context];
+        ISUSocialProfile *newOne = [[ISUSocialProfile alloc] initWithContext:context];
         newOne.service = abSms.service;
         newOne.username = abSms.username;
         newOne.url = abSms.url;

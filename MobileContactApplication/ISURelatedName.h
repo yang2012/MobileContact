@@ -10,7 +10,7 @@
 
 @class ISUContact;
 
-@interface ISURelatedPeople : SSManagedObject
+@interface ISURelatedName : SSManagedObject
 
 @property (nonatomic, retain) NSString * label;
 @property (nonatomic, retain) NSString * value;

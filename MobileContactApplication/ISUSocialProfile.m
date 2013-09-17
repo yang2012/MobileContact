@@ -2,20 +2,20 @@
 //  ISUSMS.m
 //  MobileContactApplication
 //
-//  Created by macbook on 13-9-6.
+//  Created by macbook on 13-9-17.
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import "ISUSMS.h"
+#import "ISUSocialProfile.h"
 #import "ISUContact.h"
 
 
-@implementation ISUSMS
+@implementation ISUSocialProfile
 
 @dynamic service;
 @dynamic url;
-@dynamic username;
 @dynamic userIdentifier;
+@dynamic username;
 @dynamic contact;
 
 @end

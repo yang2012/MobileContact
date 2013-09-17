@@ -41,11 +41,11 @@
 
 @property (nonatomic, strong) NSArray *dates;
 
-@property (nonatomic, strong) NSArray *relatedPeople;
+@property (nonatomic, strong) NSArray *relatedNames;
 
 @property (nonatomic, strong) NSArray *addresses;
 
-@property (nonatomic, strong) NSArray *sms;
+@property (nonatomic, strong) NSArray *socialProfiles;
 
 - (id)initWithContact:(ISUContact *)contact;
 

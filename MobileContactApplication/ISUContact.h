@@ -2,18 +2,19 @@
 //  ISUContact.h
 //  MobileContactApplication
 //
-//  Created by macbook on 13-9-15.
+//  Created by macbook on 13-9-17.
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
 #import "SSManagedObject.h"
 
-@class ISUAddress, ISUDate, ISUEmail, ISUGroup, ISUPhone, ISURelatedPeople, ISUSMS, ISUUrl;
+@class ISUAddress, ISUDate, ISUEmail, ISUGroup, ISUPhone, ISURelatedName, ISUSocialProfile, ISUUrl;
 
 @interface ISUContact : SSManagedObject
 
 @property (nonatomic, retain) NSString * avatarDataKey;
 @property (nonatomic, retain) NSDate * birthday;
+@property (nonatomic, retain) NSString * contactName;
 @property (nonatomic, retain) NSString * department;
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * firstNamePhonetic;
@@ -29,14 +30,13 @@
 @property (nonatomic, retain) NSString * prefix;
 @property (nonatomic, retain) NSNumber * recordId;
 @property (nonatomic, retain) NSString * suffix;
-@property (nonatomic, retain) NSString * contactName;
 @property (nonatomic, retain) NSSet *addresses;
 @property (nonatomic, retain) NSSet *dates;
 @property (nonatomic, retain) NSSet *emails;
 @property (nonatomic, retain) NSSet *groups;
 @property (nonatomic, retain) NSSet *phones;
-@property (nonatomic, retain) NSSet *relatedPeople;
-@property (nonatomic, retain) NSSet *sms;
+@property (nonatomic, retain) NSSet *relatedNames;
+@property (nonatomic, retain) NSSet *socialProfiles;
 @property (nonatomic, retain) NSSet *urls;
 @end
 
@@ -67,15 +67,15 @@
 - (void)addPhones:(NSSet *)values;
 - (void)removePhones:(NSSet *)values;
 
-- (void)addRelatedPeopleObject:(ISURelatedPeople *)value;
-- (void)removeRelatedPeopleObject:(ISURelatedPeople *)value;
-- (void)addRelatedPeople:(NSSet *)values;
-- (void)removeRelatedPeople:(NSSet *)values;
+- (void)addRelatedNamesObject:(ISURelatedName *)value;
+- (void)removeRelatedNamesObject:(ISURelatedName *)value;
+- (void)addRelatedNames:(NSSet *)values;
+- (void)removeRelatedNames:(NSSet *)values;
 
-- (void)addSmsObject:(ISUSMS *)value;
-- (void)removeSmsObject:(ISUSMS *)value;
-- (void)addSms:(NSSet *)values;
-- (void)removeSms:(NSSet *)values;
+- (void)addSocialProfilesObject:(ISUSocialProfile *)value;
+- (void)removeSocialProfilesObject:(ISUSocialProfile *)value;
+- (void)addSocialProfiles:(NSSet *)values;
+- (void)removeSocialProfiles:(NSSet *)values;
 
 - (void)addUrlsObject:(ISUUrl *)value;
 - (void)removeUrlsObject:(ISUUrl *)value;

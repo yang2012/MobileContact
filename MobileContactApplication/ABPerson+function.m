@@ -158,7 +158,7 @@
     
     [self _setProperty:kABPersonEmailProperty usingMultiValueOfType:kABMultiStringPropertyType fromObjects:contact.emails withError:error];
     
-    [self _setProperty:kABPersonRelatedNamesProperty usingMultiValueOfType:kABMultiStringPropertyType fromObjects:contact.relatedPeople withError:error];
+    [self _setProperty:kABPersonRelatedNamesProperty usingMultiValueOfType:kABMultiStringPropertyType fromObjects:contact.relatedNames withError:error];
     
     [self _setProperty:kABPersonURLProperty usingMultiValueOfType:kABMultiStringPropertyType fromObjects:contact.urls withError:error];
     
@@ -168,7 +168,7 @@
     
     [self _setProperty:kABPersonAddressProperty usingMultiValueOfType:kABMultiDictionaryPropertyType fromObjects:contact.addresses withError:error];
 
-    [self _setProperty:kABPersonSocialProfileProperty usingMultiValueOfType:kABMultiDictionaryPropertyType fromObjects:contact.sms withError:error];
+    [self _setProperty:kABPersonSocialProfileProperty usingMultiValueOfType:kABMultiDictionaryPropertyType fromObjects:contact.socialProfiles withError:error];
 }
 
 - (void)_setProperty:(ABPropertyID)propertyType

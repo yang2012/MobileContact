@@ -6,10 +6,10 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import "ISUSMS.h"
+#import "ISUSocialProfile.h"
 #import "AddressBook.h"
 
-@interface ISUSMS (function)
+@interface ISUSocialProfile (function)
 
 - (NSString *)label;
 
