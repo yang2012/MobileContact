@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9F27D717246646EFAC969D00 /* libPods-MobileContactApplicationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9103198C5D4CA492FDB4F4 /* libPods-MobileContactApplicationTests.a */; };
 		DAEF9F403FBC45CFA15AE3B9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2CD10FC8C34550BF23C3B9 /* libPods.a */; };
+		FA02207A17EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02207917EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m */; };
 		FA2167D717CC98AB0026F1CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167D617CC98AB0026F1CD /* UIKit.framework */; };
 		FA2167D917CC98AB0026F1CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167D817CC98AB0026F1CD /* Foundation.framework */; };
 		FA2167DB17CC98AB0026F1CD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167DA17CC98AB0026F1CD /* CoreGraphics.framework */; };
@@ -25,7 +26,8 @@
 		FA21680517CC98AB0026F1CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA21680317CC98AB0026F1CD /* InfoPlist.strings */; };
 		FA21681517CC993A0026F1CD /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA21681417CC993A0026F1CD /* AddressBook.framework */; };
 		FA21681717CC993F0026F1CD /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA21681617CC993F0026F1CD /* AddressBookUI.framework */; };
-		FA47769A17E5D43100BDB510 /* ISUMultiThreadingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA47769917E5D43100BDB510 /* ISUMultiThreadingManager.m */; };
+		FA36610917E9C8A400125F04 /* ISUContact.m in Sources */ = {isa = PBXBuildFile; fileRef = FA36610817E9C8A400125F04 /* ISUContact.m */; };
+		FA47769A17E5D43100BDB510 /* ISUOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA47769917E5D43100BDB510 /* ISUOperationManager.m */; };
 		FA47769D17E5D4BE00BDB510 /* ISUAbstractOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA47769C17E5D4BE00BDB510 /* ISUAbstractOperation.m */; };
 		FA4776A017E5D86700BDB510 /* ISUUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA47769F17E5D86700BDB510 /* ISUUser.m */; };
 		FA4776A317E5D86800BDB510 /* ISUContactSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4776A217E5D86800BDB510 /* ISUContactSource.m */; };
@@ -34,7 +36,7 @@
 		FA4776B817E5FA9B00BDB510 /* NSError+ISUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4776B717E5FA9B00BDB510 /* NSError+ISUAdditions.m */; };
 		FA6739F417E72711006DB3C2 /* ISULoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6739F317E72711006DB3C2 /* ISULoginViewController.m */; };
 		FA6739F717E74FDB006DB3C2 /* NSManagedObject+ISUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6739F617E74FDB006DB3C2 /* NSManagedObject+ISUAdditions.m */; };
-		FA673A0017E7E6ED006DB3C2 /* ISUContact.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6739FF17E7E6ED006DB3C2 /* ISUContact.m */; };
+		FA673A0317E7EB8D006DB3C2 /* ISUNSStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA673A0217E7EB8D006DB3C2 /* ISUNSStringTest.m */; };
 		FA787DE417CDEE5000F676E2 /* ISUPersistentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA787DE317CDEE5000F676E2 /* ISUPersistentManager.m */; };
 		FA787DF617CE3CC400F676E2 /* ISUAddressBookImportOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA787DF517CE3CC400F676E2 /* ISUAddressBookImportOperation.m */; };
 		FA787E0017CF2A4300F676E2 /* ISUFetchedResultsTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA787DFF17CF2A4300F676E2 /* ISUFetchedResultsTableDataSource.m */; };
@@ -52,21 +54,15 @@
 		FA8536D617D639CD00696D28 /* ISUGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8536D517D639CD00696D28 /* ISUGroup.m */; };
 		FA8536DF17D639CE00696D28 /* ISUUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8536DE17D639CE00696D28 /* ISUUrl.m */; };
 		FA8536E217D639CE00696D28 /* ISURelatedName.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8536E117D639CE00696D28 /* ISURelatedName.m */; };
-		FA8536ED17D6D66900696D28 /* ISUABCoreContact.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8536EC17D6D66900696D28 /* ISUABCoreContact.m */; };
 		FA8536F617D6E02C00696D28 /* ISUDate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8536F517D6E02A00696D28 /* ISUDate.m */; };
-		FA8536F917D6E19B00696D28 /* ISUABCoreGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8536F817D6E19B00696D28 /* ISUABCoreGroup.m */; };
-		FA8536FC17D7061F00696D28 /* ISUABCoreSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8536FB17D7061F00696D28 /* ISUABCoreSource.m */; };
 		FA85370417D82FDB00696D28 /* ISUAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85370317D82FDB00696D28 /* ISUAddress.m */; };
 		FA85370A17D9B75000696D28 /* ISUSocialProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85370917D9B74F00696D28 /* ISUSocialProfile.m */; };
 		FA85370D17DA074600696D28 /* ISUAddress+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85370C17DA074500696D28 /* ISUAddress+function.m */; };
-		FA85371017DA091400696D28 /* ISUSMS+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85370F17DA091200696D28 /* ISUSMS+function.m */; };
-		FA85371317DA0D0000696D28 /* ABPerson+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85371217DA0CFF00696D28 /* ABPerson+function.m */; };
-		FA85371617DA0E9F00696D28 /* ABGroup+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85371517DA0E9D00696D28 /* ABGroup+function.m */; };
-		FA85371917DA102700696D28 /* ABSource+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85371817DA102500696D28 /* ABSource+function.m */; };
+		FA85371017DA091400696D28 /* ISUSocialProfile+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85370F17DA091200696D28 /* ISUSocialProfile+function.m */; };
 		FA85ECC917DC5C8700F6FC7F /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA85ECC817DC5C8700F6FC7F /* Icon@2x.png */; };
 		FA85ECCB17DC601500F6FC7F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA85ECCA17DC601500F6FC7F /* Icon.png */; };
 		FA85ECCD17DC610100F6FC7F /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA85ECCC17DC610100F6FC7F /* Crashlytics.framework */; };
-		FA8B347617E59F3F006B5FA1 /* NSString+ChineseCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8B347517E59F3F006B5FA1 /* NSString+ChineseCharacter.m */; };
+		FA8B347617E59F3F006B5FA1 /* NSString+ISUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8B347517E59F3F006B5FA1 /* NSString+ISUAdditions.m */; };
 		FAA608F117DDF3D000A5BAAC /* ISUDialKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA608F017DDF3D000A5BAAC /* ISUDialKeyboardView.m */; };
 		FAA608F617DE084700A5BAAC /* ISUSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA608F517DE084700A5BAAC /* ISUSearchTableViewController.m */; };
 		FAA6090017DEC3DD00A5BAAC /* ISUAbstractSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA608FF17DEC3DD00A5BAAC /* ISUAbstractSearchTableViewController.m */; };
@@ -91,9 +87,17 @@
 		FAA6093017DF54C400A5BAAC /* tone3.wav in Resources */ = {isa = PBXBuildFile; fileRef = FAA6091F17DF54C400A5BAAC /* tone3.wav */; };
 		FAA6093317DF550500A5BAAC /* ISUPhoneNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA6093217DF550500A5BAAC /* ISUPhoneNumberFormatter.m */; };
 		FAA6093617DF559E00A5BAAC /* ISUSoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA6093517DF559E00A5BAAC /* ISUSoundEffect.m */; };
-		FABE9FB117D1AB9700EF3F2B /* ISUPersonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FABE9FB017D1AB9700EF3F2B /* ISUPersonTest.m */; };
+		FAA807B517E83AB400CF5FEA /* ISUOperationManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA807B417E83AB400CF5FEA /* ISUOperationManagerTest.m */; };
+		FAA807B817E87E4800CF5FEA /* RHPerson+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA807B717E87E4700CF5FEA /* RHPerson+function.m */; };
+		FAA807BB17E8801500CF5FEA /* RHGroup+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA807BA17E8801400CF5FEA /* RHGroup+function.m */; };
+		FAB0EA2817EC1FB400F518B2 /* ISUUserFunctionCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB0EA2717EC1FB400F518B2 /* ISUUserFunctionCategoryTest.m */; };
+		FAB0EA2D17EC237200F518B2 /* ISUTestUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB0EA2C17EC237200F518B2 /* ISUTestUtility.m */; };
+		FABE9FB117D1AB9700EF3F2B /* ISUContactFunctionCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FABE9FB017D1AB9700EF3F2B /* ISUContactFunctionCategoryTest.m */; };
 		FABE9FB217D1C1D800EF3F2B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE8218917CCB8EB003C39B0 /* CoreData.framework */; };
 		FAC060CB17E2BE1900E67748 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC060CA17E2BE1900E67748 /* AudioToolbox.framework */; };
+		FAC26C4C17EBEA3800635B6F /* ISUPersistentManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC26C4B17EBEA3800635B6F /* ISUPersistentManagerTest.m */; };
+		FAC26C4E17EBEBB800635B6F /* ISUAddressFunctionCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC26C4D17EBEBB800635B6F /* ISUAddressFunctionCategoryTest.m */; };
+		FAC26C4F17EC165200635B6F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA21681417CC993A0026F1CD /* AddressBook.framework */; };
 		FAC7A57B17E45299002B7EF9 /* NSFileManager+ISUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC7A57A17E45299002B7EF9 /* NSFileManager+ISUAdditions.m */; };
 		FAC7A57F17E456A2002B7EF9 /* ISUMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC7A57E17E456A2002B7EF9 /* ISUMigrationManager.m */; };
 		FAE8216117CCB2F7003C39B0 /* ISUAddressBookUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */; };
@@ -118,6 +122,7 @@
 		77C2CC6186CF4BFC8CD009D8 /* Pods-MobileContactApplicationTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileContactApplicationTests.xcconfig"; path = "Pods/Pods-MobileContactApplicationTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		8E9103198C5D4CA492FDB4F4 /* libPods-MobileContactApplicationTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MobileContactApplicationTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2CD10FC8C34550BF23C3B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA02207917EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUSocialProfileFunctionCategoryTest.m; sourceTree = "<group>"; };
 		FA2167D317CC98AB0026F1CD /* MobileContactApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileContactApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA2167D617CC98AB0026F1CD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FA2167D817CC98AB0026F1CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -139,8 +144,10 @@
 		FA21680417CC98AB0026F1CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA21681417CC993A0026F1CD /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		FA21681617CC993F0026F1CD /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
-		FA47769817E5D43100BDB510 /* ISUMultiThreadingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUMultiThreadingManager.h; sourceTree = "<group>"; };
-		FA47769917E5D43100BDB510 /* ISUMultiThreadingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUMultiThreadingManager.m; sourceTree = "<group>"; };
+		FA36610717E9C8A400125F04 /* ISUContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUContact.h; sourceTree = "<group>"; };
+		FA36610817E9C8A400125F04 /* ISUContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUContact.m; sourceTree = "<group>"; };
+		FA47769817E5D43100BDB510 /* ISUOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUOperationManager.h; sourceTree = "<group>"; };
+		FA47769917E5D43100BDB510 /* ISUOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUOperationManager.m; sourceTree = "<group>"; };
 		FA47769B17E5D4BE00BDB510 /* ISUAbstractOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAbstractOperation.h; sourceTree = "<group>"; };
 		FA47769C17E5D4BE00BDB510 /* ISUAbstractOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAbstractOperation.m; sourceTree = "<group>"; };
 		FA47769E17E5D86700BDB510 /* ISUUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUUser.h; sourceTree = "<group>"; };
@@ -157,8 +164,7 @@
 		FA6739F317E72711006DB3C2 /* ISULoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISULoginViewController.m; sourceTree = "<group>"; };
 		FA6739F517E74FDB006DB3C2 /* NSManagedObject+ISUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+ISUAdditions.h"; sourceTree = "<group>"; };
 		FA6739F617E74FDB006DB3C2 /* NSManagedObject+ISUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+ISUAdditions.m"; sourceTree = "<group>"; };
-		FA6739FE17E7E6EC006DB3C2 /* ISUContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUContact.h; sourceTree = "<group>"; };
-		FA6739FF17E7E6ED006DB3C2 /* ISUContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUContact.m; sourceTree = "<group>"; };
+		FA673A0217E7EB8D006DB3C2 /* ISUNSStringTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUNSStringTest.m; sourceTree = "<group>"; };
 		FA787DE217CDEE5000F676E2 /* ISUPersistentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUPersistentManager.h; sourceTree = "<group>"; };
 		FA787DE317CDEE5000F676E2 /* ISUPersistentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPersistentManager.m; sourceTree = "<group>"; };
 		FA787DF417CE3CC400F676E2 /* ISUAddressBookImportOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAddressBookImportOperation.h; sourceTree = "<group>"; };
@@ -191,33 +197,21 @@
 		FA8536DE17D639CE00696D28 /* ISUUrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUUrl.m; sourceTree = "<group>"; };
 		FA8536E017D639CE00696D28 /* ISURelatedName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISURelatedName.h; sourceTree = "<group>"; };
 		FA8536E117D639CE00696D28 /* ISURelatedName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISURelatedName.m; sourceTree = "<group>"; };
-		FA8536EB17D6D66900696D28 /* ISUABCoreContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUABCoreContact.h; sourceTree = "<group>"; };
-		FA8536EC17D6D66900696D28 /* ISUABCoreContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUABCoreContact.m; sourceTree = "<group>"; };
 		FA8536F417D6E02900696D28 /* ISUDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUDate.h; sourceTree = "<group>"; };
 		FA8536F517D6E02A00696D28 /* ISUDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUDate.m; sourceTree = "<group>"; };
-		FA8536F717D6E19B00696D28 /* ISUABCoreGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUABCoreGroup.h; sourceTree = "<group>"; };
-		FA8536F817D6E19B00696D28 /* ISUABCoreGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUABCoreGroup.m; sourceTree = "<group>"; };
-		FA8536FA17D7061E00696D28 /* ISUABCoreSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUABCoreSource.h; sourceTree = "<group>"; };
-		FA8536FB17D7061F00696D28 /* ISUABCoreSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUABCoreSource.m; sourceTree = "<group>"; };
 		FA85370217D82FDA00696D28 /* ISUAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAddress.h; sourceTree = "<group>"; };
 		FA85370317D82FDB00696D28 /* ISUAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAddress.m; sourceTree = "<group>"; };
 		FA85370817D9B74E00696D28 /* ISUSocialProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUSocialProfile.h; sourceTree = "<group>"; };
 		FA85370917D9B74F00696D28 /* ISUSocialProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUSocialProfile.m; sourceTree = "<group>"; };
 		FA85370B17DA074400696D28 /* ISUAddress+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISUAddress+function.h"; sourceTree = "<group>"; };
 		FA85370C17DA074500696D28 /* ISUAddress+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISUAddress+function.m"; sourceTree = "<group>"; };
-		FA85370E17DA091100696D28 /* ISUSMS+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISUSMS+function.h"; sourceTree = "<group>"; };
-		FA85370F17DA091200696D28 /* ISUSMS+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISUSMS+function.m"; sourceTree = "<group>"; };
-		FA85371117DA0CFE00696D28 /* ABPerson+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABPerson+function.h"; sourceTree = "<group>"; };
-		FA85371217DA0CFF00696D28 /* ABPerson+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ABPerson+function.m"; sourceTree = "<group>"; };
-		FA85371417DA0E9C00696D28 /* ABGroup+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABGroup+function.h"; sourceTree = "<group>"; };
-		FA85371517DA0E9D00696D28 /* ABGroup+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ABGroup+function.m"; sourceTree = "<group>"; };
-		FA85371717DA102300696D28 /* ABSource+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABSource+function.h"; sourceTree = "<group>"; };
-		FA85371817DA102500696D28 /* ABSource+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ABSource+function.m"; sourceTree = "<group>"; };
+		FA85370E17DA091100696D28 /* ISUSocialProfile+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISUSocialProfile+function.h"; sourceTree = "<group>"; };
+		FA85370F17DA091200696D28 /* ISUSocialProfile+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISUSocialProfile+function.m"; sourceTree = "<group>"; };
 		FA85ECC817DC5C8700F6FC7F /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		FA85ECCA17DC601500F6FC7F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		FA85ECCC17DC610100F6FC7F /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		FA8B347417E59F3F006B5FA1 /* NSString+ChineseCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ChineseCharacter.h"; sourceTree = "<group>"; };
-		FA8B347517E59F3F006B5FA1 /* NSString+ChineseCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ChineseCharacter.m"; sourceTree = "<group>"; };
+		FA8B347417E59F3F006B5FA1 /* NSString+ISUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ISUAdditions.h"; sourceTree = "<group>"; };
+		FA8B347517E59F3F006B5FA1 /* NSString+ISUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ISUAdditions.m"; sourceTree = "<group>"; };
 		FAA608EF17DDF3D000A5BAAC /* ISUDialKeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUDialKeyboardView.h; sourceTree = "<group>"; };
 		FAA608F017DDF3D000A5BAAC /* ISUDialKeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUDialKeyboardView.m; sourceTree = "<group>"; };
 		FAA608F417DE084700A5BAAC /* ISUSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUSearchTableViewController.h; sourceTree = "<group>"; };
@@ -248,8 +242,18 @@
 		FAA6093217DF550500A5BAAC /* ISUPhoneNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPhoneNumberFormatter.m; sourceTree = "<group>"; };
 		FAA6093417DF559D00A5BAAC /* ISUSoundEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUSoundEffect.h; sourceTree = "<group>"; };
 		FAA6093517DF559E00A5BAAC /* ISUSoundEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUSoundEffect.m; sourceTree = "<group>"; };
-		FABE9FB017D1AB9700EF3F2B /* ISUPersonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPersonTest.m; sourceTree = "<group>"; };
+		FAA807B417E83AB400CF5FEA /* ISUOperationManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUOperationManagerTest.m; sourceTree = "<group>"; };
+		FAA807B617E87E4600CF5FEA /* RHPerson+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RHPerson+function.h"; sourceTree = "<group>"; };
+		FAA807B717E87E4700CF5FEA /* RHPerson+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RHPerson+function.m"; sourceTree = "<group>"; };
+		FAA807B917E8801300CF5FEA /* RHGroup+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RHGroup+function.h"; sourceTree = "<group>"; };
+		FAA807BA17E8801400CF5FEA /* RHGroup+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RHGroup+function.m"; sourceTree = "<group>"; };
+		FAB0EA2717EC1FB400F518B2 /* ISUUserFunctionCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUUserFunctionCategoryTest.m; sourceTree = "<group>"; };
+		FAB0EA2B17EC237200F518B2 /* ISUTestUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUTestUtility.h; sourceTree = "<group>"; };
+		FAB0EA2C17EC237200F518B2 /* ISUTestUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUTestUtility.m; sourceTree = "<group>"; };
+		FABE9FB017D1AB9700EF3F2B /* ISUContactFunctionCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUContactFunctionCategoryTest.m; sourceTree = "<group>"; };
 		FAC060CA17E2BE1900E67748 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FAC26C4B17EBEA3800635B6F /* ISUPersistentManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPersistentManagerTest.m; sourceTree = "<group>"; };
+		FAC26C4D17EBEBB800635B6F /* ISUAddressFunctionCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAddressFunctionCategoryTest.m; sourceTree = "<group>"; };
 		FAC7A57917E45299002B7EF9 /* NSFileManager+ISUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+ISUAdditions.h"; sourceTree = "<group>"; };
 		FAC7A57A17E45299002B7EF9 /* NSFileManager+ISUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+ISUAdditions.m"; sourceTree = "<group>"; };
 		FAC7A57D17E456A2002B7EF9 /* ISUMigrationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUMigrationManager.h; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAC26C4F17EC165200635B6F /* AddressBook.framework in Frameworks */,
 				FABE9FB217D1C1D800EF3F2B /* CoreData.framework in Frameworks */,
 				FA2167FD17CC98AB0026F1CD /* Foundation.framework in Frameworks */,
 				9F27D717246646EFAC969D00 /* libPods-MobileContactApplicationTests.a in Frameworks */,
@@ -299,7 +304,6 @@
 		FA2167CA17CC98AB0026F1CD = {
 			isa = PBXGroup;
 			children = (
-				FAC060CA17E2BE1900E67748 /* AudioToolbox.framework */,
 				FA2167D517CC98AB0026F1CD /* Frameworks */,
 				FA2167DC17CC98AB0026F1CD /* MobileContactApplication */,
 				FA21680017CC98AB0026F1CD /* MobileContactApplicationTests */,
@@ -321,6 +325,7 @@
 		FA2167D517CC98AB0026F1CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FAC060CA17E2BE1900E67748 /* AudioToolbox.framework */,
 				FA85ECCC17DC610100F6FC7F /* Crashlytics.framework */,
 				FA21681417CC993A0026F1CD /* AddressBook.framework */,
 				FA21681617CC993F0026F1CD /* AddressBookUI.framework */,
@@ -366,6 +371,7 @@
 		FA21680017CC98AB0026F1CD /* MobileContactApplicationTests */ = {
 			isa = PBXGroup;
 			children = (
+				FAB0EA2A17EC235D00F518B2 /* Utility */,
 				FA21680117CC98AB0026F1CD /* Supporting Files */,
 				FABE9FB317D1D56E00EF3F2B /* TestClasses */,
 			);
@@ -386,7 +392,7 @@
 			children = (
 				FA47769717E5D3EC00BDB510 /* OperationManager */,
 				FAC7A57C17E4566E002B7EF9 /* DataBase */,
-				FA8536EA17D6D63100696D28 /* ABCoreModels */,
+				FA8536EA17D6D63100696D28 /* RHAddressBook */,
 				FAE8215D17CCB2B0003C39B0 /* Entities */,
 				FAE8215617CCAB45003C39B0 /* Functions */,
 				FA787DEC17CE3C5200F676E2 /* Operations */,
@@ -446,8 +452,8 @@
 			children = (
 				FAC7A57917E45299002B7EF9 /* NSFileManager+ISUAdditions.h */,
 				FAC7A57A17E45299002B7EF9 /* NSFileManager+ISUAdditions.m */,
-				FA8B347417E59F3F006B5FA1 /* NSString+ChineseCharacter.h */,
-				FA8B347517E59F3F006B5FA1 /* NSString+ChineseCharacter.m */,
+				FA8B347417E59F3F006B5FA1 /* NSString+ISUAdditions.h */,
+				FA8B347517E59F3F006B5FA1 /* NSString+ISUAdditions.m */,
 				FA4776B617E5FA9B00BDB510 /* NSError+ISUAdditions.h */,
 				FA4776B717E5FA9B00BDB510 /* NSError+ISUAdditions.m */,
 				FA6739F517E74FDB006DB3C2 /* NSManagedObject+ISUAdditions.h */,
@@ -475,8 +481,8 @@
 		FA47769717E5D3EC00BDB510 /* OperationManager */ = {
 			isa = PBXGroup;
 			children = (
-				FA47769817E5D43100BDB510 /* ISUMultiThreadingManager.h */,
-				FA47769917E5D43100BDB510 /* ISUMultiThreadingManager.m */,
+				FA47769817E5D43100BDB510 /* ISUOperationManager.h */,
+				FA47769917E5D43100BDB510 /* ISUOperationManager.m */,
 				FA4776B017E5E4F300BDB510 /* ISUOperationQueue.h */,
 				FA4776B117E5E4F300BDB510 /* ISUOperationQueue.m */,
 			);
@@ -540,23 +546,15 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
-		FA8536EA17D6D63100696D28 /* ABCoreModels */ = {
+		FA8536EA17D6D63100696D28 /* RHAddressBook */ = {
 			isa = PBXGroup;
 			children = (
-				FA85371417DA0E9C00696D28 /* ABGroup+function.h */,
-				FA85371517DA0E9D00696D28 /* ABGroup+function.m */,
-				FA85371117DA0CFE00696D28 /* ABPerson+function.h */,
-				FA85371217DA0CFF00696D28 /* ABPerson+function.m */,
-				FA85371717DA102300696D28 /* ABSource+function.h */,
-				FA85371817DA102500696D28 /* ABSource+function.m */,
-				FA8536EB17D6D66900696D28 /* ISUABCoreContact.h */,
-				FA8536EC17D6D66900696D28 /* ISUABCoreContact.m */,
-				FA8536F717D6E19B00696D28 /* ISUABCoreGroup.h */,
-				FA8536F817D6E19B00696D28 /* ISUABCoreGroup.m */,
-				FA8536FA17D7061E00696D28 /* ISUABCoreSource.h */,
-				FA8536FB17D7061F00696D28 /* ISUABCoreSource.m */,
+				FAA807B617E87E4600CF5FEA /* RHPerson+function.h */,
+				FAA807B717E87E4700CF5FEA /* RHPerson+function.m */,
+				FAA807B917E8801300CF5FEA /* RHGroup+function.h */,
+				FAA807BA17E8801400CF5FEA /* RHGroup+function.m */,
 			);
-			name = ABCoreModels;
+			name = RHAddressBook;
 			sourceTree = "<group>";
 		};
 		FAA608EE17DDF39400A5BAAC /* Keyboard */ = {
@@ -602,12 +600,27 @@
 			name = Sounds;
 			sourceTree = "<group>";
 		};
+		FAB0EA2A17EC235D00F518B2 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				FAB0EA2B17EC237200F518B2 /* ISUTestUtility.h */,
+				FAB0EA2C17EC237200F518B2 /* ISUTestUtility.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		FABE9FB317D1D56E00EF3F2B /* TestClasses */ = {
 			isa = PBXGroup;
 			children = (
 				FA8536A817D4380500696D28 /* ISUAddressBookUtilityTest.m */,
 				FA8536A517D4358500696D28 /* ISUGroupTest.m */,
-				FABE9FB017D1AB9700EF3F2B /* ISUPersonTest.m */,
+				FABE9FB017D1AB9700EF3F2B /* ISUContactFunctionCategoryTest.m */,
+				FA673A0217E7EB8D006DB3C2 /* ISUNSStringTest.m */,
+				FAA807B417E83AB400CF5FEA /* ISUOperationManagerTest.m */,
+				FAC26C4B17EBEA3800635B6F /* ISUPersistentManagerTest.m */,
+				FAC26C4D17EBEBB800635B6F /* ISUAddressFunctionCategoryTest.m */,
+				FA02207917EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m */,
+				FAB0EA2717EC1FB400F518B2 /* ISUUserFunctionCategoryTest.m */,
 			);
 			name = TestClasses;
 			sourceTree = "<group>";
@@ -641,8 +654,8 @@
 				FA8536B417D4900A00696D28 /* ISUContactSource+function.m */,
 				FAE8218B17CCB981003C39B0 /* ISUGroup+function.h */,
 				FAE8218C17CCB981003C39B0 /* ISUGroup+function.m */,
-				FA85370E17DA091100696D28 /* ISUSMS+function.h */,
-				FA85370F17DA091200696D28 /* ISUSMS+function.m */,
+				FA85370E17DA091100696D28 /* ISUSocialProfile+function.h */,
+				FA85370F17DA091200696D28 /* ISUSocialProfile+function.m */,
 				FA4776A617E5DE9A00BDB510 /* ISUUser+function.h */,
 				FA4776A717E5DE9A00BDB510 /* ISUUser+function.m */,
 			);
@@ -652,8 +665,8 @@
 		FAE8215D17CCB2B0003C39B0 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				FA6739FE17E7E6EC006DB3C2 /* ISUContact.h */,
-				FA6739FF17E7E6ED006DB3C2 /* ISUContact.m */,
+				FA36610717E9C8A400125F04 /* ISUContact.h */,
+				FA36610817E9C8A400125F04 /* ISUContact.m */,
 				FA4776A117E5D86700BDB510 /* ISUContactSource.h */,
 				FA4776A217E5D86800BDB510 /* ISUContactSource.m */,
 				FA47769E17E5D86700BDB510 /* ISUUser.h */,
@@ -907,12 +920,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA85371617DA0E9F00696D28 /* ABGroup+function.m in Sources */,
-				FA85371317DA0D0000696D28 /* ABPerson+function.m in Sources */,
-				FA85371917DA102700696D28 /* ABSource+function.m in Sources */,
-				FA8536ED17D6D66900696D28 /* ISUABCoreContact.m in Sources */,
-				FA8536F917D6E19B00696D28 /* ISUABCoreGroup.m in Sources */,
-				FA8536FC17D7061F00696D28 /* ISUABCoreSource.m in Sources */,
 				FA85370D17DA074600696D28 /* ISUAddress+function.m in Sources */,
 				FA85370417D82FDB00696D28 /* ISUAddress.m in Sources */,
 				FA787DF617CE3CC400F676E2 /* ISUAddressBookImportOperation.m in Sources */,
@@ -932,7 +939,7 @@
 				FA787DE417CDEE5000F676E2 /* ISUPersistentManager.m in Sources */,
 				FA8536D317D639CD00696D28 /* ISUPhone.m in Sources */,
 				FA8536E217D639CE00696D28 /* ISURelatedName.m in Sources */,
-				FA85371017DA091400696D28 /* ISUSMS+function.m in Sources */,
+				FA85371017DA091400696D28 /* ISUSocialProfile+function.m in Sources */,
 				FA85370A17D9B75000696D28 /* ISUSocialProfile.m in Sources */,
 				FA8536DF17D639CE00696D28 /* ISUUrl.m in Sources */,
 				FA8536BE17D615A800696D28 /* ISUUtility.m in Sources */,
@@ -947,8 +954,8 @@
 				FAA6093617DF559E00A5BAAC /* ISUSoundEffect.m in Sources */,
 				FAC7A57B17E45299002B7EF9 /* NSFileManager+ISUAdditions.m in Sources */,
 				FAC7A57F17E456A2002B7EF9 /* ISUMigrationManager.m in Sources */,
-				FA8B347617E59F3F006B5FA1 /* NSString+ChineseCharacter.m in Sources */,
-				FA47769A17E5D43100BDB510 /* ISUMultiThreadingManager.m in Sources */,
+				FA8B347617E59F3F006B5FA1 /* NSString+ISUAdditions.m in Sources */,
+				FA47769A17E5D43100BDB510 /* ISUOperationManager.m in Sources */,
 				FA47769D17E5D4BE00BDB510 /* ISUAbstractOperation.m in Sources */,
 				FA4776A017E5D86700BDB510 /* ISUUser.m in Sources */,
 				FA4776A317E5D86800BDB510 /* ISUContactSource.m in Sources */,
@@ -957,7 +964,9 @@
 				FA4776B817E5FA9B00BDB510 /* NSError+ISUAdditions.m in Sources */,
 				FA6739F417E72711006DB3C2 /* ISULoginViewController.m in Sources */,
 				FA6739F717E74FDB006DB3C2 /* NSManagedObject+ISUAdditions.m in Sources */,
-				FA673A0017E7E6ED006DB3C2 /* ISUContact.m in Sources */,
+				FAA807B817E87E4800CF5FEA /* RHPerson+function.m in Sources */,
+				FAA807BB17E8801500CF5FEA /* RHGroup+function.m in Sources */,
+				FA36610917E9C8A400125F04 /* ISUContact.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,9 +974,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAC26C4C17EBEA3800635B6F /* ISUPersistentManagerTest.m in Sources */,
 				FA8536A917D4380500696D28 /* ISUAddressBookUtilityTest.m in Sources */,
+				FA02207A17EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m in Sources */,
+				FAC26C4E17EBEBB800635B6F /* ISUAddressFunctionCategoryTest.m in Sources */,
+				FAB0EA2D17EC237200F518B2 /* ISUTestUtility.m in Sources */,
+				FAB0EA2817EC1FB400F518B2 /* ISUUserFunctionCategoryTest.m in Sources */,
 				FA8536A617D4358500696D28 /* ISUGroupTest.m in Sources */,
-				FABE9FB117D1AB9700EF3F2B /* ISUPersonTest.m in Sources */,
+				FABE9FB117D1AB9700EF3F2B /* ISUContactFunctionCategoryTest.m in Sources */,
+				FA673A0317E7EB8D006DB3C2 /* ISUNSStringTest.m in Sources */,
+				FAA807B517E83AB400CF5FEA /* ISUOperationManagerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

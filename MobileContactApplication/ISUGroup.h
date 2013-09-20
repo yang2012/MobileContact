@@ -13,7 +13,7 @@
 @interface ISUGroup : SSManagedObject
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSNumber * recordId;
+@property (nonatomic) NSInteger recordId;
 @property (nonatomic, retain) NSSet *members;
 @property (nonatomic, retain) ISUContactSource *source;
 @end

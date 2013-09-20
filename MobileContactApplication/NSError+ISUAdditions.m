@@ -13,8 +13,10 @@
 + (NSError *)errorWithErrorCode:(ISUErrorCode)errorCode {
     NSString *description = @"";
     switch (errorCode) {
+        case ISUErrorCodeInvalide:
+            description = NSLocalizedString(@"Invalid argument", @"Error description");
         default:
-            description = NSLocalizedString(@"Unable to connect to mail server.", @"Error description");
+            description = NSLocalizedString(@"Unknowned error.", @"Error description");
             break;
     }
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:description forKey:NSLocalizedDescriptionKey];

@@ -16,37 +16,38 @@ static const int ImportBatchSize = 100;
 
 @interface ISUAddressBookImportOperation ()
 
-@property (nonatomic, strong) ISUAddressBookUtility *addressBookUtility;
-
 @end
 
 @implementation ISUAddressBookImportOperation
 
+- (void)dealloc
+{
+}
+
 - (void)execute
 {
-    self.addressBookUtility = [[ISUAddressBookUtility alloc] init];
-    
     [self _import];
 }
 
 - (void)_import
 {
-    [self.addressBookUtility fetchSourceInfosInAddressBookWithProcessBlock:^BOOL(ISUABCoreSource *coreSource) {
+    ISUAddressBookUtility *addressBookUtility = [ISUAddressBookUtility sharedInstance];
+    [addressBookUtility fetchSourceInfosInAddressBookWithProcessBlock:^BOOL(RHSource *coreSource) {
         
         if (self.isCancelled) {
             return NO; // Stop
         }
         
-        NSNumber *sourceRecordId = coreSource.recordId;
-        if (sourceRecordId == nil) {
+        ABRecordID sourceRecordId = coreSource.recordID;
+        if (sourceRecordId < 0) {
             ISULog(@"nil record id when calling process block in _import", ISULogPriorityHigh);
             return YES; // Continue handling other sources
         }
         
-        ISUContactSource *source = [ISUContactSource findOrCreatePersonWithRecordId:sourceRecordId inContext:self.operationContext];
+        ISUContactSource *source = [ISUContactSource findOrCreatePersonWithRecordId:sourceRecordId context:self.operationContext];
         
         if (source == nil) {
-            NSString *msg = [NSString stringWithFormat:@"Fail to find/create source with record id %@", sourceRecordId];
+            NSString *msg = [NSString stringWithFormat:@"Fail to find/create source with record id %u", sourceRecordId];
             ISULog(msg, ISULogPriorityHigh);
             return YES; // Continue handling other sources
         }
@@ -66,28 +67,32 @@ static const int ImportBatchSize = 100;
 
 - (void)_addDefaultGroupsInSource:(ISUContactSource *)source
 {
-    NSArray *allMembersInSource = [self.addressBookUtility allPeopleInSourceWithRecordId:source.recordId];
+    ISUAddressBookUtility *addressBookUtility = [ISUAddressBookUtility sharedInstance];
+    NSArray *allMembersInSource = [addressBookUtility allPeopleInSourceWithRecordId:source.recordId];
     NSArray *groups = [source.groups allObjects];
     NSArray *results = [groups filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"recordId=%i and source=%@", kRecordIdOfDefaultGroup, source]];
     ISUGroup *defaultGroup = nil;
     if (results.count == 0) {
-        defaultGroup = [ISUGroup findOrCreateGroupWithRecordId:[NSNumber numberWithInt:kRecordIdOfDefaultGroup] context:self.operationContext];
+        defaultGroup = [ISUGroup findOrCreateGroupWithRecordId:kRecordIdOfDefaultGroup context:self.operationContext];
+        defaultGroup.name = kNameOfDefaultGroup;
     } else {
         defaultGroup = results[0];
     }
-    for (ISUABCoreContact *coreContact in allMembersInSource) {
-        ISUContact *person = [ISUContact findPersonWithRecordId:coreContact.recordId context:self.operationContext];
+    
+    for (RHPerson *coreContact in allMembersInSource) {
+        ABRecordID recordId = coreContact.recordID;
+        ISUContact *person = [ISUContact findPersonWithRecordId:recordId context:self.operationContext];
         if (person == nil) {
-            person = [ISUContact createPersonWithRecordId:coreContact.recordId context:self.operationContext];
+            person = [ISUContact createPersonWithRecordId:recordId context:self.operationContext];
             if (person == nil) {
-                NSString *msg = [NSString stringWithFormat:@"Cannot find/create person with record id %@", coreContact.recordId];
+                NSString *msg = [NSString stringWithFormat:@"Cannot find/create person with record id %u", recordId];
                 ISULog(msg, ISULogPriorityHigh);
                 continue;
             }
         }
         
         // Update info
-        [person updateWithCoreContact:coreContact inContext:self.operationContext];
+        [person updateWithCoreContact:coreContact context:self.operationContext];
         
         // Establish relationship
         [person addGroupsObject:defaultGroup];
@@ -96,21 +101,22 @@ static const int ImportBatchSize = 100;
 
 - (void)_getGroupsInSource:(ISUContactSource *)source
 {
-    [self.addressBookUtility fetchGroupInfosInSourceWithRecordId:source.recordId processBlock:^(ISUABCoreGroup *coreGroup) {
+    ISUAddressBookUtility *addressBookUtility = [ISUAddressBookUtility sharedInstance];
+    [addressBookUtility fetchGroupInfosInSourceWithRecordId:source.recordId processBlock:^(RHGroup *coreGroup) {
         
         if (self.isCancelled) {
             return NO; // Stop
         }
         
-        NSNumber *groupRecordId = coreGroup.recordId;
-        if (groupRecordId == nil) {
-            ISULog(@"nil record id when calling process block in _getGroupInSource", ISULogPriorityHigh);
+        ABRecordID groupRecordId = coreGroup.recordID;
+        if (groupRecordId < 0) {
+            ISULog(@"Invalid group id when calling process block in _getGroupInSource", ISULogPriorityHigh);
             return YES; // Continue handling other groups
         }
         
-        ISUGroup *group = [ISUGroup findOrCreateGroupWithRecordId:coreGroup.recordId context:self.operationContext];
+        ISUGroup *group = [ISUGroup findOrCreateGroupWithRecordId:groupRecordId context:self.operationContext];
         if (group == nil) {
-            NSString *msg = [NSString stringWithFormat:@"Cannot find/create group with record id %@", source.recordId];
+            NSString *msg = [NSString stringWithFormat:@"Cannot find/create group with record id %i", source.recordId];
             ISULog(msg, ISULogPriorityHigh);
             return YES; // Continue handling other groups
         }
@@ -127,36 +133,38 @@ static const int ImportBatchSize = 100;
 
 - (void)_getMembersInGroup:(ISUGroup *)group
 {
+    ISUAddressBookUtility *addressBookUtility = [ISUAddressBookUtility sharedInstance];
+
     __block NSInteger index = 0;
-    [self.addressBookUtility fetchMemberInfosInGroupWithRecordId:group.recordId processBlock:^(ISUABCoreContact *coreContact) {
+    [addressBookUtility fetchMemberInfosInGroupWithRecordId:group.recordId processBlock:^(RHPerson *coreContact) {
         index++;
         
         if (self.isCancelled) {
             return NO; // Stop
         }
         
-        NSNumber *recordId = coreContact.recordId;
-        if (recordId == nil) {
-            ISULog(@"nil record id when calling process block in _getMembersInGroup", ISULogPriorityHigh);
+        ABRecordID recordId = coreContact.recordID;
+        if (recordId <= 0) {
+            ISULog(@"Invalid record id when calling process block in _getMembersInGroup", ISULogPriorityHigh);
             return YES; // Continue handling other contacts
         }
         
         ISUContact *person = [ISUContact findOrCreatePersonWithRecordId:recordId context:self.operationContext];
         if (person == nil) {
-            NSString *msg = [NSString stringWithFormat:@"Cannot find/create person with record id %@", recordId];
+            NSString *msg = [NSString stringWithFormat:@"Cannot find/create person with record id %i", recordId];
             ISULog(msg, ISULogPriorityHigh);
             return YES; // Continue handling other groups
         }
         
         // Update info
-        [person updateWithCoreContact:coreContact inContext:self.operationContext];
+        [person updateWithCoreContact:coreContact context:self.operationContext];
         
         // Establish relationship
         [person addGroupsObject:group];
         
         // Batch Size Save
         if (index % ImportBatchSize == 0) {
-            [self.operationContext save:NULL];
+            [self.operationContext save:nil];
         }
         
         return YES; // Continue handling other groups

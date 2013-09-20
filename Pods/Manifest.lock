@@ -3,7 +3,6 @@ PODS:
   - DKLiveBlur (0.0.1)
   - FLKAutoLayout (0.1.1)
   - FXBlurView (1.3.1)
-  - iPhoneContacts (0.0.1)
   - JDDroppableView (1.1.0)
   - Kiwi (2.2.1):
     - Kiwi/ARC
@@ -16,6 +15,7 @@ PODS:
   - PonyDebugger (0.3.0):
     - SocketRocket
   - Reveal-iOS-SDK (0.9.1)
+  - RHAddressBook (1.0.2)
   - SocketRocket (0.3.1-beta2)
   - SSDataKit (0.1.5)
   - TMCache (1.2.0)
@@ -26,7 +26,6 @@ DEPENDENCIES:
   - DKLiveBlur (~> 0.0.1)
   - FLKAutoLayout (~> 0.1.1)
   - FXBlurView (~> 1.3.1)
-  - iPhoneContacts (~> 0.0.1)
   - JDDroppableView (~> 1.1.0)
   - Kiwi
   - MJNIndexView (~> 0.0.1)
@@ -34,6 +33,7 @@ DEPENDENCIES:
   - OHHTTPStubs (~> 2.0.0)
   - PonyDebugger (~> 0.3.0)
   - Reveal-iOS-SDK (~> 0.9.1)
+  - RHAddressBook (~> 1.0.2)
   - SSDataKit (~> 0.1.5)
   - TMCache (~> 1.2.0)
   - WSCoachMarksView (~> 0.2)
@@ -43,7 +43,6 @@ SPEC CHECKSUMS:
   DKLiveBlur: 0107f6bf5c4447066317a83101fee0e35ac00716
   FLKAutoLayout: fc04b932009174d4118ef4bda9dc8fedf1369efc
   FXBlurView: 60baf79587689edb216a9521165cc0b360e012b8
-  iPhoneContacts: 1638ffb889b179df729bedfb2251069c66245d03
   JDDroppableView: 07e46a73cf7374d6b912688a9ec5a95ec6fe43e8
   Kiwi: e6524ba0eaa1b28af7af146bdee5314b32aa3edb
   MJNIndexView: 955e28b696209f8ebcc8c76cd17b773ed4a06df0
@@ -51,6 +50,7 @@ SPEC CHECKSUMS:
   OHHTTPStubs: 921de87847a4ebd7ff8642715a7eb12a29e1e0f7
   PonyDebugger: bafc25809ade389d0d1c1f1147877145cc26bd78
   Reveal-iOS-SDK: 7396a20e743807b1e6f1caae664e1a9dc0cc442c
+  RHAddressBook: 64f78a4058e0a7849275c970bf19fe195edf94d0
   SocketRocket: 7ac946bcce46287a791dfff3c1f8daa692821dae
   SSDataKit: f5fdb3617925a5b8a30afad0496ac58b39c6c517
   TMCache: 78eabf36d9993431243007da2e9ba58b462eb43e

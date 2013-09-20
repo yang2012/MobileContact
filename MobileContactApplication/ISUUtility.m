@@ -7,14 +7,22 @@
 //
 
 #import "ISUUtility.h"
-#import "ABPerson.h"
 
 @implementation ISUUtility
 
-+ (NSString *)keyForAvatarOfPerson:(ABPerson *)person
++ (NSString *)keyForOriginalImageOfPerson:(RHPerson *)person
 {
     ABRecordID recordId = person.recordID;
     NSString *compositeName = [person compositeName];
-    return [NSString stringWithFormat:@"avatar/%i-%@", recordId, compositeName];
+    return [NSString stringWithFormat:@"avatar/%i-%@-OriginalImage", recordId, compositeName];
 }
+
++ (NSString *)keyForThumbnailOfPerson:(RHPerson *)person
+{
+    
+    ABRecordID recordId = person.recordID;
+    NSString *compositeName = [person compositeName];
+    return [NSString stringWithFormat:@"avatar/%i-%@-Thumbnail", recordId, compositeName];
+}
+
 @end

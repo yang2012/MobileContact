@@ -7,26 +7,41 @@
 //
 
 #import "ISUContact.h"
-#import "ISUABCoreContact.h"
+#import "RHPerson+function.h"
 
 @interface ISUContact (function)
 
+// Mutalbe set of properties
 - (NSMutableSet *)mutableAddresses;
+
+- (NSMutableSet *)mutableEmails;
+
+- (NSMutableSet *)mutableDates;
+
+- (NSMutableSet *)mutablePhones;
+
+- (NSMutableSet *)mutableUrls;
+
+- (NSMutableSet *)mutableRelatedNames;
+
+- (NSMutableSet *)mutableSocialProfiles;
 
 - (NSString *)fullName;
 
 - (char)sectionTitle;
 
-+ (ISUContact *)findOrCreatePersonWithRecordId:(NSNumber *)recordId
++ (ISUContact *)findOrCreatePersonWithRecordId:(NSInteger)recordId
                                        context:(NSManagedObjectContext *)context;
 
-+ (ISUContact *)findPersonWithRecordId:(NSNumber *)recordId
++ (ISUContact *)findPersonWithRecordId:(NSInteger)recordId
                                context:(NSManagedObjectContext *)context;
 
-+ (ISUContact *)createPersonWithRecordId:(NSNumber *)recordId
++ (ISUContact *)createPersonWithRecordId:(NSInteger)recordId
                                  context:(NSManagedObjectContext *)context;
 
-- (void)updateWithCoreContact:(ISUABCoreContact *)coreContact
-                    inContext:(NSManagedObjectContext *)context;
+- (void)updateWithCoreContact:(RHPerson *)coreContact
+                      context:(NSManagedObjectContext *)context;
+
+- (BOOL)removeSelfFromAddressBook:(NSError **)error;
 
 @end

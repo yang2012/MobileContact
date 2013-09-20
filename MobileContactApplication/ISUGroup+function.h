@@ -8,25 +8,26 @@
 
 #import "ISUGroup.h"
 #import "ISUContact+function.h"
-#import "ISUABCoreGroup.h"
+#import "RHGroup+function.h"
 
 extern NSInteger const kRecordIdOfDefaultGroup;
+extern NSString *kNameOfDefaultGroup;
 
 @interface ISUGroup (function)
 
-@property (nonatomic, assign, readonly) BOOL isLocal;
+@property (nonatomic, assign, readonly) BOOL isDefaultGroup;
 
-+ (ISUGroup *)findOrCreateGroupWithRecordId:(NSNumber *)recordId
++ (ISUGroup *)findOrCreateGroupWithRecordId:(NSInteger)recordId
                                     context:(NSManagedObjectContext *)context;
 
-- (void)updateWithCoreGroup:(ISUABCoreGroup *)coreGroup
+- (void)updateWithCoreGroup:(RHGroup *)coreGroup
                     context:(NSManagedObjectContext *)context;
 
 + (NSArray *)allGroupInContext:(NSManagedObjectContext *)context;
 
-//- (BOOL)addMember:(ISUContact *)contact withError:(NSError **)error;
-//- (BOOL)removeMember:(ISUContact *)contact withError:(NSError **)error;
-//
-//- (BOOL)removeSelfFromAddressBook:(NSError **)error;
+- (BOOL)addMember:(ISUContact *)contact withError:(NSError **)error;
+- (BOOL)removeMember:(ISUContact *)contact withError:(NSError **)error;
+
+- (BOOL)removeSelfFromAddressBook:(NSError **)error;
 
 @end

@@ -14,16 +14,49 @@
 #import "ISURelatedName.h"
 #import "ISUAddress+function.h"
 #import "ISUUrl.h"
-#import "ISUSocialProfile.h"
-#import "NSString+ChineseCharacter.h"
-
-#import <AddressBook/AddressBook.h>
+#import "ISUSocialProfile+function.h"
+#import "NSString+ISUAdditions.h"
+#import "TMCache.h"
+#import "AddressBook.h"
+#import "ISUUtility.h"
 
 @implementation ISUContact (function)
+
+#pragma mark - Mutable set
 
 - (NSMutableSet *)mutableAddresses
 {
     return [self mutableSetValueForKey:@"addresses"];
+}
+
+- (NSMutableSet *)mutableEmails
+{
+    return [self mutableSetValueForKey:@"emails"];
+}
+
+- (NSMutableSet *)mutableDates
+{
+    return [self mutableSetValueForKey:@"dates"];
+}
+
+- (NSMutableSet *)mutablePhones
+{
+    return [self mutableSetValueForKey:@"phones"];
+}
+
+- (NSMutableSet *)mutableUrls
+{
+    return [self mutableSetValueForKey:@"urls"];
+}
+
+- (NSMutableSet *)mutableRelatedNames
+{
+    return [self mutableSetValueForKey:@"relatedNames"];
+}
+
+- (NSMutableSet *)mutableSocialProfiles
+{
+    return [self mutableSetValueForKey:@"socialProfiles"];
 }
 
 - (NSString *)fullName
@@ -33,7 +66,7 @@
 	if (self.firstName || self.lastName)
 	{
 		if (self.firstName) [name appendFormat:@"%@ ", self.firstName];
-		if (self.nickName) [name appendFormat:@"\"%@\" ", self.nickName];
+		if (self.lastName) [name appendFormat:@"%@", self.lastName];
 	}
 	
 	return [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -47,7 +80,7 @@
 	{
 		if (self.prefix) [name appendFormat:@"%@ ", self.prefix];
 		if (self.firstName) [name appendFormat:@"%@ ", self.firstName];
-		if (self.nickName) [name appendFormat:@"\"%@\" ", self.nickName];
+		if (self.nickname) [name appendFormat:@"\"%@\" ", self.nickname];
 		if (self.lastName) [name appendFormat:@"%@", self.lastName];
 		
 		if (self.suffix && name.length)
@@ -65,11 +98,11 @@
     return [NSString sortSectionTitle:self.fullName];
 }
 
-+ (ISUContact *)findOrCreatePersonWithRecordId:(NSNumber *)recordId
++ (ISUContact *)findOrCreatePersonWithRecordId:(NSInteger)recordId
                                        context:(NSManagedObjectContext *)context
 {
-    if (recordId == nil || recordId == 0) {
-        NSLog(@"Invalid recrodId: %@", recordId);
+    if (recordId < 0) {
+        NSLog(@"Invalid recrodId: %i", recordId);
         return nil;
     }
     
@@ -81,25 +114,25 @@
     return contact;
 }
 
-+ (ISUContact *)findPersonWithRecordId:(NSNumber *)recordId
++ (ISUContact *)findPersonWithRecordId:(NSInteger)recordId
                                context:(NSManagedObjectContext *)context
 {
-    if (recordId == nil || recordId == 0) {
-        NSLog(@"Invalid recrodId: %@", recordId);
+    if (recordId < 0) {
+        NSLog(@"Invalid recrodId: %i", recordId);
         return nil;
     }
     
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[ISUContact entityName]];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"recordId=%@", recordId];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"recordId=%i", recordId];
     fetchRequest.fetchLimit = 1;
     return [[context executeFetchRequest:fetchRequest error:NULL] lastObject];
 }
 
-+ (ISUContact *)createPersonWithRecordId:(NSNumber *)recordId
++ (ISUContact *)createPersonWithRecordId:(NSInteger)recordId
                                  context:(NSManagedObjectContext *)context
 {
-    if (recordId == nil || recordId == 0) {
-        ISULogWithLowPriority(@"Invalid recordId: %@", recordId);
+    if (recordId < 0) {
+        ISULogWithLowPriority(@"Invalid recordId: %i", recordId);
         return nil;
     }
     
@@ -108,10 +141,10 @@
     return object;
 }
 
-- (void)updateWithCoreContact:(ISUABCoreContact *)coreContact
-                    inContext:(NSManagedObjectContext *)context
+- (void)updateWithCoreContact:(RHPerson *)coreContact
+                    context:(NSManagedObjectContext *)context
 {
-    [self _updateBaseInfoWithCoreContact:coreContact context:context];
+    [self _updateBaseInfoWithCoreContact:coreContact];
     
     [self _updatePhonesWithCoreContact:coreContact context:context];
     
@@ -119,19 +152,19 @@
     
     [self _updateEmailsWithCoreContact:coreContact context:context];
     
-    [self _updateRelatedPeopleWithCoreContact:coreContact context:context];
+    [self _updateRelatedNamesWithCoreContact:coreContact context:context];
     
     [self _updateUrlsWithCoreContact:coreContact context:context];
     
     [self _updateAddressesWithCoreContact:coreContact context:context];
     
-    [self _updateSMSWithCoreContact:coreContact context:context];
+    [self _updateSocialProfilesWithCoreContact:coreContact context:context];
 }
 
 
 #pragma mark - Private methods
 
-- (void)_updateBaseInfoWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
+- (void)_updateBaseInfoWithCoreContact:(RHPerson *)coreContact
 {
     NSString *newFirstName = coreContact.firstName;
     if (newFirstName && ![self.firstName isEqualToString:newFirstName]) {
@@ -145,9 +178,9 @@
     if (newMiddleName && ![self.middleName isEqualToString:newMiddleName]) {
         self.middleName = newMiddleName;
     }
-    NSString *newNickName = coreContact.nickName;
-    if (newNickName && ![self.nickName isEqualToString:newNickName]) {
-        self.nickName = newNickName;
+    NSString *newNickName = coreContact.nickname;
+    if (newNickName && ![self.nickname isEqualToString:newNickName]) {
+        self.nickname = newNickName;
     }
     NSString *newSuffix = coreContact.suffix;
     if (newSuffix && ![self.suffix isEqualToString:newSuffix]) {
@@ -189,18 +222,41 @@
     if (newNote && ![self.note isEqualToString:newNote]) {
         self.note = newNote;
     }
-    NSString *newAvatarDataKey = coreContact.avatarDataKey;
-    if (newAvatarDataKey && ![self.avatarDataKey isEqualToString:newAvatarDataKey]) {
-        self.avatarDataKey = newAvatarDataKey;
-    }
 }
 
-- (void)_updatePhonesWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
+- (void)_updateAvatarWithCoreContact:(RHPerson *)coreContact
 {
-    for (ISUPhone *abPhone in coreContact.phones) {
+    NSString *originalImageKey = nil, *thumbnailKey = nil;
+    if ([coreContact hasImage]) {
+        UIImage *originlImage = [coreContact originalImage];
+        if (originlImage) {
+            originalImageKey = [ISUUtility keyForOriginalImageOfPerson:coreContact];
+            [[TMCache sharedCache] setObject:originlImage forKey:originalImageKey block:nil];
+        }
+        
+        UIImage *thumbnailImage = [coreContact thumbnail];
+        if (thumbnailImage) {
+            thumbnailKey = [ISUUtility keyForThumbnailOfPerson:coreContact];
+            [[TMCache sharedCache] setObject:thumbnailImage forKey:thumbnailKey block:nil];
+        }
+    }
+    self.originalImageKey = originalImageKey;
+    self.thumbnailKey = thumbnailKey;
+}
+
+- (void)_updateOriginalPropertis:(NSSet *)originalPropertis
+                withNewPropertis:(RHMultiValue *)newPropertis
+               usingProcessBlock:(void(^)(id label, id value))block
+{
+    NSUInteger count = newPropertis.count;
+    for (NSUInteger dateIndex = 0; dateIndex < count; dateIndex++) {
         BOOL found = NO;
-        for (ISUPhone *phone in [self.phones allObjects]) {
-            if ([phone.label isEqualToString:abPhone.label] && [phone.value isEqualToString:abPhone.value]) {
+        id label = [newPropertis labelAtIndex:dateIndex];
+        id value = [newPropertis valueAtIndex:dateIndex];
+        for (id property in originalPropertis) {
+            id propertyLabbel = [property valueForKey:@"label"];
+            id propertyValue = [property valueForKey:@"value"];
+            if ((label == nil || [propertyLabbel isEqual:label]) && [propertyValue isEqual:value]) {
                 found = YES;
                 break;
             }
@@ -210,151 +266,98 @@
             continue; // had existed and just continue to next one
         }
         
+        if (block) {
+            block(label, value);
+        }
+    }
+}
+
+- (void)_updatePhonesWithCoreContact:(RHPerson *)coreContact context:(NSManagedObjectContext *)context
+{
+    RHMultiStringValue *phoneNumbers = coreContact.phoneNumbers;
+    [self _updateOriginalPropertis:self.phones withNewPropertis:phoneNumbers usingProcessBlock:^(id label, id value) {
         ISUPhone *newPhone = [[ISUPhone alloc] initWithContext:context];
-        newPhone.label = abPhone.label;
-        newPhone.value = abPhone.value;
+        newPhone.label = label;
+        newPhone.value = value;
         
         newPhone.contact = self;
-    }
+    }];
 }
 
-- (void)_updateEmailsWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
+- (void)_updateEmailsWithCoreContact:(RHPerson *)coreContact context:(NSManagedObjectContext *)context
 {
-    for (ISUEmail *abEmail in coreContact.emails) {
-        BOOL found = NO;
-        for (ISUEmail *email in [self.emails allObjects]) {
-            if ([email.label isEqualToString:abEmail.label] && [email.value isEqualToString:abEmail.value]) {
-                found = YES;
-                break;
-            }
-        }
-        
-        if (found) {
-            continue; // had existed and just continue to next one
-        }
-        
+    RHMultiStringValue *emails = coreContact.emails;
+    [self _updateOriginalPropertis:self.emails withNewPropertis:emails usingProcessBlock:^(id label, id value) {
         ISUEmail *newEmail = [[ISUEmail alloc] initWithContext:context];
-        newEmail.label = abEmail.label;
-        newEmail.value = abEmail.value;
+        newEmail.label = label;
+        newEmail.value = value;
         
         newEmail.contact = self;
-    }
+    }];
 }
 
-- (void)_updateDatesWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
+- (void)_updateDatesWithCoreContact:(RHPerson *)coreContact context:(NSManagedObjectContext *)context
 {
-    for (ISUDate *abDate in coreContact.dates) {
-        BOOL found = NO;
-        for (ISUDate *date in [self.dates allObjects]) {
-            if ([date.label isEqualToString:abDate.label] && [date.value isEqualToDate:abDate.value]) {
-                found = YES;
-                break;
-            }
-        }
-        
-        if (found) {
-            continue; // had existed and just continue to next one
-        }
-        
+    RHMultiDateTimeValue *dates = coreContact.dates;
+    [self _updateOriginalPropertis:self.dates withNewPropertis:dates usingProcessBlock:^(id label, id value) {
         ISUDate *newDate = [[ISUDate alloc] initWithContext:context];
-        newDate.label = abDate.label;
-        newDate.value = abDate.value;
+        newDate.label = label;
+        newDate.value = value;
         
         newDate.contact = self;
-    }
+    }];
 }
 
-- (void)_updateRelatedPeopleWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
+- (void)_updateRelatedNamesWithCoreContact:(RHPerson *)coreContact context:(NSManagedObjectContext *)context
 {
-    for (ISURelatedName *abPerson in coreContact.relatedNames) {
-        BOOL found = NO;
-        for (ISURelatedName *relatedPerson in [self.relatedNames allObjects]) {
-            if ([relatedPerson.label isEqualToString:abPerson.label] && [relatedPerson.value isEqualToString:abPerson.value]) {
-                found = YES;
-                break;
-            }
-        }
-        
-        if (found) {
-            continue; // had existed and just continue to next one
-        }
-        
+    RHMultiStringValue *relatedNames = coreContact.relatedNames;
+    [self _updateOriginalPropertis:self.relatedNames withNewPropertis:relatedNames usingProcessBlock:^(id label, id value) {
         ISURelatedName *newOne = [[ISURelatedName alloc] initWithContext:context];
-        newOne.label = abPerson.label;
-        newOne.value = abPerson.value;
+        newOne.label = label;
+        newOne.value = value;
         
         newOne.contact = self;
-    }
+    }];
 }
 
-- (void)_updateUrlsWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
+- (void)_updateUrlsWithCoreContact:(RHPerson *)coreContact context:(NSManagedObjectContext *)context
 {
-    for (ISUUrl *abUrl in coreContact.urls) {
-        BOOL found = NO;
-        for (ISUUrl *url in [self.urls allObjects]) {
-            if ([url.label isEqualToString:abUrl.label] && [url.value isEqualToString:abUrl.value]) {
-                found = YES;
-                break;
-            }
-        }
-        
-        if (found) {
-            continue; // had existed and just continue to next one
-        }
-        
+    RHMultiStringValue *urls = coreContact.urls;
+    [self _updateOriginalPropertis:self.urls withNewPropertis:urls usingProcessBlock:^(id label, id value) {
         ISUUrl *newOne = [[ISUUrl alloc] initWithContext:context];
-        newOne.label = abUrl.label;
-        newOne.value = abUrl.value;
+        newOne.label = label;
+        newOne.value = value;
         
         newOne.contact = self;
-    }
+    }];
 }
 
-- (void)_updateSMSWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
+- (void)_updateSocialProfilesWithCoreContact:(RHPerson *)coreContact context:(NSManagedObjectContext *)context
 {
-    for (ISUSocialProfile *abSms in coreContact.socialProfiles) {
-        BOOL found = NO;
-        for (ISUSocialProfile *sms in [self.socialProfiles allObjects]) {
-            if ([sms.service isEqualToString:abSms.service] && [sms.username isEqualToString:abSms.username]) {
-                found = YES;
-                break;
-            }
-        }
-        
-        if (found) {
-            continue; // had existed and just continue to next one
-        }
-        
-        // none existed
+    RHMultiDictionaryValue *socailProfiles = coreContact.socialProfiles;
+    [self _updateOriginalPropertis:self.socialProfiles withNewPropertis:socailProfiles usingProcessBlock:^(id label, id value) {
         ISUSocialProfile *newOne = [[ISUSocialProfile alloc] initWithContext:context];
-        newOne.service = abSms.service;
-        newOne.username = abSms.username;
-        newOne.url = abSms.url;
-        newOne.userIdentifier = abSms.userIdentifier;
+        newOne.value = value;
         
         newOne.contact = self;
-    }
+    }];
 }
 
-- (void)_updateAddressesWithCoreContact:(ISUABCoreContact *)coreContact context:(NSManagedObjectContext *)context
+- (void)_updateAddressesWithCoreContact:(RHPerson *)coreContact context:(NSManagedObjectContext *)context
 {
-    NSArray *allAddresses = [self.addresses allObjects];
-    for (ISUAddress *abAddress in coreContact.addresses) {
-        BOOL found = NO;
-        for (ISUAddress *address in allAddresses) {
-            if ([address isEqual:abAddress]) {
-                found = YES;
-                break;
-            }
-        }
+    RHMultiDictionaryValue *addresses = coreContact.addresses;
+    [self _updateOriginalPropertis:self.addresses withNewPropertis:addresses usingProcessBlock:^(id label, id value) {
+        ISUAddress *newOne = [[ISUAddress alloc] initWithContext:context];
+        newOne.value = value;
         
-        if (found) {
-            continue; // had existed and just continue to next one
-        }
-        
-        ISUAddress *newOne = [[ISUAddress alloc] initWithAddress:abAddress context:context];
         newOne.contact = self;
-    }
+    }];
+}
+
+- (BOOL)removeSelfFromAddressBook:(NSError **)error
+{
+    ISUAddressBookUtility *addressBookUtility = [ISUAddressBookUtility sharedInstance];
+    return [addressBookUtility removeContactFromAddressBookWithRecordId:self.recordId error:error];
 }
 
 #pragma make - SSManagedObject

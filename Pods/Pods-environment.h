@@ -60,6 +60,12 @@
 #define COCOAPODS_VERSION_MINOR_PonyDebugger 3
 #define COCOAPODS_VERSION_PATCH_PonyDebugger 0
 
+// RHAddressBook
+#define COCOAPODS_POD_AVAILABLE_RHAddressBook
+#define COCOAPODS_VERSION_MAJOR_RHAddressBook 1
+#define COCOAPODS_VERSION_MINOR_RHAddressBook 0
+#define COCOAPODS_VERSION_PATCH_RHAddressBook 2
+
 // Reveal-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Reveal_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_Reveal_iOS_SDK 0
@@ -89,10 +95,4 @@
 #define COCOAPODS_VERSION_MAJOR_WSCoachMarksView 0
 #define COCOAPODS_VERSION_MINOR_WSCoachMarksView 2
 #define COCOAPODS_VERSION_PATCH_WSCoachMarksView 0
-
-// iPhoneContacts
-#define COCOAPODS_POD_AVAILABLE_iPhoneContacts
-#define COCOAPODS_VERSION_MAJOR_iPhoneContacts 0
-#define COCOAPODS_VERSION_MINOR_iPhoneContacts 0
-#define COCOAPODS_VERSION_PATCH_iPhoneContacts 1
 

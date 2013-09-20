@@ -10,17 +10,7 @@
 #import "ISUGroup+function.h"
 #import "ISUAddressBookUtility.h"
 #import "ISUPersistentManager.h"
-
-@interface ISUGroupTest : SenTestCase
-
-@property (nonatomic, strong) NSPersistentStoreCoordinator *storeCoordinator;
-@property (nonatomic, strong) NSManagedObjectContext *context;
-
-@end
-
-@implementation ISUGroupTest
-
-@end
+#import "ISUTestUtility.h"
 
 SPEC_BEGIN(ISUGroupTests)
 
@@ -29,74 +19,161 @@ describe(@"ISUGroupTest", ^{
     registerMatchers(@"ISU"); // Registers BGTangentMatcher, BGConvexMatcher, etc.
     
     context(@"Debug", ^{
-        __block ISUGroupTest *groupTest = nil;
-        
+        __block NSPersistentStoreCoordinator *storeCoordinator = nil;
+        __block NSManagedObjectContext *context = nil;
+        __block ISUAddressBookUtility *addressBookUtilityTest = nil;
+
         beforeAll(^{ // Occurs once
-            groupTest = [[ISUGroupTest alloc] init];
+            addressBookUtilityTest = [ISUAddressBookUtility sharedInstance];
         });
         
         afterAll(^{ // Occurs once
-            groupTest = nil;
         });
         
         beforeEach(^{ // Occurs before each enclosed "it"
-            ISUPersistentManager *persistentManager = [[ISUPersistentManager alloc] init];
-            groupTest.storeCoordinator = persistentManager.persistentStoreCoordinator;
+            storeCoordinator = [ISUPersistentManager persistentStoreCoordinator];
             
             NSError *error = nil;
-            NSPersistentStore *store = [groupTest.storeCoordinator addPersistentStoreWithType:NSInMemoryStoreType
+            NSPersistentStore *store = [storeCoordinator addPersistentStoreWithType:NSInMemoryStoreType
                                                                                  configuration:nil
                                                                                            URL:nil
                                                                                        options:nil
                                                                                          error:&error];
             [[store should] beNonNil];
             
-            groupTest.context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-            groupTest.context.persistentStoreCoordinator = groupTest.storeCoordinator;
+            context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+            context.persistentStoreCoordinator = storeCoordinator;
         });
         
         afterEach(^{ // Occurs after each enclosed "it"
+            context = nil;
+            storeCoordinator = nil;
         });
         
         it(@"Test findOrCreateGroupWithRecordId:inContext:", ^{
-            ISUGroup *group = [ISUGroup findOrCreateGroupWithRecordId:@1 inContext:groupTest.context];
+            ISUGroup *group = [ISUGroup findOrCreateGroupWithRecordId:1 context:context];
             
             [[group should] beNonNil];
-            [[group.recordId should] equal:@1];
+            [[theValue(group.recordId) should] equal:@1];
             
             group.name = @"justin";
-            BOOL success = [groupTest.context save:nil];
+            BOOL success = [context save:nil];
             
             [[theValue(success) should] beTrue];
             
-            group = [ISUGroup findOrCreateGroupWithRecordId:@1 inContext:groupTest.context];
+            group = [ISUGroup findOrCreateGroupWithRecordId:1 context:context];
             
             [[group should] beNonNil];
             
-            [[group.recordId should] equal:@1];
+            [[theValue(group.recordId) should] equal:@1];
             [[group.name should] equal:@"justin"];
         });
         
         it(@"Test updateWithCoreGroup:inContext:", ^{
-            ISUGroup *group = [ISUGroup findOrCreateGroupWithRecordId:@1 inContext:groupTest.context];
+            ISUGroup *group = [ISUGroup findOrCreateGroupWithRecordId:1 context:context];
             
             [[group should] beNonNil];
-            [[group.recordId should] equal:@1];
+            [[theValue(group.recordId) should] equal:@1];
             
-            ISUABCoreGroup *coreGroup = [[ISUABCoreGroup alloc] init];
+            group.name = @"Jiege";
+            
+            BOOL success = NO;
+            NSError *error;
+            success = [addressBookUtilityTest addGroupIntoAddressBookWithGroup:group eror:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            
+            success = [addressBookUtilityTest saveWithError:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            
+            RHGroup *coreGroup = [addressBookUtilityTest groupWithRecordId:group.recordId];
+            [[coreGroup should] beNonNil];
             coreGroup.name = @"hello";
             
-            [group updateWithCoreGroup:coreGroup inContext:groupTest.context];
-            
+            [group updateWithCoreGroup:coreGroup context:context];
             [[group.name should] equal:@"hello"];
+            
+            success = [addressBookUtilityTest removeGroupFromAddressBookWithRecordId:group.recordId error:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            
+            success = [addressBookUtilityTest saveWithError:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
         });
         
         it(@"Test allGroupInContext:", ^{
-            [ISUGroup findOrCreateGroupWithRecordId:@1 inContext:groupTest.context];
+            [ISUGroup findOrCreateGroupWithRecordId:1 context:context];
             
-            NSArray *groups = [ISUGroup allGroupInContext:groupTest.context];
+            NSArray *groups = [ISUGroup allGroupInContext:context];
             [[groups should] beNonNil];
             [[@(groups.count) should] beGreaterThan:@0];
+        });
+        
+        it(@"Test addMember and removeMember", ^{
+            NSError *error;
+            BOOL success = NO;
+            ISUContact *contact = [ISUTestUtility fakeContactWithContext:context];
+            success = [addressBookUtilityTest addContactIntoAddressBookWithCotnact:contact error:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            
+            ISUGroup *group = [ISUTestUtility fakeGroupWithContext:context];
+            success = [addressBookUtilityTest addGroupIntoAddressBookWithGroup:group eror:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            
+            success = [addressBookUtilityTest saveWithError:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            
+            // Add member
+            NSInteger memberCountBefore = group.members.count;
+            success = [group addMember:contact withError:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            NSInteger memberCountAfter = group.members.count;
+            
+            [[theValue(memberCountAfter) should] equal:@(memberCountBefore + 1)];
+            
+            success = [addressBookUtilityTest saveWithError:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            
+            RHGroup *coreGroup = [addressBookUtilityTest groupWithRecordId:group.recordId];
+            [[coreGroup should] beNonNil];
+            memberCountAfter = coreGroup.members.count;
+            [[theValue(coreGroup.members.count) should] equal:@(memberCountBefore + 1)];
+            
+            // Remove member
+            memberCountBefore = group.members.count;
+            success = [group removeMember:contact withError:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            memberCountAfter = group.members.count;
+            
+            [[theValue(memberCountAfter) should] equal:@(memberCountBefore - 1)];
+            
+            success = [addressBookUtilityTest saveWithError:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            
+            coreGroup = [addressBookUtilityTest groupWithRecordId:group.recordId];
+            [[coreGroup should] beNonNil];
+            [[theValue(coreGroup.members.count) should] equal:@(memberCountAfter)];
+            
+            success = [addressBookUtilityTest removeContactFromAddressBookWithRecordId:contact.recordId error:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            
+            success = [addressBookUtilityTest removeGroupFromAddressBookWithRecordId:group.recordId error:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            
+            success = [addressBookUtilityTest saveWithError:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
         });
     });
 });
