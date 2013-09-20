@@ -294,11 +294,8 @@ describe(@"ISUAddressBookUtilityTest", ^{
         it(@"Test fetchMemberInfosInGroupWithRecordId:processBlock:", ^{
             ISUContact *contact = [ISUTestUtility fakeContactWithContext:context];
             NSError *error;
-            BOOL success = NO;
-            success = [addressBookUtilityTest addContactIntoAddressBookWithCotnact:contact error:&error];
-            BOOL hasUnSavedChanges = addressBookUtilityTest.hasUnsavedChanges;
+            BOOL success = [addressBookUtilityTest addContactIntoAddressBookWithCotnact:contact error:&error];
             [[theValue(success) should] beTrue];
-            [[theValue(addressBookUtilityTest.hasUnsavedChanges) should] beTrue];
         });
         
         it(@"Test fetchMemberInfosInGroupWithRecordId:processBlock:", ^{
