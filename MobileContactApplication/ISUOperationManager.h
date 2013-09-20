@@ -8,19 +8,19 @@
 
 #import "ISUAbstractOperation.h"
 
-@interface ISUMultiThreadingManager : NSObject
+@interface ISUOperationManager : NSObject
 
 + (id)sharedInstance;
 
 - (void)addOperation:(ISUAbstractOperation *)operation
         withPriority:(NSOperationQueuePriority)priority;
 
+- (BOOL)taskIsRuning;
+
 - (void)cancelAllOperations;
 
-- (void)suspendOperations;
+- (void)suspendAllOperations;
 
-- (void)suspendOperationsWithTimeDelay:(NSInteger)delay;
-
-- (void)resumeOperations;
+- (void)resumeAllOperations;
 
 @end

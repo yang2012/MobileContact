@@ -7,7 +7,10 @@
 //
 
 #import "RHPerson.h"
+#import "ISUContact+function.h"
 
 @interface RHPerson (function)
+
+- (BOOL)updateInfoFromContact:(ISUContact *)contact;
 
 @end

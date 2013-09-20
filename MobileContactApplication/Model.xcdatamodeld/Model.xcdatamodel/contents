@@ -11,7 +11,6 @@
         <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ISUContact" inverseName="addresses" inverseEntity="ISUContact" syncable="YES"/>
     </entity>
     <entity name="ISUContact" representedClassName="ISUContact" syncable="YES">
-        <attribute name="avatarDataKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="contactName" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
         <attribute name="department" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,12 +22,14 @@
         <attribute name="lastNamePhonetic" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="middleName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="middleNamePhonetic" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="organization" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="originalImageKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="prefix" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recordId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="suffix" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnailKey" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="addresses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ISUAddress" inverseName="contact" inverseEntity="ISUAddress" syncable="YES"/>
         <relationship name="dates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ISUDate" inverseName="contact" inverseEntity="ISUDate" syncable="YES"/>
         <relationship name="emails" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ISUEmail" inverseName="contact" inverseEntity="ISUEmail" syncable="YES"/>
@@ -87,16 +88,16 @@
         <relationship name="contactSources" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ISUContactSource" inverseName="user" inverseEntity="ISUContactSource" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ISUAddress" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ISUContact" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ISUContactSource" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ISUDate" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ISUEmail" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ISUGroup" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ISUPhone" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ISURelatedName" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ISUSocialProfile" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ISUUrl" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ISUUser" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ISUAddress" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="ISUContact" positionX="0" positionY="0" width="128" height="450"/>
+        <element name="ISUContactSource" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="ISUDate" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="ISUEmail" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="ISUGroup" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="ISUPhone" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="ISURelatedName" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="ISUSocialProfile" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="ISUUrl" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="ISUUser" positionX="0" positionY="0" width="128" height="75"/>
     </elements>
 </model>

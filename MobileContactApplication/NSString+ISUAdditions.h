@@ -6,11 +6,10 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface NSString (ChineseCharacter)
+@interface NSString (ISUAdditions)
 
 + (NSString *) pinyinFromChiniseString:(NSString *)string;
 + (char) sortSectionTitle:(NSString *)string;
+- (NSString *)normalizedSearchString;
 
 @end

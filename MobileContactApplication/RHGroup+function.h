@@ -7,7 +7,10 @@
 //
 
 #import "RHGroup.h"
+#import "ISUGroup+function.h"
 
 @interface RHGroup (function)
+
+- (void)updateInfoFromGroup:(ISUGroup *)group;
 
 @end

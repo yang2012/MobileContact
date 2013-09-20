@@ -10,4 +10,12 @@
 
 @implementation RHGroup (function)
 
+- (void)updateInfoFromGroup:(ISUGroup *)group
+{
+    NSString *name = group.name;
+    if (name && ![self.name isEqualToString:name]) {
+        self.name = name;
+    }
+}
+
 @end

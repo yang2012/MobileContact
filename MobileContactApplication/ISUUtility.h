@@ -6,10 +6,11 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import "ABPerson.h"
+#import "RHPerson+function.h"
 
 @interface ISUUtility : NSObject
 
-+ (NSString *)keyForAvatarOfPerson:(ABPerson *)person;
++ (NSString *)keyForOriginalImageOfPerson:(RHPerson *)person;
++ (NSString *)keyForThumbnailOfPerson:(RHPerson *)person;
 
 @end

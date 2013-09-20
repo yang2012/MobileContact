@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import "NSString+ChineseCharacter.h"
+#import "NSString+ISUAdditions.h"
 
 NSString *FindLetter(int nCode) {
 	NSString *strValue = @"";
@@ -5863,6 +5863,15 @@ char pinyinFirstLetter(unsigned short hanzi) {
 			cLetter -= 32;
 	}
 	return cLetter;
+}
+
+- (NSString *)normalizedSearchString;
+{
+    // C.f. <http://userguide.icu-project.org/transforms>
+    NSString *mutableName = [self mutableCopy];
+    CFStringTransform((__bridge CFMutableStringRef) mutableName, NULL,
+                      (__bridge CFStringRef)@"NFD; [:Nonspacing Mark:] Remove; Upper(); NFC", NO);
+    return mutableName;
 }
 
 @end

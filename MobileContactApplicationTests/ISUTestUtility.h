@@ -6,8 +6,14 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ISUContact+function.h"
+#import "ISUGroup+function.h"
+#import "ISUContactSource+function.h"
 
-@interface ISUUtility : NSObject
+@interface ISUTestUtility : NSObject
+
++ (ISUContact *)fakeContactWithContext:(NSManagedObjectContext *)context;
++ (ISUGroup *)fakeGroupWithContext:(NSManagedObjectContext *)context;
++ (ISUContactSource *)fakeContactSourceWithContext:(NSManagedObjectContext *)context;
 
 @end

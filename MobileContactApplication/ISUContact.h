@@ -6,19 +6,18 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "SSManagedObject.h"
 
 @class ISUAddress, ISUDate, ISUEmail, ISUGroup, ISUPhone, ISURelatedName, ISUSocialProfile, ISUUrl;
 
-@interface ISUContact : NSManagedObject
+@interface ISUContact : SSManagedObject
 
-@property (nonatomic) NSTimeInterval birthday;
+@property (nonatomic, retain) NSDate * birthday;
 @property (nonatomic, retain) NSString * contactName;
 @property (nonatomic, retain) NSString * department;
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * firstNamePhonetic;
-@property (nonatomic) int32_t frequence;
+@property (nonatomic) NSInteger frequence;
 @property (nonatomic, retain) NSString * jobTitle;
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSString * lastNamePhonetic;
@@ -29,7 +28,7 @@
 @property (nonatomic, retain) NSString * organization;
 @property (nonatomic, retain) NSString * originalImageKey;
 @property (nonatomic, retain) NSString * prefix;
-@property (nonatomic) int32_t recordId;
+@property (nonatomic) NSInteger recordId;
 @property (nonatomic, retain) NSString * suffix;
 @property (nonatomic, retain) NSString * thumbnailKey;
 @property (nonatomic, retain) NSSet *addresses;

@@ -8,96 +8,16 @@
 
 #import "Kiwi.h"
 #import "ISUAddressBookUtility.h"
-#import "ISUEmail.h"
-#import "ISUUrl.h"
-#import "ISUDate.h"
-#import "ISUAddress.h"
-#import "ISURelatedName.h"
-#import "ISUSocialProfile.h"
-#import "ISUPhone.h"
 #import "ISUContact+function.h"
+#import "ISUTestUtility.h"
 #import "ISUPersistentManager.h"
+#import "ISUEmail.h"
+#import "ISUAddress+function.h"
+#import "ISUDate.h"
+#import "ISUUrl.h"
+#import "ISURelatedName.h"
+#import "ISUPhone.h"
 #import "AddressBook.h"
-
-
-@interface ISUContactTest : NSObject
-
-+ (ISUContact *)fakeContactWithContext:(NSManagedObjectContext *)context;
-
-@end
-
-@implementation ISUContactTest
-
-+ (ISUContact *)fakeContactWithContext:(NSManagedObjectContext *)context
-{
-    ISUContact *contact = [[ISUContact alloc] initWithContext:context];
-    contact.firstName = @"Hello";
-    contact.lastName = @"World";
-    contact.middleName = @"Big";
-    contact.firstNamePhonetic = @"hello";
-    contact.lastNamePhonetic = @"world";
-    contact.middleNamePhonetic = @"big";
-    contact.nickname = @"jiege";
-    contact.note = @"I'm jiege";
-    contact.jobTitle = @"Engineer";
-    contact.department = @"Software Engineering";
-    contact.organization = @"Nanjing University";
-    contact.birthday = [NSDate date];
-    contact.originalImageKey = @"jiage/1-jiege-originalimage";
-    contact.thumbnailKey = @"jiege/1-jiege-thumbnail";
-    contact.prefix = @"Mr.";
-    contact.suffix = @"lala";
-    contact.frequence = 13;
-    
-    ISUEmail *email1 = [[ISUEmail alloc] initWithContext:context];
-    email1.label = @"email1";
-    email1.value = @"yyj@helloworld.com";
-    ISUEmail *email2 = [[ISUEmail alloc] initWithContext:context];
-    email2.label = @"email2";
-    email2.value = @"yyj2@helloworld.com";
-    contact.emails = [NSSet setWithObjects:email1, email2, nil];
-    
-    ISUUrl *url =  [[ISUUrl alloc] initWithContext:context];
-    url.label = @"url";
-    url.value = @"192.168.1.1";
-    contact.urls = [NSSet setWithObject:url];
-    
-    ISUPhone *phone = [[ISUPhone alloc] initWithContext:context];
-    phone.label = @"home";
-    phone.value = @"123123123";
-    contact.phones = [NSSet setWithObject:phone];
-    
-    ISURelatedName *relatedPeople = [[ISURelatedName alloc] initWithContext:context];
-    relatedPeople.label = @"Brother";
-    relatedPeople.value = @"Jiege";
-    contact.relatedNames = [NSSet setWithObject:relatedPeople];
-    
-    ISUDate *date = [[ISUDate alloc] initWithContext:context];
-    date.label = @"University";
-    date.value = [NSDate date];
-    contact.dates = [NSSet setWithObject:date];
-    
-    ISUSocialProfile *sms = [[ISUSocialProfile alloc] initWithContext:context];
-    sms.service = @"Weibo";
-    sms.username = @"Love fly";
-    sms.url = @"weibo/weibao";
-    sms.userIdentifier = @"http://weibo/weibao";
-    contact.socialProfiles = [NSSet setWithObject:sms];
-    
-    ISUAddress *address = [[ISUAddress alloc] initWithContext:context];
-    address.label = @"Home";
-    address.street = @"Silver River";
-    address.state = @"CN";
-    address.country = @"China";
-    address.countryCode = @"+86";
-    address.city = @"Zhanjiang";
-    address.zip = @"unknown";
-    contact.addresses = [NSSet setWithObject:address];
-    
-    return contact;
-}
-
-@end
 
 SPEC_BEGIN(ISUAddressBookUtilityTests)
 
@@ -107,19 +27,15 @@ describe(@"ISUAddressBookUtilityTest", ^{
     
     context(@"Debug", ^{
         __block ISUAddressBookUtility *addressBookUtilityTest = nil;
-        __block ISUContactTest *personTest;
         __block NSPersistentStoreCoordinator *storeCoordinator;
         __block NSManagedObjectContext *context;
 
         beforeAll(^{ // Occurs once
             addressBookUtilityTest = [[ISUAddressBookUtility alloc] init];
-            personTest = [[ISUContactTest alloc] init];
-            
         });
         
         afterAll(^{ // Occurs once
             addressBookUtilityTest = nil;
-            personTest = nil;
         });
         
         beforeEach(^{ // Occurs before each enclosed "it"
@@ -168,7 +84,7 @@ describe(@"ISUAddressBookUtilityTest", ^{
         });
         
         it(@"Test addContactIntoAddressBookWithCotnact:error: and removeContactFromAddressBookWithRecordId:error:", ^{
-            ISUContact *fakeContact = [ISUContactTest fakeContactWithContext:context];
+            ISUContact *fakeContact = [ISUTestUtility fakeContactWithContext:context];
             
             __block NSNumber *result = nil;
             [addressBookUtilityTest fetchSourceInfosInAddressBookWithProcessBlock:^BOOL(RHSource *coreSource) {
@@ -227,10 +143,7 @@ describe(@"ISUAddressBookUtilityTest", ^{
             NSError *error;
             BOOL success = NO;
             
-            NSString *groupName = @"Jiege College oh yeah";
-            
-            ISUGroup *group = [[ISUGroup alloc] initWithContext:context];
-            group.name = groupName;
+            ISUGroup *group = [ISUTestUtility fakeGroupWithContext:context];
             success = [addressBookUtilityTest addGroupIntoAddressBookWithGroup:group eror:&error];
             [[theValue(success) should] beTrue];
             [[error should] beNil];
@@ -264,7 +177,7 @@ describe(@"ISUAddressBookUtilityTest", ^{
         it(@"Test updateContactInAddressBookWithContact:error:", ^{
             NSError *error;
             BOOL success = NO;
-            ISUContact *fakeContact = [ISUContactTest fakeContactWithContext:context];
+            ISUContact *fakeContact = [ISUTestUtility fakeContactWithContext:context];
             success = [addressBookUtilityTest addContactIntoAddressBookWithCotnact:fakeContact error:&error];
             [[theValue(success) should] beTrue];
             [[error should] beNil];
@@ -287,6 +200,55 @@ describe(@"ISUAddressBookUtilityTest", ^{
             
             [[theValue(emailCountAfter) should] equal:theValue(emailCountBefore + 1)];
             
+            NSInteger addressCountBefore = fakeContact.addresses.count;
+            ISUAddress *newAddress = [[ISUAddress alloc] initWithContext:context];
+            newAddress.label = @"home";
+            newAddress.street = @"gulou";
+            newAddress.city = @"Nanjing";
+            newAddress.country = @"China";
+            newAddress.countryCode = @"+86";
+            newAddress.zip = @"210093";
+            [fakeContact.mutableAddresses addObject:newAddress];
+            NSInteger addressCountAfter = fakeContact.addresses.count;
+            
+            [[theValue(addressCountAfter) should] equal:theValue(addressCountBefore + 1)];
+
+            NSInteger phoneCountBefore = fakeContact.phones.count;
+            ISUPhone *newPhone = [[ISUPhone alloc] initWithContext:context];
+            newPhone.label = @"home";
+            newPhone.value = @"123123";
+            [fakeContact.mutablePhones addObject:newPhone];
+            NSInteger phoneCountAfter = fakeContact.phones.count;
+            
+            [[theValue(phoneCountAfter) should] equal:theValue(phoneCountBefore + 1)];
+            
+            NSInteger urlCountBefore = fakeContact.urls.count;
+            ISUUrl *newUrl = [[ISUUrl alloc] initWithContext:context];
+            newUrl.label = @"homepage";
+            newUrl.value = @"http://123213.com/1231";
+            [fakeContact.mutableUrls addObject:newUrl];
+            NSInteger urlCountAfter = fakeContact.urls.count;
+            
+            [[theValue(urlCountAfter) should] equal:theValue(urlCountBefore + 1)];
+
+            NSInteger relatedNamesBefore = fakeContact.relatedNames.count;
+            ISURelatedName *newRelatedName = [[ISURelatedName alloc] initWithContext:context];
+            newRelatedName.label = @"father";
+            newRelatedName.value = @"杨过";
+            [fakeContact.mutableRelatedNames addObject:newRelatedName];
+            NSInteger relatedNameAfter = fakeContact.relatedNames.count;
+            
+            [[theValue(relatedNameAfter) should] equal:theValue(relatedNamesBefore + 1)];
+            
+            NSInteger dateCountBefore = fakeContact.dates.count;
+            ISUDate *newDate = [[ISUDate alloc] initWithContext:context];
+            newDate.label = @"Birthday";
+            newDate.value = [NSDate date];
+            [fakeContact.mutableDates addObject:newDate];
+            NSInteger dateCountAfter = fakeContact.dates.count;
+            
+            [[theValue(dateCountAfter) should] equal:theValue(dateCountBefore + 1)];
+
             success = [addressBookUtilityTest updateContactInAddressBookWithContact:fakeContact error:&error];
             [[theValue(success) should] beTrue];
             [[error should] beNil];
@@ -300,6 +262,11 @@ describe(@"ISUAddressBookUtilityTest", ^{
             [[person.firstName should] equal:newFirstName];
             [[person.lastName should] equal:newLastName];
             [[theValue(person.emails.count) should] equal:theValue(emailCountAfter)];
+            [[theValue(person.addresses.count) should] equal:theValue(addressCountAfter)];
+            [[theValue(person.dates.count) should] equal:theValue(dateCountAfter)];
+            [[theValue(person.urls.count) should] equal:theValue(urlCountAfter)];
+            [[theValue(person.phoneNumbers.count) should] equal:theValue(phoneCountAfter)];
+            [[theValue(person.relatedNames.count) should] equal:theValue(relatedNameAfter)];
             
             success = [addressBookUtilityTest removeContactFromAddressBookWithRecordId:person.recordID error:&error];
             [[theValue(success) should] beTrue];
@@ -325,6 +292,16 @@ describe(@"ISUAddressBookUtilityTest", ^{
         });
         
         it(@"Test fetchMemberInfosInGroupWithRecordId:processBlock:", ^{
+            ISUContact *contact = [ISUTestUtility fakeContactWithContext:context];
+            NSError *error;
+            BOOL success = NO;
+            success = [addressBookUtilityTest addContactIntoAddressBookWithCotnact:contact error:&error];
+            BOOL hasUnSavedChanges = addressBookUtilityTest.hasUnsavedChanges;
+            [[theValue(success) should] beTrue];
+            [[theValue(addressBookUtilityTest.hasUnsavedChanges) should] beTrue];
+        });
+        
+        it(@"Test fetchMemberInfosInGroupWithRecordId:processBlock:", ^{
             __block RHPerson *contact = nil;
             __block BOOL shouldContinue = YES;
             [addressBookUtilityTest fetchSourceInfosInAddressBookWithProcessBlock:^BOOL(RHSource *coreSource) {
@@ -343,11 +320,16 @@ describe(@"ISUAddressBookUtilityTest", ^{
             [[expectFutureValue(contact) shouldEventuallyBeforeTimingOutAfter(2.0)] beNonNil];
         });
         
-        it(@"Test ", ^{
+        it(@"Test addContact and removeContact", ^{
             NSError *error;
             BOOL success = NO;
-            ISUContact *fakeContact = [ISUContactTest fakeContactWithContext:context];
+            ISUContact *fakeContact = [ISUTestUtility fakeContactWithContext:context];
             success = [addressBookUtilityTest addContactIntoAddressBookWithCotnact:fakeContact error:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            
+            ISUGroup *group = [ISUTestUtility fakeGroupWithContext:context];
+            success = [addressBookUtilityTest addGroupIntoAddressBookWithGroup:group eror:&error];
             [[theValue(success) should] beTrue];
             [[error should] beNil];
             
@@ -355,9 +337,40 @@ describe(@"ISUAddressBookUtilityTest", ^{
             [[theValue(success) should] beTrue];
             [[error should] beNil];
             
+            RHGroup *coreGroup = [addressBookUtilityTest groupWithRecordId:group.recordId];
+            [[coreGroup should] beNonNil];
+            NSInteger memberCountBefore = coreGroup.members.count;
+
+            success = [addressBookUtilityTest addMember:fakeContact intoGroup:group error:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
             
+            success = [addressBookUtilityTest saveWithError:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            
+            coreGroup = [addressBookUtilityTest groupWithRecordId:group.recordId];
+            [[coreGroup should] beNonNil];
+            NSInteger memberCountAfter = coreGroup.members.count;
+            [[theValue(memberCountAfter) should] equal:theValue(memberCountBefore + 1)];
+            
+            success = [addressBookUtilityTest removeMember:fakeContact fromGroup:group error:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            
+            success = [addressBookUtilityTest saveWithError:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            
+            coreGroup = [addressBookUtilityTest groupWithRecordId:group.recordId];
+            [[coreGroup should] beNonNil];
+            [[theValue(coreGroup.members.count) should] equal:@(0)];
             
             success = [addressBookUtilityTest removeContactFromAddressBookWithRecordId:fakeContact.recordId error:&error];
+            [[theValue(success) should] beTrue];
+            [[error should] beNil];
+            
+            success = [addressBookUtilityTest removeGroupFromAddressBookWithRecordId:group.recordId error:&error];
             [[theValue(success) should] beTrue];
             [[error should] beNil];
             

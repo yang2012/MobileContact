@@ -6,18 +6,16 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import "ISUMultiThreadingManager.h"
+#import "ISUOperationManager.h"
 #import "ISUOperationQueue.h"
 
-static NSTimer *_suspendTimer;
-
-@interface ISUMultiThreadingManager ()
+@interface ISUOperationManager ()
 
 @property (nonatomic, strong) ISUOperationQueue *tasksQueue;
 
 @end
 
-@implementation ISUMultiThreadingManager
+@implementation ISUOperationManager
 
 - (ISUOperationQueue *) tasksQueue {
     static dispatch_once_t onceToken;
@@ -30,10 +28,10 @@ static NSTimer *_suspendTimer;
 
 + (id)sharedInstance
 {
-    static ISUMultiThreadingManager *_multiThreadingManager;
+    static ISUOperationManager *_multiThreadingManager;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _multiThreadingManager = [[ISUMultiThreadingManager alloc] init];
+        _multiThreadingManager = [[ISUOperationManager alloc] init];
     });
     return _multiThreadingManager;
 }
@@ -50,29 +48,21 @@ static NSTimer *_suspendTimer;
     [self.tasksQueue addOperation:operation];
 }
 
+- (BOOL)taskIsRuning {
+    return ![self.tasksQueue isSuspended];
+}
+
 - (void)cancelAllOperations
 {
     [self.tasksQueue cancelAllOperations];
 }
 
 
-- (void)suspendOperations {
+- (void)suspendAllOperations {
     [self.tasksQueue suspend];
 }
 
-- (void)suspendOperationsWithTimeDelay:(NSInteger)delay {
-    if (_suspendTimer) {
-        [_suspendTimer invalidate];
-        _suspendTimer = nil;
-    }
-    _suspendTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(suspendOperations) userInfo:nil repeats:NO];
-}
-
-- (void)resumeOperations {
-    if (_suspendTimer) {
-        [_suspendTimer invalidate];
-        _suspendTimer = nil;
-    }
+- (void)resumeAllOperations {
     [self.tasksQueue resume];
 }
 

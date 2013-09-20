@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import "ISUSMS+function.h"
+#import "ISUSocialProfile+function.h"
 
 @implementation ISUSocialProfile (function)
 

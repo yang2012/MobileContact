@@ -24,17 +24,19 @@
 
 - (void)suspend {
     ISUAbstractOperation *current = self.currentOperation;
-    ISUAbstractOperation *copy = [current copy];
-    copy.queuePriority = NSOperationQueuePriorityVeryHigh;
-    //  modify update xlist folders && fix the add duplicate operation
-    if (current) {
+    if (current.isExecuting) {
         ISUAbstractOperation *copy = [current copy];
-        [current setFailureBlock:^(NSError *error) {
-            if (![self.operations containsObject:copy]) {
-                [self addOperation:copy];
-            }
-        }];
-        [current cancel];
+        copy.queuePriority = NSOperationQueuePriorityVeryHigh;
+        //  modify update xlist folders && fix the add duplicate operation
+        if (current) {
+            ISUAbstractOperation *copy = [current copy];
+            [current setFailureBlock:^(NSError *error) {
+                if (![self.operations containsObject:copy]) {
+                    [self addOperation:copy];
+                }
+            }];
+            [current cancel];
+        }
     }
     [self setSuspended:YES];
 }

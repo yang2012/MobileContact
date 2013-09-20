@@ -24,7 +24,7 @@ describe(@"ISUContactFunctionCategoryTest", ^{
         __block ISUAddressBookUtility *addressBookUtilityTest = nil;
 
         beforeAll(^{ // Occurs once
-            addressBookUtilityTest = [[ISUAddressBookUtility alloc] init];
+            addressBookUtilityTest = [ISUAddressBookUtility sharedInstance];
         });
         
         afterAll(^{ // Occurs once

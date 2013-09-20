@@ -41,7 +41,11 @@
 
 - (BOOL)saveWithError:(NSError **)error
 {
-    return [self.addressBook saveWithError:error];
+    BOOL success = YES;
+    if (self.hasUnsavedChanges) {
+        success = [self.addressBook saveWithError:error];
+    }
+    return success;
 }
 
 - (BOOL)hasUnsavedChanges
