@@ -9,21 +9,21 @@
 #import "ISUGroup+function.h"
 #import "ISUContact+function.h"
 #import "ISUContactSource+function.h"
-#import "ISUABCoreSource.h"
-#import "ISUABCoreContact.h"
-#import "ISUABCoreGroup.h"
+#import "AddressBook.h"
 
 typedef void (^ISUAccessCompletionBlock)(bool granted, NSError *error);
 
-typedef BOOL (^ISUSourceProceessBlock)(ISUABCoreSource *coreSource);
-typedef BOOL (^ISUGroupProceessBlock)(ISUABCoreGroup *coreGroup);
-typedef BOOL (^ISUPersonProceessBlock)(ISUABCoreContact *coreContact);
+typedef BOOL (^ISUSourceProceessBlock)(RHSource *coreSource);
+typedef BOOL (^ISUGroupProceessBlock)(RHGroup *coreGroup);
+typedef BOOL (^ISUPersonProceessBlock)(RHPerson *coreContact);
 
 @interface ISUAddressBookUtility : NSObject
 
 @property (nonatomic, readonly) BOOL hasUnsavedChanges;
 
-- (BOOL)save: (NSError **) error;
++ (ISUAddressBookUtility *)sharedInstance;
+
+- (BOOL)saveWithError:(NSError **)error;
 
 - (void)revert;
 
@@ -31,14 +31,22 @@ typedef BOOL (^ISUPersonProceessBlock)(ISUABCoreContact *coreContact);
 
 - (NSInteger)allPeopleCount;
 
-- (NSArray *)allPeopleInSourceWithRecordId:(NSNumber *)recordId;
+- (NSArray *)allGroupsInDefaultSource;
+
+- (NSArray *)allPeopleInSourceWithRecordId:(NSInteger)recordId;
+
+- (RHSource *)sourceWithRecordId:(NSInteger)recordId;
+
+- (RHGroup *)groupWithRecordId:(NSInteger)recordId;
+
+- (RHPerson *)personWithRecordId:(NSInteger)recordId;
 
 - (void)fetchSourceInfosInAddressBookWithProcessBlock:(ISUSourceProceessBlock)processBlock;
 
-- (void)fetchGroupInfosInSourceWithRecordId:(NSNumber *)recordId
+- (void)fetchGroupInfosInSourceWithRecordId:(NSInteger)recordId
                                processBlock:(ISUGroupProceessBlock)processBlock;
 
-- (void)fetchMemberInfosInGroupWithRecordId:(NSNumber *)recordId
+- (void)fetchMemberInfosInGroupWithRecordId:(NSInteger)recordId
                                processBlock:(ISUPersonProceessBlock)processBlock;
 
 - (BOOL)addContactIntoAddressBookWithCotnact:(ISUContact *)contact error:(NSError **)error;
@@ -49,8 +57,12 @@ typedef BOOL (^ISUPersonProceessBlock)(ISUABCoreContact *coreContact);
 
 - (BOOL)updateGroupInAddressBookWithGroup:(ISUGroup *)group error:(NSError **)error;
 
-- (BOOL)removeContactFromAddressBookWithRecordId:(NSNumber *)recordId error:(NSError **)error;
+- (BOOL)removeContactFromAddressBookWithRecordId:(NSInteger)recordId error:(NSError **)error;
 
-- (BOOL)removeGroupFromAddressBookWithRecordId:(NSNumber *)recordId error:(NSError **)error;
+- (BOOL)removeGroupFromAddressBookWithRecordId:(NSInteger)recordId error:(NSError **)error;
+
+- (BOOL)addMember:(ISUContact *)contact intoGroup:(ISUGroup *)group error:(NSError **)error;
+
+- (BOOL)removeMember:(ISUContact *)contact fromGroup:(ISUGroup *)group error:(NSError **)error;
 
 @end

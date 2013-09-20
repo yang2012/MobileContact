@@ -8,47 +8,50 @@
 
 #import "Constants.h"
 #import "ISUAddressBookUtility.h"
-#import "ISUEmail.h"
-#import "ABGroup+function.h"
-#import "ABPerson+function.h"
-#import "ISUABCoreContact.h"
-#import "AddressBook.h"
-#import "ABAddressBook.h"
+#import "NSError+ISUAdditions.h"
+#import "RHPerson+function.h"
+#import "RHGroup+function.h"
 
 @interface ISUAddressBookUtility ()
+
+@property (nonatomic, strong) RHAddressBook *addressBook;
 
 @end
 
 
 @implementation ISUAddressBookUtility
 
-- (id)init
++ (ISUAddressBookUtility *)sharedInstance
 {
-    self = [super init];
-
-    if (self) {
-        
-    }
-
-    return self;
+    static ISUAddressBookUtility *_sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [[ISUAddressBookUtility alloc] init];
+    });
+    return _sharedInstance;
 }
 
-- (BOOL)save:(NSError **)error
+- (RHAddressBook *)addressBook
 {
-    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
-    return [addressBook save:error];
+    if (_addressBook == nil) {
+        _addressBook = [[RHAddressBook alloc] init];
+    }
+    return _addressBook;
+}
+
+- (BOOL)saveWithError:(NSError **)error
+{
+    return [self.addressBook saveWithError:error];
 }
 
 - (BOOL)hasUnsavedChanges
 {
-    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
-    return addressBook.hasUnsavedChanges;
+    return self.addressBook.hasUnsavedChanges;
 }
 
 - (void)revert
 {
-    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
-    [addressBook revert];
+    [self.addressBook revert];
 }
 
 #pragma mark -
@@ -57,55 +60,87 @@
 // Check the authorization status of our application for Address Book
 - (void)checkAddressBookAccessWithBlock:(ISUAccessCompletionBlock)completion
 {
-    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
-    [addressBook authorize:^(bool granted, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (completion) {
-                completion(granted, error);
-            }
-        });
-    }];
+    RHAuthorizationStatus status = [RHAddressBook authorizationStatus];
+    if (status == RHAuthorizationStatusNotDetermined) {
+        [self.addressBook requestAuthorizationWithCompletion:completion];
+    } else if (status == RHAuthorizationStatusAuthorized) {
+        if (completion) {
+            completion(YES, nil);
+        }
+    } else if (status == RHAuthorizationStatusDenied || status == RHAuthorizationStatusRestricted) {
+        if (completion) {
+            completion(NO, nil);
+        }
+    }
 }
 
 - (NSInteger)allPeopleCount
 {
-    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
-    return addressBook.personCount;
+    return [self.addressBook numberOfPeople];
 }
 
-- (NSArray *)allPeopleInSourceWithRecordId:(NSNumber *)recordId
+- (NSArray *)allGroupsInDefaultSource
 {
-    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
-    ABRecordID sourceRecordId = (ABRecordID)recordId.intValue;
-    ABSource *source = [addressBook sourceWithRecordID:sourceRecordId];
-    NSArray *members = source.allMembers;
-    NSMutableArray *coreContacts = [NSMutableArray arrayWithCapacity:members.count];
-    for (ABPerson *member in members) {
-        ISUABCoreContact *coreContact = [[ISUABCoreContact alloc] init];
-        [coreContact updateInfoFromPerson:member];
-        [coreContacts addObject:coreContact];
+    return self.addressBook.groups;
+}
+
+- (NSArray *)allPeopleInSourceWithRecordId:(NSInteger)recordId
+{
+    if (recordId < 0) {
+        ISULogWithLowPriority(@"Invalid record id when calling allPeopleInSourceWithRecordId");
+        return nil;
     }
-    return coreContacts;
+    
+    ABRecordID sourceRecordId = (ABRecordID)recordId;
+    RHSource *source = [self.addressBook sourceForABRecordID:sourceRecordId];
+    if (source == nil) {
+        ISULogWithLowPriority(@"Cannot find source with record id %i", recordId);
+        return nil;
+    }
+    return source.people;
+}
+
+- (RHSource *)sourceWithRecordId:(NSInteger)recordId
+{
+    if (recordId < 0) {
+        ISULogWithLowPriority(@"Invalid record id when calling sourceWithRecordId:");
+        return nil;
+    }
+
+    ABRecordID sourceRecordId = (ABRecordID)recordId;
+    return [self.addressBook sourceForABRecordID:sourceRecordId];
+}
+
+- (RHGroup *)groupWithRecordId:(NSInteger)recordId
+{
+    if (recordId < 0) {
+        ISULogWithLowPriority(@"Invalid record id when calling groupWithRecordId:");
+        return nil;
+    }
+    
+    ABRecordID groupRecordId = (ABRecordID)recordId;
+    return [self.addressBook groupForABRecordID:groupRecordId];
+}
+
+- (RHPerson *)personWithRecordId:(NSInteger)recordId
+{
+    if (recordId < 0) {
+        ISULogWithLowPriority(@"Invalid record id when calling personWithRecordId:");
+        return nil;
+    }
+    
+    ABRecordID personRecordId = (ABRecordID)recordId;
+    return [self.addressBook personForABRecordID:personRecordId];
 }
 
 - (void)fetchSourceInfosInAddressBookWithProcessBlock:(ISUSourceProceessBlock)processBlock
 {
     // Get all the sources from the address book
-    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
-    NSArray *allSources =  [addressBook allSources];
+    NSArray *allSources =  [self.addressBook sources];
     if ([allSources count] > 0) {
-        for (ABSource *aSource in allSources) {
-            ISUABCoreSource *coreSource = [[ISUABCoreSource alloc] init];
-            // Fetch the source record id
-            ABRecordID recordId = [aSource recordID];
-            coreSource.recordId = [NSNumber numberWithInt:recordId];
-
-            // Fetch the source name
-            NSString *sourceName = [aSource valueForProperty:kABSourceNameProperty];
-            coreSource.name = sourceName;
-
+        for (RHSource *source in allSources) {
             if (processBlock) {
-                BOOL shouldContinue = processBlock(coreSource);
+                BOOL shouldContinue = processBlock(source);
                 if (shouldContinue == NO) {
                     break;
                 }
@@ -114,25 +149,21 @@
     }
 }
 
-- (void)fetchGroupInfosInSourceWithRecordId:(NSNumber *)recordId
+- (void)fetchGroupInfosInSourceWithRecordId:(NSInteger)recordId
                                processBlock:(ISUGroupProceessBlock)processBlock
 {
-    if (recordId == nil) {
-        ISULog(@"Nil record id when calling fetchGroupInfosInSourceWithRecordId:processBlock:", ISULogPriorityHigh);
+    if (recordId < 0) {
+        ISULog(@"Invalid record id when calling fetchGroupInfosInSourceWithRecordId:processBlock:", ISULogPriorityHigh);
         return;
     }
-    ABRecordID sRecordId = (ABRecordID)[recordId intValue];
-    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
-    ABSource *source = [addressBook sourceWithRecordID:sRecordId];
+    ABRecordID sRecordId = (ABRecordID)recordId;
+    RHSource *source = [self.addressBook sourceForABRecordID:sRecordId];
     if (source != nil) {
         // Fetch all groups included in the source
         NSArray *groups = source.groups;
-        for (ABGroup *group in groups) {
-            ISUABCoreGroup *coreGroup = [[ISUABCoreGroup alloc] init];
-            [coreGroup updateInfoFromABGroup:group];
-            
+        for (RHGroup *group in groups) {
             if (processBlock) {
-                BOOL shouldContinue = processBlock(coreGroup);
+                BOOL shouldContinue = processBlock(group);
                 if (shouldContinue == NO) {
                     break;
                 }
@@ -141,26 +172,22 @@
     }
 }
 
-- (void)fetchMemberInfosInGroupWithRecordId:(NSNumber *)recordId
+- (void)fetchMemberInfosInGroupWithRecordId:(NSInteger)recordId
                                processBlock:(ISUPersonProceessBlock)processBlock
 {
-    if (recordId == nil) {
-        ISULog(@"Nil record id when calling fetchGroupInfosInSourceWithRecordId:processBlock:", ISULogPriorityHigh);
+    if (recordId < 0) {
+        ISULog(@"Invalid record id when calling fetchGroupInfosInSourceWithRecordId:processBlock:", ISULogPriorityHigh);
         return;
     }
 
-    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
-    ABRecordID groupId = (ABRecordID)[recordId intValue];
-    ABGroup *group = [addressBook groupWithRecordID:groupId];
+    ABRecordID groupId = (ABRecordID)recordId;
+    RHGroup *group = [self.addressBook groupForABRecordID:groupId];
     if (group != nil) {
         // Fetch all members included in the group
-        NSArray *members = [group allMembers];
-        for (ABPerson *person in members) {
-            ISUABCoreContact *coreContact = [[ISUABCoreContact alloc] init];
-            [coreContact updateInfoFromPerson:person];
-            
+        NSArray *members = group.members;
+        for (RHPerson *person in members) {
             if (processBlock) {
-                BOOL shouldContinue = processBlock(coreContact);
+                BOOL shouldContinue = processBlock(person);
                 if (shouldContinue == NO) {
                     break;
                 }
@@ -173,89 +200,121 @@
 {
     if (contact == nil) {
         ISULog(@"Nil contact when calling addContact:withError:", ISULogPriorityHigh);
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
         return NO;
     }
-    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
-    ISUABCoreContact *coreContact = [[ISUABCoreContact alloc] initWithContact:contact];
-    ABPerson *newPerson = [[ABPerson alloc] init];
-    [newPerson updateInfoFromContact:coreContact withError:error];
+    RHPerson *newPerson = [self.addressBook newPersonInDefaultSource];
+    BOOL success = [newPerson updateInfoFromContact:contact];
+    if (success == NO) {
+        ISULog(@"Cannot update info from contact", ISULogPriorityHigh);
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
+        return NO;
+    }
     
-    BOOL success = [addressBook addRecord:newPerson error:error];
+    success = [newPerson saveWithError:error];
+    if (success) {
+        contact.recordId = newPerson.recordID;
+    }
     return success;
 }
 
 - (BOOL)addGroupIntoAddressBookWithGroup:(ISUGroup *)group eror:(NSError **)error
 {
-    // FIXME: lack of testing because of buggy in method that deletes group
     if (group == nil) {
         ISULog(@"Nil group when calling addGroup:withError:", ISULogPriorityHigh);
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
         return NO;
     }
-    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
     
-    ISUABCoreGroup *coreGroup = [[ISUABCoreGroup alloc] initWithGroup:group];
-    ABGroup *newGroup = [[ABGroup alloc] init];
-    [newGroup updateInfoFromGroup:coreGroup withError:error];
+    RHGroup *newGroup = [self.addressBook newGroupInDefaultSource];
+    [newGroup updateInfoFromGroup:group];
     
-    return [addressBook addRecord:newGroup error:error];
+    BOOL success = [newGroup saveWithError:error];
+    if (success) {
+        group.recordId = newGroup.recordID;
+    }
+    
+    return success;
 }
 
-- (BOOL)removeContactFromAddressBookWithRecordId:(NSNumber *)recordId error:(NSError **)error
+- (BOOL)removeContactFromAddressBookWithRecordId:(NSInteger)recordId error:(NSError **)error
 {
-    if (recordId == nil) {
-        ISULog(@"Nil recrod id when calling removeContactFromAddressBookWithRecordId:error:", ISULogPriorityHigh);
+    if (recordId < 0) {
+        ISULog(@"Invalid recrod id when calling removeContactFromAddressBookWithRecordId:error:", ISULogPriorityHigh);
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
         return NO;
     }
-    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
-    ABRecordID recordIdRef = (ABRecordID)recordId.intValue;
-    ABRecord *record = [addressBook personWithRecordID:recordIdRef];
+
+    ABRecordID personId = (ABRecordID)recordId;
+    RHPerson *record = [self.addressBook personForABRecordID:personId];
     if (record == nil) {
-        NSString *msg = [NSString stringWithFormat:@"Cannot find person with specify record id %@", recordId];
+        NSString *msg = [NSString stringWithFormat:@"Cannot find person with specify record id %i", recordId];
         ISULog(msg, ISULogPriorityHigh);
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
         return NO;
     }
-    return [addressBook removeRecord:record error:error];
+    return [record remove];
 }
 
-- (BOOL)removeGroupFromAddressBookWithRecordId:(NSNumber *)recordId error:(NSError **)error
+- (BOOL)removeGroupFromAddressBookWithRecordId:(NSInteger)recordId error:(NSError **)error
 {
-    // FIXME: not work
-    if (recordId == nil) {
-        ISULog(@"Nil recrod id when calling removeContactFromAddressBookWithRecordId:error:", ISULogPriorityHigh);
+    if (recordId < 0) {
+        ISULog(@"Invalid recrod id when calling removeContactFromAddressBookWithRecordId:error:", ISULogPriorityHigh);
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
         return NO;
     }
-    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
-    ABRecordID recordIdRef = (ABRecordID)recordId.intValue;
-    ABRecord *record = [addressBook groupWithRecordID:recordIdRef];
-    if (record == nil) {
-        NSString *msg = [NSString stringWithFormat:@"Cannot find group with specify record id %@", recordId];
+
+    ABRecordID groupId = (ABRecordID)recordId;
+    RHGroup *group = [self.addressBook groupForABRecordID:groupId];
+    if (group == nil) {
+        NSString *msg = [NSString stringWithFormat:@"Cannot find group with specify record id %i", recordId];
         ISULog(msg, ISULogPriorityHigh);
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
         return NO;
     }
-    return [addressBook removeRecord:record error:error];
+    return [group remove];
 }
 
 - (BOOL)updateContactInAddressBookWithContact:(ISUContact *)contact error:(NSError **)error;
 {
     if (contact == nil) {
         ISULog(@"Nil contact when calling updateContactInAddressBookWithContact:error:", ISULogPriorityHigh);
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
         return NO;
     }
-    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
-    ISUABCoreContact *coreContact = [[ISUABCoreContact alloc] initWithContact:contact];
     
-    ABRecordID recordId = (ABRecordID)contact.recordId;
-    ABPerson *person = [addressBook personWithRecordID:recordId];
+    BOOL success = NO;
+    ABRecordID personId = (ABRecordID)contact.recordId;
+    RHPerson *person = [self.addressBook personForABRecordID:personId];
     if (person == nil) {
-        NSString *msg = [NSString stringWithFormat:@"Cannot find person with record id %i and create a new one", recordId];
+        NSString *msg = [NSString stringWithFormat:@"Cannot find person with record id %i and create a new one", personId];
         ISULog(msg, ISULogPriorityNormal);
-        
-        [self addContactIntoAddressBookWithCotnact:contact error:error];
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
+        success = NO;
     } else {
-        [person updateInfoFromContact:coreContact withError:error];
+        [person updateInfoFromContact:contact];
+        success = [person saveWithError:error];
     }
     
-    return error == nil;
+    return success;
 }
 
 - (BOOL)updateGroupInAddressBookWithGroup:(ISUGroup *)group error:(NSError *__autoreleasing *)error
@@ -263,25 +322,85 @@
     // FIXME: lack of testing because of buggy in method that deletes group
     if (group == nil) {
         ISULog(@"Nil contact when calling updateContactInAddressBookWithContact:error:", ISULogPriorityHigh);
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
         return NO;
     }
-    ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
-    ISUABCoreGroup *coreGroup = [[ISUABCoreGroup alloc] initWithGroup:group];
     
-    ABRecordID recordId = (ABRecordID)group.recordId;
-    ABGroup *abGroup = [addressBook groupWithRecordID:recordId];
+    BOOL success = NO;
+    ABRecordID groupId = (ABRecordID)group.recordId;
+    RHGroup *abGroup = [self.addressBook groupForABRecordID:groupId];
     if (abGroup == nil) {
-        NSString *msg = [NSString stringWithFormat:@"Cannot find person with record id %i and create a new one", recordId];
+        NSString *msg = [NSString stringWithFormat:@"Cannot find group with record id %i", groupId];
         ISULog(msg, ISULogPriorityNormal);
-        
-        [self addGroupIntoAddressBookWithGroup:group eror:error];
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
+        success = NO;
     } else {
-        [abGroup updateInfoFromGroup:coreGroup withError:error];
+        [abGroup updateInfoFromGroup:group];
+        success = [abGroup saveWithError:error];
     }
     
-    return error == nil;
+    return success;
 }
 
+- (BOOL)addMember:(ISUContact *)contact intoGroup:(ISUGroup *)group error:(NSError *__autoreleasing *)error
+{
+    if (contact == nil || group == nil) {
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
+        return NO;
+    }
+    
+    RHGroup *coreGroup = [self.addressBook groupForABRecordID:group.recordId];
+    if (coreGroup == nil) {
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
+        return NO;
+    }
+    
+    RHPerson *coreContact = [self.addressBook personForABRecordID:contact.recordId];
+    if (coreContact == nil) {
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
+        return NO;
+    }
+    
+    return [coreGroup addMember:coreContact];
+}
+
+- (BOOL)removeMember:(ISUContact *)contact fromGroup:(ISUGroup *)group error:(NSError *__autoreleasing *)error
+{
+    if (contact == nil || group == nil) {
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
+        return NO;
+    }
+    
+    RHGroup *coreGroup = [self.addressBook groupForABRecordID:group.recordId];
+    if (coreGroup == nil) {
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
+        return NO;
+    }
+    
+    RHPerson *coreContact = [self.addressBook personForABRecordID:contact.recordId];
+    if (coreContact == nil) {
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+        }
+        return NO;
+    }
+    
+    return [coreGroup removeMember:coreContact];
+}
 
 //- (void)_mergeLinkedPersons
 //{

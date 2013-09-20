@@ -7,26 +7,34 @@
 //
 
 #import "ISUGroup+function.h"
+#import "ISUAddressBookUtility.h"
+#import "NSError+ISUAdditions.h"
 
 NSInteger const kRecordIdOfDefaultGroup = 0;
+NSString *kNameOfDefaultGroup = @"All";
 
 @implementation ISUGroup (function)
 
-- (BOOL)isLocal
+- (NSMutableSet *)mutableMembers
 {
-    return ![self.recordId isEqualToNumber:[NSNumber numberWithInteger:kRecordIdOfDefaultGroup]];
+    return [self mutableSetValueForKey:@"members"];
 }
 
-+ (ISUGroup *)findOrCreateGroupWithRecordId:(NSNumber *)recordId
+- (BOOL)isDefaultGroup
+{
+    return self.recordId == kRecordIdOfDefaultGroup;
+}
+
++ (ISUGroup *)findOrCreateGroupWithRecordId:(NSInteger)recordId
                                     context:(NSManagedObjectContext *)context
 {
-    if (recordId == nil || recordId == 0) {
-        NSLog(@"Invalid recrodId when calling findOrCreateGroupWithRecordId:inContext: : %@", recordId);
+    if (recordId < 0) {
+        NSLog(@"Invalid recrodId when calling findOrCreateGroupWithRecordId:inContext: : %i", recordId);
         return nil;
     }
     
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[ISUGroup entityName]];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"recordId=%@", recordId];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"recordId=%i", recordId];
     fetchRequest.fetchLimit = 1;
     id object = [[context executeFetchRequest:fetchRequest error:NULL] lastObject];
     if (object == nil) {
@@ -51,12 +59,54 @@ NSInteger const kRecordIdOfDefaultGroup = 0;
     return groups;
 }
 
-- (void)updateWithCoreGroup:(ISUABCoreGroup *)coreGroup context:(NSManagedObjectContext *)context
+- (void)updateWithCoreGroup:(RHGroup *)coreGroup context:(NSManagedObjectContext *)context
 {
     NSString *newGroupName = coreGroup.name;
     if (newGroupName && ![self.name isEqualToString:newGroupName]) {
         self.name = newGroupName;
     }
+}
+
+- (BOOL)addMember:(ISUContact *)contact withError:(NSError **)error
+{
+    if (contact == nil) {
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+            return NO;
+        }
+    }
+    
+    ISUAddressBookUtility *addressBookUtility = [ISUAddressBookUtility sharedInstance];
+    BOOL success = [addressBookUtility addMember:contact intoGroup:self error:error];
+    
+    if (success) {
+        [self.mutableMembers addObject:contact];
+    }
+    return success;
+}
+
+- (BOOL)removeMember:(ISUContact *)contact withError:(NSError **)error
+{
+    if (contact == nil) {
+        if (error) {
+            *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
+            return NO;
+        }
+    }
+    
+    ISUAddressBookUtility *addressBookUtility = [ISUAddressBookUtility sharedInstance];
+    BOOL success = [addressBookUtility removeMember:contact fromGroup:self error:error];
+    
+    if (success) {
+        [self.mutableMembers removeObject:contact];
+    }
+    return success;
+}
+
+- (BOOL)removeSelfFromAddressBook:(NSError **)error
+{
+    ISUAddressBookUtility *addressBookUtility = [ISUAddressBookUtility sharedInstance];
+    return [addressBookUtility removeGroupFromAddressBookWithRecordId:self.recordId error:error];
 }
 
 #pragma make - SSManagedObject

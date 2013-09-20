@@ -10,11 +10,11 @@
 
 @implementation ISUContactSource (function)
 
-+ (ISUContactSource *)findOrCreatePersonWithRecordId:(NSNumber *)recordId
-                                             inContext:(NSManagedObjectContext *)context
++ (ISUContactSource *)findOrCreatePersonWithRecordId:(NSInteger)recordId
+                                             context:(NSManagedObjectContext *)context
 {
-    if (recordId == nil || recordId == 0) {
-        NSLog(@"Invalid recrodId: %@", recordId);
+    if (recordId < 0) {
+        NSLog(@"Invalid recrodId: %i", recordId);
         return nil;
     }
     
@@ -29,7 +29,7 @@
     return object;
 }
 
-- (void)updateWithCoreSource:(ISUABCoreSource *)coreSource
+- (void)updateWithCoreSource:(RHSource *)coreSource
                    inContext:(NSManagedObjectContext *)context
 {
     NSString *sourceName = coreSource.name;

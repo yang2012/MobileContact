@@ -7,13 +7,13 @@
 //
 
 #import "ISUContactSource.h"
-#import "ISUABCoreSource.h"
+#import "AddressBook.h"
 
 @interface ISUContactSource (function)
 
-+ (ISUContactSource *)findOrCreatePersonWithRecordId:(NSNumber *)recordId
-                                             inContext:(NSManagedObjectContext *)context;
++ (ISUContactSource *)findOrCreatePersonWithRecordId:(NSInteger)recordId
+                                             context:(NSManagedObjectContext *)context;
 
-- (void)updateWithCoreSource:(ISUABCoreSource *)coreSource
+- (void)updateWithCoreSource:(RHSource *)coreSource
                    inContext:(NSManagedObjectContext *)context;
 @end

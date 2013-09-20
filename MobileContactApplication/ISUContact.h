@@ -2,34 +2,36 @@
 //  ISUContact.h
 //  MobileContactApplication
 //
-//  Created by macbook on 13-9-17.
+//  Created by macbook on 13-9-18.
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import "SSManagedObject.h"
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @class ISUAddress, ISUDate, ISUEmail, ISUGroup, ISUPhone, ISURelatedName, ISUSocialProfile, ISUUrl;
 
-@interface ISUContact : SSManagedObject
+@interface ISUContact : NSManagedObject
 
-@property (nonatomic, retain) NSString * avatarDataKey;
-@property (nonatomic, retain) NSDate * birthday;
+@property (nonatomic) NSTimeInterval birthday;
 @property (nonatomic, retain) NSString * contactName;
 @property (nonatomic, retain) NSString * department;
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * firstNamePhonetic;
-@property (nonatomic, retain) NSNumber * frequence;
+@property (nonatomic) int32_t frequence;
 @property (nonatomic, retain) NSString * jobTitle;
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSString * lastNamePhonetic;
 @property (nonatomic, retain) NSString * middleName;
 @property (nonatomic, retain) NSString * middleNamePhonetic;
-@property (nonatomic, retain) NSString * nickName;
+@property (nonatomic, retain) NSString * nickname;
 @property (nonatomic, retain) NSString * note;
 @property (nonatomic, retain) NSString * organization;
+@property (nonatomic, retain) NSString * originalImageKey;
 @property (nonatomic, retain) NSString * prefix;
-@property (nonatomic, retain) NSNumber * recordId;
+@property (nonatomic) int32_t recordId;
 @property (nonatomic, retain) NSString * suffix;
+@property (nonatomic, retain) NSString * thumbnailKey;
 @property (nonatomic, retain) NSSet *addresses;
 @property (nonatomic, retain) NSSet *dates;
 @property (nonatomic, retain) NSSet *emails;
