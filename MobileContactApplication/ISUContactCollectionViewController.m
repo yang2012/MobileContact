@@ -9,6 +9,13 @@
 #import "ISUContactCollectionViewController.h"
 #import "ISUContact+function.h"
 #import "ISUCollectionContactViewCell.h"
+#import <MJNIndexView.h>
+
+@interface ISUContactCollectionViewController () <MJNIndexViewDataSource>
+
+@property (nonatomic, strong) MJNIndexView *indexView;
+
+@end
 
 @implementation ISUContactCollectionViewController
 
@@ -30,14 +37,15 @@
     [self.collectionView registerNib:[UINib nibWithNibName:@"ISUCollectionContactViewCell" bundle:nil] forCellWithReuseIdentifier:@"CollectionContactViewCell"];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
+    
+    // MJIndexView
+    self.indexView = [[MJNIndexView alloc]initWithFrame:self.view.bounds];
+    self.indexView.dataSource = self;
+    self.indexView.fontColor = [UIColor blueColor];
+    [self.view addSubview:self.indexView];
 }
 
-- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    ISUCollectionContactViewCell *contactCell = (ISUCollectionContactViewCell *)cell;
-	ISUContact *person = (ISUContact *)[self objectForViewIndexPath:indexPath];
-    contactCell.frame = CGRectMake(0, 0, 50, 50);
-    contactCell.name = person.contactName;
-}
+#pragma mark - UICollectionViewDataSource
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"CollectionContactViewCell";
@@ -50,6 +58,26 @@
     return cell;
 }
 
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGSize size = CGSizeMake(90, 90);
+    return size;
+}
+
+- (UIEdgeInsets)collectionView:
+(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(15, 10, 15, 10);
+}
+
+#pragma mark - SSManagedCollectionViewController
+
+- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    ISUCollectionContactViewCell *contactCell = (ISUCollectionContactViewCell *)cell;
+	ISUContact *person = (ISUContact *)[self objectForViewIndexPath:indexPath];
+    contactCell.name = person.fullName;
+}
 
 - (void)setManagedObject:(SSManagedObject *)managedObject {
     [super setManagedObject:managedObject];
@@ -71,7 +99,27 @@
 
 - (NSPredicate *)predicate
 {
-    return [NSPredicate predicateWithValue:YES];
+    return [NSPredicate predicateWithFormat:
+            @"(SUBQUERY(groups, $x, (%@ = $x)).@count != 0)",
+            self.group];
+}
+
+- (NSString *)sectionNameKeyPath
+{
+    return @"sectionTitle";
+}
+
+#pragma mark - Index View
+
+- (NSArray *)sectionIndexTitlesForMJNIndexView:(MJNIndexView *)indexView
+{
+    NSArray *titles = [self.fetchedResultsController sectionIndexTitles];
+    return titles;
+}
+
+- (void)sectionForSectionMJNIndexTitle:(NSString *)title atIndex:(NSInteger)index;
+{
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0  inSection:index] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
 }
 
 @end

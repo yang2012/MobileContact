@@ -17,31 +17,36 @@
 @implementation ISUPhoneNumberFormatter
 
 - (id)init {
-    NSArray *usPhoneFormats = [NSArray arrayWithObjects:
-                               @"+1 (###) ###-####",
-                               @"1 (###) ###-####",
-                               @"011 $",
-                               @"###-####",
-                               @"(###) ###-####", nil];
+    self = [super init];
     
-    NSArray *ukPhoneFormats = [NSArray arrayWithObjects:
-                               @"+44 ##########",
-                               @"00 $",
-                               @"0### - ### ####",
-                               @"0## - #### ####",
-                               @"0#### - ######", nil];
+    if (self) {
+        NSArray *usPhoneFormats = [NSArray arrayWithObjects:
+                                   @"+1 (###) ###-####",
+                                   @"1 (###) ###-####",
+                                   @"011 $",
+                                   @"###-####",
+                                   @"(###) ###-####", nil];
+        
+        NSArray *ukPhoneFormats = [NSArray arrayWithObjects:
+                                   @"+44 ##########",
+                                   @"00 $",
+                                   @"0### - ### ####",
+                                   @"0## - #### ####",
+                                   @"0#### - ######", nil];
+        
+        NSArray *jpPhoneFormats = [NSArray arrayWithObjects:
+                                   @"+81 ############",
+                                   @"001 $",
+                                   @"(0#) #######",
+                                   @"(0#) #### ####", nil];
+        
+        self.predefinedFormats = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                  usPhoneFormats, @"US",
+                                  ukPhoneFormats, @"GB",
+                                  jpPhoneFormats, @"JP",
+                                  nil];
+    }
     
-    NSArray *jpPhoneFormats = [NSArray arrayWithObjects:
-                               @"+81 ############",
-                               @"001 $",
-                               @"(0#) #######",
-                               @"(0#) #### ####", nil];
-    
-    self.predefinedFormats = [[NSDictionary alloc] initWithObjectsAndKeys:
-                         usPhoneFormats, @"US",
-                         ukPhoneFormats, @"GB",
-                         jpPhoneFormats, @"JP",
-                         nil];
     return self;
 }
 

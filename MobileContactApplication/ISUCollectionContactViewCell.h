@@ -11,6 +11,5 @@
 @interface ISUCollectionContactViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *phoneNumber;
 
 @end

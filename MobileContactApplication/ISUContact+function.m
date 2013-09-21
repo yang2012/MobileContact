@@ -93,7 +93,7 @@
 	return [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
-- (char)sectionTitle
+- (NSString *)sectionTitle
 {
     return [NSString sortSectionTitle:self.fullName];
 }

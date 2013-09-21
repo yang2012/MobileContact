@@ -28,7 +28,7 @@
 
 - (NSString *)fullName;
 
-- (char)sectionTitle;
+- (NSString *)sectionTitle;
 
 + (ISUContact *)findOrCreatePersonWithRecordId:(NSInteger)recordId
                                        context:(NSManagedObjectContext *)context;

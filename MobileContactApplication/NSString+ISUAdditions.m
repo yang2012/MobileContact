@@ -5848,7 +5848,7 @@ char pinyinFirstLetter(unsigned short hanzi) {
     ;
 }
 
-+ (char) sortSectionTitle:(NSString *)string {
++ (NSString *) sortSectionTitle:(NSString *)string {
 	int cLetter = 0;
 	if( !string || 0 == [string length] )
 		cLetter = '#';
@@ -5862,7 +5862,9 @@ char pinyinFirstLetter(unsigned short hanzi) {
 		if(cLetter > 95)
 			cLetter -= 32;
 	}
-	return cLetter;
+    
+    NSString *title = [NSString stringWithFormat:@"%c", cLetter];
+	return title;
 }
 
 - (NSString *)normalizedSearchString;

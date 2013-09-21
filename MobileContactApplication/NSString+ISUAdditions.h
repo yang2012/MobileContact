@@ -9,7 +9,7 @@
 @interface NSString (ISUAdditions)
 
 + (NSString *) pinyinFromChiniseString:(NSString *)string;
-+ (char) sortSectionTitle:(NSString *)string;
++ (NSString *) sortSectionTitle:(NSString *)string;
 - (NSString *)normalizedSearchString;
 
 @end

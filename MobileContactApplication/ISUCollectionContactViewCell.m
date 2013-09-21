@@ -7,25 +7,16 @@
 //
 
 #import "ISUCollectionContactViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ISUCollectionContactViewCell ()
 
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (nonatomic, strong) IBOutlet UILabel *phoneNumberLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *avatarImage;
+@property (nonatomic, strong) IBOutlet UILabel *nameLabel;
 
 @end
 
 @implementation ISUCollectionContactViewCell
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectInset(CGRectMake(5, 5, CGRectGetWidth(frame), CGRectGetHeight(frame)), 5, 5)];
-        [self.contentView addSubview:self.nameLabel];
-    }
-    return self;
-}
 
 - (void)setName:(NSString *)name
 {
@@ -33,17 +24,10 @@
         self.nameLabel.text = name;
     }
 }
-
-- (void)setPhoneNumber:(NSString *)phoneNumber
+- (void)awakeFromNib
 {
-    if (phoneNumber.length > 0) {
-        self.phoneNumberLabel.text = phoneNumber;
-    }
-}
-
-- (void)layoutSubviews
-{
-    
+    self.avatarImage.layer.cornerRadius = self.avatarImage.bounds.size.width / 2;
+    self.avatarImage.layer.masksToBounds = YES;
 }
 
 @end
