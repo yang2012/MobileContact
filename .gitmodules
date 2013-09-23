@@ -1,0 +1,3 @@
+[submodule "Vendor/RESideMenu"]
+	path = Vendor/RESideMenu
+	url = https://github.com/yang2012/RESideMenu.git

@@ -51,8 +51,7 @@ static NSString *CellIdentifier = @"Cell";
     [self.view addSubview:self.cancelButton];
     
     self.searchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.searchButton.titleLabel.text = @"Search";
-    self.searchButton.backgroundColor = [UIColor redColor];
+    [self.searchButton setTitle:@"Search" forState:UIControlStateNormal];
     [self.searchButton addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.searchButton];
     
@@ -61,8 +60,7 @@ static NSString *CellIdentifier = @"Cell";
     [self.searchButton alignBottomEdgeWithView:self.view predicate:@"-10"];
     
     self.importButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.importButton.titleLabel.text = @"Import";
-    self.importButton.backgroundColor = [UIColor blueColor];
+    [self.importButton setTitle:@"Import" forState:UIControlStateNormal];
     [self.importButton addTarget:self action:@selector(startImport:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.importButton];
     [self.importButton constrainLeadingSpaceToView:self.searchButton predicate:@"20"];

@@ -9,11 +9,15 @@
 #import "ISUContactCollectionViewController.h"
 #import "ISUContact+function.h"
 #import "ISUCollectionContactViewCell.h"
+#import "JDDroppableCollectionViewCell.h"
 #import <MJNIndexView.h>
+#import <QuartzCore/QuartzCore.h>
+#import <FLKAutoLayout/UIView+FLKAutoLayout.h>
 
-@interface ISUContactCollectionViewController () <MJNIndexViewDataSource>
+@interface ISUContactCollectionViewController () <MJNIndexViewDataSource, JDDroppableCollectionViewCellDelegate>
 
 @property (nonatomic, strong) MJNIndexView *indexView;
+@property (nonatomic, strong) UIView *trashView;
 
 @end
 
@@ -43,6 +47,29 @@
     self.indexView.dataSource = self;
     self.indexView.fontColor = [UIColor blueColor];
     [self.view addSubview:self.indexView];
+    
+    self.trashView = [[UIView alloc] init];
+    self.trashView.backgroundColor = [UIColor redColor];
+    self.trashView.layer.cornerRadius = 25;
+    self.trashView.layer.masksToBounds = YES;
+    self.trashView.hidden = YES;
+    [self.view addSubview:self.trashView];
+    
+    [self.trashView constrainWidth:@"50" height:@"50"];
+    [self.trashView alignCenterXWithView:self.view predicate:nil];
+    [self.trashView alignBottomEdgeWithView:self.view predicate:@"-10"];
+    
+    self.collectionView.canCancelContentTouches = NO;
+}
+
+- (void)_displayTrashView
+{
+    self.trashView.hidden = NO;
+}
+
+- (void)_hideTrashView
+{
+    self.trashView.hidden = YES;
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -75,6 +102,8 @@
 
 - (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     ISUCollectionContactViewCell *contactCell = (ISUCollectionContactViewCell *)cell;
+    contactCell.delegate = self;
+    [contactCell addDropTarget:self.trashView];
 	ISUContact *person = (ISUContact *)[self objectForViewIndexPath:indexPath];
     contactCell.name = person.fullName;
 }
@@ -120,6 +149,66 @@
 - (void)sectionForSectionMJNIndexTitle:(NSString *)title atIndex:(NSInteger)index;
 {
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0  inSection:index] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+}
+
+#pragma JDDroppableViewDelegate
+
+- (void)droppableViewBeganDragging:(JDDroppableCollectionViewCell*)view;
+{
+    
+	[UIView animateWithDuration:0.33 animations:^{
+        view.backgroundColor = [UIColor colorWithRed:1 green:0.5 blue:0 alpha:1];
+        view.alpha = 0.8;
+        
+        [self _displayTrashView];
+    }];
+}
+
+- (void)droppableViewDidMove:(JDDroppableCollectionViewCell*)view;
+{
+
+}
+
+- (void)droppableViewEndedDragging:(JDDroppableCollectionViewCell*)view onTarget:(UIView *)target
+{
+	[UIView animateWithDuration:0.33 animations:^{
+        if (!target) {
+            view.backgroundColor = [UIColor blackColor];
+        } else {
+            view.backgroundColor = [UIColor darkGrayColor];
+        }
+        view.alpha = 1.0;
+        
+        [self _hideTrashView];
+    }];
+}
+
+- (void)droppableView:(JDDroppableCollectionViewCell*)view enteredTarget:(UIView*)target
+{
+    self.trashView.transform = CGAffineTransformMakeScale(1.5, 1.5);
+    self.trashView.backgroundColor = [UIColor greenColor];
+}
+
+- (void)droppableView:(JDDroppableCollectionViewCell*)view leftTarget:(UIView*)target
+{
+    target.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    target.backgroundColor = [UIColor orangeColor];
+}
+
+- (BOOL)shouldAnimateDroppableViewBack:(JDDroppableCollectionViewCell*)view wasDroppedOnTarget:(UIView*)target
+{
+	[self droppableView:view leftTarget:target];
+    
+    // animate out and remove view
+    [UIView animateWithDuration:0.33 animations:^{
+        view.transform = CGAffineTransformMakeScale(0.2, 0.2);
+        view.alpha = 0.2;
+        view.center = target.center;
+    } completion:^(BOOL finished) {
+        [view removeFromSuperview];
+    }];
+    
+    return NO;
 }
 
 @end

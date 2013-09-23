@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "JDDroppableCollectionViewCell.h"
 
-@interface ISUCollectionContactViewCell : UICollectionViewCell
+@interface ISUCollectionContactViewCell : JDDroppableCollectionViewCell
 
 @property (nonatomic, strong) NSString *name;
 

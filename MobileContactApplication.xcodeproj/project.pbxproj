@@ -39,6 +39,10 @@
 		FA673A0317E7EB8D006DB3C2 /* ISUNSStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA673A0217E7EB8D006DB3C2 /* ISUNSStringTest.m */; };
 		FA787DE417CDEE5000F676E2 /* ISUPersistentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA787DE317CDEE5000F676E2 /* ISUPersistentManager.m */; };
 		FA787DF617CE3CC400F676E2 /* ISUAddressBookImportOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA787DF517CE3CC400F676E2 /* ISUAddressBookImportOperation.m */; };
+		FA7F850C17F08E7D00DB972F /* ISUDailyNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F850B17F08E7D00DB972F /* ISUDailyNoteViewController.m */; };
+		FA7F850E17F08F7C00DB972F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7F850D17F08F7C00DB972F /* OpenGLES.framework */; };
+		FA7F851017F08F9300DB972F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7F850F17F08F9300DB972F /* GLKit.framework */; };
+		FA7F851217F08FA700DB972F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7F851117F08FA700DB972F /* CoreVideo.framework */; };
 		FA85369017D2368D00696D28 /* ISUDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85368F17D2368D00696D28 /* ISUDefines.m */; };
 		FA85369317D319AF00696D28 /* ISULogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85369217D319AF00696D28 /* ISULogger.m */; };
 		FA85369617D372B000696D28 /* ISUContactCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85369517D372B000696D28 /* ISUContactCollectionViewController.m */; };
@@ -96,9 +100,17 @@
 		FAC26C4C17EBEA3800635B6F /* ISUPersistentManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC26C4B17EBEA3800635B6F /* ISUPersistentManagerTest.m */; };
 		FAC26C4E17EBEBB800635B6F /* ISUAddressFunctionCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC26C4D17EBEBB800635B6F /* ISUAddressFunctionCategoryTest.m */; };
 		FAC26C4F17EC165200635B6F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA21681417CC993A0026F1CD /* AddressBook.framework */; };
+		FAC68B6317EF373A0080376D /* AccelerationAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC68B5217EF373A0080376D /* AccelerationAnimation.m */; };
+		FAC68B6417EF373A0080376D /* Evaluate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC68B5417EF373A0080376D /* Evaluate.m */; };
+		FAC68B6517EF373A0080376D /* REBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC68B5617EF373A0080376D /* REBackgroundView.m */; };
+		FAC68B6617EF373A0080376D /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC68B5817EF373A0080376D /* RESideMenu.m */; };
+		FAC68B6917EF373A0080376D /* UINavigationController+DelegateFixes.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC68B5E17EF373A0080376D /* UINavigationController+DelegateFixes.m */; };
+		FAC68B6A17EF373A0080376D /* UIView+ImageSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC68B6017EF373A0080376D /* UIView+ImageSnapshot.m */; };
+		FAC68B6E17EF40D50080376D /* ISUNotificationCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC68B6D17EF40D50080376D /* ISUNotificationCenterViewController.m */; };
 		FAC7A57B17E45299002B7EF9 /* NSFileManager+ISUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC7A57A17E45299002B7EF9 /* NSFileManager+ISUAdditions.m */; };
 		FAC7A57F17E456A2002B7EF9 /* ISUMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC7A57E17E456A2002B7EF9 /* ISUMigrationManager.m */; };
 		FACF43DA17EC8FAE001CF26C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF43D917EC8FAE001CF26C /* Images.xcassets */; };
+		FACF43EA17EDD24A001CF26C /* JDDroppableCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FACF43E917EDD24A001CF26C /* JDDroppableCollectionViewCell.m */; };
 		FAE8216117CCB2F7003C39B0 /* ISUAddressBookUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */; };
 		FAE8217C17CCB595003C39B0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAE8217A17CCB595003C39B0 /* Model.xcdatamodeld */; };
 		FAE8218A17CCB8EB003C39B0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE8218917CCB8EB003C39B0 /* CoreData.framework */; };
@@ -169,6 +181,11 @@
 		FA787DF417CE3CC400F676E2 /* ISUAddressBookImportOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAddressBookImportOperation.h; sourceTree = "<group>"; };
 		FA787DF517CE3CC400F676E2 /* ISUAddressBookImportOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAddressBookImportOperation.m; sourceTree = "<group>"; };
 		FA787DF717CE416600F676E2 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		FA7F850A17F08E7D00DB972F /* ISUDailyNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUDailyNoteViewController.h; sourceTree = "<group>"; };
+		FA7F850B17F08E7D00DB972F /* ISUDailyNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUDailyNoteViewController.m; sourceTree = "<group>"; };
+		FA7F850D17F08F7C00DB972F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		FA7F850F17F08F9300DB972F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		FA7F851117F08FA700DB972F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		FA85368E17D2368D00696D28 /* ISUDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUDefines.h; sourceTree = "<group>"; };
 		FA85368F17D2368D00696D28 /* ISUDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUDefines.m; sourceTree = "<group>"; };
 		FA85369117D319AE00696D28 /* ISULogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISULogger.h; sourceTree = "<group>"; };
@@ -249,11 +266,27 @@
 		FAC060CA17E2BE1900E67748 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		FAC26C4B17EBEA3800635B6F /* ISUPersistentManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPersistentManagerTest.m; sourceTree = "<group>"; };
 		FAC26C4D17EBEBB800635B6F /* ISUAddressFunctionCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAddressFunctionCategoryTest.m; sourceTree = "<group>"; };
+		FAC68B5117EF373A0080376D /* AccelerationAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccelerationAnimation.h; path = RESideMenu/RESideMenu/AccelerationAnimation.h; sourceTree = "<group>"; };
+		FAC68B5217EF373A0080376D /* AccelerationAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccelerationAnimation.m; path = RESideMenu/RESideMenu/AccelerationAnimation.m; sourceTree = "<group>"; };
+		FAC68B5317EF373A0080376D /* Evaluate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Evaluate.h; path = RESideMenu/RESideMenu/Evaluate.h; sourceTree = "<group>"; };
+		FAC68B5417EF373A0080376D /* Evaluate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Evaluate.m; path = RESideMenu/RESideMenu/Evaluate.m; sourceTree = "<group>"; };
+		FAC68B5517EF373A0080376D /* REBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REBackgroundView.h; path = RESideMenu/RESideMenu/REBackgroundView.h; sourceTree = "<group>"; };
+		FAC68B5617EF373A0080376D /* REBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = REBackgroundView.m; path = RESideMenu/RESideMenu/REBackgroundView.m; sourceTree = "<group>"; };
+		FAC68B5717EF373A0080376D /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESideMenu.h; path = RESideMenu/RESideMenu/RESideMenu.h; sourceTree = "<group>"; };
+		FAC68B5817EF373A0080376D /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RESideMenu.m; path = RESideMenu/RESideMenu/RESideMenu.m; sourceTree = "<group>"; };
+		FAC68B5D17EF373A0080376D /* UINavigationController+DelegateFixes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+DelegateFixes.h"; path = "RESideMenu/RESideMenu/UINavigationController+DelegateFixes.h"; sourceTree = "<group>"; };
+		FAC68B5E17EF373A0080376D /* UINavigationController+DelegateFixes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+DelegateFixes.m"; path = "RESideMenu/RESideMenu/UINavigationController+DelegateFixes.m"; sourceTree = "<group>"; };
+		FAC68B5F17EF373A0080376D /* UIView+ImageSnapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+ImageSnapshot.h"; path = "RESideMenu/RESideMenu/UIView+ImageSnapshot.h"; sourceTree = "<group>"; };
+		FAC68B6017EF373A0080376D /* UIView+ImageSnapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+ImageSnapshot.m"; path = "RESideMenu/RESideMenu/UIView+ImageSnapshot.m"; sourceTree = "<group>"; };
+		FAC68B6C17EF40D50080376D /* ISUNotificationCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUNotificationCenterViewController.h; sourceTree = "<group>"; };
+		FAC68B6D17EF40D50080376D /* ISUNotificationCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUNotificationCenterViewController.m; sourceTree = "<group>"; };
 		FAC7A57917E45299002B7EF9 /* NSFileManager+ISUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+ISUAdditions.h"; sourceTree = "<group>"; };
 		FAC7A57A17E45299002B7EF9 /* NSFileManager+ISUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+ISUAdditions.m"; sourceTree = "<group>"; };
 		FAC7A57D17E456A2002B7EF9 /* ISUMigrationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUMigrationManager.h; sourceTree = "<group>"; };
 		FAC7A57E17E456A2002B7EF9 /* ISUMigrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUMigrationManager.m; sourceTree = "<group>"; };
 		FACF43D917EC8FAE001CF26C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FACF43E817EDD24A001CF26C /* JDDroppableCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDDroppableCollectionViewCell.h; path = ../Vendor/JDDropableView/JDDroppableCollectionViewCell.h; sourceTree = "<group>"; };
+		FACF43E917EDD24A001CF26C /* JDDroppableCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDDroppableCollectionViewCell.m; path = ../Vendor/JDDropableView/JDDroppableCollectionViewCell.m; sourceTree = "<group>"; };
 		FAE8215F17CCB2F7003C39B0 /* ISUAddressBookUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAddressBookUtility.h; sourceTree = "<group>"; };
 		FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAddressBookUtility.m; sourceTree = "<group>"; };
 		FAE8217B17CCB595003C39B0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -269,6 +302,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA7F851217F08FA700DB972F /* CoreVideo.framework in Frameworks */,
+				FA7F851017F08F9300DB972F /* GLKit.framework in Frameworks */,
+				FA7F850E17F08F7C00DB972F /* OpenGLES.framework in Frameworks */,
 				FAC060CB17E2BE1900E67748 /* AudioToolbox.framework in Frameworks */,
 				FA21681517CC993A0026F1CD /* AddressBook.framework in Frameworks */,
 				FA21681717CC993F0026F1CD /* AddressBookUI.framework in Frameworks */,
@@ -321,6 +357,9 @@
 		FA2167D517CC98AB0026F1CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA7F851117F08FA700DB972F /* CoreVideo.framework */,
+				FA7F850F17F08F9300DB972F /* GLKit.framework */,
+				FA7F850D17F08F7C00DB972F /* OpenGLES.framework */,
 				FAC060CA17E2BE1900E67748 /* AudioToolbox.framework */,
 				FA85ECCC17DC610100F6FC7F /* Crashlytics.framework */,
 				FA21681417CC993A0026F1CD /* AddressBook.framework */,
@@ -409,6 +448,8 @@
 		FA21681A17CC995A0026F1CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA7F850917F08E6100DB972F /* DailyNote */,
+				FAC68B6F17EF40DD0080376D /* NotificationCenter */,
 				FACF43E317ED4D60001CF26C /* SearchView */,
 				FA6739F117E726F7006DB3C2 /* LoginView */,
 				FA4776A517E5DD2A00BDB510 /* ContactView */,
@@ -521,9 +562,20 @@
 			name = Operations;
 			sourceTree = "<group>";
 		};
+		FA7F850917F08E6100DB972F /* DailyNote */ = {
+			isa = PBXGroup;
+			children = (
+				FA7F850A17F08E7D00DB972F /* ISUDailyNoteViewController.h */,
+				FA7F850B17F08E7D00DB972F /* ISUDailyNoteViewController.m */,
+			);
+			name = DailyNote;
+			sourceTree = "<group>";
+		};
 		FA85369717D37BB100696D28 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				FAC68B3517EF33DA0080376D /* RESideMenu */,
+				FACF43E717EDD21C001CF26C /* DroppableView */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -617,6 +669,35 @@
 			name = TestClasses;
 			sourceTree = "<group>";
 		};
+		FAC68B3517EF33DA0080376D /* RESideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				FAC68B5117EF373A0080376D /* AccelerationAnimation.h */,
+				FAC68B5217EF373A0080376D /* AccelerationAnimation.m */,
+				FAC68B5317EF373A0080376D /* Evaluate.h */,
+				FAC68B5417EF373A0080376D /* Evaluate.m */,
+				FAC68B5517EF373A0080376D /* REBackgroundView.h */,
+				FAC68B5617EF373A0080376D /* REBackgroundView.m */,
+				FAC68B5717EF373A0080376D /* RESideMenu.h */,
+				FAC68B5817EF373A0080376D /* RESideMenu.m */,
+				FAC68B5D17EF373A0080376D /* UINavigationController+DelegateFixes.h */,
+				FAC68B5E17EF373A0080376D /* UINavigationController+DelegateFixes.m */,
+				FAC68B5F17EF373A0080376D /* UIView+ImageSnapshot.h */,
+				FAC68B6017EF373A0080376D /* UIView+ImageSnapshot.m */,
+			);
+			name = RESideMenu;
+			path = ../Vendor;
+			sourceTree = "<group>";
+		};
+		FAC68B6F17EF40DD0080376D /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				FAC68B6C17EF40D50080376D /* ISUNotificationCenterViewController.h */,
+				FAC68B6D17EF40D50080376D /* ISUNotificationCenterViewController.m */,
+			);
+			name = NotificationCenter;
+			sourceTree = "<group>";
+		};
 		FAC7A57C17E4566E002B7EF9 /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -642,6 +723,15 @@
 				FAA608F517DE084700A5BAAC /* ISUSearchTableViewController.m */,
 			);
 			name = SearchView;
+			sourceTree = "<group>";
+		};
+		FACF43E717EDD21C001CF26C /* DroppableView */ = {
+			isa = PBXGroup;
+			children = (
+				FACF43E817EDD24A001CF26C /* JDDroppableCollectionViewCell.h */,
+				FACF43E917EDD24A001CF26C /* JDDroppableCollectionViewCell.m */,
+			);
+			name = DroppableView;
 			sourceTree = "<group>";
 		};
 		FAE8215617CCAB45003C39B0 /* Functions */ = {
@@ -922,6 +1012,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAC68B6517EF373A0080376D /* REBackgroundView.m in Sources */,
+				FACF43EA17EDD24A001CF26C /* JDDroppableCollectionViewCell.m in Sources */,
 				FA85370D17DA074600696D28 /* ISUAddress+function.m in Sources */,
 				FA85370417D82FDB00696D28 /* ISUAddress.m in Sources */,
 				FA787DF617CE3CC400F676E2 /* ISUAddressBookImportOperation.m in Sources */,
@@ -930,6 +1022,7 @@
 				FA8536A017D38EAE00696D28 /* ISUCollectionContactViewCell.m in Sources */,
 				FA85369617D372B000696D28 /* ISUContactCollectionViewController.m in Sources */,
 				FAE8219017CCB98F003C39B0 /* ISUContact+function.m in Sources */,
+				FAC68B6917EF373A0080376D /* UINavigationController+DelegateFixes.m in Sources */,
 				FA8536B517D4900A00696D28 /* ISUContactSource+function.m in Sources */,
 				FA8536F617D6E02C00696D28 /* ISUDate.m in Sources */,
 				FA85369017D2368D00696D28 /* ISUDefines.m in Sources */,
@@ -937,7 +1030,9 @@
 				FAE8218D17CCB981003C39B0 /* ISUGroup+function.m in Sources */,
 				FA8536D617D639CD00696D28 /* ISUGroup.m in Sources */,
 				FA85369317D319AF00696D28 /* ISULogger.m in Sources */,
+				FAC68B6A17EF373A0080376D /* UIView+ImageSnapshot.m in Sources */,
 				FA787DE417CDEE5000F676E2 /* ISUPersistentManager.m in Sources */,
+				FAC68B6617EF373A0080376D /* RESideMenu.m in Sources */,
 				FA8536D317D639CD00696D28 /* ISUPhone.m in Sources */,
 				FA8536E217D639CE00696D28 /* ISURelatedName.m in Sources */,
 				FA85371017DA091400696D28 /* ISUSocialProfile+function.m in Sources */,
@@ -945,11 +1040,14 @@
 				FA8536DF17D639CE00696D28 /* ISUUrl.m in Sources */,
 				FA8536BE17D615A800696D28 /* ISUUtility.m in Sources */,
 				FA2167F317CC98AB0026F1CD /* ISUGroupTableViewController.m in Sources */,
+				FA7F850C17F08E7D00DB972F /* ISUDailyNoteViewController.m in Sources */,
 				FA2167E317CC98AB0026F1CD /* main.m in Sources */,
 				FAE8217C17CCB595003C39B0 /* Model.xcdatamodeld in Sources */,
 				FAA608F117DDF3D000A5BAAC /* ISUDialKeyboardView.m in Sources */,
 				FAA608F617DE084700A5BAAC /* ISUSearchTableViewController.m in Sources */,
+				FAC68B6417EF373A0080376D /* Evaluate.m in Sources */,
 				FAA6090317DEF56C00A5BAAC /* ISUSearchTableViewCell.m in Sources */,
+				FAC68B6317EF373A0080376D /* AccelerationAnimation.m in Sources */,
 				FAA6093317DF550500A5BAAC /* ISUPhoneNumberFormatter.m in Sources */,
 				FAA6093617DF559E00A5BAAC /* ISUSoundEffect.m in Sources */,
 				FAC7A57B17E45299002B7EF9 /* NSFileManager+ISUAdditions.m in Sources */,
@@ -967,6 +1065,7 @@
 				FAA807B817E87E4800CF5FEA /* RHPerson+function.m in Sources */,
 				FAA807BB17E8801500CF5FEA /* RHGroup+function.m in Sources */,
 				FA36610917E9C8A400125F04 /* ISUContact.m in Sources */,
+				FAC68B6E17EF40D50080376D /* ISUNotificationCenterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

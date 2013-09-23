@@ -10,6 +10,7 @@
 #import "ISUMigrationManager.h"
 #import "ISUPersistentManager.h"
 #import "ISUGroupTableViewController.h"
+#import "ISUNotificationCenterViewController.h"
 #import "ISUAddressBookUtility.h"
 
 #import <Crashlytics/Crashlytics.h>
@@ -69,7 +70,10 @@
     self.window.backgroundColor = [UIColor blackColor];
     ISUGroupTableViewController *groupTabelViewController = [[ISUGroupTableViewController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:groupTabelViewController];
-    self.window.rootViewController = navigationController;
+    ISUNotificationCenterViewController *notificationCenterViewController = [[ISUNotificationCenterViewController alloc] init];
+    notificationCenterViewController.childController = navigationController;
+    self.window.rootViewController = notificationCenterViewController;
+    
     [self.window makeKeyAndVisible];
     
     // Crashlytics (must be the last line)

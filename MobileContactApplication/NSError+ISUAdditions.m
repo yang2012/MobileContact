@@ -15,6 +15,7 @@
     switch (errorCode) {
         case ISUErrorCodeInvalide:
             description = NSLocalizedString(@"Invalid argument", @"Error description");
+            break;
         default:
             description = NSLocalizedString(@"Unknowned error.", @"Error description");
             break;
