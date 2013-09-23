@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_DKLiveBlur 0
 #define COCOAPODS_VERSION_PATCH_DKLiveBlur 1
 
+// EAIntroView
+#define COCOAPODS_POD_AVAILABLE_EAIntroView
+#define COCOAPODS_VERSION_MAJOR_EAIntroView 1
+#define COCOAPODS_VERSION_MINOR_EAIntroView 1
+#define COCOAPODS_VERSION_PATCH_EAIntroView 1
+
 // FLKAutoLayout
 #define COCOAPODS_POD_AVAILABLE_FLKAutoLayout
 #define COCOAPODS_VERSION_MAJOR_FLKAutoLayout 0
@@ -59,6 +65,12 @@
 #define COCOAPODS_VERSION_MAJOR_RHAddressBook 1
 #define COCOAPODS_VERSION_MINOR_RHAddressBook 0
 #define COCOAPODS_VERSION_PATCH_RHAddressBook 2
+
+// RNThemeManager
+#define COCOAPODS_POD_AVAILABLE_RNThemeManager
+#define COCOAPODS_VERSION_MAJOR_RNThemeManager 0
+#define COCOAPODS_VERSION_MINOR_RNThemeManager 1
+#define COCOAPODS_VERSION_PATCH_RNThemeManager 0
 
 // ReactiveCocoa
 #define COCOAPODS_POD_AVAILABLE_ReactiveCocoa

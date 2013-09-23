@@ -43,6 +43,13 @@
 		FA7F850E17F08F7C00DB972F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7F850D17F08F7C00DB972F /* OpenGLES.framework */; };
 		FA7F851017F08F9300DB972F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7F850F17F08F9300DB972F /* GLKit.framework */; };
 		FA7F851217F08FA700DB972F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7F851117F08FA700DB972F /* CoreVideo.framework */; };
+		FA7F851A17F0994300DB972F /* ISUIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F851917F0994300DB972F /* ISUIntroductionViewController.m */; };
+		FA7F852317F099E500DB972F /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7F851C17F099E500DB972F /* 1.png */; };
+		FA7F852417F099E500DB972F /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7F851D17F099E500DB972F /* 3.png */; };
+		FA7F852517F099E500DB972F /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7F851E17F099E500DB972F /* 2.png */; };
+		FA7F852717F099E500DB972F /* femalecodertocat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7F852017F099E500DB972F /* femalecodertocat@2x.png */; };
+		FA7F852817F099E500DB972F /* original@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7F852117F099E500DB972F /* original@2x.png */; };
+		FA7F852917F099E500DB972F /* supportcat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7F852217F099E500DB972F /* supportcat@2x.png */; };
 		FA85369017D2368D00696D28 /* ISUDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85368F17D2368D00696D28 /* ISUDefines.m */; };
 		FA85369317D319AF00696D28 /* ISULogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85369217D319AF00696D28 /* ISULogger.m */; };
 		FA85369617D372B000696D28 /* ISUContactCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85369517D372B000696D28 /* ISUContactCollectionViewController.m */; };
@@ -186,6 +193,14 @@
 		FA7F850D17F08F7C00DB972F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		FA7F850F17F08F9300DB972F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		FA7F851117F08FA700DB972F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		FA7F851817F0994300DB972F /* ISUIntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUIntroductionViewController.h; sourceTree = "<group>"; };
+		FA7F851917F0994300DB972F /* ISUIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUIntroductionViewController.m; sourceTree = "<group>"; };
+		FA7F851C17F099E500DB972F /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		FA7F851D17F099E500DB972F /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		FA7F851E17F099E500DB972F /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		FA7F852017F099E500DB972F /* femalecodertocat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "femalecodertocat@2x.png"; sourceTree = "<group>"; };
+		FA7F852117F099E500DB972F /* original@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "original@2x.png"; sourceTree = "<group>"; };
+		FA7F852217F099E500DB972F /* supportcat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "supportcat@2x.png"; sourceTree = "<group>"; };
 		FA85368E17D2368D00696D28 /* ISUDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUDefines.h; sourceTree = "<group>"; };
 		FA85368F17D2368D00696D28 /* ISUDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUDefines.m; sourceTree = "<group>"; };
 		FA85369117D319AE00696D28 /* ISULogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISULogger.h; sourceTree = "<group>"; };
@@ -448,6 +463,7 @@
 		FA21681A17CC995A0026F1CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA7F851717F0990F00DB972F /* IntroductionView */,
 				FA7F850917F08E6100DB972F /* DailyNote */,
 				FAC68B6F17EF40DD0080376D /* NotificationCenter */,
 				FACF43E317ED4D60001CF26C /* SearchView */,
@@ -569,6 +585,28 @@
 				FA7F850B17F08E7D00DB972F /* ISUDailyNoteViewController.m */,
 			);
 			name = DailyNote;
+			sourceTree = "<group>";
+		};
+		FA7F851717F0990F00DB972F /* IntroductionView */ = {
+			isa = PBXGroup;
+			children = (
+				FA7F851817F0994300DB972F /* ISUIntroductionViewController.h */,
+				FA7F851917F0994300DB972F /* ISUIntroductionViewController.m */,
+			);
+			name = IntroductionView;
+			sourceTree = "<group>";
+		};
+		FA7F851B17F099BB00DB972F /* Introduction */ = {
+			isa = PBXGroup;
+			children = (
+				FA7F851C17F099E500DB972F /* 1.png */,
+				FA7F851D17F099E500DB972F /* 3.png */,
+				FA7F851E17F099E500DB972F /* 2.png */,
+				FA7F852017F099E500DB972F /* femalecodertocat@2x.png */,
+				FA7F852117F099E500DB972F /* original@2x.png */,
+				FA7F852217F099E500DB972F /* supportcat@2x.png */,
+			);
+			name = Introduction;
 			sourceTree = "<group>";
 		};
 		FA85369717D37BB100696D28 /* Vendor */ = {
@@ -712,6 +750,7 @@
 		FAC7A58917E55D9A002B7EF9 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				FA7F851B17F099BB00DB972F /* Introduction */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -880,13 +919,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA2167ED17CC98AB0026F1CD /* Default-568h@2x.png in Resources */,
+				FA7F852817F099E500DB972F /* original@2x.png in Resources */,
 				FA2167E917CC98AB0026F1CD /* Default.png in Resources */,
+				FA7F852517F099E500DB972F /* 2.png in Resources */,
 				FA2167EB17CC98AB0026F1CD /* Default@2x.png in Resources */,
 				FACF43DA17EC8FAE001CF26C /* Images.xcassets in Resources */,
 				FA2167E117CC98AB0026F1CD /* InfoPlist.strings in Resources */,
 				FA8536A317D4230000696D28 /* ISUCollectionContactViewCell.xib in Resources */,
 				FA85ECC917DC5C8700F6FC7F /* Icon@2x.png in Resources */,
 				FA85ECCB17DC601500F6FC7F /* Icon.png in Resources */,
+				FA7F852917F099E500DB972F /* supportcat@2x.png in Resources */,
 				FAA6090617DF116900A5BAAC /* ISUDialKeyboardView.xib in Resources */,
 				FAA6092017DF54C400A5BAAC /* silence.caf in Resources */,
 				FAA6092117DF54C400A5BAAC /* 0.wav in Resources */,
@@ -897,12 +939,15 @@
 				FAA6092617DF54C400A5BAAC /* 5.wav in Resources */,
 				FAA6092717DF54C400A5BAAC /* 6.wav in Resources */,
 				FAA6092817DF54C400A5BAAC /* 7.wav in Resources */,
+				FA7F852317F099E500DB972F /* 1.png in Resources */,
+				FA7F852417F099E500DB972F /* 3.png in Resources */,
 				FAA6092917DF54C400A5BAAC /* 8.wav in Resources */,
 				FAA6092A17DF54C400A5BAAC /* 9.wav in Resources */,
 				FAA6092B17DF54C400A5BAAC /* calling.wav in Resources */,
 				FAA6092C17DF54C400A5BAAC /* numeral.wav in Resources */,
 				FAA6092D17DF54C400A5BAAC /* star.wav in Resources */,
 				FAA6092E17DF54C400A5BAAC /* tone1.wav in Resources */,
+				FA7F852717F099E500DB972F /* femalecodertocat@2x.png in Resources */,
 				FAA6092F17DF54C400A5BAAC /* tone2.wav in Resources */,
 				FAA6093017DF54C400A5BAAC /* tone3.wav in Resources */,
 			);
@@ -1015,6 +1060,7 @@
 				FAC68B6517EF373A0080376D /* REBackgroundView.m in Sources */,
 				FACF43EA17EDD24A001CF26C /* JDDroppableCollectionViewCell.m in Sources */,
 				FA85370D17DA074600696D28 /* ISUAddress+function.m in Sources */,
+				FA7F851A17F0994300DB972F /* ISUIntroductionViewController.m in Sources */,
 				FA85370417D82FDB00696D28 /* ISUAddress.m in Sources */,
 				FA787DF617CE3CC400F676E2 /* ISUAddressBookImportOperation.m in Sources */,
 				FAE8216117CCB2F7003C39B0 /* ISUAddressBookUtility.m in Sources */,
