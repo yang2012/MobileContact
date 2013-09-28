@@ -6,6 +6,42 @@
 // project.
 
 
+// AFNetworking
+#define COCOAPODS_POD_AVAILABLE_AFNetworking
+#define COCOAPODS_VERSION_MAJOR_AFNetworking 2
+#define COCOAPODS_VERSION_MINOR_AFNetworking 0
+#define COCOAPODS_VERSION_PATCH_AFNetworking 0
+
+// AFNetworking/NSURLConnection
+#define COCOAPODS_POD_AVAILABLE_AFNetworking_NSURLConnection
+#define COCOAPODS_VERSION_MAJOR_AFNetworking_NSURLConnection 2
+#define COCOAPODS_VERSION_MINOR_AFNetworking_NSURLConnection 0
+#define COCOAPODS_VERSION_PATCH_AFNetworking_NSURLConnection 0
+
+// AFNetworking/Reachability
+#define COCOAPODS_POD_AVAILABLE_AFNetworking_Reachability
+#define COCOAPODS_VERSION_MAJOR_AFNetworking_Reachability 2
+#define COCOAPODS_VERSION_MINOR_AFNetworking_Reachability 0
+#define COCOAPODS_VERSION_PATCH_AFNetworking_Reachability 0
+
+// AFNetworking/Security
+#define COCOAPODS_POD_AVAILABLE_AFNetworking_Security
+#define COCOAPODS_VERSION_MAJOR_AFNetworking_Security 2
+#define COCOAPODS_VERSION_MINOR_AFNetworking_Security 0
+#define COCOAPODS_VERSION_PATCH_AFNetworking_Security 0
+
+// AFNetworking/Serialization
+#define COCOAPODS_POD_AVAILABLE_AFNetworking_Serialization
+#define COCOAPODS_VERSION_MAJOR_AFNetworking_Serialization 2
+#define COCOAPODS_VERSION_MINOR_AFNetworking_Serialization 0
+#define COCOAPODS_VERSION_PATCH_AFNetworking_Serialization 0
+
+// AFNetworking/UIKit
+#define COCOAPODS_POD_AVAILABLE_AFNetworking_UIKit
+#define COCOAPODS_VERSION_MAJOR_AFNetworking_UIKit 2
+#define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 0
+#define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 0
+
 // DAKeyboardControl
 #define COCOAPODS_POD_AVAILABLE_DAKeyboardControl
 #define COCOAPODS_VERSION_MAJOR_DAKeyboardControl 2
@@ -35,6 +71,30 @@
 #define COCOAPODS_VERSION_MAJOR_FXBlurView 1
 #define COCOAPODS_VERSION_MINOR_FXBlurView 3
 #define COCOAPODS_VERSION_PATCH_FXBlurView 1
+
+// FlipBoardNavigationController
+#define COCOAPODS_POD_AVAILABLE_FlipBoardNavigationController
+#define COCOAPODS_VERSION_MAJOR_FlipBoardNavigationController 1
+#define COCOAPODS_VERSION_MINOR_FlipBoardNavigationController 0
+#define COCOAPODS_VERSION_PATCH_FlipBoardNavigationController 0
+
+// HTAutocompleteTextField
+#define COCOAPODS_POD_AVAILABLE_HTAutocompleteTextField
+#define COCOAPODS_VERSION_MAJOR_HTAutocompleteTextField 1
+#define COCOAPODS_VERSION_MINOR_HTAutocompleteTextField 2
+#define COCOAPODS_VERSION_PATCH_HTAutocompleteTextField 2
+
+// KLSwitch
+#define COCOAPODS_POD_AVAILABLE_KLSwitch
+#define COCOAPODS_VERSION_MAJOR_KLSwitch 1
+#define COCOAPODS_VERSION_MINOR_KLSwitch 5
+#define COCOAPODS_VERSION_PATCH_KLSwitch 0
+
+// MCSwipeTableViewCell
+#define COCOAPODS_POD_AVAILABLE_MCSwipeTableViewCell
+#define COCOAPODS_VERSION_MAJOR_MCSwipeTableViewCell 1
+#define COCOAPODS_VERSION_MINOR_MCSwipeTableViewCell 1
+#define COCOAPODS_VERSION_PATCH_MCSwipeTableViewCell 1
 
 // MJNIndexView
 #define COCOAPODS_POD_AVAILABLE_MJNIndexView
@@ -71,6 +131,12 @@
 #define COCOAPODS_VERSION_MAJOR_RNThemeManager 0
 #define COCOAPODS_VERSION_MINOR_RNThemeManager 1
 #define COCOAPODS_VERSION_PATCH_RNThemeManager 0
+
+// RSCategories
+#define COCOAPODS_POD_AVAILABLE_RSCategories
+#define COCOAPODS_VERSION_MAJOR_RSCategories 0
+#define COCOAPODS_VERSION_MINOR_RSCategories 1
+#define COCOAPODS_VERSION_PATCH_RSCategories 0
 
 // ReactiveCocoa
 #define COCOAPODS_POD_AVAILABLE_ReactiveCocoa
@@ -119,6 +185,12 @@
 #define COCOAPODS_VERSION_MAJOR_TMCache 1
 #define COCOAPODS_VERSION_MINOR_TMCache 2
 #define COCOAPODS_VERSION_PATCH_TMCache 0
+
+// UIImageViewModeScaleAspect
+#define COCOAPODS_POD_AVAILABLE_UIImageViewModeScaleAspect
+#define COCOAPODS_VERSION_MAJOR_UIImageViewModeScaleAspect 1
+#define COCOAPODS_VERSION_MINOR_UIImageViewModeScaleAspect 1
+#define COCOAPODS_VERSION_PATCH_UIImageViewModeScaleAspect 0
 
 // WSCoachMarksView
 #define COCOAPODS_POD_AVAILABLE_WSCoachMarksView
