@@ -2,7 +2,7 @@
 //  ISUContact.m
 //  MobileContactApplication
 //
-//  Created by macbook on 13-9-18.
+//  Created by macbook on 13-9-27.
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
@@ -13,6 +13,7 @@
 #import "ISUGroup.h"
 #import "ISUPhone.h"
 #import "ISURelatedName.h"
+#import "ISUSearchItem.h"
 #import "ISUSocialProfile.h"
 #import "ISUUrl.h"
 
@@ -46,5 +47,6 @@
 @dynamic relatedNames;
 @dynamic socialProfiles;
 @dynamic urls;
+@dynamic searchItems;
 
 @end

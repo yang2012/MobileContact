@@ -33,7 +33,6 @@ describe(@"ISUPersistentManagerTest", ^{
             [[[ISUPersistentManager mainQueueContext] should] beNonNil];
             [[[ISUPersistentManager newPrivateQueueContext] should] beNonNil];
             [[[ISUPersistentManager managedObjectModel] should] beNonNil];
-            [[[ISUPersistentManager sourceMetadata:nil] should] beNonNil];
         });
     });
 });

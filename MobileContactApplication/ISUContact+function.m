@@ -16,9 +16,20 @@
 #import "ISUUrl.h"
 #import "ISUSocialProfile+function.h"
 #import "NSString+ISUAdditions.h"
+#import "ISUSearchItem+function.h"
 #import "TMCache.h"
 #import "AddressBook.h"
 #import "ISUUtility.h"
+
+static NSString *const kSearchItemForContactFirstNameProperty = @"firstNameProperty";
+static NSString *const kSearchItemForContactLastNameProperty = @"lastNameProperty";
+static NSString *const kSearchItemForContactMiddleNameProperty = @"middleNameProperty";
+static NSString *const kSearchItemForContactJobTitleProperty = @"jobTitleProperty";
+static NSString *const kSearchItemForContactDepartmentProperty = @"departmentProperty";
+static NSString *const kSearchItemForContactOrganizationProperty = @"organizationProperty";
+static NSString *const kSearchItemForContactNicknameProperty = @"nicknameProperty";
+static NSString *const kSearchItemForContactPhonesProperty = @"phonesProperty";
+static NSString *const kSearchItemForContactEmailsProperty = @"emailsProperty";
 
 @implementation ISUContact (function)
 
@@ -59,6 +70,92 @@
     return [self mutableSetValueForKey:@"socialProfiles"];
 }
 
+- (NSMutableSet *)mutableSearchItems
+{
+    return [self mutableSetValueForKey:@"searchItems"];
+}
+
+#pragma mark - Setter (Add search item)
+
+- (void)setFirstName:(NSString *)firstName
+{
+    NSString *previous = [self primitiveValueForKey:@"firstName"];
+    
+    [self willChangeValueForKey:@"firstName"];
+    [self setPrimitiveValue:firstName forKey:@"firstName"];
+    [self didChangeValueForKey:@"firstName"];
+    
+    [self _updateSearchItemWithPreviousKey:previous newKey:firstName forProperty:kSearchItemForContactFirstNameProperty];
+}
+
+- (void)setLastName:(NSString *)lastName
+{
+    NSString *previous = [self primitiveValueForKey:@"lastName"];
+    
+    [self willChangeValueForKey:@"lastName"];
+    [self setPrimitiveValue:lastName forKey:@"lastName"];
+    [self didChangeValueForKey:@"lastName"];
+    
+    [self _updateSearchItemWithPreviousKey:previous newKey:lastName forProperty:kSearchItemForContactLastNameProperty];
+}
+
+- (void)setMiddleName:(NSString *)middleName
+{
+    NSString *previous = [self primitiveValueForKey:@"middleName"];
+    
+    [self willChangeValueForKey:@"middleName"];
+    [self setPrimitiveValue:middleName forKey:@"middleName"];
+    [self didChangeValueForKey:@"middleName"];
+    
+    [self _updateSearchItemWithPreviousKey:previous newKey:middleName forProperty:kSearchItemForContactMiddleNameProperty];
+}
+
+- (void)setNickname:(NSString *)nickname
+{
+    NSString *previous = [self primitiveValueForKey:@"nickname"];
+    
+    [self willChangeValueForKey:@"nickname"];
+    [self setPrimitiveValue:nickname forKey:@"nickname"];
+    [self didChangeValueForKey:@"nickname"];
+    
+    [self _updateSearchItemWithPreviousKey:previous newKey:nickname forProperty:kSearchItemForContactNicknameProperty];
+}
+
+- (void)setJobTitle:(NSString *)jobTitle
+{
+    NSString *previous = [self primitiveValueForKey:@"jobTitle"];
+    
+    [self willChangeValueForKey:@"jobTitle"];
+    [self setPrimitiveValue:jobTitle forKey:@"jobTitle"];
+    [self didChangeValueForKey:@"jobTitle"];
+    
+    [self _updateSearchItemWithPreviousKey:previous newKey:jobTitle forProperty:kSearchItemForContactJobTitleProperty];
+}
+
+- (void)setOrganization:(NSString *)organization
+{
+    NSString *previous = [self primitiveValueForKey:@"organization"];
+    
+    [self willChangeValueForKey:@"organization"];
+    [self setPrimitiveValue:organization forKey:@"organization"];
+    [self didChangeValueForKey:@"organization"];
+    
+    [self _updateSearchItemWithPreviousKey:previous newKey:organization forProperty:kSearchItemForContactOrganizationProperty];
+}
+
+- (void)setDepartment:(NSString *)department
+{
+    NSString *previous = [self primitiveValueForKey:@"department"];
+    
+    [self willChangeValueForKey:@"department"];
+    [self setPrimitiveValue:department forKey:@"department"];
+    [self didChangeValueForKey:@"department"];
+    
+    [self _updateSearchItemWithPreviousKey:previous newKey:department forProperty:kSearchItemForContactDepartmentProperty];
+}
+
+#pragma mark - Method for displaying
+
 - (NSString *)fullName
 {
 	NSMutableString *name = [NSMutableString string];
@@ -97,6 +194,8 @@
 {
     return [NSString sortSectionTitle:self.fullName];
 }
+
+#pragma mark - CRUD
 
 + (ISUContact *)findOrCreatePersonWithRecordId:(NSInteger)recordId
                                        context:(NSManagedObjectContext *)context
@@ -161,8 +260,29 @@
     [self _updateSocialProfilesWithCoreContact:coreContact context:context];
 }
 
-
 #pragma mark - Private methods
+
+- (void)_updateSearchItemWithPreviousKey:(NSString *)previousKey
+                                  newKey:(NSString *)newKey
+                             forProperty:(NSString *)property
+{
+    // Delete search item for previous key if it exists
+    if (previousKey && ![previousKey isEqualToString:newKey]) {
+        ISUSearchItem *previousSearchItem = [self _searchItemWithKey:previousKey forProperty:property];
+        if (previousSearchItem) {
+            [self.mutableSearchItems removeObject:previousSearchItem];
+            [previousSearchItem delete];
+        }
+    }
+    
+    // Add new search item for new key
+    if (newKey) {
+        ISUSearchItem *newSearchItem = [ISUSearchItem newSearchItemWithKey:newKey
+                                                                  property:property
+                                                                   context:self.managedObjectContext];
+        [self.mutableSearchItems addObject:newSearchItem];
+    }
+}
 
 - (void)_updateBaseInfoWithCoreContact:(RHPerson *)coreContact
 {
@@ -360,12 +480,31 @@
     return [addressBookUtility removeContactFromAddressBookWithRecordId:self.recordId error:error];
 }
 
-#pragma make - SSManagedObject
+#pragma mark - SSManagedObject
 
 + (NSArray *)defaultSortDescriptors
 {
     return [NSArray arrayWithObjects:
             [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:NO], nil];
+}
+
+#pragma mark - Private methods
+
+- (ISUSearchItem *)_searchItemWithKey:(NSString *)key forProperty:(NSString *)property
+{
+    ISUSearchItem *searchItem = nil;
+    NSArray *searchItems =  [[self.searchItems filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"key=%@ AND property=%@", key, property]] allObjects];
+    if (searchItems.count > 0) {
+        if (searchItems.count == 1) {
+            searchItem = searchItems[0];
+        } else {
+            NSString *msg = [NSString stringWithFormat:@"More than one search item with same key %@", key];
+            ISULog(msg, ISULogPriorityHigh);
+            
+            searchItem = [searchItems lastObject];
+        }
+    }
+    return searchItem;
 }
 
 @end

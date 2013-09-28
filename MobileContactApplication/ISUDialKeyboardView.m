@@ -39,9 +39,14 @@
     return self;
 }
 
+- (void)setPhoneNumber:(NSString *)phoneNumber
+{
+    _phoneNumber = [self.numberFormatter format:phoneNumber withLocale:@"US"];
+}
+
 - (void)awakeFromNib
 {
-    self.phoneNumber = @"";
+    _phoneNumber = @"";
     self.numberFormatter = [[ISUPhoneNumberFormatter alloc] init];
     
     NSBundle *mainBundle = [NSBundle mainBundle];
@@ -72,10 +77,10 @@
     [[self.tonesArray objectAtIndex:sender.tag] play];
     self.phoneNumber = [self.phoneNumber stringByAppendingString:[self.symbolsArray objectAtIndex:sender.tag]];
     
-    NSString *number = [self.numberFormatter format:self.phoneNumber withLocale:@"US"];
     if ([self.dialDelegate respondsToSelector:@selector(onDialView:dialNumber:)]) {
-        [self.dialDelegate onDialView:self dialNumber:number];
-    }}
+        [self.dialDelegate onDialView:self dialNumber:self.phoneNumber];
+    }
+}
 
 - (IBAction)clickDelete:(id)sender
 {
@@ -84,7 +89,10 @@
     {
         NSRange range = NSMakeRange(0, currentLength - 1);
         self.phoneNumber = [self.phoneNumber substringWithRange:range];
-//        self.numberTextField.text = [self.numberFormatter format:self.phoneNumber withLocale:@"US"];
+        
+        if ([self.dialDelegate respondsToSelector:@selector(onDialView:dialNumber:)]) {
+            [self.dialDelegate onDialView:self dialNumber:self.phoneNumber];
+        }
     }
 }
 

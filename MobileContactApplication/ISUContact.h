@@ -2,13 +2,13 @@
 //  ISUContact.h
 //  MobileContactApplication
 //
-//  Created by macbook on 13-9-18.
+//  Created by macbook on 13-9-27.
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
 #import "SSManagedObject.h"
 
-@class ISUAddress, ISUDate, ISUEmail, ISUGroup, ISUPhone, ISURelatedName, ISUSocialProfile, ISUUrl;
+@class ISUAddress, ISUDate, ISUEmail, ISUGroup, ISUPhone, ISURelatedName, ISUSearchItem, ISUSocialProfile, ISUUrl;
 
 @interface ISUContact : SSManagedObject
 
@@ -39,6 +39,7 @@
 @property (nonatomic, retain) NSSet *relatedNames;
 @property (nonatomic, retain) NSSet *socialProfiles;
 @property (nonatomic, retain) NSSet *urls;
+@property (nonatomic, retain) NSSet *searchItems;
 @end
 
 @interface ISUContact (CoreDataGeneratedAccessors)
@@ -82,5 +83,10 @@
 - (void)removeUrlsObject:(ISUUrl *)value;
 - (void)addUrls:(NSSet *)values;
 - (void)removeUrls:(NSSet *)values;
+
+- (void)addSearchItemsObject:(ISUSearchItem *)value;
+- (void)removeSearchItemsObject:(ISUSearchItem *)value;
+- (void)addSearchItems:(NSSet *)values;
+- (void)removeSearchItems:(NSSet *)values;
 
 @end

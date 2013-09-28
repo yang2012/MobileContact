@@ -5873,7 +5873,7 @@ char pinyinFirstLetter(unsigned short hanzi) {
     NSString *mutableName = [self mutableCopy];
     CFStringTransform((__bridge CFMutableStringRef) mutableName, NULL,
                       (__bridge CFStringRef)@"NFD; [:Nonspacing Mark:] Remove; Upper(); NFC", NO);
-    return mutableName;
+    return [NSString pinyinFromChiniseString:mutableName];
 }
 
 @end

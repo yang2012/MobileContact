@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ISUAddress" representedClassName="ISUAddress" syncable="YES">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
@@ -36,6 +36,7 @@
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ISUGroup" inverseName="members" inverseEntity="ISUGroup" syncable="YES"/>
         <relationship name="phones" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ISUPhone" inverseName="contact" inverseEntity="ISUPhone" syncable="YES"/>
         <relationship name="relatedNames" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ISURelatedName" inverseName="contact" inverseEntity="ISURelatedName" syncable="YES"/>
+        <relationship name="searchItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ISUSearchItem" inverseName="contact" inverseEntity="ISUSearchItem" syncable="YES"/>
         <relationship name="socialProfiles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ISUSocialProfile" inverseName="contact" inverseEntity="ISUSocialProfile" syncable="YES"/>
         <relationship name="urls" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ISUUrl" inverseName="contact" inverseEntity="ISUUrl" syncable="YES"/>
     </entity>
@@ -71,6 +72,12 @@
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ISUContact" inverseName="relatedNames" inverseEntity="ISUContact" syncable="YES"/>
     </entity>
+    <entity name="ISUSearchItem" representedClassName="ISUSearchItem" syncable="YES">
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="property" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ISUContact" inverseName="searchItems" inverseEntity="ISUContact" syncable="YES"/>
+    </entity>
     <entity name="ISUSocialProfile" representedClassName="ISUSocialProfile" syncable="YES">
         <attribute name="service" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
@@ -88,16 +95,17 @@
         <relationship name="contactSources" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ISUContactSource" inverseName="user" inverseEntity="ISUContactSource" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ISUAddress" positionX="0" positionY="0" width="128" height="165"/>
-        <element name="ISUContact" positionX="0" positionY="0" width="128" height="450"/>
-        <element name="ISUContactSource" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="ISUDate" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="ISUEmail" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="ISUGroup" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="ISUPhone" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="ISURelatedName" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="ISUSocialProfile" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="ISUUrl" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="ISUUser" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="ISUAddress" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ISUContact" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ISUContactSource" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ISUDate" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ISUEmail" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ISUGroup" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ISUPhone" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ISURelatedName" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ISUSocialProfile" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ISUUrl" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ISUUser" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ISUSearchItem" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

@@ -16,7 +16,7 @@
 + (void)saveContext
 {
     NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = [SSManagedObject mainQueueContext];
+    NSManagedObjectContext *managedObjectContext = [ISUPersistentManager mainQueueContext];
 
     if (managedObjectContext != nil) {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
@@ -26,6 +26,13 @@
             abort();
         }
     }
+}
+
+#pragma mark - Resetting the Presistent Store
+
++ (void)resetPersistentStore
+{
+    [SSManagedObject resetPersistentStore];
 }
 
 // Returns the managed object context for the application.
@@ -38,7 +45,7 @@
 + (NSManagedObjectContext *)newPrivateQueueContext
 {
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    context.parentContext = [self mainQueueContext];
+    context.parentContext = [ISUPersistentManager mainQueueContext];
     return context;
 }
 
@@ -49,6 +56,10 @@
 + (NSManagedObjectModel *)managedObjectModel
 {
     return [SSManagedObject managedObjectModel];
+}
+
++ (void)setPersistentStoreType:(NSString *)persistentStoreType {
+	[SSManagedObject setPersistentStoreType:persistentStoreType];
 }
 
 // Returns the persistent store coordinator for the application.
@@ -71,8 +82,19 @@
 
 + (NSDictionary *)sourceMetadata:(NSError **)error
 {
-    return [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:[SSManagedObject persistentStoreType]
-                                                                      URL:[SSManagedObject persistentStoreURL]
+    return [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:[ISUPersistentManager persistentStoreType]
+                                                                      URL:[ISUPersistentManager persistentStoreURL]
                                                                     error:error];
 }
+
++ (void)setAutomaticallyResetsPersistentStore:(BOOL)automaticallyReset
+{
+    [SSManagedObject setAutomaticallyResetsPersistentStore:automaticallyReset];
+}
+
++ (BOOL)automaticallyResetsPersistentStore
+{
+    return [SSManagedObject automaticallyResetsPersistentStore];
+}
+
 @end

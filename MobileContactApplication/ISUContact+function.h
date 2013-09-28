@@ -26,6 +26,8 @@
 
 - (NSMutableSet *)mutableSocialProfiles;
 
+- (NSMutableSet *)mutableSearchItems;
+
 - (NSString *)fullName;
 
 - (NSString *)sectionTitle;

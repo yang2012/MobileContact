@@ -31,9 +31,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // Override point for customization after application launch.
-    
+{    
     // Check whether need to migrate from database of old version to new one
     ISUMigrationManager *migrationManager = [ISUMigrationManager sharedInstance];
     if (migrationManager.isMigrationNeeded) {
@@ -62,21 +60,24 @@
     // Set Uncaught Exception Handler
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     
+    // Set up push notification
     [self registerForPushNotification];
     
     // Manage Push Notification
     [self clearNotifications];
     
+    // automatically delete the persistent store file and make a new
+    // one if it fails to initialize
+    [ISUPersistentManager setAutomaticallyResetsPersistentStore:YES];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor blackColor];
-//    ISUGroupTableViewController *groupTabelViewController = [[ISUGroupTableViewController alloc] init];
-//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:groupTabelViewController];
-//    ISUNotificationCenterViewController *notificationCenterViewController = [[ISUNotificationCenterViewController alloc] init];
-//    notificationCenterViewController.childController = navigationController;
-//    self.window.rootViewController = notificationCenterViewController;
-
-    ISUIntroductionViewController *introductionController = [[ISUIntroductionViewController alloc] init];
-    self.window.rootViewController = introductionController;
+    ISUGroupTableViewController *groupTabelViewController = [[ISUGroupTableViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:groupTabelViewController];
+    ISUNotificationCenterViewController *notificationCenterViewController = [[ISUNotificationCenterViewController alloc] init];
+    notificationCenterViewController.childController = navigationController;
+    self.window.rootViewController = notificationCenterViewController;
+    
     [self.window makeKeyAndVisible];
     
     // Crashlytics (must be the last line)

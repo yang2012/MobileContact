@@ -18,15 +18,16 @@
 #import <FLKAutoLayout/UIView+FLKAutoLayout.h>
 #import "ISUPersistentManager.h"
 
+#import "KYCircleMenu.h"
+
+
 #import "NSString+ISUAdditions.h"
 
 static NSString *CellIdentifier = @"Cell";
 
-@interface ISUGroupTableViewController ()
+@interface ISUGroupTableViewController () <KYCircleMenuDelegate>
 
-@property (strong, nonatomic) UIButton *importButton;
-@property (strong, nonatomic) UIButton *searchButton;
-@property (strong, nonatomic) UIButton *cancelButton;
+@property (nonatomic, strong) KYCircleMenu *circleMenu;
 
 @end
 
@@ -40,32 +41,13 @@ static NSString *CellIdentifier = @"Cell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = [UIColor blueColor];
 
-    [self.view addSubview:self.tableView];
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     }
-    
-    self.cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.cancelButton addTarget:self action:@selector(cancelImport:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.cancelButton];
-    
-    self.searchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.searchButton setTitle:@"Search" forState:UIControlStateNormal];
-    [self.searchButton addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.searchButton];
-    
-    [self.searchButton constrainHeight:@"40"];
-    [self.searchButton alignCenterXWithView:self.view predicate:nil];
-    [self.searchButton alignBottomEdgeWithView:self.view predicate:@"-10"];
-    
-    self.importButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.importButton setTitle:@"Import" forState:UIControlStateNormal];
-    [self.importButton addTarget:self action:@selector(startImport:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.importButton];
-    [self.importButton constrainLeadingSpaceToView:self.searchButton predicate:@"20"];
-    [self.importButton alignBaselineWithView:self.searchButton predicate:nil];
-    [self.importButton alignBottomEdgeWithView:self.searchButton predicate:nil];
     
     // Check Address Book
     ISUAddressBookUtility *addressBookUtility = [ISUAddressBookUtility sharedInstance];
@@ -83,6 +65,24 @@ static NSString *CellIdentifier = @"Cell";
             [alert show];
         }
     }];
+
+    CGFloat height = CGRectGetHeight([[UIScreen mainScreen] applicationFrame]);
+    self.circleMenu = [[KYCircleMenu alloc] initWithMenuSize:320.0f
+                                                  buttonSize:64.0f
+                                            centerButtonSize:64.0f
+                                  centerButtonCenterPosition:CGPointMake(160.0f, height - 75.0f)
+                                       centerButtonImageName:@"KYICircleMenuCenterButton"
+                            centerButtonHighlightedImageName:@"KYICircleMenuCenterButtonBackground"];
+    
+    // Center Menu View
+    self.circleMenu.frame = self.view.frame;
+    self.circleMenu.circleDelegate = self;
+    self.view = self.circleMenu;
+    [self.view addSubview:self.tableView];
+    
+    [self.circleMenu addButtonWithImageName:@"KYICircleMenuButton01" highlightedImageName:@"KYICircleMenuButton02" position:KYCircleMenuPositionTopLeft];
+    [self.circleMenu addButtonWithImageName:@"KYICircleMenuButton03" highlightedImageName:@"KYICircleMenuButton04" position:KYCircleMenuPositionTopCenter];
+    [self.circleMenu addButtonWithImageName:@"KYICircleMenuButton05" highlightedImageName:@"KYICircleMenuButton06" position:KYCircleMenuPositionTopRight];
     
     self.managedObject = [ISUUser currentUser];
 }
@@ -106,11 +106,9 @@ static NSString *CellIdentifier = @"Cell";
     [[ISUOperationManager sharedInstance] cancelAllOperations];
 }
 
-- (void)search:(id)sender
+- (void)_openSearchView
 {
-    ISUSearchTableViewController *searchTableViewController = [[ISUSearchTableViewController alloc] init];
-    searchTableViewController.user = self.user;
-    [self presentViewController:searchTableViewController animated:YES completion:nil];
+    [[ISUSearchTableViewController sharedInstance] displayFromViewController:self withUser:self.user];
 }
 
 #pragma mark - SSManagedTableViewController
@@ -167,6 +165,25 @@ static NSString *CellIdentifier = @"Cell";
     ISUContactCollectionViewController *collectionView = [[ISUContactCollectionViewController alloc] initWithLayout:[[UICollectionViewFlowLayout alloc] init]];
     collectionView.group = group;
     [self.navigationController pushViewController:collectionView animated:YES];
+}
+
+- (void)circleMenu:(KYCircleMenu *)circleMenu clickedButtonAtPosition:(KYCircleMenuPosition)position
+{
+    switch (position) {
+        case KYCircleMenuPositionTopLeft:
+            [self startImport:nil];
+            break;
+        case KYCircleMenuPositionTopCenter:
+            [self cancelImport:nil];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)circleMenuDidTapCenterButton:(KYCircleMenu *)circleMenu
+{
+    [self _openSearchView];
 }
 
 @end

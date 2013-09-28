@@ -12,42 +12,30 @@
 #import "ISUPersistentManager.h"
 #import "ISUTestUtility.h"
 
-SPEC_BEGIN(ISUGroupTests)
+SPEC_BEGIN(ISUGroupFunctionCategoryTest)
 
-describe(@"ISUGroupTest", ^{
+describe(@"ISUGroupFunctionCategoryTest", ^{
     
     registerMatchers(@"ISU"); // Registers BGTangentMatcher, BGConvexMatcher, etc.
     
     context(@"Debug", ^{
-        __block NSPersistentStoreCoordinator *storeCoordinator = nil;
         __block NSManagedObjectContext *context = nil;
         __block ISUAddressBookUtility *addressBookUtilityTest = nil;
 
         beforeAll(^{ // Occurs once
             addressBookUtilityTest = [ISUAddressBookUtility sharedInstance];
+            [ISUPersistentManager setPersistentStoreType:NSInMemoryStoreType];
+            context = [ISUPersistentManager newPrivateQueueContext];
         });
         
         afterAll(^{ // Occurs once
+            context = nil;
         });
         
         beforeEach(^{ // Occurs before each enclosed "it"
-            storeCoordinator = [ISUPersistentManager persistentStoreCoordinator];
-            
-            NSError *error = nil;
-            NSPersistentStore *store = [storeCoordinator addPersistentStoreWithType:NSInMemoryStoreType
-                                                                                 configuration:nil
-                                                                                           URL:nil
-                                                                                       options:nil
-                                                                                         error:&error];
-            [[store should] beNonNil];
-            
-            context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-            context.persistentStoreCoordinator = storeCoordinator;
         });
         
         afterEach(^{ // Occurs after each enclosed "it"
-            context = nil;
-            storeCoordinator = nil;
         });
         
         it(@"Test findOrCreateGroupWithRecordId:inContext:", ^{
@@ -57,9 +45,6 @@ describe(@"ISUGroupTest", ^{
             [[theValue(group.recordId) should] equal:@1];
             
             group.name = @"justin";
-            BOOL success = [context save:nil];
-            
-            [[theValue(success) should] beTrue];
             
             group = [ISUGroup findOrCreateGroupWithRecordId:1 context:context];
             
@@ -67,6 +52,8 @@ describe(@"ISUGroupTest", ^{
             
             [[theValue(group.recordId) should] equal:@1];
             [[group.name should] equal:@"justin"];
+            
+            [group delete];
         });
         
         it(@"Test updateWithCoreGroup:inContext:", ^{

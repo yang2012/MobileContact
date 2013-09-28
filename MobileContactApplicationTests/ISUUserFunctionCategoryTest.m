@@ -18,27 +18,21 @@ describe(@"ISUUserFunctionCategoryTest", ^{
     
     context(@"Debug", ^{
         __block ISUUser *user = nil;
-        __block NSPersistentStoreCoordinator *storeCoordinator = nil;
         __block NSManagedObjectContext *context = nil;
         
+        beforeAll(^{ // Occurs once
+            [ISUPersistentManager setPersistentStoreType:NSInMemoryStoreType];
+            context = [ISUPersistentManager newPrivateQueueContext];
+        });
+        
+        afterAll(^{ // Occurs once
+            context = nil;
+        });
+        
         beforeEach(^{ // Occurs before each enclosed "it"
-            storeCoordinator = [ISUPersistentManager persistentStoreCoordinator];
-            
-            NSError *error = nil;
-            NSPersistentStore *store = [storeCoordinator addPersistentStoreWithType:NSInMemoryStoreType
-                                                                      configuration:nil
-                                                                                URL:nil
-                                                                            options:nil
-                                                                              error:&error];
-            [[store should] beNonNil];
-            
-            context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-            context.persistentStoreCoordinator = storeCoordinator;
         });
         
         afterEach(^{ // Occurs after each enclosed "it"
-            context = nil;
-            storeCoordinator = nil;
         });
         
         it(@"Test findOrCreateUserWithUsername:", ^{

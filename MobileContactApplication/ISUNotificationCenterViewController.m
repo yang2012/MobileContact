@@ -10,7 +10,7 @@
 
 @interface ISUNotificationCenterViewController ()
 
-@property (nonatomic, strong) UIPanGestureRecognizer *childViewControllerPanGestureRecognizer;
+@property (nonatomic, strong) UISwipeGestureRecognizer *childViewControllerSwipeGestureRecognizer;
 
 @property (nonatomic, strong) UIView *testView;
 
@@ -18,22 +18,22 @@
 
 @implementation ISUNotificationCenterViewController
 
-- (UIPanGestureRecognizer *)childViewControllerPanGestureRecognizer
+- (UISwipeGestureRecognizer *)childViewControllerSwipeGestureRecognizer
 {
-    if (!_childViewControllerPanGestureRecognizer) {
-        _childViewControllerPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandler:)];
+    if (!_childViewControllerSwipeGestureRecognizer) {
+        _childViewControllerSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandler:)];
     }
-    return _childViewControllerPanGestureRecognizer;
+    return _childViewControllerSwipeGestureRecognizer;
 }
 
 - (void)setChildController:(UIViewController *)childController
 {
     if (_childController) {
-        [_childController.view removeGestureRecognizer:self.childViewControllerPanGestureRecognizer];
+        [_childController.view removeGestureRecognizer:self.childViewControllerSwipeGestureRecognizer];
     }
     _childController = childController;
     
-    [childController.view addGestureRecognizer:self.childViewControllerPanGestureRecognizer];
+    [childController.view addGestureRecognizer:self.childViewControllerSwipeGestureRecognizer];
 }
 
 - (void)viewDidLoad

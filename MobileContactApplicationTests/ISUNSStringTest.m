@@ -18,9 +18,9 @@ describe(@"ISUNSStringTest", ^{
     context(@"Debug", ^{
 
         it(@"Test normalizedSearchString", ^{
-            NSString *test = @"1234567890 @.com _- AbcdEFghiJkLmnopqrstUvwxyz Test Jiege U Görli";
+            NSString *test = @"1234567890 @.com _- AbcdEFghiJkLmnopqrstUvwxyz Test Jiege U Görli 杨宜杰";
             NSString *normalString = [test normalizedSearchString];
-            [[normalString should] equal:@"1234567890 @.COM _- ABCDEFGHIJKLMNOPQRSTUVWXYZ TEST JIEGE U GORLI"];
+            [[normalString should] equal:@"1234567890 @.COM _- ABCDEFGHIJKLMNOPQRSTUVWXYZ TEST JIEGE U GORLI YANGYIJIE"];
         });
         
         it(@"Test pinyinFromChiniseString", ^{
@@ -31,29 +31,29 @@ describe(@"ISUNSStringTest", ^{
         
         it(@"Test sortSectionTitle:", ^{
             NSString *test = @"杨宜杰 啦啦啦 微博";
-            int title = [NSString sortSectionTitle:test];
-            int result = 'Y';
-            [[theValue(title) should] equal:theValue(result)];
+            NSString *title = [NSString sortSectionTitle:test];
+            NSString *result = @"Y";
+            [[title should] equal:result];
             
             test = @"YangYijie";
             title = [NSString sortSectionTitle:test];
-            result = 'Y';
-            [[theValue(title) should] equal:theValue(result)];
+            result = @"Y";
+            [[title should] equal:result];
             
             test = @"jiege";
             title = [NSString sortSectionTitle:test];
-            result = 'J';
-            [[theValue(title) should] equal:theValue(result)];
+            result = @"J";
+            [[title should] equal:result];
             
             test = @"123123123";
             title = [NSString sortSectionTitle:test];
-            result = '#';
-            [[theValue(title) should] equal:theValue(result)];
+            result = @"#";
+            [[title should] equal:result];
             
             test = @"12123";
             title = [NSString sortSectionTitle:test];
-            result = '2';
-            [[theValue(title) shouldNot] equal:theValue(result)];
+            result = @"#";
+            [[title should] equal:result];
         });
     });
 });

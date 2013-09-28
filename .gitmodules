@@ -1,3 +1,6 @@
 [submodule "Vendor/RESideMenu"]
 	path = Vendor/RESideMenu
 	url = https://github.com/yang2012/RESideMenu.git
+[submodule "Vendor/KYCircleMenu"]
+	path = Vendor/KYCircleMenu
+	url = https://github.com/yang2012/KYCircleMenu.git

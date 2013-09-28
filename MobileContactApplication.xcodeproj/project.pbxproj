@@ -26,7 +26,23 @@
 		FA21680517CC98AB0026F1CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA21680317CC98AB0026F1CD /* InfoPlist.strings */; };
 		FA21681517CC993A0026F1CD /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA21681417CC993A0026F1CD /* AddressBook.framework */; };
 		FA21681717CC993F0026F1CD /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA21681617CC993F0026F1CD /* AddressBookUI.framework */; };
-		FA36610917E9C8A400125F04 /* ISUContact.m in Sources */ = {isa = PBXBuildFile; fileRef = FA36610817E9C8A400125F04 /* ISUContact.m */; };
+		FA321CB817F186CC009FB497 /* KYICircleMenuCenterButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CA817F186CC009FB497 /* KYICircleMenuCenterButton.png */; };
+		FA321CB917F186CC009FB497 /* KYICircleMenuCenterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CA917F186CC009FB497 /* KYICircleMenuCenterButton@2x.png */; };
+		FA321CBA17F186CC009FB497 /* KYICircleMenuCenterButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CAA17F186CC009FB497 /* KYICircleMenuCenterButtonBackground.png */; };
+		FA321CBB17F186CC009FB497 /* KYICircleMenuCenterButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CAB17F186CC009FB497 /* KYICircleMenuCenterButtonBackground@2x.png */; };
+		FA321CBC17F186CC009FB497 /* KYICircleMenuButton01.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CAC17F186CC009FB497 /* KYICircleMenuButton01.png */; };
+		FA321CBD17F186CC009FB497 /* KYICircleMenuButton01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CAD17F186CC009FB497 /* KYICircleMenuButton01@2x.png */; };
+		FA321CBE17F186CC009FB497 /* KYICircleMenuButton02.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CAE17F186CC009FB497 /* KYICircleMenuButton02.png */; };
+		FA321CBF17F186CC009FB497 /* KYICircleMenuButton02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CAF17F186CC009FB497 /* KYICircleMenuButton02@2x.png */; };
+		FA321CC017F186CC009FB497 /* KYICircleMenuButton03.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CB017F186CC009FB497 /* KYICircleMenuButton03.png */; };
+		FA321CC117F186CC009FB497 /* KYICircleMenuButton03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CB117F186CC009FB497 /* KYICircleMenuButton03@2x.png */; };
+		FA321CC217F186CC009FB497 /* KYICircleMenuButton04.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CB217F186CC009FB497 /* KYICircleMenuButton04.png */; };
+		FA321CC317F186CC009FB497 /* KYICircleMenuButton04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CB317F186CC009FB497 /* KYICircleMenuButton04@2x.png */; };
+		FA321CC417F186CC009FB497 /* KYICircleMenuButton05.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CB417F186CC009FB497 /* KYICircleMenuButton05.png */; };
+		FA321CC517F186CC009FB497 /* KYICircleMenuButton05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CB517F186CC009FB497 /* KYICircleMenuButton05@2x.png */; };
+		FA321CC617F186CC009FB497 /* KYICircleMenuButton06.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CB617F186CC009FB497 /* KYICircleMenuButton06.png */; };
+		FA321CC717F186CC009FB497 /* KYICircleMenuButton06@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA321CB717F186CC009FB497 /* KYICircleMenuButton06@2x.png */; };
+		FA3BFA1317F16872001FC93F /* KYCircleMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3BFA1217F16872001FC93F /* KYCircleMenu.m */; };
 		FA47769A17E5D43100BDB510 /* ISUOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA47769917E5D43100BDB510 /* ISUOperationManager.m */; };
 		FA47769D17E5D4BE00BDB510 /* ISUAbstractOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA47769C17E5D4BE00BDB510 /* ISUAbstractOperation.m */; };
 		FA4776A017E5D86700BDB510 /* ISUUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA47769F17E5D86700BDB510 /* ISUUser.m */; };
@@ -55,7 +71,7 @@
 		FA85369617D372B000696D28 /* ISUContactCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85369517D372B000696D28 /* ISUContactCollectionViewController.m */; };
 		FA8536A017D38EAE00696D28 /* ISUCollectionContactViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA85369F17D38EAE00696D28 /* ISUCollectionContactViewCell.m */; };
 		FA8536A317D4230000696D28 /* ISUCollectionContactViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA8536A217D4230000696D28 /* ISUCollectionContactViewCell.xib */; };
-		FA8536A617D4358500696D28 /* ISUGroupTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8536A517D4358500696D28 /* ISUGroupTest.m */; };
+		FA8536A617D4358500696D28 /* ISUGroupFunctionCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8536A517D4358500696D28 /* ISUGroupFunctionCategoryTest.m */; };
 		FA8536A917D4380500696D28 /* ISUAddressBookUtilityTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8536A817D4380500696D28 /* ISUAddressBookUtilityTest.m */; };
 		FA8536B517D4900A00696D28 /* ISUContactSource+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8536B417D4900A00696D28 /* ISUContactSource+function.m */; };
 		FA8536BE17D615A800696D28 /* ISUUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8536BD17D615A800696D28 /* ISUUtility.m */; };
@@ -101,6 +117,9 @@
 		FAA807BB17E8801500CF5FEA /* RHGroup+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA807BA17E8801400CF5FEA /* RHGroup+function.m */; };
 		FAB0EA2817EC1FB400F518B2 /* ISUUserFunctionCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB0EA2717EC1FB400F518B2 /* ISUUserFunctionCategoryTest.m */; };
 		FAB0EA2D17EC237200F518B2 /* ISUTestUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB0EA2C17EC237200F518B2 /* ISUTestUtility.m */; };
+		FAB60BAE17F5AEFE0027F0B5 /* ISUSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB60BAD17F5AEFE0027F0B5 /* ISUSearchItem.m */; };
+		FAB60BB117F5AF720027F0B5 /* ISUContact.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB60BB017F5AF720027F0B5 /* ISUContact.m */; };
+		FAB60BB417F5BDF70027F0B5 /* ISUSearchItem+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB60BB317F5BDF70027F0B5 /* ISUSearchItem+function.m */; };
 		FABE9FB117D1AB9700EF3F2B /* ISUContactFunctionCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FABE9FB017D1AB9700EF3F2B /* ISUContactFunctionCategoryTest.m */; };
 		FABE9FB217D1C1D800EF3F2B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE8218917CCB8EB003C39B0 /* CoreData.framework */; };
 		FAC060CB17E2BE1900E67748 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC060CA17E2BE1900E67748 /* AudioToolbox.framework */; };
@@ -118,6 +137,9 @@
 		FAC7A57F17E456A2002B7EF9 /* ISUMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC7A57E17E456A2002B7EF9 /* ISUMigrationManager.m */; };
 		FACF43DA17EC8FAE001CF26C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF43D917EC8FAE001CF26C /* Images.xcassets */; };
 		FACF43EA17EDD24A001CF26C /* JDDroppableCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FACF43E917EDD24A001CF26C /* JDDroppableCollectionViewCell.m */; };
+		FAE49EF317F464CC00215FB4 /* ISUNotificationMessager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE49EF217F464CC00215FB4 /* ISUNotificationMessager.m */; };
+		FAE49EF617F4661500215FB4 /* ISUNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE49EF517F4661500215FB4 /* ISUNotificationView.m */; };
+		FAE49EFA17F4769E00215FB4 /* ISUGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE49EF917F4769E00215FB4 /* ISUGroupTableViewCell.m */; };
 		FAE8216117CCB2F7003C39B0 /* ISUAddressBookUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */; };
 		FAE8217C17CCB595003C39B0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAE8217A17CCB595003C39B0 /* Model.xcdatamodeld */; };
 		FAE8218A17CCB8EB003C39B0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE8218917CCB8EB003C39B0 /* CoreData.framework */; };
@@ -162,8 +184,24 @@
 		FA21680417CC98AB0026F1CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA21681417CC993A0026F1CD /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		FA21681617CC993F0026F1CD /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
-		FA36610717E9C8A400125F04 /* ISUContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUContact.h; sourceTree = "<group>"; };
-		FA36610817E9C8A400125F04 /* ISUContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUContact.m; sourceTree = "<group>"; };
+		FA321CA817F186CC009FB497 /* KYICircleMenuCenterButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuCenterButton.png; sourceTree = "<group>"; };
+		FA321CA917F186CC009FB497 /* KYICircleMenuCenterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuCenterButton@2x.png"; sourceTree = "<group>"; };
+		FA321CAA17F186CC009FB497 /* KYICircleMenuCenterButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuCenterButtonBackground.png; sourceTree = "<group>"; };
+		FA321CAB17F186CC009FB497 /* KYICircleMenuCenterButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuCenterButtonBackground@2x.png"; sourceTree = "<group>"; };
+		FA321CAC17F186CC009FB497 /* KYICircleMenuButton01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton01.png; sourceTree = "<group>"; };
+		FA321CAD17F186CC009FB497 /* KYICircleMenuButton01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton01@2x.png"; sourceTree = "<group>"; };
+		FA321CAE17F186CC009FB497 /* KYICircleMenuButton02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton02.png; sourceTree = "<group>"; };
+		FA321CAF17F186CC009FB497 /* KYICircleMenuButton02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton02@2x.png"; sourceTree = "<group>"; };
+		FA321CB017F186CC009FB497 /* KYICircleMenuButton03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton03.png; sourceTree = "<group>"; };
+		FA321CB117F186CC009FB497 /* KYICircleMenuButton03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton03@2x.png"; sourceTree = "<group>"; };
+		FA321CB217F186CC009FB497 /* KYICircleMenuButton04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton04.png; sourceTree = "<group>"; };
+		FA321CB317F186CC009FB497 /* KYICircleMenuButton04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton04@2x.png"; sourceTree = "<group>"; };
+		FA321CB417F186CC009FB497 /* KYICircleMenuButton05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton05.png; sourceTree = "<group>"; };
+		FA321CB517F186CC009FB497 /* KYICircleMenuButton05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton05@2x.png"; sourceTree = "<group>"; };
+		FA321CB617F186CC009FB497 /* KYICircleMenuButton06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton06.png; sourceTree = "<group>"; };
+		FA321CB717F186CC009FB497 /* KYICircleMenuButton06@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton06@2x.png"; sourceTree = "<group>"; };
+		FA3BFA1117F16872001FC93F /* KYCircleMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KYCircleMenu.h; path = KYCircleMenu/KYCircleMenu.h; sourceTree = "<group>"; };
+		FA3BFA1217F16872001FC93F /* KYCircleMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KYCircleMenu.m; path = KYCircleMenu/KYCircleMenu.m; sourceTree = "<group>"; };
 		FA47769817E5D43100BDB510 /* ISUOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUOperationManager.h; sourceTree = "<group>"; };
 		FA47769917E5D43100BDB510 /* ISUOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUOperationManager.m; sourceTree = "<group>"; };
 		FA47769B17E5D4BE00BDB510 /* ISUAbstractOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAbstractOperation.h; sourceTree = "<group>"; };
@@ -210,7 +248,7 @@
 		FA85369E17D38EAE00696D28 /* ISUCollectionContactViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUCollectionContactViewCell.h; sourceTree = "<group>"; };
 		FA85369F17D38EAE00696D28 /* ISUCollectionContactViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUCollectionContactViewCell.m; sourceTree = "<group>"; };
 		FA8536A217D4230000696D28 /* ISUCollectionContactViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ISUCollectionContactViewCell.xib; sourceTree = "<group>"; };
-		FA8536A517D4358500696D28 /* ISUGroupTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUGroupTest.m; sourceTree = "<group>"; };
+		FA8536A517D4358500696D28 /* ISUGroupFunctionCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUGroupFunctionCategoryTest.m; sourceTree = "<group>"; };
 		FA8536A817D4380500696D28 /* ISUAddressBookUtilityTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAddressBookUtilityTest.m; sourceTree = "<group>"; };
 		FA8536B317D4900A00696D28 /* ISUContactSource+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISUContactSource+function.h"; sourceTree = "<group>"; };
 		FA8536B417D4900A00696D28 /* ISUContactSource+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISUContactSource+function.m"; sourceTree = "<group>"; };
@@ -277,6 +315,12 @@
 		FAB0EA2717EC1FB400F518B2 /* ISUUserFunctionCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUUserFunctionCategoryTest.m; sourceTree = "<group>"; };
 		FAB0EA2B17EC237200F518B2 /* ISUTestUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUTestUtility.h; sourceTree = "<group>"; };
 		FAB0EA2C17EC237200F518B2 /* ISUTestUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUTestUtility.m; sourceTree = "<group>"; };
+		FAB60BAC17F5AEFE0027F0B5 /* ISUSearchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUSearchItem.h; sourceTree = "<group>"; };
+		FAB60BAD17F5AEFE0027F0B5 /* ISUSearchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUSearchItem.m; sourceTree = "<group>"; };
+		FAB60BAF17F5AF720027F0B5 /* ISUContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUContact.h; sourceTree = "<group>"; };
+		FAB60BB017F5AF720027F0B5 /* ISUContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUContact.m; sourceTree = "<group>"; };
+		FAB60BB217F5BDF70027F0B5 /* ISUSearchItem+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISUSearchItem+function.h"; sourceTree = "<group>"; };
+		FAB60BB317F5BDF70027F0B5 /* ISUSearchItem+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISUSearchItem+function.m"; sourceTree = "<group>"; };
 		FABE9FB017D1AB9700EF3F2B /* ISUContactFunctionCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUContactFunctionCategoryTest.m; sourceTree = "<group>"; };
 		FAC060CA17E2BE1900E67748 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		FAC26C4B17EBEA3800635B6F /* ISUPersistentManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPersistentManagerTest.m; sourceTree = "<group>"; };
@@ -302,6 +346,12 @@
 		FACF43D917EC8FAE001CF26C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FACF43E817EDD24A001CF26C /* JDDroppableCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDDroppableCollectionViewCell.h; path = ../Vendor/JDDropableView/JDDroppableCollectionViewCell.h; sourceTree = "<group>"; };
 		FACF43E917EDD24A001CF26C /* JDDroppableCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDDroppableCollectionViewCell.m; path = ../Vendor/JDDropableView/JDDroppableCollectionViewCell.m; sourceTree = "<group>"; };
+		FAE49EF117F464CC00215FB4 /* ISUNotificationMessager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUNotificationMessager.h; sourceTree = "<group>"; };
+		FAE49EF217F464CC00215FB4 /* ISUNotificationMessager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUNotificationMessager.m; sourceTree = "<group>"; };
+		FAE49EF417F4661500215FB4 /* ISUNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUNotificationView.h; sourceTree = "<group>"; };
+		FAE49EF517F4661500215FB4 /* ISUNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUNotificationView.m; sourceTree = "<group>"; };
+		FAE49EF817F4769E00215FB4 /* ISUGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUGroupTableViewCell.h; sourceTree = "<group>"; };
+		FAE49EF917F4769E00215FB4 /* ISUGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUGroupTableViewCell.m; sourceTree = "<group>"; };
 		FAE8215F17CCB2F7003C39B0 /* ISUAddressBookUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAddressBookUtility.h; sourceTree = "<group>"; };
 		FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAddressBookUtility.m; sourceTree = "<group>"; };
 		FAE8217B17CCB595003C39B0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -529,6 +579,39 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
+		FA321CA717F186A0009FB497 /* CircleMenu */ = {
+			isa = PBXGroup;
+			children = (
+				FA321CA817F186CC009FB497 /* KYICircleMenuCenterButton.png */,
+				FA321CA917F186CC009FB497 /* KYICircleMenuCenterButton@2x.png */,
+				FA321CAA17F186CC009FB497 /* KYICircleMenuCenterButtonBackground.png */,
+				FA321CAB17F186CC009FB497 /* KYICircleMenuCenterButtonBackground@2x.png */,
+				FA321CAC17F186CC009FB497 /* KYICircleMenuButton01.png */,
+				FA321CAD17F186CC009FB497 /* KYICircleMenuButton01@2x.png */,
+				FA321CAE17F186CC009FB497 /* KYICircleMenuButton02.png */,
+				FA321CAF17F186CC009FB497 /* KYICircleMenuButton02@2x.png */,
+				FA321CB017F186CC009FB497 /* KYICircleMenuButton03.png */,
+				FA321CB117F186CC009FB497 /* KYICircleMenuButton03@2x.png */,
+				FA321CB217F186CC009FB497 /* KYICircleMenuButton04.png */,
+				FA321CB317F186CC009FB497 /* KYICircleMenuButton04@2x.png */,
+				FA321CB417F186CC009FB497 /* KYICircleMenuButton05.png */,
+				FA321CB517F186CC009FB497 /* KYICircleMenuButton05@2x.png */,
+				FA321CB617F186CC009FB497 /* KYICircleMenuButton06.png */,
+				FA321CB717F186CC009FB497 /* KYICircleMenuButton06@2x.png */,
+			);
+			name = CircleMenu;
+			sourceTree = "<group>";
+		};
+		FA3BFA0D17F16549001FC93F /* KYCircleMenu */ = {
+			isa = PBXGroup;
+			children = (
+				FA3BFA1117F16872001FC93F /* KYCircleMenu.h */,
+				FA3BFA1217F16872001FC93F /* KYCircleMenu.m */,
+			);
+			name = KYCircleMenu;
+			path = ../Vendor/KYCircleMenu;
+			sourceTree = "<group>";
+		};
 		FA47769717E5D3EC00BDB510 /* OperationManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,6 +695,7 @@
 		FA85369717D37BB100696D28 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				FA3BFA0D17F16549001FC93F /* KYCircleMenu */,
 				FAC68B3517EF33DA0080376D /* RESideMenu */,
 				FACF43E717EDD21C001CF26C /* DroppableView */,
 			);
@@ -626,6 +710,8 @@
 				FA8536A217D4230000696D28 /* ISUCollectionContactViewCell.xib */,
 				FAA6090117DEF56C00A5BAAC /* ISUSearchTableViewCell.h */,
 				FAA6090217DEF56C00A5BAAC /* ISUSearchTableViewCell.m */,
+				FAE49EF817F4769E00215FB4 /* ISUGroupTableViewCell.h */,
+				FAE49EF917F4769E00215FB4 /* ISUGroupTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -695,7 +781,7 @@
 			isa = PBXGroup;
 			children = (
 				FA8536A817D4380500696D28 /* ISUAddressBookUtilityTest.m */,
-				FA8536A517D4358500696D28 /* ISUGroupTest.m */,
+				FA8536A517D4358500696D28 /* ISUGroupFunctionCategoryTest.m */,
 				FABE9FB017D1AB9700EF3F2B /* ISUContactFunctionCategoryTest.m */,
 				FA673A0217E7EB8D006DB3C2 /* ISUNSStringTest.m */,
 				FAA807B417E83AB400CF5FEA /* ISUOperationManagerTest.m */,
@@ -750,6 +836,7 @@
 		FAC7A58917E55D9A002B7EF9 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				FA321CA717F186A0009FB497 /* CircleMenu */,
 				FA7F851B17F099BB00DB972F /* Introduction */,
 			);
 			name = Others;
@@ -773,6 +860,17 @@
 			name = DroppableView;
 			sourceTree = "<group>";
 		};
+		FAE49EF717F46C9900215FB4 /* NotificationMessage */ = {
+			isa = PBXGroup;
+			children = (
+				FAE49EF117F464CC00215FB4 /* ISUNotificationMessager.h */,
+				FAE49EF217F464CC00215FB4 /* ISUNotificationMessager.m */,
+				FAE49EF417F4661500215FB4 /* ISUNotificationView.h */,
+				FAE49EF517F4661500215FB4 /* ISUNotificationView.m */,
+			);
+			name = NotificationMessage;
+			sourceTree = "<group>";
+		};
 		FAE8215617CCAB45003C39B0 /* Functions */ = {
 			isa = PBXGroup;
 			children = (
@@ -788,6 +886,8 @@
 				FA85370F17DA091200696D28 /* ISUSocialProfile+function.m */,
 				FA4776A617E5DE9A00BDB510 /* ISUUser+function.h */,
 				FA4776A717E5DE9A00BDB510 /* ISUUser+function.m */,
+				FAB60BB217F5BDF70027F0B5 /* ISUSearchItem+function.h */,
+				FAB60BB317F5BDF70027F0B5 /* ISUSearchItem+function.m */,
 			);
 			name = Functions;
 			sourceTree = "<group>";
@@ -795,8 +895,10 @@
 		FAE8215D17CCB2B0003C39B0 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				FA36610717E9C8A400125F04 /* ISUContact.h */,
-				FA36610817E9C8A400125F04 /* ISUContact.m */,
+				FAB60BAF17F5AF720027F0B5 /* ISUContact.h */,
+				FAB60BB017F5AF720027F0B5 /* ISUContact.m */,
+				FAB60BAC17F5AEFE0027F0B5 /* ISUSearchItem.h */,
+				FAB60BAD17F5AEFE0027F0B5 /* ISUSearchItem.m */,
 				FA4776A117E5D86700BDB510 /* ISUContactSource.h */,
 				FA4776A217E5D86800BDB510 /* ISUContactSource.m */,
 				FA47769E17E5D86700BDB510 /* ISUUser.h */,
@@ -824,6 +926,7 @@
 		FAE8215E17CCB2C9003C39B0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				FAE49EF717F46C9900215FB4 /* NotificationMessage */,
 				FA787DF717CE416600F676E2 /* Constants.h */,
 				FAE8215F17CCB2F7003C39B0 /* ISUAddressBookUtility.h */,
 				FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */,
@@ -922,22 +1025,36 @@
 				FA7F852817F099E500DB972F /* original@2x.png in Resources */,
 				FA2167E917CC98AB0026F1CD /* Default.png in Resources */,
 				FA7F852517F099E500DB972F /* 2.png in Resources */,
+				FA321CC617F186CC009FB497 /* KYICircleMenuButton06.png in Resources */,
 				FA2167EB17CC98AB0026F1CD /* Default@2x.png in Resources */,
 				FACF43DA17EC8FAE001CF26C /* Images.xcassets in Resources */,
 				FA2167E117CC98AB0026F1CD /* InfoPlist.strings in Resources */,
 				FA8536A317D4230000696D28 /* ISUCollectionContactViewCell.xib in Resources */,
+				FA321CBD17F186CC009FB497 /* KYICircleMenuButton01@2x.png in Resources */,
 				FA85ECC917DC5C8700F6FC7F /* Icon@2x.png in Resources */,
+				FA321CC517F186CC009FB497 /* KYICircleMenuButton05@2x.png in Resources */,
+				FA321CC117F186CC009FB497 /* KYICircleMenuButton03@2x.png in Resources */,
 				FA85ECCB17DC601500F6FC7F /* Icon.png in Resources */,
 				FA7F852917F099E500DB972F /* supportcat@2x.png in Resources */,
+				FA321CC717F186CC009FB497 /* KYICircleMenuButton06@2x.png in Resources */,
+				FA321CBC17F186CC009FB497 /* KYICircleMenuButton01.png in Resources */,
 				FAA6090617DF116900A5BAAC /* ISUDialKeyboardView.xib in Resources */,
+				FA321CC417F186CC009FB497 /* KYICircleMenuButton05.png in Resources */,
+				FA321CBA17F186CC009FB497 /* KYICircleMenuCenterButtonBackground.png in Resources */,
 				FAA6092017DF54C400A5BAAC /* silence.caf in Resources */,
 				FAA6092117DF54C400A5BAAC /* 0.wav in Resources */,
 				FAA6092217DF54C400A5BAAC /* 1.wav in Resources */,
+				FA321CB817F186CC009FB497 /* KYICircleMenuCenterButton.png in Resources */,
 				FAA6092317DF54C400A5BAAC /* 2.wav in Resources */,
 				FAA6092417DF54C400A5BAAC /* 3.wav in Resources */,
+				FA321CBE17F186CC009FB497 /* KYICircleMenuButton02.png in Resources */,
+				FA321CB917F186CC009FB497 /* KYICircleMenuCenterButton@2x.png in Resources */,
+				FA321CBB17F186CC009FB497 /* KYICircleMenuCenterButtonBackground@2x.png in Resources */,
 				FAA6092517DF54C400A5BAAC /* 4.wav in Resources */,
 				FAA6092617DF54C400A5BAAC /* 5.wav in Resources */,
 				FAA6092717DF54C400A5BAAC /* 6.wav in Resources */,
+				FA321CBF17F186CC009FB497 /* KYICircleMenuButton02@2x.png in Resources */,
+				FA321CC017F186CC009FB497 /* KYICircleMenuButton03.png in Resources */,
 				FAA6092817DF54C400A5BAAC /* 7.wav in Resources */,
 				FA7F852317F099E500DB972F /* 1.png in Resources */,
 				FA7F852417F099E500DB972F /* 3.png in Resources */,
@@ -945,9 +1062,11 @@
 				FAA6092A17DF54C400A5BAAC /* 9.wav in Resources */,
 				FAA6092B17DF54C400A5BAAC /* calling.wav in Resources */,
 				FAA6092C17DF54C400A5BAAC /* numeral.wav in Resources */,
+				FA321CC317F186CC009FB497 /* KYICircleMenuButton04@2x.png in Resources */,
 				FAA6092D17DF54C400A5BAAC /* star.wav in Resources */,
 				FAA6092E17DF54C400A5BAAC /* tone1.wav in Resources */,
 				FA7F852717F099E500DB972F /* femalecodertocat@2x.png in Resources */,
+				FA321CC217F186CC009FB497 /* KYICircleMenuButton04.png in Resources */,
 				FAA6092F17DF54C400A5BAAC /* tone2.wav in Resources */,
 				FAA6093017DF54C400A5BAAC /* tone3.wav in Resources */,
 			);
@@ -1073,19 +1192,25 @@
 				FA8536F617D6E02C00696D28 /* ISUDate.m in Sources */,
 				FA85369017D2368D00696D28 /* ISUDefines.m in Sources */,
 				FA8536CD17D639CD00696D28 /* ISUEmail.m in Sources */,
+				FAE49EF617F4661500215FB4 /* ISUNotificationView.m in Sources */,
 				FAE8218D17CCB981003C39B0 /* ISUGroup+function.m in Sources */,
 				FA8536D617D639CD00696D28 /* ISUGroup.m in Sources */,
 				FA85369317D319AF00696D28 /* ISULogger.m in Sources */,
 				FAC68B6A17EF373A0080376D /* UIView+ImageSnapshot.m in Sources */,
 				FA787DE417CDEE5000F676E2 /* ISUPersistentManager.m in Sources */,
 				FAC68B6617EF373A0080376D /* RESideMenu.m in Sources */,
+				FAB60BAE17F5AEFE0027F0B5 /* ISUSearchItem.m in Sources */,
+				FAB60BB417F5BDF70027F0B5 /* ISUSearchItem+function.m in Sources */,
 				FA8536D317D639CD00696D28 /* ISUPhone.m in Sources */,
 				FA8536E217D639CE00696D28 /* ISURelatedName.m in Sources */,
 				FA85371017DA091400696D28 /* ISUSocialProfile+function.m in Sources */,
 				FA85370A17D9B75000696D28 /* ISUSocialProfile.m in Sources */,
+				FAE49EFA17F4769E00215FB4 /* ISUGroupTableViewCell.m in Sources */,
 				FA8536DF17D639CE00696D28 /* ISUUrl.m in Sources */,
 				FA8536BE17D615A800696D28 /* ISUUtility.m in Sources */,
+				FAB60BB117F5AF720027F0B5 /* ISUContact.m in Sources */,
 				FA2167F317CC98AB0026F1CD /* ISUGroupTableViewController.m in Sources */,
+				FAE49EF317F464CC00215FB4 /* ISUNotificationMessager.m in Sources */,
 				FA7F850C17F08E7D00DB972F /* ISUDailyNoteViewController.m in Sources */,
 				FA2167E317CC98AB0026F1CD /* main.m in Sources */,
 				FAE8217C17CCB595003C39B0 /* Model.xcdatamodeld in Sources */,
@@ -1109,8 +1234,8 @@
 				FA6739F417E72711006DB3C2 /* ISULoginViewController.m in Sources */,
 				FA6739F717E74FDB006DB3C2 /* NSManagedObject+ISUAdditions.m in Sources */,
 				FAA807B817E87E4800CF5FEA /* RHPerson+function.m in Sources */,
+				FA3BFA1317F16872001FC93F /* KYCircleMenu.m in Sources */,
 				FAA807BB17E8801500CF5FEA /* RHGroup+function.m in Sources */,
-				FA36610917E9C8A400125F04 /* ISUContact.m in Sources */,
 				FAC68B6E17EF40D50080376D /* ISUNotificationCenterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1125,7 +1250,7 @@
 				FAC26C4E17EBEBB800635B6F /* ISUAddressFunctionCategoryTest.m in Sources */,
 				FAB0EA2D17EC237200F518B2 /* ISUTestUtility.m in Sources */,
 				FAB0EA2817EC1FB400F518B2 /* ISUUserFunctionCategoryTest.m in Sources */,
-				FA8536A617D4358500696D28 /* ISUGroupTest.m in Sources */,
+				FA8536A617D4358500696D28 /* ISUGroupFunctionCategoryTest.m in Sources */,
 				FABE9FB117D1AB9700EF3F2B /* ISUContactFunctionCategoryTest.m in Sources */,
 				FA673A0317E7EB8D006DB3C2 /* ISUNSStringTest.m in Sources */,
 				FAA807B517E83AB400CF5FEA /* ISUOperationManagerTest.m in Sources */,

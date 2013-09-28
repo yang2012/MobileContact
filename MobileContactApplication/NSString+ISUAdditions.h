@@ -8,8 +8,8 @@
 
 @interface NSString (ISUAdditions)
 
-+ (NSString *) pinyinFromChiniseString:(NSString *)string;
-+ (NSString *) sortSectionTitle:(NSString *)string;
++ (NSString *)pinyinFromChiniseString:(NSString *)string;
++ (NSString *)sortSectionTitle:(NSString *)string;
 - (NSString *)normalizedSearchString;
 
 @end

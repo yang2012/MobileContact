@@ -20,28 +20,21 @@ describe(@"ISUAddressFunctionCategoryTest", ^{
     context(@"Debug", ^{
         __block ISUAddress *address = nil;
         __block NSManagedObjectContext *context = nil;
-        __block NSPersistentStoreCoordinator *storeCoordinator = nil;
+
+        beforeAll(^{ // Occurs once
+            [ISUPersistentManager setPersistentStoreType:NSInMemoryStoreType];
+            context = [ISUPersistentManager newPrivateQueueContext];
+        });
+        
+        afterAll(^{ // Occurs once
+            context = nil;
+        });
         
         beforeEach(^{ // Occurs before each enclosed "it"
-            storeCoordinator = [ISUPersistentManager persistentStoreCoordinator];
-            
-            NSError *error = nil;
-            NSPersistentStore *store = [storeCoordinator addPersistentStoreWithType:NSInMemoryStoreType
-                                                                      configuration:nil
-                                                                                URL:nil
-                                                                            options:nil
-                                                                              error:&error];
-            [[store should] beNonNil];
-            
-            context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-            context.persistentStoreCoordinator = storeCoordinator;
-            
             address = [[ISUAddress alloc] initWithContext:context];
         });
         
         afterEach(^{ // Occurs after each enclosed "it"
-            context = nil;
-            storeCoordinator = nil;
             address = nil;
         });
         

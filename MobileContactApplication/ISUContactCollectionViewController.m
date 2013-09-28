@@ -36,8 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.collectionView.frame = self.view.frame;
+        
     [self.collectionView registerNib:[UINib nibWithNibName:@"ISUCollectionContactViewCell" bundle:nil] forCellWithReuseIdentifier:@"CollectionContactViewCell"];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];

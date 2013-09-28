@@ -15,9 +15,21 @@
 
 @property (nonatomic, strong) IBOutlet ISUDialKeyboardView *dialKeyboard;
 
+@property (nonatomic, weak) UIViewController *viewController;
+
 @end
 
 @implementation ISUSearchTableViewController
+
++ (id)sharedInstance {
+    static ISUSearchTableViewController *_sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [[ISUSearchTableViewController alloc] init];
+    });
+    
+    return _sharedInstance;
+}
 
 - (id)init
 {
@@ -37,26 +49,53 @@
     self.dialKeyboard.dialDelegate = self;
     [self.view addSubview:self.dialKeyboard];
 
-    UITableView *searchResultsTableView = self.searchDisplayController.searchResultsTableView;
-    searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    [self.searchDisplayController setActive:YES animated:YES];
+    UIButton *cancelBarButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 58.0f, 32.0f)];
+    [cancelBarButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    [cancelBarButton addTarget:self action:@selector(_cancel) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:cancelBarButton];
+    self.navigationItem.leftBarButtonItem = leftItem;
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
         [self.tableView registerClass:[ISUSearchTableViewCell class] forCellReuseIdentifier:@"SearchTableViewCell"];
     }
     
-    // Init dial keyboard
+    self.managedObject = self.user;
 }
 
-- (void)setUser:(ISUUser *)user
+- (void)displayFromViewController:(UIViewController *)controller withUser:(ISUUser *)user
 {
-    [self setManagedObject:user];
+    if (controller == nil) {
+        ISULogWithLowPriority(@"Invalid controller when calling displayFromViewController:");
+        return;
+    }
+    
+    self.user = user;
+    self.viewController = controller;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self];
+    [self.viewController presentViewController:navigationController animated:YES completion:nil];
 }
 
-- (ISUGroup *)group
+- (void)setManagedObject:(SSManagedObject *)managedObject {
+    [super setManagedObject:managedObject];
+    
+    self.tableView.hidden = NO;
+    
+    self.ignoreChange = YES;
+    [self.fetchedResultsController performFetch:nil];
+    [self.tableView reloadData];
+    self.ignoreChange = NO;
+}
+
+- (NSPredicate *)predicate
 {
-    return (ISUGroup *)self.managedObject;
+    return [NSPredicate predicateWithValue:NO];
+}
+
+- (ISUUser *)user
+{
+    return (ISUUser *)self.managedObject;
 }
 
 - (Class)entityClass
@@ -72,13 +111,6 @@
     cell.textLabel.text = contact.contactName;
 }
 
-
-- (NSPredicate *)predicate
-{
-    return [NSPredicate predicateWithValue:YES];
-}
-
-
 - (NSArray *)sortDescriptors
 {
     return [self.entityClass defaultSortDescriptors];
@@ -88,14 +120,6 @@
 - (NSString *)sectionNameKeyPath
 {
     return @"lastName";
-}
-
-- (void)filterContentForSearchText:(NSString *)searchText scope:(NSInteger)scope
-{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"Any phones.value CONTAINS[cd] %@", searchText];
-    
-    self.fetchedResultsController.fetchRequest.predicate = predicate;
-    [self.fetchedResultsController performFetch:nil];
 }
 
 #pragma mark - UITableViewDataSource
@@ -126,7 +150,12 @@
 
 - (void)_searchContactForSearchText:(NSString *)phoneNumber
 {
-//    NSPredicate *predicate = ;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(SUBQUERY(phones, $x, ($x.value contains %@)).@count != 0)", phoneNumber];
+    self.ignoreChange = YES;
+    self.fetchedResultsController.fetchRequest.predicate = predicate;
+    [self.fetchedResultsController performFetch:nil];
+    [self.tableView reloadData];
+    self.ignoreChange = NO;
 }
 
 #pragma mark - ISUDialKeyboard Delegate
@@ -136,9 +165,23 @@
     
 }
 
-- (void)onDialView:(ISUDialKeyboardView *)view dialNumber:(NSString *)phoneNum withKey:(NSInteger)key
+- (void)onDialView:(ISUDialKeyboardView *)view sendSMS:(NSString *)phoneNum
 {
     
+}
+
+- (void)onDialView:(ISUDialKeyboardView *)view dialNumber:(NSString *)phoneNum
+{
+    self.title = phoneNum;
+    
+    [self _searchContactForSearchText:phoneNum];
+}
+
+#pragma mark - Cancel
+
+- (void)_cancel
+{
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

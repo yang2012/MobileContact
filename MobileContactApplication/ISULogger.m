@@ -33,7 +33,7 @@
     else if (priority == ISULogPriorityHigh) {
 #ifdef DEBUG
         NSLog(@"%@", message);
-        exit(0);
+//        exit(0);
 #else
 
 #endif
