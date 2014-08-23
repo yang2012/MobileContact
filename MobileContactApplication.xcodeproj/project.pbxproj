@@ -995,6 +995,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ISU;
+				LastTestingUpgradeCheck = 0510;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Nanjing University";
 			};

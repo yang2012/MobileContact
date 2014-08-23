@@ -15,9 +15,6 @@
 #import "ISUIntroductionViewController.h"
 
 #import <Crashlytics/Crashlytics.h>
-#ifdef DEBUG
-#import <PDDebugger.h>
-#endif
 
 @interface ISUAppDelegate () <ISUMigrationManagerDelegate>
 
