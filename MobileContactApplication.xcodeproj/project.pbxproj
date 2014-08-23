@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B8D8FBC19A8C97500B72EA5 /* ISUMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8D8FBB19A8C97500B72EA5 /* ISUMenuViewController.m */; };
 		9F27D717246646EFAC969D00 /* libPods-MobileContactApplicationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9103198C5D4CA492FDB4F4 /* libPods-MobileContactApplicationTests.a */; };
 		DAEF9F403FBC45CFA15AE3B9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2CD10FC8C34550BF23C3B9 /* libPods.a */; };
 		FA02207A17EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02207917EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m */; };
@@ -126,12 +127,6 @@
 		FAC26C4C17EBEA3800635B6F /* ISUPersistentManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC26C4B17EBEA3800635B6F /* ISUPersistentManagerTest.m */; };
 		FAC26C4E17EBEBB800635B6F /* ISUAddressFunctionCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC26C4D17EBEBB800635B6F /* ISUAddressFunctionCategoryTest.m */; };
 		FAC26C4F17EC165200635B6F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA21681417CC993A0026F1CD /* AddressBook.framework */; };
-		FAC68B6317EF373A0080376D /* AccelerationAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC68B5217EF373A0080376D /* AccelerationAnimation.m */; };
-		FAC68B6417EF373A0080376D /* Evaluate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC68B5417EF373A0080376D /* Evaluate.m */; };
-		FAC68B6517EF373A0080376D /* REBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC68B5617EF373A0080376D /* REBackgroundView.m */; };
-		FAC68B6617EF373A0080376D /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC68B5817EF373A0080376D /* RESideMenu.m */; };
-		FAC68B6917EF373A0080376D /* UINavigationController+DelegateFixes.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC68B5E17EF373A0080376D /* UINavigationController+DelegateFixes.m */; };
-		FAC68B6A17EF373A0080376D /* UIView+ImageSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC68B6017EF373A0080376D /* UIView+ImageSnapshot.m */; };
 		FAC68B6E17EF40D50080376D /* ISUNotificationCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC68B6D17EF40D50080376D /* ISUNotificationCenterViewController.m */; };
 		FAC7A57B17E45299002B7EF9 /* NSFileManager+ISUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC7A57A17E45299002B7EF9 /* NSFileManager+ISUAdditions.m */; };
 		FAC7A57F17E456A2002B7EF9 /* ISUMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC7A57E17E456A2002B7EF9 /* ISUMigrationManager.m */; };
@@ -158,8 +153,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B8D8FBA19A8C97500B72EA5 /* ISUMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUMenuViewController.h; sourceTree = "<group>"; };
+		1B8D8FBB19A8C97500B72EA5 /* ISUMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUMenuViewController.m; sourceTree = "<group>"; };
 		1D6B351CD0B344F4AD360484 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		77C2CC6186CF4BFC8CD009D8 /* Pods-MobileContactApplicationTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileContactApplicationTests.xcconfig"; path = "Pods/Pods-MobileContactApplicationTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		8E9103198C5D4CA492FDB4F4 /* libPods-MobileContactApplicationTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MobileContactApplicationTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2CD10FC8C34550BF23C3B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA02207917EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUSocialProfileFunctionCategoryTest.m; sourceTree = "<group>"; };
@@ -325,18 +321,6 @@
 		FAC060CA17E2BE1900E67748 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		FAC26C4B17EBEA3800635B6F /* ISUPersistentManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPersistentManagerTest.m; sourceTree = "<group>"; };
 		FAC26C4D17EBEBB800635B6F /* ISUAddressFunctionCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAddressFunctionCategoryTest.m; sourceTree = "<group>"; };
-		FAC68B5117EF373A0080376D /* AccelerationAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccelerationAnimation.h; path = RESideMenu/RESideMenu/AccelerationAnimation.h; sourceTree = "<group>"; };
-		FAC68B5217EF373A0080376D /* AccelerationAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccelerationAnimation.m; path = RESideMenu/RESideMenu/AccelerationAnimation.m; sourceTree = "<group>"; };
-		FAC68B5317EF373A0080376D /* Evaluate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Evaluate.h; path = RESideMenu/RESideMenu/Evaluate.h; sourceTree = "<group>"; };
-		FAC68B5417EF373A0080376D /* Evaluate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Evaluate.m; path = RESideMenu/RESideMenu/Evaluate.m; sourceTree = "<group>"; };
-		FAC68B5517EF373A0080376D /* REBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REBackgroundView.h; path = RESideMenu/RESideMenu/REBackgroundView.h; sourceTree = "<group>"; };
-		FAC68B5617EF373A0080376D /* REBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = REBackgroundView.m; path = RESideMenu/RESideMenu/REBackgroundView.m; sourceTree = "<group>"; };
-		FAC68B5717EF373A0080376D /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESideMenu.h; path = RESideMenu/RESideMenu/RESideMenu.h; sourceTree = "<group>"; };
-		FAC68B5817EF373A0080376D /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RESideMenu.m; path = RESideMenu/RESideMenu/RESideMenu.m; sourceTree = "<group>"; };
-		FAC68B5D17EF373A0080376D /* UINavigationController+DelegateFixes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+DelegateFixes.h"; path = "RESideMenu/RESideMenu/UINavigationController+DelegateFixes.h"; sourceTree = "<group>"; };
-		FAC68B5E17EF373A0080376D /* UINavigationController+DelegateFixes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+DelegateFixes.m"; path = "RESideMenu/RESideMenu/UINavigationController+DelegateFixes.m"; sourceTree = "<group>"; };
-		FAC68B5F17EF373A0080376D /* UIView+ImageSnapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+ImageSnapshot.h"; path = "RESideMenu/RESideMenu/UIView+ImageSnapshot.h"; sourceTree = "<group>"; };
-		FAC68B6017EF373A0080376D /* UIView+ImageSnapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+ImageSnapshot.m"; path = "RESideMenu/RESideMenu/UIView+ImageSnapshot.m"; sourceTree = "<group>"; };
 		FAC68B6C17EF40D50080376D /* ISUNotificationCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUNotificationCenterViewController.h; sourceTree = "<group>"; };
 		FAC68B6D17EF40D50080376D /* ISUNotificationCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUNotificationCenterViewController.m; sourceTree = "<group>"; };
 		FAC7A57917E45299002B7EF9 /* NSFileManager+ISUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+ISUAdditions.h"; sourceTree = "<group>"; };
@@ -398,6 +382,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B8D8FB919A8C94800B72EA5 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				1B8D8FBA19A8C97500B72EA5 /* ISUMenuViewController.h */,
+				1B8D8FBB19A8C97500B72EA5 /* ISUMenuViewController.m */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
 		FA2167CA17CC98AB0026F1CD = {
 			isa = PBXGroup;
 			children = (
@@ -405,7 +398,6 @@
 				FA2167DC17CC98AB0026F1CD /* MobileContactApplication */,
 				FA21680017CC98AB0026F1CD /* MobileContactApplicationTests */,
 				FA2167D417CC98AB0026F1CD /* Products */,
-				77C2CC6186CF4BFC8CD009D8 /* Pods-MobileContactApplicationTests.xcconfig */,
 				1D6B351CD0B344F4AD360484 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
@@ -513,6 +505,7 @@
 		FA21681A17CC995A0026F1CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1B8D8FB919A8C94800B72EA5 /* Menu */,
 				FA7F851717F0990F00DB972F /* IntroductionView */,
 				FA7F850917F08E6100DB972F /* DailyNote */,
 				FAC68B6F17EF40DD0080376D /* NotificationCenter */,
@@ -696,7 +689,6 @@
 			isa = PBXGroup;
 			children = (
 				FA3BFA0D17F16549001FC93F /* KYCircleMenu */,
-				FAC68B3517EF33DA0080376D /* RESideMenu */,
 				FACF43E717EDD21C001CF26C /* DroppableView */,
 			);
 			name = Vendor;
@@ -791,26 +783,6 @@
 				FAB0EA2717EC1FB400F518B2 /* ISUUserFunctionCategoryTest.m */,
 			);
 			name = TestClasses;
-			sourceTree = "<group>";
-		};
-		FAC68B3517EF33DA0080376D /* RESideMenu */ = {
-			isa = PBXGroup;
-			children = (
-				FAC68B5117EF373A0080376D /* AccelerationAnimation.h */,
-				FAC68B5217EF373A0080376D /* AccelerationAnimation.m */,
-				FAC68B5317EF373A0080376D /* Evaluate.h */,
-				FAC68B5417EF373A0080376D /* Evaluate.m */,
-				FAC68B5517EF373A0080376D /* REBackgroundView.h */,
-				FAC68B5617EF373A0080376D /* REBackgroundView.m */,
-				FAC68B5717EF373A0080376D /* RESideMenu.h */,
-				FAC68B5817EF373A0080376D /* RESideMenu.m */,
-				FAC68B5D17EF373A0080376D /* UINavigationController+DelegateFixes.h */,
-				FAC68B5E17EF373A0080376D /* UINavigationController+DelegateFixes.m */,
-				FAC68B5F17EF373A0080376D /* UIView+ImageSnapshot.h */,
-				FAC68B6017EF373A0080376D /* UIView+ImageSnapshot.m */,
-			);
-			name = RESideMenu;
-			path = ../Vendor;
 			sourceTree = "<group>";
 		};
 		FAC68B6F17EF40DD0080376D /* NotificationCenter */ = {
@@ -1177,7 +1149,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAC68B6517EF373A0080376D /* REBackgroundView.m in Sources */,
 				FACF43EA17EDD24A001CF26C /* JDDroppableCollectionViewCell.m in Sources */,
 				FA85370D17DA074600696D28 /* ISUAddress+function.m in Sources */,
 				FA7F851A17F0994300DB972F /* ISUIntroductionViewController.m in Sources */,
@@ -1188,7 +1159,6 @@
 				FA8536A017D38EAE00696D28 /* ISUCollectionContactViewCell.m in Sources */,
 				FA85369617D372B000696D28 /* ISUContactCollectionViewController.m in Sources */,
 				FAE8219017CCB98F003C39B0 /* ISUContact+function.m in Sources */,
-				FAC68B6917EF373A0080376D /* UINavigationController+DelegateFixes.m in Sources */,
 				FA8536B517D4900A00696D28 /* ISUContactSource+function.m in Sources */,
 				FA8536F617D6E02C00696D28 /* ISUDate.m in Sources */,
 				FA85369017D2368D00696D28 /* ISUDefines.m in Sources */,
@@ -1197,9 +1167,7 @@
 				FAE8218D17CCB981003C39B0 /* ISUGroup+function.m in Sources */,
 				FA8536D617D639CD00696D28 /* ISUGroup.m in Sources */,
 				FA85369317D319AF00696D28 /* ISULogger.m in Sources */,
-				FAC68B6A17EF373A0080376D /* UIView+ImageSnapshot.m in Sources */,
 				FA787DE417CDEE5000F676E2 /* ISUPersistentManager.m in Sources */,
-				FAC68B6617EF373A0080376D /* RESideMenu.m in Sources */,
 				FAB60BAE17F5AEFE0027F0B5 /* ISUSearchItem.m in Sources */,
 				FAB60BB417F5BDF70027F0B5 /* ISUSearchItem+function.m in Sources */,
 				FA8536D317D639CD00696D28 /* ISUPhone.m in Sources */,
@@ -1217,11 +1185,10 @@
 				FAE8217C17CCB595003C39B0 /* Model.xcdatamodeld in Sources */,
 				FAA608F117DDF3D000A5BAAC /* ISUDialKeyboardView.m in Sources */,
 				FAA608F617DE084700A5BAAC /* ISUSearchTableViewController.m in Sources */,
-				FAC68B6417EF373A0080376D /* Evaluate.m in Sources */,
 				FAA6090317DEF56C00A5BAAC /* ISUSearchTableViewCell.m in Sources */,
-				FAC68B6317EF373A0080376D /* AccelerationAnimation.m in Sources */,
 				FAA6093317DF550500A5BAAC /* ISUPhoneNumberFormatter.m in Sources */,
 				FAA6093617DF559E00A5BAAC /* ISUSoundEffect.m in Sources */,
+				1B8D8FBC19A8C97500B72EA5 /* ISUMenuViewController.m in Sources */,
 				FAC7A57B17E45299002B7EF9 /* NSFileManager+ISUAdditions.m in Sources */,
 				FAC7A57F17E456A2002B7EF9 /* ISUMigrationManager.m in Sources */,
 				FA8B347617E59F3F006B5FA1 /* NSString+ISUAdditions.m in Sources */,
@@ -1388,7 +1355,6 @@
 		};
 		FA21680F17CC98AB0026F1CD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77C2CC6186CF4BFC8CD009D8 /* Pods-MobileContactApplicationTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MobileContactApplication.app/MobileContactApplication";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1406,7 +1372,6 @@
 		};
 		FA21681017CC98AB0026F1CD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77C2CC6186CF4BFC8CD009D8 /* Pods-MobileContactApplicationTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MobileContactApplication.app/MobileContactApplication";
 				FRAMEWORK_SEARCH_PATHS = (

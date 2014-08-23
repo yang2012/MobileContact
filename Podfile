@@ -20,5 +20,5 @@ pod "AFNetworking", "~> 2.0"
 pod 'EAIntroView', '~> 2.6'
 pod 'FLKAutoLayout', '~> 0.1'
 pod 'RESideMenu', '~> 4.0'
-pod 'Google-API-Client', '~> 0.1'
 pod 'Mantle'
+pod 'PonyDebugger', '~>0.3.0'

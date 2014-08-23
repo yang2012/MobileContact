@@ -8,6 +8,7 @@
 
 #import "ISUNotificationCenterViewController.h"
 
+
 @interface ISUNotificationCenterViewController ()
 
 @property (nonatomic, strong) UISwipeGestureRecognizer *childViewControllerSwipeGestureRecognizer;
@@ -39,12 +40,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    [self displayContentController:self.childController];
-    
-    self.testView = [[UIView alloc] initWithFrame:CGRectMake(20, 120, 200, 400)];
-    self.testView.backgroundColor = [UIColor blueColor];
-    [self.contentContainerView addSubview:self.testView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,8 +50,6 @@
 
 - (void)swipeHandler:(UIPanGestureRecognizer *)sender
 {
-    //    [[self sideMenu] showFromPanGesture:sender];
-    [self show];
 }
 
 @end

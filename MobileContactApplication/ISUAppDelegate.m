@@ -10,11 +10,15 @@
 #import "ISUMigrationManager.h"
 #import "ISUPersistentManager.h"
 #import "ISUGroupTableViewController.h"
-#import "ISUNotificationCenterViewController.h"
 #import "ISUAddressBookUtility.h"
 #import "ISUIntroductionViewController.h"
+#import "ISUMenuViewController.h"
+#import "RESideMenu.h"
 
 #import <Crashlytics/Crashlytics.h>
+#ifdef DEBUG
+#import <PDDebugger.h>
+#endif
 
 @interface ISUAppDelegate () <ISUMigrationManagerDelegate>
 
@@ -39,18 +43,13 @@
     // Pony Debug
 #ifdef DEBUG
     PDDebugger *debugger = [PDDebugger defaultInstance];
-    [debugger connectToURL:[NSURL URLWithString:@"ws://localhost:9000/device"]];
-    
+    [debugger connectToURL:[NSURL URLWithString:@"ws://localhost:9100/device"]];
     [debugger enableNetworkTrafficDebugging];
     [debugger forwardAllNetworkTraffic];
-    
     [debugger enableCoreDataDebugging];
-    
     [debugger enableViewHierarchyDebugging];
     [debugger setDisplayedViewAttributeKeyPaths:@[@"frame", @"hidden", @"alpha", @"opaque"]];
-    
     [debugger enableRemoteLogging];
-    
     [debugger addManagedObjectContext:[ISUPersistentManager mainQueueContext] withName:@"Main Context"];
 #endif
     
@@ -67,14 +66,24 @@
     // one if it fails to initialize
     [ISUPersistentManager setAutomaticallyResetsPersistentStore:YES];
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor blackColor];
     ISUGroupTableViewController *groupTabelViewController = [[ISUGroupTableViewController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:groupTabelViewController];
-    ISUNotificationCenterViewController *notificationCenterViewController = [[ISUNotificationCenterViewController alloc] init];
-    notificationCenterViewController.childController = navigationController;
-    self.window.rootViewController = notificationCenterViewController;
     
+    ISUMenuViewController *menuViewController = [[ISUMenuViewController alloc] init];
+    
+    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController
+                                                                    leftMenuViewController:menuViewController
+                                                                   rightMenuViewController:nil];
+    sideMenuViewController.contentViewShadowColor = [UIColor blackColor];
+    sideMenuViewController.contentViewShadowOffset = CGSizeMake(0, 0);
+    sideMenuViewController.contentViewShadowOpacity = 0.6;
+    sideMenuViewController.contentViewShadowRadius = 12;
+    sideMenuViewController.contentViewShadowEnabled = YES;
+    sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = sideMenuViewController;
     [self.window makeKeyAndVisible];
     
     // Crashlytics (must be the last line)
