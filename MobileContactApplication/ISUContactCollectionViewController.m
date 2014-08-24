@@ -6,15 +6,19 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import "ISUContactCollectionViewController.h"
-#import "ISUContact+function.h"
-#import "ISUCollectionContactViewCell.h"
-#import "JDDroppableCollectionViewCell.h"
 #import <MJNIndexView.h>
 #import <QuartzCore/QuartzCore.h>
 #import <FLKAutoLayout/UIView+FLKAutoLayout.h>
 
-@interface ISUContactCollectionViewController () <MJNIndexViewDataSource, JDDroppableCollectionViewCellDelegate>
+#import "ISUContactCollectionViewController.h"
+#import "ISUContactDetailViewController.h"
+
+#import "ISUCollectionContactViewCell.h"
+
+#import "ISUContact+function.h"
+
+
+@interface ISUContactCollectionViewController () <MJNIndexViewDataSource>
 
 @property (nonatomic, strong) MJNIndexView *indexView;
 
@@ -60,6 +64,16 @@
     
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ISUContact *person = (ISUContact *)[self objectForViewIndexPath:indexPath];
+    ISUContactDetailViewController *detailViewController = [[ISUContactDetailViewController alloc] init];
+    detailViewController.contact = person;
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
