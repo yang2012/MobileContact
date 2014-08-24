@@ -26,6 +26,7 @@
 @dynamic firstName;
 @dynamic firstNamePhonetic;
 @dynamic frequence;
+@dynamic formatName;
 @dynamic jobTitle;
 @dynamic lastName;
 @dynamic lastNamePhonetic;
@@ -38,6 +39,7 @@
 @dynamic prefix;
 @dynamic recordId;
 @dynamic suffix;
+@dynamic sectionTitle;
 @dynamic thumbnailKey;
 @dynamic addresses;
 @dynamic dates;

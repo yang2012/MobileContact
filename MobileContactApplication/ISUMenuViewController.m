@@ -7,6 +7,9 @@
 //
 
 #import "ISUMenuViewController.h"
+#import "ISUGroupTableViewController.h"
+#import "ISUNotificationCenterViewController.h"
+#import "ISUCalendarViewController.h"
 
 typedef enum {
     ISUMenuCellTypeCalendar = 0,
@@ -67,7 +70,7 @@ typedef enum {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.textColor = [UIColor blackColor];
         cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
         cell.selectedBackgroundView = [[UIView alloc] init];
     }
@@ -97,10 +100,19 @@ typedef enum {
     ISUMenuCellType cellType = (ISUMenuCellType)indexPath.row;
     switch (cellType) {
         case ISUMenuCellTypeCalendar:
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[ISUCalendarViewController alloc] init]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
             break;
         case ISUMenuCellTypeContact:
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[ISUGroupTableViewController alloc] init]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
             break;
         case ISUMenuCellTypeSetting:
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[ISUNotificationCenterViewController alloc] init]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
             break;
         default:
             break;

@@ -162,8 +162,8 @@ static NSString *const kSearchItemForContactEmailsProperty = @"emailsProperty";
 	
 	if (self.firstName || self.lastName)
 	{
-		if (self.firstName) [name appendFormat:@"%@ ", self.firstName];
 		if (self.lastName) [name appendFormat:@"%@", self.lastName];
+		if (self.firstName) [name appendFormat:@"%@ ", self.firstName];
 	}
 	
 	return [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -190,18 +190,13 @@ static NSString *const kSearchItemForContactEmailsProperty = @"emailsProperty";
 	return [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
-- (NSString *)sectionTitle
-{
-    return [NSString sortSectionTitle:self.fullName];
-}
-
 #pragma mark - CRUD
 
 + (ISUContact *)findOrCreatePersonWithRecordId:(NSInteger)recordId
                                        context:(NSManagedObjectContext *)context
 {
     if (recordId < 0) {
-        NSLog(@"Invalid recrodId: %i", recordId);
+        NSLog(@"Invalid recrodId: %ld", recordId);
         return nil;
     }
     
@@ -217,7 +212,7 @@ static NSString *const kSearchItemForContactEmailsProperty = @"emailsProperty";
                                context:(NSManagedObjectContext *)context
 {
     if (recordId < 0) {
-        NSLog(@"Invalid recrodId: %i", recordId);
+        NSLog(@"Invalid recrodId: %ld", recordId);
         return nil;
     }
     
@@ -244,6 +239,8 @@ static NSString *const kSearchItemForContactEmailsProperty = @"emailsProperty";
                     context:(NSManagedObjectContext *)context
 {
     [self _updateBaseInfoWithCoreContact:coreContact];
+    
+    [self _updateAvatarWithCoreContact:coreContact];
     
     [self _updatePhonesWithCoreContact:coreContact context:context];
     
@@ -342,6 +339,9 @@ static NSString *const kSearchItemForContactEmailsProperty = @"emailsProperty";
     if (newNote && ![self.note isEqualToString:newNote]) {
         self.note = newNote;
     }
+    
+    self.sectionTitle = [NSString sortSectionTitle:self.fullName];
+    self.formatName = [self.fullName normalizedSearchString];
 }
 
 - (void)_updateAvatarWithCoreContact:(RHPerson *)coreContact
@@ -485,7 +485,8 @@ static NSString *const kSearchItemForContactEmailsProperty = @"emailsProperty";
 + (NSArray *)defaultSortDescriptors
 {
     return [NSArray arrayWithObjects:
-            [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:NO], nil];
+            [NSSortDescriptor sortDescriptorWithKey:@"sectionTitle" ascending:YES],
+            [NSSortDescriptor sortDescriptorWithKey:@"formatName" ascending:YES], nil];
 }
 
 #pragma mark - Private methods

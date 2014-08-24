@@ -14,12 +14,12 @@
                                              context:(NSManagedObjectContext *)context
 {
     if (recordId < 0) {
-        NSLog(@"Invalid recrodId: %i", recordId);
+        NSLog(@"Invalid recrodId: %ld", (long)recordId);
         return nil;
     }
     
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[ISUContactSource entityName]];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"recordId=%@", recordId];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"recordId=%d", recordId];
     fetchRequest.fetchLimit = 1;
     id object = [[context executeFetchRequest:fetchRequest error:NULL] lastObject];
     if (object == nil) {

@@ -116,7 +116,7 @@ static const int ImportBatchSize = 100;
         
         ISUGroup *group = [ISUGroup findOrCreateGroupWithRecordId:groupRecordId context:self.operationContext];
         if (group == nil) {
-            NSString *msg = [NSString stringWithFormat:@"Cannot find/create group with record id %i", source.recordId];
+            NSString *msg = [NSString stringWithFormat:@"Cannot find/create group with record id %ld", source.recordId];
             ISULog(msg, ISULogPriorityHigh);
             return YES; // Continue handling other groups
         }

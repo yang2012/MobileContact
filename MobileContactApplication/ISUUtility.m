@@ -13,16 +13,15 @@
 + (NSString *)keyForOriginalImageOfPerson:(RHPerson *)person
 {
     ABRecordID recordId = person.recordID;
-    NSString *compositeName = [person compositeName];
-    return [NSString stringWithFormat:@"avatar/%i-%@-OriginalImage", recordId, compositeName];
+    NSString *name = [NSString stringWithFormat:@"%@%@", person.firstName, person.lastName];
+    return [NSString stringWithFormat:@"avatar/%d-%@-OriginalImage", recordId, name];
 }
 
 + (NSString *)keyForThumbnailOfPerson:(RHPerson *)person
 {
-    
     ABRecordID recordId = person.recordID;
-    NSString *compositeName = [person compositeName];
-    return [NSString stringWithFormat:@"avatar/%i-%@-Thumbnail", recordId, compositeName];
+    NSString *name = [NSString stringWithFormat:@"%@%@", person.firstName, person.lastName];
+    return [NSString stringWithFormat:@"avatar/%d-%@-Thumbnail", recordId, name];
 }
 
 @end

@@ -30,8 +30,6 @@
 
 - (NSString *)fullName;
 
-- (NSString *)sectionTitle;
-
 + (ISUContact *)findOrCreatePersonWithRecordId:(NSInteger)recordId
                                        context:(NSManagedObjectContext *)context;
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Nanjing University. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "RESideMenu.h"
 
 @interface ISUMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 

@@ -1,4 +1,4 @@
-//
+ //
 //  NSString+ChineseCharacter.m
 //  MobileContactApplication
 //
@@ -5825,7 +5825,7 @@ char pinyinFirstLetter(unsigned short hanzi) {
     unsigned char ucHigh, ucLow;
     int nCode;
     NSString *strValue = @"";
-	int iLen = [gb2312_data length];
+	NSUInteger iLen = [gb2312_data length];
 	char *gb2312_string = (char *)[gb2312_data bytes];
     for (int i = 0; i < iLen; i++) {
         if ((unsigned char)gb2312_string[i] < 0x80 ) {
@@ -5844,8 +5844,7 @@ char pinyinFirstLetter(unsigned short hanzi) {
 		strValue = [strValue stringByAppendingString:strRes];
         i++;
     }
-	return [[NSString alloc] initWithString:strValue]
-    ;
+	return [[NSString alloc] initWithString:strValue];
 }
 
 + (NSString *) sortSectionTitle:(NSString *)string {

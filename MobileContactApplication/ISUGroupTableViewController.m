@@ -15,11 +15,10 @@
 #import "ISUContactCollectionViewController.h"
 #import "ISUSearchTableViewController.h"
 #import "ISUOperationManager.h"
-#import <FLKAutoLayout/UIView+FLKAutoLayout.h>
 #import "ISUPersistentManager.h"
+#import "ISUCollectionViewFlowLayout.h"
 
 #import "KYCircleMenu.h"
-
 
 #import "NSString+ISUAdditions.h"
 
@@ -162,7 +161,7 @@ static NSString *CellIdentifier = @"Cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ISUGroup *group = [self objectForViewIndexPath:indexPath];
-    ISUContactCollectionViewController *collectionView = [[ISUContactCollectionViewController alloc] initWithLayout:[[UICollectionViewFlowLayout alloc] init]];
+    ISUContactCollectionViewController *collectionView = [[ISUContactCollectionViewController alloc] initWithLayout:[[ISUCollectionViewFlowLayout alloc] init]];
     collectionView.group = group;
     [self.navigationController pushViewController:collectionView animated:YES];
 }

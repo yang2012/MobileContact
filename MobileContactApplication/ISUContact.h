@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * firstNamePhonetic;
 @property (nonatomic) NSInteger frequence;
+@property (nonatomic, retain) NSString * formatName;
 @property (nonatomic, retain) NSString * jobTitle;
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSString * lastNamePhonetic;
@@ -30,6 +31,7 @@
 @property (nonatomic, retain) NSString * prefix;
 @property (nonatomic) NSInteger recordId;
 @property (nonatomic, retain) NSString * suffix;
+@property (nonatomic, retain) NSString * sectionTitle;
 @property (nonatomic, retain) NSString * thumbnailKey;
 @property (nonatomic, retain) NSSet *addresses;
 @property (nonatomic, retain) NSSet *dates;

@@ -7,9 +7,10 @@
 //
 
 #import "JDDroppableCollectionViewCell.h"
+#import "ISUContact+function.h"
 
-@interface ISUCollectionContactViewCell : JDDroppableCollectionViewCell
+@interface ISUCollectionContactViewCell : UICollectionViewCell
 
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) ISUContact *contact;
 
 @end

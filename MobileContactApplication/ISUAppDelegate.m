@@ -9,7 +9,7 @@
 #import "ISUAppDelegate.h"
 #import "ISUMigrationManager.h"
 #import "ISUPersistentManager.h"
-#import "ISUGroupTableViewController.h"
+#import "ISUCalendarViewController.h"
 #import "ISUAddressBookUtility.h"
 #import "ISUIntroductionViewController.h"
 #import "ISUMenuViewController.h"
@@ -42,15 +42,15 @@
     
     // Pony Debug
 #ifdef DEBUG
-    PDDebugger *debugger = [PDDebugger defaultInstance];
-    [debugger connectToURL:[NSURL URLWithString:@"ws://localhost:9100/device"]];
-    [debugger enableNetworkTrafficDebugging];
-    [debugger forwardAllNetworkTraffic];
-    [debugger enableCoreDataDebugging];
-    [debugger enableViewHierarchyDebugging];
-    [debugger setDisplayedViewAttributeKeyPaths:@[@"frame", @"hidden", @"alpha", @"opaque"]];
-    [debugger enableRemoteLogging];
-    [debugger addManagedObjectContext:[ISUPersistentManager mainQueueContext] withName:@"Main Context"];
+//    PDDebugger *debugger = [PDDebugger defaultInstance];
+//    [debugger connectToURL:[NSURL URLWithString:@"ws://localhost:9100/device"]];
+//    [debugger enableNetworkTrafficDebugging];
+//    [debugger forwardAllNetworkTraffic];
+//    [debugger enableCoreDataDebugging];
+//    [debugger enableViewHierarchyDebugging];
+//    [debugger setDisplayedViewAttributeKeyPaths:@[@"frame", @"hidden", @"alpha", @"opaque"]];
+//    [debugger enableRemoteLogging];
+//    [debugger addManagedObjectContext:[ISUPersistentManager mainQueueContext] withName:@"Main Context"];
 #endif
     
     // Set Uncaught Exception Handler
@@ -66,8 +66,8 @@
     // one if it fails to initialize
     [ISUPersistentManager setAutomaticallyResetsPersistentStore:YES];
     
-    ISUGroupTableViewController *groupTabelViewController = [[ISUGroupTableViewController alloc] init];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:groupTabelViewController];
+    ISUCalendarViewController *calendarViewController = [[ISUCalendarViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:calendarViewController];
     
     ISUMenuViewController *menuViewController = [[ISUMenuViewController alloc] init];
     
