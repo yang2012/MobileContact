@@ -12,3 +12,5 @@
 "Nickename" = "昵称";
 "Organization" = "Organization";
 "Note" = "备注";
+"YYYY-MM-dd aHH:mm" = "YYYY年MM月dd日 aHH:mm";
+"YYYY-MM-dd EE" = "YYYY年MM月dd日 EE";

@@ -36,6 +36,10 @@
 {
     [super configureWithEvent:event];
     
+    self.onSwitch.didChangeHandler = ^(BOOL isOn) {
+        event.allDay = @(isOn);
+    };
+    
     @weakify(self);
     [RACObserve(event, allDay) subscribeNext:^(NSNumber *allDay) {
         @strongify(self);

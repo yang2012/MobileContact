@@ -12,4 +12,7 @@
 
 @property (nonatomic, strong) UILabel *timeLabel;
 
+@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, copy) NSString *format;
+
 @end

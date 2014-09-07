@@ -24,27 +24,6 @@
 #import "UIView+CGRectUtil.h"
 #import "UIBarButtonItem+ISUAdditions.h"
 
-typedef NS_ENUM(NSInteger, ISUEventEditorCell) {
-    ISUEventEditorCellTitle,
-    ISUEventEditorCellLocation,
-    ISUEventEditorCellAllDay,
-    ISUEventEditorCellStartTime,
-    ISUEventEditorCellEndTime,
-    ISUEventEditorCellRepeat,
-    ISUEventEditorCellInvitees,
-    ISUEventEditorCellAlert,
-    ISUEventEditorCellNote,
-    ISUEventEditorCellDatePicker
-};
-
-typedef NS_ENUM(NSInteger, ISUEventEditorSection) {
-    ISUEventEditorSectionBasisInfo,
-    ISUEventEditorSectionTime,
-    ISUEventEditorSectionParticipant,
-    ISUEventEditorSectionAlert,
-    ISUEventEditorSectionNote,
-};
-
 @interface ISUEventEditorViewController ()
 
 @property (nonatomic, strong) NSArray *sections;
@@ -65,7 +44,6 @@ typedef NS_ENUM(NSInteger, ISUEventEditorSection) {
         self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
         
         self.event = [ISUEvent new];
-        self.event.allDay = @(YES);
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isu_hideDatePicker) name:UIKeyboardWillShowNotification object:nil];
         
@@ -166,29 +144,43 @@ typedef NS_ENUM(NSInteger, ISUEventEditorSection) {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     ISUEventEditorCell cellType = [self isu_cellTypeForRowAtIndexPath:indexPath];
-    if (cellType == ISUEventEditorCellStartTime || cellType == ISUEventEditorCellEndTime) {
+    if (cellType == ISUEventEditorCellStartTime) {
         [self.view endEditing:YES];
-        [self isu_showDatePickerBelowIndex:indexPath];
+        [self isu_showDatePickerWithType:ISUEventEditorCellStartTimeDatePicker belowIndex:indexPath];
+    } else if (cellType == ISUEventEditorCellEndTime){
+        [self.view endEditing:YES];
+        [self isu_showDatePickerWithType:ISUEventEditorCellEndTimeDatePicker belowIndex:indexPath];
     } else {
         NSLog(@"select");
     }
 }
 
-- (void)isu_showDatePickerBelowIndex:(NSIndexPath *)indexPath
+- (void)isu_showDatePickerWithType:(ISUEventEditorCell)cellType belowIndex:(NSIndexPath *)indexPath
 {
-    if (self.datePickerIndexPath) {
-        [self isu_hideDatePicker];
-    } else {
-        // No need to hide
-    }
+    NSNumber *sectionKey = [[[self.sections objectAtIndex:indexPath.section] allKeys] firstObject];
+    NSMutableArray *cells = [[self.sections objectAtIndex:indexPath.section] objectForKey:sectionKey];
     
     NSIndexPath *pickerIndexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
     
-    NSNumber *sectionKey = [[[self.sections objectAtIndex:indexPath.section] allKeys] firstObject];
-    NSMutableArray *cells = [[self.sections objectAtIndex:indexPath.section] objectForKey:sectionKey];
-    [cells insertObject:@(ISUEventEditorCellDatePicker) atIndex:indexPath.row + 1];
-    
-    [self.tableView insertRowsAtIndexPaths:@[pickerIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+    if ([self.datePickerIndexPath isEqual:pickerIndexPath]) {
+        [self isu_hideDatePicker];
+        return;
+    } else if (self.datePickerIndexPath) {
+        if (self.datePickerIndexPath.row < pickerIndexPath.row) {
+            pickerIndexPath = indexPath;
+        }
+        
+        [cells removeObjectAtIndex:self.datePickerIndexPath.row];
+        [cells insertObject:@(cellType) atIndex:pickerIndexPath.row];
+        
+        [self.tableView beginUpdates];
+        [self.tableView deleteRowsAtIndexPaths:@[self.datePickerIndexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+        [self.tableView insertRowsAtIndexPaths:@[pickerIndexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+        [self.tableView endUpdates];
+    } else {
+        [cells insertObject:@(cellType) atIndex:pickerIndexPath.row];
+        [self.tableView insertRowsAtIndexPaths:@[pickerIndexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+    }
     
     self.datePickerIndexPath = pickerIndexPath;
 }
@@ -198,9 +190,9 @@ typedef NS_ENUM(NSInteger, ISUEventEditorSection) {
     if (self.datePickerIndexPath) {
         NSNumber *sectionKey = [[[self.sections objectAtIndex:self.datePickerIndexPath.section] allKeys] firstObject];
         NSMutableArray *cells = [[self.sections objectAtIndex:self.datePickerIndexPath.section] objectForKey:sectionKey];
-        [cells removeObject:@(ISUEventEditorCellDatePicker)];
+        [cells removeObjectAtIndex:self.datePickerIndexPath.row];
         
-        [self.tableView deleteRowsAtIndexPaths:@[self.datePickerIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView deleteRowsAtIndexPaths:@[self.datePickerIndexPath] withRowAnimation:UITableViewRowAnimationMiddle];
     } else {
         // No need to hide
     }
@@ -285,7 +277,8 @@ typedef NS_ENUM(NSInteger, ISUEventEditorSection) {
 {
     ISUEventEditorCell cellType = [self isu_cellTypeForRowAtIndexPath:indexPath];
     switch (cellType) {
-        case ISUEventEditorCellDatePicker:
+        case ISUEventEditorCellStartTimeDatePicker:
+        case ISUEventEditorCellEndTimeDatePicker:
             return 216.0f;
         case ISUEventEditorCellTitle:
         case ISUEventEditorCellLocation:
@@ -308,7 +301,8 @@ typedef NS_ENUM(NSInteger, ISUEventEditorSection) {
     ISUEventEditorCell cellType = [self isu_cellTypeForRowAtIndexPath:indexPath];
     NSString *reuseIdentifer;
     switch (cellType) {
-        case ISUEventEditorCellDatePicker:
+        case ISUEventEditorCellStartTimeDatePicker:
+        case ISUEventEditorCellEndTimeDatePicker:
             reuseIdentifer = @"ISUEventEditorDatePickerCell.h";
             break;
         case ISUEventEditorCellTitle:
@@ -351,7 +345,8 @@ typedef NS_ENUM(NSInteger, ISUEventEditorSection) {
 {
     ISUEventEditorCell cellType = [self isu_cellTypeForRowAtIndexPath:indexPath];
     switch (cellType) {
-        case ISUEventEditorCellDatePicker:
+        case ISUEventEditorCellStartTimeDatePicker:
+        case ISUEventEditorCellEndTimeDatePicker:
         {
             return [[ISUEventEditorDatePickerCell alloc] initWithReuseIdentifier:reuseIdentifier];
         }
@@ -400,6 +395,8 @@ typedef NS_ENUM(NSInteger, ISUEventEditorSection) {
 {
     if ([cell isKindOfClass:[ISUEventEditorBaseCell class]]) {
         ISUEventEditorBaseCell *baseCell = (ISUEventEditorBaseCell *)cell;
+        baseCell.cellType = [self isu_cellTypeForRowAtIndexPath:indexPath];
+        baseCell.indexPath = indexPath;
         [baseCell configureWithEvent:self.event];
     }
 }

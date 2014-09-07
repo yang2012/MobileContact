@@ -23,7 +23,9 @@
 
 - (NSString *)monthName;
 
-- (NSDate *)offsetDay:(int)numDays;
+- (NSDate *)offsetDay:(NSInteger)numDays;
+
+- (NSDate *)dateAfterSecond:(NSInteger)second;
 
 - (NSString *)description:(NSString *)format;
 

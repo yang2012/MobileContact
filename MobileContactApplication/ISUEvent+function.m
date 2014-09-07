@@ -7,7 +7,21 @@
 //
 
 #import "ISUEvent+function.h"
+#import "NSDate+JYCalendar.h"
 
 @implementation ISUEvent (function)
+
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        self.allDay = @(NO);
+        self.startTime = [NSDate new];
+        self.endTime = [self.startTime dateAfterSecond:60 * 60];
+    }
+    
+    return self;
+}
 
 @end

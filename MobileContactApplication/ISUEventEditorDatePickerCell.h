@@ -10,6 +10,6 @@
 
 @interface ISUEventEditorDatePickerCell : ISUEventEditorBaseCell
 
-@property (nonatomic) UIDatePickerMode datePickerMode; // default is UIDatePickerModeDateAndTime
+@property (nonatomic, strong) UIDatePicker *datePicker;
 
 @end

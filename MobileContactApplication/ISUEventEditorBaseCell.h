@@ -7,9 +7,11 @@
 //
 
 #import "ISUEvent.h"
+#import "ISUEventEditorViewController.h"
 
 @interface ISUEventEditorBaseCell : UITableViewCell
 
+@property (nonatomic, assign) ISUEventEditorCell cellType;
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) ISUEvent *event;
 

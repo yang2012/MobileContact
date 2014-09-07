@@ -46,12 +46,25 @@
     return hour < 12;
 }
 
-- (NSDate *)offsetDay:(int)numDays {
+- (NSDate *)offsetDay:(NSInteger)numDays {
     NSCalendar *gregorian               = [[NSCalendar alloc]
                              initWithCalendarIdentifier:NSGregorianCalendar];
     
     NSDateComponents *offsetComponents  = [[NSDateComponents alloc] init];
     [offsetComponents setDay:numDays];
+    
+    return [gregorian dateByAddingComponents:offsetComponents
+                                      toDate:self options:0];
+}
+
+- (NSDate *)dateAfterSecond:(NSInteger)second
+{
+    
+    NSCalendar *gregorian               = [[NSCalendar alloc]
+                                           initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSDateComponents *offsetComponents  = [[NSDateComponents alloc] init];
+    [offsetComponents setSecond:second];
     
     return [gregorian dateByAddingComponents:offsetComponents
                                       toDate:self options:0];

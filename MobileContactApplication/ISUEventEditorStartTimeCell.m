@@ -15,6 +15,8 @@
 {
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
+        _format = NSLocalizedString(@"YYYY-MM-dd aHH:mm", nil);
+        
         self.textLabel.font = [UIFont systemFontOfSize:15.0f];
         self.textLabel.textColor = [UIColor isu_defaultTextColor];
         self.textLabel.text = NSLocalizedString(@"Starts", nil);
@@ -30,14 +32,38 @@
     return self;
 }
 
+- (void)setDate:(NSDate *)date
+{
+    _date = date;
+    
+    self.timeLabel.text = [date description:self.format];
+}
+
+- (void)setFormat:(NSString *)format
+{
+    _format = format;
+    
+    self.timeLabel.text = [self.date description:format];
+}
+
 - (void)configureWithEvent:(ISUEvent *)event
 {
     [super configureWithEvent:event];
     
-    RAC(self.timeLabel, text) = [RACObserve(event, startTime) map:^id(NSDate *date) {
-        return [date description:@"YYYY-MM-dd aHH:mm"];
+    @weakify(self);
+    [RACObserve(event, startTime) subscribeNext:^(NSDate *date) {
+        @strongify(self);
+        self.date = date;
     }];
     
+    [RACObserve(event, allDay) subscribeNext:^(NSNumber *allDay) {
+        @strongify(self);
+        if (allDay.boolValue) {
+            self.format = NSLocalizedString(@"YYYY-MM-dd EE", nil);
+        } else {
+            self.format = NSLocalizedString(@"YYYY-MM-dd aHH:mm", nil);
+        }
+    }];
 }
 
 

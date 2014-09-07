@@ -10,8 +10,6 @@
 
 @interface ISUEventEditorDatePickerCell ()
 
-@property (nonatomic, strong) UIDatePicker *datePicker;
-
 @end
 
 @implementation ISUEventEditorDatePickerCell
@@ -30,22 +28,25 @@
 {
     [super configureWithEvent:event];
     
-//    self.datePicker.date
+    self.datePicker.datePickerMode = self.event.allDay.boolValue ? UIDatePickerModeDate : UIDatePickerModeDateAndTime;
     
-    [[self.datePicker rac_newDateChannelWithNilValue:[NSDate new]] subscribeNext:^(NSDate *date) {
-        event.startTime = date;
+    if (self.cellType == ISUEventEditorCellStartTimeDatePicker) {
+        self.datePicker.date = self.event.startTime;
+        [[self.datePicker rac_newDateChannelWithNilValue:[NSDate new]] subscribeNext:^(NSDate *date) {
+            event.startTime = date;
+        }];
+    } else if (self.cellType == ISUEventEditorCellEndTimeDatePicker) {
+        self.datePicker.date = self.event.endTime;
+        [[self.datePicker rac_newDateChannelWithNilValue:[NSDate new]] subscribeNext:^(NSDate *date) {
+            event.endTime = date;
+        }];
+    }
+    
+    @weakify(self);
+    [RACObserve(event, allDay) subscribeNext:^(NSNumber *allDay) {
+        @strongify(self);
+        self.datePicker.datePickerMode = allDay.boolValue ? UIDatePickerModeDate : UIDatePickerModeDateAndTime;
     }];
 }
-
-- (void)setDatePickerMode:(UIDatePickerMode)datePickerMode
-{    
-    self.datePicker.datePickerMode = datePickerMode;
-}
-
-- (UIDatePickerMode)datePickerMode
-{
-    return self.datePicker.datePickerMode;
-}
-
 
 @end

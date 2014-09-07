@@ -15,6 +15,8 @@
 {
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
+        _format = @"aHH:mm";
+        
         self.textLabel.font = [UIFont systemFontOfSize:15.0f];
         self.textLabel.textColor = [UIColor isu_defaultTextColor];
         self.textLabel.text = NSLocalizedString(@"Ends", nil);
@@ -30,18 +32,41 @@
     return self;
 }
 
+- (void)setDate:(NSDate *)date
+{
+    _date = date;
+    
+    self.timeLabel.text = [date description:self.format];
+}
+
+- (void)setFormat:(NSString *)format
+{
+    _format = format;
+    
+    self.timeLabel.text = [self.date description:format];
+}
+
 - (void)configureWithEvent:(ISUEvent *)event
 {
     [super configureWithEvent:event];
     
-    RAC(self.timeLabel, text) = [RACObserve(event, endTime) map:^id(NSDate *date) {
-        NSString *format;
-        if (date.isToday) {
-            format = @"aHH:mm";
+    @weakify(self);
+    [RACObserve(event, endTime) subscribeNext:^(NSDate *date) {
+        @strongify(self);
+        self.date = date;
+    }];
+    
+    [RACObserve(event, allDay) subscribeNext:^(NSNumber *allDay) {
+        @strongify(self);
+        if (allDay.boolValue) {
+            self.format = NSLocalizedString(@"YYYY-MM-dd EE", nil);
         } else {
-            format = @"YYYY-MM-dd aHH:mm";
+            if (self.date.isToday) {
+                self.format =  NSLocalizedString(@"aHH:mm", nil);
+            } else {
+                self.format =  NSLocalizedString(@"YYYY-MM-dd aHH:mm", nil);
+            }
         }
-        return [date description:format];
     }];
 }
 

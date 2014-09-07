@@ -12,3 +12,5 @@
 "Nickename" = "Nickname";
 "Organization" = "Organization";
 "Note" = "Note";
+"YYYY-MM-dd aHH:mm" = "YYYY-MM-dd aHH:mm";
+"YYYY-MM-dd EE" = "YYYY-MM-dd EE";
