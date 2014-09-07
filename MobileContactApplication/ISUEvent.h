@@ -11,12 +11,12 @@
 @interface ISUEvent : SSManagedObject
 
 @property (nonatomic, retain) NSString * note;
-@property (nonatomic, retain) NSDate * remindTime;
+@property (nonatomic, retain) NSNumber * alertValue;
 @property (nonatomic, retain) NSDate * startTime;
 @property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSDate * endTime;
 @property (nonatomic, retain) NSNumber * allDay;
-@property (nonatomic, retain) NSNumber * repeat;
+@property (nonatomic, retain) NSNumber * repeatValue;
 
 @end

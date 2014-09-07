@@ -7,6 +7,8 @@
 //
 
 #import "ISUEventEditorViewController.h"
+#import "ISUAlertPickerViewController.h"
+#import "ISURepeatPickerViewController.h"
 
 #import "ISUTimePickerView.h"
 #import "ISUDatePickerView.h"
@@ -24,7 +26,7 @@
 #import "UIView+CGRectUtil.h"
 #import "UIBarButtonItem+ISUAdditions.h"
 
-@interface ISUEventEditorViewController ()
+@interface ISUEventEditorViewController () <ISUAlertPickerViewControllerDelegate, ISURepeatPickerViewControllerDelegate>
 
 @property (nonatomic, strong) NSArray *sections;
 
@@ -66,6 +68,8 @@
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barButtonItemWithTitle:NSLocalizedString(@"Save", nil) target:self action:@selector(save:)];
     
     [self isu_refreshViews];
+    
+    self.title = NSLocalizedString(@"Add Event", nil);
 }
                                              
 - (void)cancel:(id)sender
@@ -150,8 +154,18 @@
     } else if (cellType == ISUEventEditorCellEndTime){
         [self.view endEditing:YES];
         [self isu_showDatePickerWithType:ISUEventEditorCellEndTimeDatePicker belowIndex:indexPath];
+    } else if(cellType == ISUEventEditorCellAlert) {
+        ISUAlertPickerViewController *alertViewController = [ISUAlertPickerViewController new];
+        alertViewController.delegate = self;
+        alertViewController.selectedAlertValue = self.event.alertValue.integerValue;
+        [self.navigationController pushViewController:alertViewController animated:YES];
+    } else if (cellType == ISUEventEditorCellRepeat) {
+        ISURepeatPickerViewController *repeatViewController = [ISURepeatPickerViewController new];
+        repeatViewController.delegate = self;
+        repeatViewController.selectedRepeatValue = self.event.repeatValue.integerValue;
+        [self.navigationController pushViewController:repeatViewController animated:YES];
     } else {
-        NSLog(@"select");
+        
     }
 }
 
@@ -399,6 +413,24 @@
         baseCell.indexPath = indexPath;
         [baseCell configureWithEvent:self.event];
     }
+}
+
+#pragma mark - ISUAlertPickerViewControllerDelegate
+
+- (void)alertPicker:(ISUAlertPickerViewController *)picker didSelectAlertValue:(ISUAlertValue)alertValue
+{
+    self.event.alertValue = @(alertValue);
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - ISURepeatPickerViewControllerDelegate
+
+- (void)repeatPicker:(ISURepeatPickerViewController *)picker didSelectRepeatValue:(ISUEventRepeatValue)repeatValue
+{
+    self.event.repeatValue = @(repeatValue);
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

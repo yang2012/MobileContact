@@ -12,12 +12,12 @@
 @implementation ISUEvent
 
 @dynamic note;
-@dynamic remindTime;
+@dynamic alertValue;
 @dynamic startTime;
 @dynamic location;
 @dynamic title;
 @dynamic endTime;
 @dynamic allDay;
-@dynamic repeat;
+@dynamic repeatValue;
 
 @end

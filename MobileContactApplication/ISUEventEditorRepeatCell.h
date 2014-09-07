@@ -10,4 +10,6 @@
 
 @interface ISUEventEditorRepeatCell : ISUEventEditorBaseCell
 
+@property (nonatomic, strong) UILabel *timeLabel;
+
 @end

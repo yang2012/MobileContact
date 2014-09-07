@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Nanjing University. All rights reserved.
 //
 
-#import "ISUEvent.h"
+#import "ISUEvent+function.h"
 #import "ISUEventEditorViewController.h"
 
 @interface ISUEventEditorBaseCell : UITableViewCell

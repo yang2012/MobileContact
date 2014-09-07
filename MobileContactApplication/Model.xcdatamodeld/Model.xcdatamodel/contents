@@ -59,12 +59,12 @@
         <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ISUContact" inverseName="emails" inverseEntity="ISUContact" syncable="YES"/>
     </entity>
     <entity name="ISUEvent" representedClassName="ISUEvent" syncable="YES">
+        <attribute name="alertValue" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="allDay" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="remindTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="repeat" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="repeatValue" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>

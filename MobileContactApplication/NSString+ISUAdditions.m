@@ -5875,4 +5875,53 @@ char pinyinFirstLetter(unsigned short hanzi) {
     return [NSString pinyinFromChiniseString:mutableName];
 }
 
++ (NSString *)normalizedDescriptionOfAlerType:(ISUAlertValue)alertValue
+{
+    switch (alertValue) {
+        case ISUAlertValueNone:
+            return NSLocalizedString(@"None", nil);
+        case ISUAlertValueAtTimeOfEvent:
+            return NSLocalizedString(@"At time of event", nil);
+        case ISUAlertValue5Min:
+            return NSLocalizedString(@"5 minutes before", nil);
+        case ISUAlertValue15Min:
+            return NSLocalizedString(@"15 minutes before", nil);
+        case ISUAlertValue30Min:
+            return NSLocalizedString(@"30 minutes before", nil);
+        case ISUAlertValue1Hour:
+            return NSLocalizedString(@"1 hour before", nil);
+        case ISUAlertValue2Hour:
+            return NSLocalizedString(@"2 hours before", nil);
+        case ISUAlertValue1Day:
+            return NSLocalizedString(@"1 day before", nil);
+        case ISUAlertValue2Day:
+            return NSLocalizedString(@"2 days before", nil);
+        case ISUAlertValue1Week:
+            return NSLocalizedString(@"1 week before", nil);
+            
+        default:
+            return @"";
+    }
+}
+
++ (NSString *)normalizedDescriptionOfEventRepeatType:(ISUEventRepeatValue)repeatValue
+{
+    switch (repeatValue) {
+        case ISUEventRepeatValueNever:
+            return NSLocalizedString(@"Never", nil);
+        case ISUEventRepeatValueEveryDay:
+            return NSLocalizedString(@"Every Day", nil);
+        case ISUEventRepeatValueEveryWeek:
+            return NSLocalizedString(@"Every Week", nil);
+        case ISUEventRepeatValueEvery2Week:
+            return NSLocalizedString(@"Every 2 Weeks", nil);
+        case ISUEventRepeatValueEveryMonth:
+            return NSLocalizedString(@"Every Month", nil);
+        case ISUEventRepeatValueEveryYear:
+            return NSLocalizedString(@"Every Year", nil);
+        default:
+            return @"";
+    }
+}
+
 @end

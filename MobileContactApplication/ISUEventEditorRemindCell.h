@@ -10,7 +10,6 @@
 
 @interface ISUEventEditorRemindCell : ISUEventEditorBaseCell
 
-@property (nonatomic, strong) UIPickerView *prefixLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
 
 @end

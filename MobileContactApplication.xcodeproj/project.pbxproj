@@ -98,6 +98,9 @@
 		1BD60F0619AB6CCF007F4FCA /* UIBarButtonItem+ISUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD60F0519AB6CCF007F4FCA /* UIBarButtonItem+ISUAdditions.m */; };
 		1BD60F0919AB73FE007F4FCA /* UIImageView+ISUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD60F0819AB73FE007F4FCA /* UIImageView+ISUAdditions.m */; };
 		1BD60F0C19AB87BD007F4FCA /* ISUCollectionSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD60F0B19AB87BD007F4FCA /* ISUCollectionSearchBar.m */; };
+		1BE9610D19BC98B5005F31B0 /* ISUSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE9610C19BC98B5005F31B0 /* ISUSlideView.m */; };
+		1BE9611119BC9F6C005F31B0 /* ISUAlertPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE9611019BC9F6C005F31B0 /* ISUAlertPickerViewController.m */; };
+		1BE9611519BCAA7F005F31B0 /* ISURepeatPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE9611419BCAA7F005F31B0 /* ISURepeatPickerViewController.m */; };
 		1BEA54E519BAE6660085799E /* ISUDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA54E419BAE6660085799E /* ISUDatePickerView.m */; };
 		1BEA54E719BAE71E0085799E /* ISUDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEA54E619BAE71E0085799E /* ISUDatePickerView.xib */; };
 		1BEA54EA19BAF41D0085799E /* ISUEventEditorLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA54E919BAF41C0085799E /* ISUEventEditorLocationCell.m */; };
@@ -390,6 +393,13 @@
 		1BD60F0819AB73FE007F4FCA /* UIImageView+ISUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ISUAdditions.m"; sourceTree = "<group>"; };
 		1BD60F0A19AB87BD007F4FCA /* ISUCollectionSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUCollectionSearchBar.h; sourceTree = "<group>"; };
 		1BD60F0B19AB87BD007F4FCA /* ISUCollectionSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUCollectionSearchBar.m; sourceTree = "<group>"; };
+		1BE9610B19BC98B5005F31B0 /* ISUSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUSlideView.h; sourceTree = "<group>"; };
+		1BE9610C19BC98B5005F31B0 /* ISUSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUSlideView.m; sourceTree = "<group>"; };
+		1BE9610F19BC9F6C005F31B0 /* ISUAlertPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAlertPickerViewController.h; sourceTree = "<group>"; };
+		1BE9611019BC9F6C005F31B0 /* ISUAlertPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAlertPickerViewController.m; sourceTree = "<group>"; };
+		1BE9611219BCA4DB005F31B0 /* ISUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUConstants.h; sourceTree = "<group>"; };
+		1BE9611319BCAA7F005F31B0 /* ISURepeatPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISURepeatPickerViewController.h; sourceTree = "<group>"; };
+		1BE9611419BCAA7F005F31B0 /* ISURepeatPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISURepeatPickerViewController.m; sourceTree = "<group>"; };
 		1BEA54E319BAE6660085799E /* ISUDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUDatePickerView.h; sourceTree = "<group>"; };
 		1BEA54E419BAE6660085799E /* ISUDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUDatePickerView.m; sourceTree = "<group>"; };
 		1BEA54E619BAE71E0085799E /* ISUDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ISUDatePickerView.xib; sourceTree = "<group>"; };
@@ -877,6 +887,10 @@
 			children = (
 				1BBCD09919B33CAA003D6507 /* ISUEventEditorViewController.h */,
 				1BBCD09A19B33CAA003D6507 /* ISUEventEditorViewController.m */,
+				1BE9610F19BC9F6C005F31B0 /* ISUAlertPickerViewController.h */,
+				1BE9611019BC9F6C005F31B0 /* ISUAlertPickerViewController.m */,
+				1BE9611319BCAA7F005F31B0 /* ISURepeatPickerViewController.h */,
+				1BE9611419BCAA7F005F31B0 /* ISURepeatPickerViewController.m */,
 			);
 			name = EventEditor;
 			sourceTree = "<group>";
@@ -920,6 +934,8 @@
 				1BEA54E619BAE71E0085799E /* ISUDatePickerView.xib */,
 				1BEA550219BC6A060085799E /* ISUTextView.h */,
 				1BEA550319BC6A060085799E /* ISUTextView.m */,
+				1BE9610B19BC98B5005F31B0 /* ISUSlideView.h */,
+				1BE9610C19BC98B5005F31B0 /* ISUSlideView.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -1076,6 +1092,7 @@
 				FA21681817CC99500026F1CD /* Models */,
 				FAE8215E17CCB2C9003C39B0 /* Utilities */,
 				FA21681917CC99550026F1CD /* Views */,
+				1BE9611219BCA4DB005F31B0 /* ISUConstants.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1789,6 +1806,7 @@
 				1B8D902219A8D10900B72EA5 /* NSDate+JYCalendar.m in Sources */,
 				1B8D906119A8D10900B72EA5 /* JYCalendarMenuView.m in Sources */,
 				FAE8219017CCB98F003C39B0 /* ISUContact+function.m in Sources */,
+				1BE9611519BCAA7F005F31B0 /* ISURepeatPickerViewController.m in Sources */,
 				1B8D905619A8D10900B72EA5 /* JYCalendarUtil.m in Sources */,
 				FA8536B517D4900A00696D28 /* ISUContactSource+function.m in Sources */,
 				1B8D902A19A8D10900B72EA5 /* JYWeatherManager.m in Sources */,
@@ -1830,6 +1848,7 @@
 				1BEA54EA19BAF41D0085799E /* ISUEventEditorLocationCell.m in Sources */,
 				1B1F122F19B35AF800F3C511 /* ISUTimePickerView.m in Sources */,
 				1BBCD09B19B33CAA003D6507 /* ISUEventEditorViewController.m in Sources */,
+				1BE9610D19BC98B5005F31B0 /* ISUSlideView.m in Sources */,
 				1BBCD09E19B33CFC003D6507 /* ISUEventEditorRemindCell.m in Sources */,
 				1B8D905C19A8D10900B72EA5 /* JYCalendarDateView.m in Sources */,
 				1B8D905E19A8D10900B72EA5 /* JYCalendarTitleView.m in Sources */,
@@ -1846,6 +1865,7 @@
 				FAA6093317DF550500A5BAAC /* ISUPhoneNumberFormatter.m in Sources */,
 				FAA6093617DF559E00A5BAAC /* ISUSoundEffect.m in Sources */,
 				1BEA550419BC6A060085799E /* ISUTextView.m in Sources */,
+				1BE9611119BC9F6C005F31B0 /* ISUAlertPickerViewController.m in Sources */,
 				1B8D8FBC19A8C97500B72EA5 /* ISUMenuViewController.m in Sources */,
 				FAC7A57B17E45299002B7EF9 /* NSFileManager+ISUAdditions.m in Sources */,
 				FAC7A57F17E456A2002B7EF9 /* ISUMigrationManager.m in Sources */,

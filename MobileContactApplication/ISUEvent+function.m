@@ -8,6 +8,7 @@
 
 #import "ISUEvent+function.h"
 #import "NSDate+JYCalendar.h"
+#import "ISUConstants.h"
 
 @implementation ISUEvent (function)
 
@@ -16,9 +17,11 @@
     self = [super init];
     
     if (self) {
-        self.allDay = @(NO);
-        self.startTime = [NSDate new];
-        self.endTime = [self.startTime dateAfterSecond:60 * 60];
+        self.alertValue  = @(ISUAlertValueNone);
+        self.repeatValue = @(ISUEventRepeatValueNever);
+        self.allDay      = @(NO);
+        self.startTime   = [NSDate new];
+        self.endTime     = [self.startTime dateAfterSecond:60 * 60];
     }
     
     return self;
