@@ -29,6 +29,7 @@
 - (NSMutableSet *)mutableSearchItems;
 
 - (NSString *)fullName;
+- (NSString *)contactName;
 
 + (ISUContact *)findOrCreatePersonWithRecordId:(NSInteger)recordId
                                        context:(NSManagedObjectContext *)context;

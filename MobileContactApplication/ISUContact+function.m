@@ -163,7 +163,7 @@ static NSString *const kSearchItemForContactEmailsProperty = @"emailsProperty";
 	if (self.firstName || self.lastName)
 	{
 		if (self.lastName) [name appendFormat:@"%@", self.lastName];
-		if (self.firstName) [name appendFormat:@"%@ ", self.firstName];
+		if (self.firstName) [name appendFormat:@" %@ ", self.firstName];
 	}
 	
 	return [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];

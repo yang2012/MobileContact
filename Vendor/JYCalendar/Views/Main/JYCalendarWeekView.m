@@ -8,10 +8,12 @@
 
 #import "JYCalendarWeekView.h"
 #import "JYCalendarDateView.h"
+#import "JYBaseLine.h"
 
 @interface JYCalendarWeekView () <JYCalendarDateViewDelegate>
 
 @property (nonatomic, assign) NSUInteger week;
+@property (nonatomic, strong) JYHorizontalLine *horizontalLine;
 
 @end
 
@@ -25,8 +27,6 @@
         _week = week;
         
         [self _initialize];
-        
-        self.backgroundColor = [UIColor lightGrayColor];
     }
     
     return self;
@@ -41,6 +41,10 @@
                 
         [self addSubview:dateView];
     }
+    
+    self.horizontalLine = [JYHorizontalLine new];
+    self.horizontalLine.color = [UIColor colorWithRed:0.71 green:0.79 blue:0.31 alpha:1.0];
+    [self addSubview:self.horizontalLine];
 }
 
 - (void)layoutSubviews
@@ -48,22 +52,16 @@
     [super layoutSubviews];
     CGRect frame = self.bounds;
     
-    CGFloat inset            = 0.25f;
+    CGFloat inset            = 0.f;
     CGFloat widthOfDateView  = frame.size.width / 7.0;
     CGFloat heightOfDateView = frame.size.height;
     
     for (NSUInteger weekday = 0; weekday < 7; weekday++) {
         JYCalendarDateView *view  = [self _dateViewForWeekday:weekday];
-        view.frame    = CGRectMake(inset + widthOfDateView * weekday, inset, widthOfDateView - inset * 2, heightOfDateView - inset * 2);
-        
-        if (weekday == 0) {
-            view.textColor = [UIColor colorWithHue:1.0f saturation:1.0f brightness:1.0f alpha:0.7f];
-        } else {
-            view.textColor = [UIColor blackColor];
-        }
-        
-        view.showWeekDay = (self.week == 0);
+        view.frame = CGRectMake(inset + widthOfDateView * weekday, inset, widthOfDateView - inset * 2, heightOfDateView - inset * 2);
     }
+    
+    self.horizontalLine.frame = CGRectMake(0.0f, frame.size.height - 1.0f, frame.size.width, 1.0f);
 }
 
 - (void)setUpDates:(NSArray *)dateEntities

@@ -13,12 +13,8 @@
 #import "ISUAddressBookUtility.h"
 #import "ISUIntroductionViewController.h"
 #import "ISUMenuViewController.h"
-#import "RESideMenu.h"
 
 #import <Crashlytics/Crashlytics.h>
-#ifdef DEBUG
-#import <PDDebugger.h>
-#endif
 
 @interface ISUAppDelegate () <ISUMigrationManagerDelegate>
 
@@ -40,19 +36,6 @@
         [migrationManager migrate:nil];
     }
     
-    // Pony Debug
-#ifdef DEBUG
-//    PDDebugger *debugger = [PDDebugger defaultInstance];
-//    [debugger connectToURL:[NSURL URLWithString:@"ws://localhost:9100/device"]];
-//    [debugger enableNetworkTrafficDebugging];
-//    [debugger forwardAllNetworkTraffic];
-//    [debugger enableCoreDataDebugging];
-//    [debugger enableViewHierarchyDebugging];
-//    [debugger setDisplayedViewAttributeKeyPaths:@[@"frame", @"hidden", @"alpha", @"opaque"]];
-//    [debugger enableRemoteLogging];
-//    [debugger addManagedObjectContext:[ISUPersistentManager mainQueueContext] withName:@"Main Context"];
-#endif
-    
     // Set Uncaught Exception Handler
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     
@@ -71,19 +54,19 @@
     
     ISUMenuViewController *menuViewController = [[ISUMenuViewController alloc] init];
     
-    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController
+    self.sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController
                                                                     leftMenuViewController:menuViewController
                                                                    rightMenuViewController:nil];
-    sideMenuViewController.contentViewShadowColor = [UIColor blackColor];
-    sideMenuViewController.contentViewShadowOffset = CGSizeMake(0, 0);
-    sideMenuViewController.contentViewShadowOpacity = 0.6;
-    sideMenuViewController.contentViewShadowRadius = 12;
-    sideMenuViewController.contentViewShadowEnabled = YES;
-    sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
+    self.sideMenuViewController.contentViewShadowColor = [UIColor blackColor];
+    self.sideMenuViewController.contentViewShadowOffset = CGSizeMake(0, 0);
+    self.sideMenuViewController.contentViewShadowOpacity = 0.6;
+    self.sideMenuViewController.contentViewShadowRadius = 12;
+    self.sideMenuViewController.contentViewShadowEnabled = YES;
+    self.sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = sideMenuViewController;
+    self.window.rootViewController = self.sideMenuViewController;
     [self.window makeKeyAndVisible];
     
     // Crashlytics (must be the last line)

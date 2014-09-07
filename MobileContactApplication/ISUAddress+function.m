@@ -119,6 +119,42 @@
     }
 }
 
+- (NSString *)formatValue
+{
+    NSString *format = @"";
+    if (self.street.length > 0) {
+        format = [format stringByAppendingFormat:@"%@, ", self.street];
+    }
+    
+    if (self.city.length > 0) {
+        format = [format stringByAppendingFormat:@"%@, ", self.city];
+    }
+    
+    if (self.state.length > 0) {
+        format = [format stringByAppendingFormat:@"%@, ", self.state];
+    }
+    
+    if (self.country.length > 0) {
+        format = [format stringByAppendingFormat:@"%@", self.country];
+        
+        if (self.countryCode.length > 0) {
+            format = [format stringByAppendingFormat:@"(%@), ", self.countryCode];
+        } else {
+            format = [format stringByAppendingString:@", "];
+        }
+    }
+    
+    if (self.zip.length > 0) {
+        format = [format stringByAppendingFormat:@"%@", self.zip];
+    }
+    
+    NSString *extraSuffix = @", ";
+    if ([format hasSuffix:extraSuffix]) {
+        format = [format substringToIndex:format.length - extraSuffix.length];
+    }
+    return format;
+}
+
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@%@%@%@%@%@", self.street, self.city, self.state, self.country, self.countryCode, self.zip];

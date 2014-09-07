@@ -114,6 +114,7 @@ static NSString *kDetailEmptyCellIdentifier = @"JYDetailEmptyCell";
     } else {
         JYCalendarDateDetailListCell *listCell = (JYCalendarDateDetailListCell *)[collectionView dequeueReusableCellWithReuseIdentifier:kDetailListCellIdentifier forIndexPath:indexPath];
         listCell.eventEntities = eventsForDay;
+        listCell.delegate = self.delegate;
         cell = listCell;
     }
     

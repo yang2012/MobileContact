@@ -21,4 +21,6 @@
  */
 - (void)setValue:(NSDictionary *)valueDict;
 
+- (NSString *)formatValue;
+
 @end

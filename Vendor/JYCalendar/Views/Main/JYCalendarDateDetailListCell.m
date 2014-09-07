@@ -60,7 +60,10 @@ static NSInteger kTagForEventContentLabel = 3;
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    JYEvent *eventEntity = self.eventEntities[indexPath.row];
+    if ([self.delegate respondsToSelector:@selector(weekDetailViewDidSelectedEvent:)]) {
+        [self.delegate weekDetailViewDidSelectedEvent:eventEntity];
+    }
 }
 
 

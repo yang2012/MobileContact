@@ -7,8 +7,11 @@
 //
 
 #import "JYEvent.h"
+#import "JYCalendarWeekDetailView.h"
 
 @interface JYCalendarDateDetailListCell : UICollectionViewCell
+
+@property (nonatomic, weak) id<JYCalendarWeekDetailViewDelegate> delegate;
 
 @property (nonatomic, strong) NSArray *eventEntities;
 

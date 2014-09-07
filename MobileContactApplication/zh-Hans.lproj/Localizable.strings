@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  MobileContactApplication
+
+  Created by Justin Yang on 14-8-24.
+  Copyright (c) 2014年 Nanjing University. All rights reserved.
+*/
+"sinaweibo" = "新浪微博";
+"Mobile" = "电话";
+"Email" = "邮件";
+"Profile" = "个人主页";
+"Nickename" = "昵称";
+"Organization" = "Organization";
+"Note" = "备注";

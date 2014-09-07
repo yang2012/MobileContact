@@ -7,8 +7,15 @@
 //
 
 #import "ISUCalendarViewController.h"
+#import "ISUEventEditorViewController.h"
+#import "ISUAppDelegate.h"
+
+#import "JYCalendarMonthCell.h"
+
 #import <FLKAutoLayout/UIView+FLKAutoLayout.h>
 #import "NSDate+JYCalendar.h"
+#import "UIBarButtonItem+ISUAdditions.h"
+#import "UIImage+ISUAddition.h"
 
 @interface ISUCalendarViewController ()
 
@@ -25,6 +32,24 @@
         self.scrollDirection = UICollectionViewScrollDirectionVertical;
     }
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem avatarBarButtonItemwithTarget:self action:@selector(isu_goback)];
+}
+
+- (void)isu_goback
+{
+    [[ISUAppDelegate sharedInstance].sideMenuViewController presentLeftMenuViewController];
+}
+
+- (void)monthCell:(JYCalendarMonthCell *)monthCell didSelectEvent:(JYEvent *)event
+{
+    ISUEventEditorViewController *editorController = [[ISUEventEditorViewController alloc] init];
+    [self.navigationController pushViewController:editorController animated:YES];
 }
 
 - (void)setupNavigationBarInNormalMode

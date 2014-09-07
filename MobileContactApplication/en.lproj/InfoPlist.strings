@@ -1,3 +1,8 @@
-/* Localized versions of Info.plist keys */
+/* 
+  InfoPlist.strings
+  MobileContactApplication
 
-"birthday" = "Birthday";
+  Created by Justin Yang on 14-8-24.
+  Copyright (c) 2014年 Nanjing University. All rights reserved.
+*/
+CFBundleDisplayName ="iBubble";

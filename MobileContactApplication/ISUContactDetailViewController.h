@@ -6,10 +6,9 @@
 //  Copyright (c) 2014年 Nanjing University. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "ISUContact+function.h"
 
-@interface ISUContactDetailViewController : UITableViewController
+@interface ISUContactDetailViewController : UIViewController
 
 @property (nonatomic, strong) ISUContact *contact;
 

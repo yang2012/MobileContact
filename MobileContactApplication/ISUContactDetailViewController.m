@@ -7,14 +7,21 @@
 //
 
 #import "ISUContactDetailViewController.h"
-#import "ISUAddress.h"
-#import "ISUPhone.h"
-#import "ISUEmail.h"
+
+#import "DKLiveBlurView.h"
+
+#import "ISUAddress+function.h"
+#import "ISUPhone+function.h"
+#import "ISUEmail+function.h"
 #import "ISUSocialProfile.h"
-#import "ISUDate.h"
+#import "ISUDate+function.h"
 #import "ISURelatedName.h"
 #import "ISUUrl.h"
-#import "ISUGroup.h"
+
+#import "TMCache.h"
+#import "UIImage+ISUAddition.h"
+
+#import <FLKAutoLayout/UIView+FLKAutoLayout.h>
 
 typedef NS_ENUM(NSUInteger, ISUContactDetailSection) {
     ISUContactDetailSectionBasisInfo = 1,
@@ -43,7 +50,11 @@ typedef NS_ENUM(NSUInteger, ISUcontactDetailCell) {
     ISUcontactDetailCellProfile
 };
 
-@interface ISUContactDetailViewController ()
+@interface ISUContactDetailViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIImageView *avatarImageView;
+@property (nonatomic, strong) UILabel *fullNameLabel;
 
 @property (nonatomic, strong) NSArray *sections;
 
@@ -51,12 +62,82 @@ typedef NS_ENUM(NSUInteger, ISUcontactDetailCell) {
 
 @implementation ISUContactDetailViewController
 
+- (instancetype)init
+{
+    self = [super init];
+    
+    NSLog(@"%@", self.class);
+    if (self) {
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)) style:UITableViewStylePlain];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        self.tableView.dataSource = self;
+        self.tableView.delegate = self;
+        self.tableView.separatorColor = [UIColor clearColor];
+        self.tableView.backgroundColor = [UIColor clearColor];
+        
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), 200.0f)];
+        headerView.backgroundColor = [UIColor clearColor];
+        self.tableView.tableHeaderView = headerView;
+        
+        self.avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(100.0, 30.0f, 120.0f, 120.0f)];
+        self.avatarImageView.layer.cornerRadius = CGRectGetWidth(self.avatarImageView.bounds) / 2;
+        self.avatarImageView.layer.masksToBounds = YES;
+        [headerView addSubview:self.avatarImageView];
+        
+        self.fullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 165.0f, CGRectGetWidth(self.view.bounds), 20.0f)];
+        self.fullNameLabel.backgroundColor = [UIColor clearColor];
+        self.fullNameLabel.font = [UIFont systemFontOfSize:17.0f];
+        self.fullNameLabel.textAlignment = NSTextAlignmentCenter;
+        [headerView addSubview:self.fullNameLabel];
+        
+        DKLiveBlurView *backgroundView = [[DKLiveBlurView alloc] initWithFrame:self.view.bounds];
+        backgroundView.originalImage = [UIImage imageNamed:@"contact_detail_background"];
+        backgroundView.tableView = self.tableView;
+        backgroundView.isGlassEffectOn = YES;
+        
+        self.tableView.backgroundView = backgroundView;
+        self.tableView.contentInset = UIEdgeInsetsMake(200.0f, 0, 0, 0);
+        self.tableView.showsVerticalScrollIndicator = NO;
+        [self.view addSubview:self.tableView];
+    }
+    
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.navigationController.navigationBar.translucent = YES;
+}
+
 - (void)setContact:(ISUContact *)contact
 {
     _contact = contact;
     
+    self.title = contact.fullName;
+    
+    [self isu_updateAvatar];
     [self isu_prepareData];
     [self.tableView reloadData];
+}
+
+- (void)isu_updateAvatar
+{
+    if (_contact.originalImageKey.length > 0) {
+        id cachedObj = [[TMCache sharedCache] objectForKey:_contact.originalImageKey];
+        if ([cachedObj isKindOfClass:[UIImage class]]) {
+            UIImage *image = (UIImage *)cachedObj;
+            self.avatarImageView.image = image;
+        } else {
+            self.avatarImageView.image = [UIImage isu_defaultAvatar];
+        }
+    } else {
+        self.avatarImageView.image = [UIImage isu_defaultAvatar];
+    }
+    
+    self.fullNameLabel.text = _contact.contactName;
 }
 
 - (void)isu_prepareData
@@ -271,37 +352,37 @@ typedef NS_ENUM(NSUInteger, ISUcontactDetailCell) {
             switch (cellType) {
                 case ISUcontactDetailCellBirthday:
                 {
-                    cell.textLabel.text = @"Birthday";
+                    cell.textLabel.text = NSLocalizedString(@"Birthday", nil);
                     cell.detailTextLabel.text = _contact.birthday.description;
                     break;
                 }
                 case ISUcontactDetailCellDepartment:
                 {
-                    cell.textLabel.text = @"Department";
+                    cell.textLabel.text = NSLocalizedString(@"Department", nil);
                     cell.detailTextLabel.text = _contact.department;
                     break;
                 }
                 case ISUcontactDetailCellJobTitle:
                 {
-                    cell.textLabel.text = @"JobTitle";
+                    cell.textLabel.text = NSLocalizedString(@"JobTitle", nil);
                     cell.detailTextLabel.text = _contact.jobTitle;
                     break;
                 }
                 case ISUcontactDetailCellOrganization:
                 {
-                    cell.textLabel.text = @"Organization";
+                    cell.textLabel.text = NSLocalizedString(@"Organization", nil);
                     cell.detailTextLabel.text = _contact.organization;
                     break;
                 }
                 case ISUcontactDetailCellNickname:
                 {
-                    cell.textLabel.text = @"Nickename";
+                    cell.textLabel.text = NSLocalizedString(@"Nickename", nil);
                     cell.detailTextLabel.text = _contact.nickname;
                     break;
                 }
                 case ISUcontactDetailCellNote:
                 {
-                    cell.textLabel.text = @"Note";
+                    cell.textLabel.text = NSLocalizedString(@"Note", nil);
                     cell.detailTextLabel.text = _contact.note;
                     break;
                 }
@@ -315,27 +396,27 @@ typedef NS_ENUM(NSUInteger, ISUcontactDetailCell) {
         {
             ISUAddress *address = [_contact.addresses allObjects][indexPath.row];
             cell.textLabel.text = address.label;
-            cell.detailTextLabel.text = address.city;
+            cell.detailTextLabel.text = address.formatValue;
             break;
         }
         case ISUContactDetailSectionDate:
         {
             ISUDate *date = [_contact.dates allObjects][indexPath.row];
             cell.textLabel.text = date.label;
-            cell.detailTextLabel.text = date.value.description;
+            cell.detailTextLabel.text = date.formatValue;
             break;
         }
         case ISUContactDetailSectionEmail:
         {
             ISUEmail *email = [_contact.emails allObjects][indexPath.row];
-            cell.textLabel.text = email.label;
+            cell.textLabel.text = NSLocalizedString(email.formatLabel, nil);
             cell.detailTextLabel.text = email.value;
             break;
         }
         case ISUContactDetailSectionPhone:
         {
             ISUPhone *phone = [_contact.phones allObjects][indexPath.row];
-            cell.textLabel.text = phone.label;
+            cell.textLabel.text = NSLocalizedString(phone.formatLabel, nil);
             cell.detailTextLabel.text = phone.value;
             break;
         }
@@ -356,7 +437,7 @@ typedef NS_ENUM(NSUInteger, ISUcontactDetailCell) {
         case ISUContactDetailSectionProfile:
         {
             ISUSocialProfile *profile = [_contact.socialProfiles allObjects][indexPath.row];
-            cell.textLabel.text = profile.service;
+            cell.textLabel.text = NSLocalizedString(profile.service, nil);
             cell.detailTextLabel.text = profile.url;
             break;
         }

@@ -61,6 +61,10 @@ static NSString *kMonthCellIdentifier = @"JYCalendarWeekCell";
     self.collectionView.pagingEnabled                  = YES;
     self.edgesForExtendedLayout                        = UIRectEdgeNone;
     
+    [self.collectionView registerClass:[JYCalendarMonthCell class]
+            forCellWithReuseIdentifier:kMonthCellIdentifier
+     ];
+    
     @weakify(self);
     [[RACObserve(self.menuView, showed) deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(NSNumber *showed) {
         @strongify(self);
@@ -90,10 +94,6 @@ static NSString *kMonthCellIdentifier = @"JYCalendarWeekCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self.collectionView registerClass:[JYCalendarMonthCell class]
-            forCellWithReuseIdentifier:kMonthCellIdentifier
-     ];
     
     [self.navigationItem setTitleView:self.titleView];
     

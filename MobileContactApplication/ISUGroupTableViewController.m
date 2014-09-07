@@ -5,28 +5,33 @@
 //  Created by macbook on 13-8-27.
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
+#import "ISUAppDelegate.h"
 
 #import "ISUGroupTableViewController.h"
-#import "ISUAddressBookUtility.h"
-#import "ISUAddressBookImportOperation.h"
-#import "ISUContact+function.h"
-#import "ISUGroup+function.h"
-#import "ISUAppDelegate.h"
 #import "ISUContactCollectionViewController.h"
 #import "ISUSearchTableViewController.h"
+
+#import "ISUCollectionViewFlowLayout.h"
+
+#import "ISUAddressBookUtility.h"
+
+#import "ISUAddressBookImportOperation.h"
 #import "ISUOperationManager.h"
 #import "ISUPersistentManager.h"
-#import "ISUCollectionViewFlowLayout.h"
 
 #import "KYCircleMenu.h"
 
 #import "NSString+ISUAdditions.h"
+#import "ISUContact+function.h"
+#import "ISUGroup+function.h"
 
 static NSString *CellIdentifier = @"Cell";
 
-@interface ISUGroupTableViewController () <KYCircleMenuDelegate>
+@interface ISUGroupTableViewController () <KYCircleMenuDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
 
+@property (nonatomic, strong) UISearchDisplayController *displayController;
 @property (nonatomic, strong) KYCircleMenu *circleMenu;
+@property (nonatomic, strong) UISearchBar *searchBar;
 
 @end
 
@@ -78,6 +83,16 @@ static NSString *CellIdentifier = @"Cell";
     self.circleMenu.circleDelegate = self;
     self.view = self.circleMenu;
     [self.view addSubview:self.tableView];
+    
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), 44.0f)];
+    self.searchBar.delegate = self;
+    self.tableView.tableHeaderView = self.searchBar;
+    
+    self.tableView.contentOffset = CGPointMake(0.0f, 44.0f);
+    
+    self.displayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+    self.displayController.searchResultsDelegate   = self;
+    self.displayController.searchResultsDataSource = self;
     
     [self.circleMenu addButtonWithImageName:@"KYICircleMenuButton01" highlightedImageName:@"KYICircleMenuButton02" position:KYCircleMenuPositionTopLeft];
     [self.circleMenu addButtonWithImageName:@"KYICircleMenuButton03" highlightedImageName:@"KYICircleMenuButton04" position:KYCircleMenuPositionTopCenter];
@@ -183,6 +198,17 @@ static NSString *CellIdentifier = @"Cell";
 - (void)circleMenuDidTapCenterButton:(KYCircleMenu *)circleMenu
 {
     [self _openSearchView];
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    // Tells the table data source to reload when text changes
+    return YES;
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
+    // Tells the table data source to reload when scope bar selection changes
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
 }
 
 @end

@@ -15,7 +15,13 @@
 {
     NSString *description = @"";
     if (self.date) {
-        description = [NSString stringWithFormat:@"%ld", (long)self.date.day];
+        if (self.date.day < 10) {
+            description = [NSString stringWithFormat:@"0%d", self.date.day];
+        } else {
+            description = [NSString stringWithFormat:@"%d", self.date.day];
+        }
+    } else {
+        description = @"";
     }
     return description;
 }

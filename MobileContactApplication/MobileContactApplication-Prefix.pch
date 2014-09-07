@@ -14,4 +14,8 @@
     #import <CoreData/CoreData.h>
     #import "ISUDefines.h"
     #import "ISULogger.h"
+    #import "UIColor+ISUAdditions.h"
+    #import <ReactiveCocoa/ReactiveCocoa.h>
+    #import <RACEXTScope.h>
+    #import <FLKAutoLayout/UIView+FLKAutoLayout.h>
 #endif

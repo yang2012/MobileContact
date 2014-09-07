@@ -13,7 +13,6 @@
 @interface ISUContact : SSManagedObject
 
 @property (nonatomic, retain) NSDate * birthday;
-@property (nonatomic, retain) NSString * contactName;
 @property (nonatomic, retain) NSString * department;
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * firstNamePhonetic;

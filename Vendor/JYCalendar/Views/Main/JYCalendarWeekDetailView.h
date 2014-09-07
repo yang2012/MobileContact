@@ -6,12 +6,14 @@
 //  Copyright (c) 2014年 Nanjing University. All rights reserved.
 //
 
+@class JYEvent;
 @class JYCalendarWeekDetailView;
 
 @protocol JYCalendarWeekDetailViewDelegate <NSObject>
 
 - (void)weekDetailViewDidNavigateToPreviousDay:(JYCalendarWeekDetailView *)detailView;
 - (void)weekDetailViewDidNavigateToNextDay:(JYCalendarWeekDetailView *)detailView;
+- (void)weekDetailViewDidSelectedEvent:(JYEvent *)event;
 
 @end
 

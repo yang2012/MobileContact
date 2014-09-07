@@ -18,7 +18,6 @@ PODS:
   - DAKeyboardControl (2.2.0)
   - DKLiveBlur (0.0.1)
   - EAIntroView (2.6.3)
-  - FlipBoardNavigationController (1.0)
   - FLKAutoLayout (0.1.1)
   - FXBlurView (1.3.1)
   - HTAutocompleteTextField (1.2.2)
@@ -55,7 +54,6 @@ DEPENDENCIES:
   - DAKeyboardControl (~> 2.2.0)
   - DKLiveBlur (~> 0.0.1)
   - EAIntroView (~> 2.6)
-  - FlipBoardNavigationController (~> 1.0)
   - FLKAutoLayout (~> 0.1)
   - FXBlurView (~> 1.3.1)
   - HTAutocompleteTextField (~> 1.2.2)
@@ -80,7 +78,6 @@ SPEC CHECKSUMS:
   DAKeyboardControl: 723b8854d230f6d0c07d4a52a7f1683f422db9f5
   DKLiveBlur: 2ebf69a05286c0f0d2a6e71af5c70c9153597b6d
   EAIntroView: 45924b81c153d1206ee24f4fa654e9d9dae79e93
-  FlipBoardNavigationController: 3d20677d4965dd75f335a50d8991b0fd98d7e111
   FLKAutoLayout: 9fa39aac2903b274fbeed6be74154cdb937a04fc
   FXBlurView: af715ed77b62faa4ac88022becd8d2c401bd4d13
   HTAutocompleteTextField: f28e0eda3af616d8919bdcce823004bff53cb1b4

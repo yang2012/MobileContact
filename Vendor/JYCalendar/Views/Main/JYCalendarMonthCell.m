@@ -340,4 +340,11 @@ static NSInteger kMaxWeekCount = 6;
     self.showedDateEntity = newDateEntity;
 }
 
+- (void)weekDetailViewDidSelectedEvent:(JYEvent *)event
+{
+    if ([self.delegate respondsToSelector:@selector(monthCell:didSelectEvent:)]) {
+        [self.delegate monthCell:self didSelectEvent:event];
+    }
+}
+
 @end

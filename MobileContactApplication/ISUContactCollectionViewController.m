@@ -13,18 +13,33 @@
 #import "ISUContactCollectionViewController.h"
 #import "ISUContactDetailViewController.h"
 
+#import "ISUCollectionSearchBar.h"
 #import "ISUCollectionContactViewCell.h"
 
 #import "ISUContact+function.h"
 
 
-@interface ISUContactCollectionViewController () <MJNIndexViewDataSource>
+@interface ISUContactCollectionViewController () <MJNIndexViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property (nonatomic, strong) MJNIndexView *indexView;
+@property (nonatomic, strong) UISearchDisplayController *displayController;
+@property (nonatomic, strong) UISearchBar *searchBar;
 
 @end
 
 @implementation ISUContactCollectionViewController
+
+- (instancetype)initWithLayout:(UICollectionViewLayout *)layout
+{
+    self = [super initWithLayout:layout];
+    
+    if (self) {
+        [self.collectionView registerClass:[ISUCollectionSearchBar class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SearchBar"];
+        [self.collectionView registerNib:[UINib nibWithNibName:@"ISUCollectionContactViewCell" bundle:nil] forCellWithReuseIdentifier:@"CollectionContactViewCell"];
+    }
+    
+    return self;
+}
 
 - (ISUGroup *)group
 {
@@ -39,8 +54,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
-    [self.collectionView registerNib:[UINib nibWithNibName:@"ISUCollectionContactViewCell" bundle:nil] forCellWithReuseIdentifier:@"CollectionContactViewCell"];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
@@ -49,6 +62,16 @@
     self.indexView.dataSource = self;
     self.indexView.fontColor = [UIColor blueColor];
     [self.view addSubview:self.indexView];
+    
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), 44.0f)];
+    self.searchBar.delegate = self;
+//    self.collectionView.tableHeaderView = self.searchBar;
+    
+//    self.tableView.contentOffset = CGPointMake(0.0f, 44.0f);
+    
+    self.displayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+    self.displayController.searchResultsDelegate   = self;
+    self.displayController.searchResultsDataSource = self;
     
     self.collectionView.canCancelContentTouches = NO;
 }
@@ -64,6 +87,15 @@
     
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    ISUCollectionSearchBar *header;
+    if([kind isEqual:UICollectionElementKindSectionHeader] && indexPath.section == 0){
+        header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"Searchbar" forIndexPath:indexPath];
+        
+    }
+    return header;
 }
 
 #pragma mark - UICollectionViewDelegate

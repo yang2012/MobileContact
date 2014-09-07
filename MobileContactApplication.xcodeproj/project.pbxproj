@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B1F122C19B34D4300F3C511 /* UIView+CGRectUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F122B19B34D4300F3C511 /* UIView+CGRectUtil.m */; };
+		1B1F122F19B35AF800F3C511 /* ISUTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F122E19B35AF800F3C511 /* ISUTimePickerView.m */; };
+		1B1F124419B60C0900F3C511 /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F124319B60C0900F3C511 /* ColorUtils.m */; };
+		1B1F124819B612B900F3C511 /* JYBaseLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F124719B612B900F3C511 /* JYBaseLine.m */; };
+		1B5C6C1E19AA36D000E21834 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B5C6C2019AA36D000E21834 /* Localizable.strings */; };
+		1B5C6C2419AA388800E21834 /* ISUEmail+function.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5C6C2319AA388800E21834 /* ISUEmail+function.m */; };
+		1B5C6C2719AA3A4B00E21834 /* ISUDate+function.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5C6C2619AA3A4B00E21834 /* ISUDate+function.m */; };
+		1B5C6C2919AA480C00E21834 /* contact_detail_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5C6C2819AA480C00E21834 /* contact_detail_background@2x.png */; };
+		1B8472BA19AA2FE60065032C /* ISUPhone+function.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8472B919AA2FE60065032C /* ISUPhone+function.m */; };
+		1B8472BD19AA345E0065032C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B8472BF19AA345E0065032C /* InfoPlist.strings */; };
 		1B8D8FBC19A8C97500B72EA5 /* ISUMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8D8FBB19A8C97500B72EA5 /* ISUMenuViewController.m */; };
 		1B8D902119A8D10900B72EA5 /* NSCalendar+JYCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8D8FC019A8D10900B72EA5 /* NSCalendar+JYCalendar.m */; };
 		1B8D902219A8D10900B72EA5 /* NSDate+JYCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8D8FC219A8D10900B72EA5 /* NSDate+JYCalendar.m */; };
@@ -78,12 +88,30 @@
 		1B8D906D19A9ECE700B72EA5 /* UIImage+ISUAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8D906C19A9ECE700B72EA5 /* UIImage+ISUAddition.m */; };
 		1B8D907119A9EE7A00B72EA5 /* avatar_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B8D906F19A9EE7A00B72EA5 /* avatar_default@2x.png */; };
 		1B8D907919A9F6A500B72EA5 /* ISUContactDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8D907719A9F6A500B72EA5 /* ISUContactDetailViewController.m */; };
-		1B8D907A19A9F6A500B72EA5 /* ISUContactDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8D907819A9F6A500B72EA5 /* ISUContactDetailViewController.xib */; };
+		1BBCD09B19B33CAA003D6507 /* ISUEventEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCD09A19B33CAA003D6507 /* ISUEventEditorViewController.m */; };
+		1BBCD09E19B33CFC003D6507 /* ISUEventEditorRemindCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCD09D19B33CFC003D6507 /* ISUEventEditorRemindCell.m */; };
+		1BBCD0A119B33D10003D6507 /* ISUEventEditorNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCD0A019B33D10003D6507 /* ISUEventEditorNoteCell.m */; };
+		1BBCD0A419B33D95003D6507 /* ISUEventEditorBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCD0A319B33D95003D6507 /* ISUEventEditorBaseCell.m */; };
+		1BBCD0AA19B340DF003D6507 /* ISUEventEditorTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCD0A919B340DF003D6507 /* ISUEventEditorTitleCell.m */; };
+		1BBCD0B119B346B2003D6507 /* ISUEventEditorStartTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCD0B019B346B2003D6507 /* ISUEventEditorStartTimeCell.m */; };
+		1BBCD0B419B34AA1003D6507 /* ISUPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCD0B319B34AA1003D6507 /* ISUPickerView.m */; };
+		1BD60F0619AB6CCF007F4FCA /* UIBarButtonItem+ISUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD60F0519AB6CCF007F4FCA /* UIBarButtonItem+ISUAdditions.m */; };
+		1BD60F0919AB73FE007F4FCA /* UIImageView+ISUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD60F0819AB73FE007F4FCA /* UIImageView+ISUAdditions.m */; };
+		1BD60F0C19AB87BD007F4FCA /* ISUCollectionSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD60F0B19AB87BD007F4FCA /* ISUCollectionSearchBar.m */; };
+		1BEA54E519BAE6660085799E /* ISUDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA54E419BAE6660085799E /* ISUDatePickerView.m */; };
+		1BEA54E719BAE71E0085799E /* ISUDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEA54E619BAE71E0085799E /* ISUDatePickerView.xib */; };
+		1BEA54EA19BAF41D0085799E /* ISUEventEditorLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA54E919BAF41C0085799E /* ISUEventEditorLocationCell.m */; };
+		1BEA54ED19BAF6ED0085799E /* ISUEventEditorEndTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA54EC19BAF6ED0085799E /* ISUEventEditorEndTimeCell.m */; };
+		1BEA54F019BAF7110085799E /* ISUEventEditorAllDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA54EF19BAF7110085799E /* ISUEventEditorAllDayCell.m */; };
+		1BEA54F419BAFA5F0085799E /* ISUEventEditorRepeatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA54F319BAFA5F0085799E /* ISUEventEditorRepeatCell.m */; };
+		1BEA54F819BB08640085799E /* UIColor+ISUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA54F719BB08640085799E /* UIColor+ISUAdditions.m */; };
+		1BEA54FB19BB0A220085799E /* ISUEvent+function.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA54FA19BB0A220085799E /* ISUEvent+function.m */; };
+		1BEA54FE19BB2DA60085799E /* ISUEventEditorDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA54FD19BB2DA60085799E /* ISUEventEditorDatePickerCell.m */; };
+		1BEA550119BB39CE0085799E /* ISUEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA550019BB39CE0085799E /* ISUEvent.m */; };
 		DAEF9F403FBC45CFA15AE3B9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2CD10FC8C34550BF23C3B9 /* libPods.a */; };
 		FA02207A17EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02207917EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m */; };
 		FA2167D717CC98AB0026F1CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167D617CC98AB0026F1CD /* UIKit.framework */; };
 		FA2167D917CC98AB0026F1CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167D817CC98AB0026F1CD /* Foundation.framework */; };
-		FA2167E117CC98AB0026F1CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA2167DF17CC98AB0026F1CD /* InfoPlist.strings */; };
 		FA2167E317CC98AB0026F1CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2167E217CC98AB0026F1CD /* main.m */; };
 		FA2167E717CC98AB0026F1CD /* ISUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2167E617CC98AB0026F1CD /* ISUAppDelegate.m */; };
 		FA2167E917CC98AB0026F1CD /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FA2167E817CC98AB0026F1CD /* Default.png */; };
@@ -222,6 +250,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B1F122A19B34D4300F3C511 /* UIView+CGRectUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CGRectUtil.h"; sourceTree = "<group>"; };
+		1B1F122B19B34D4300F3C511 /* UIView+CGRectUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CGRectUtil.m"; sourceTree = "<group>"; };
+		1B1F122D19B35AF800F3C511 /* ISUTimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUTimePickerView.h; sourceTree = "<group>"; };
+		1B1F122E19B35AF800F3C511 /* ISUTimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUTimePickerView.m; sourceTree = "<group>"; };
+		1B1F124219B60C0900F3C511 /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
+		1B1F124319B60C0900F3C511 /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtils.m; sourceTree = "<group>"; };
+		1B1F124619B612B900F3C511 /* JYBaseLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBaseLine.h; sourceTree = "<group>"; };
+		1B1F124719B612B900F3C511 /* JYBaseLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBaseLine.m; sourceTree = "<group>"; };
+		1B5C6C1F19AA36D000E21834 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1B5C6C2119AA36D500E21834 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1B5C6C2219AA388800E21834 /* ISUEmail+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISUEmail+function.h"; sourceTree = "<group>"; };
+		1B5C6C2319AA388800E21834 /* ISUEmail+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISUEmail+function.m"; sourceTree = "<group>"; };
+		1B5C6C2519AA3A4B00E21834 /* ISUDate+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISUDate+function.h"; sourceTree = "<group>"; };
+		1B5C6C2619AA3A4B00E21834 /* ISUDate+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISUDate+function.m"; sourceTree = "<group>"; };
+		1B5C6C2819AA480C00E21834 /* contact_detail_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contact_detail_background@2x.png"; sourceTree = "<group>"; };
+		1B8472B819AA2FE60065032C /* ISUPhone+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISUPhone+function.h"; sourceTree = "<group>"; };
+		1B8472B919AA2FE60065032C /* ISUPhone+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISUPhone+function.m"; sourceTree = "<group>"; };
+		1B8472BE19AA345E0065032C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1B8472C019AA34D20065032C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		1B8472C119AA34D20065032C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		1B8D8FBA19A8C97500B72EA5 /* ISUMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUMenuViewController.h; sourceTree = "<group>"; };
 		1B8D8FBB19A8C97500B72EA5 /* ISUMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUMenuViewController.m; sourceTree = "<group>"; };
 		1B8D8FBF19A8D10900B72EA5 /* NSCalendar+JYCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+JYCalendar.h"; sourceTree = "<group>"; };
@@ -321,7 +369,45 @@
 		1B8D906F19A9EE7A00B72EA5 /* avatar_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar_default@2x.png"; sourceTree = "<group>"; };
 		1B8D907619A9F6A500B72EA5 /* ISUContactDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUContactDetailViewController.h; sourceTree = "<group>"; };
 		1B8D907719A9F6A500B72EA5 /* ISUContactDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUContactDetailViewController.m; sourceTree = "<group>"; };
-		1B8D907819A9F6A500B72EA5 /* ISUContactDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ISUContactDetailViewController.xib; sourceTree = "<group>"; };
+		1BBCD09919B33CAA003D6507 /* ISUEventEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEventEditorViewController.h; sourceTree = "<group>"; };
+		1BBCD09A19B33CAA003D6507 /* ISUEventEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEventEditorViewController.m; sourceTree = "<group>"; };
+		1BBCD09C19B33CFC003D6507 /* ISUEventEditorRemindCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEventEditorRemindCell.h; sourceTree = "<group>"; };
+		1BBCD09D19B33CFC003D6507 /* ISUEventEditorRemindCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEventEditorRemindCell.m; sourceTree = "<group>"; };
+		1BBCD09F19B33D10003D6507 /* ISUEventEditorNoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEventEditorNoteCell.h; sourceTree = "<group>"; };
+		1BBCD0A019B33D10003D6507 /* ISUEventEditorNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEventEditorNoteCell.m; sourceTree = "<group>"; };
+		1BBCD0A219B33D95003D6507 /* ISUEventEditorBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEventEditorBaseCell.h; sourceTree = "<group>"; };
+		1BBCD0A319B33D95003D6507 /* ISUEventEditorBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEventEditorBaseCell.m; sourceTree = "<group>"; };
+		1BBCD0A819B340DF003D6507 /* ISUEventEditorTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEventEditorTitleCell.h; sourceTree = "<group>"; };
+		1BBCD0A919B340DF003D6507 /* ISUEventEditorTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEventEditorTitleCell.m; sourceTree = "<group>"; };
+		1BBCD0AF19B346B2003D6507 /* ISUEventEditorStartTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEventEditorStartTimeCell.h; sourceTree = "<group>"; };
+		1BBCD0B019B346B2003D6507 /* ISUEventEditorStartTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEventEditorStartTimeCell.m; sourceTree = "<group>"; };
+		1BBCD0B219B34AA1003D6507 /* ISUPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUPickerView.h; sourceTree = "<group>"; };
+		1BBCD0B319B34AA1003D6507 /* ISUPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUPickerView.m; sourceTree = "<group>"; };
+		1BD60F0419AB6CCF007F4FCA /* UIBarButtonItem+ISUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+ISUAdditions.h"; sourceTree = "<group>"; };
+		1BD60F0519AB6CCF007F4FCA /* UIBarButtonItem+ISUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+ISUAdditions.m"; sourceTree = "<group>"; };
+		1BD60F0719AB73FE007F4FCA /* UIImageView+ISUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ISUAdditions.h"; sourceTree = "<group>"; };
+		1BD60F0819AB73FE007F4FCA /* UIImageView+ISUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ISUAdditions.m"; sourceTree = "<group>"; };
+		1BD60F0A19AB87BD007F4FCA /* ISUCollectionSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUCollectionSearchBar.h; sourceTree = "<group>"; };
+		1BD60F0B19AB87BD007F4FCA /* ISUCollectionSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUCollectionSearchBar.m; sourceTree = "<group>"; };
+		1BEA54E319BAE6660085799E /* ISUDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUDatePickerView.h; sourceTree = "<group>"; };
+		1BEA54E419BAE6660085799E /* ISUDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUDatePickerView.m; sourceTree = "<group>"; };
+		1BEA54E619BAE71E0085799E /* ISUDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ISUDatePickerView.xib; sourceTree = "<group>"; };
+		1BEA54E819BAF41C0085799E /* ISUEventEditorLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEventEditorLocationCell.h; sourceTree = "<group>"; };
+		1BEA54E919BAF41C0085799E /* ISUEventEditorLocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEventEditorLocationCell.m; sourceTree = "<group>"; };
+		1BEA54EB19BAF6ED0085799E /* ISUEventEditorEndTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEventEditorEndTimeCell.h; sourceTree = "<group>"; };
+		1BEA54EC19BAF6ED0085799E /* ISUEventEditorEndTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEventEditorEndTimeCell.m; sourceTree = "<group>"; };
+		1BEA54EE19BAF7110085799E /* ISUEventEditorAllDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEventEditorAllDayCell.h; sourceTree = "<group>"; };
+		1BEA54EF19BAF7110085799E /* ISUEventEditorAllDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEventEditorAllDayCell.m; sourceTree = "<group>"; };
+		1BEA54F219BAFA5F0085799E /* ISUEventEditorRepeatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEventEditorRepeatCell.h; sourceTree = "<group>"; };
+		1BEA54F319BAFA5F0085799E /* ISUEventEditorRepeatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEventEditorRepeatCell.m; sourceTree = "<group>"; };
+		1BEA54F619BB08640085799E /* UIColor+ISUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ISUAdditions.h"; sourceTree = "<group>"; };
+		1BEA54F719BB08640085799E /* UIColor+ISUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ISUAdditions.m"; sourceTree = "<group>"; };
+		1BEA54F919BB0A220085799E /* ISUEvent+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISUEvent+function.h"; sourceTree = "<group>"; };
+		1BEA54FA19BB0A220085799E /* ISUEvent+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISUEvent+function.m"; sourceTree = "<group>"; };
+		1BEA54FC19BB2DA60085799E /* ISUEventEditorDatePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEventEditorDatePickerCell.h; sourceTree = "<group>"; };
+		1BEA54FD19BB2DA60085799E /* ISUEventEditorDatePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEventEditorDatePickerCell.m; sourceTree = "<group>"; };
+		1BEA54FF19BB39CE0085799E /* ISUEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEvent.h; sourceTree = "<group>"; };
+		1BEA550019BB39CE0085799E /* ISUEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEvent.m; sourceTree = "<group>"; };
 		1D6B351CD0B344F4AD360484 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		DF2CD10FC8C34550BF23C3B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA02207917EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUSocialProfileFunctionCategoryTest.m; sourceTree = "<group>"; };
@@ -330,7 +416,6 @@
 		FA2167D817CC98AB0026F1CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FA2167DA17CC98AB0026F1CD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		FA2167DE17CC98AB0026F1CD /* MobileContactApplication-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MobileContactApplication-Info.plist"; sourceTree = "<group>"; };
-		FA2167E017CC98AB0026F1CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA2167E217CC98AB0026F1CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA2167E417CC98AB0026F1CD /* MobileContactApplication-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobileContactApplication-Prefix.pch"; sourceTree = "<group>"; };
 		FA2167E517CC98AB0026F1CD /* ISUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISUAppDelegate.h; sourceTree = "<group>"; };
@@ -546,6 +631,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B1F124119B60C0900F3C511 /* ColorUtils */ = {
+			isa = PBXGroup;
+			children = (
+				1B1F124219B60C0900F3C511 /* ColorUtils.h */,
+				1B1F124319B60C0900F3C511 /* ColorUtils.m */,
+			);
+			name = ColorUtils;
+			path = Vendor/ColorUtils;
+			sourceTree = SOURCE_ROOT;
+		};
+		1B1F124519B6129400F3C511 /* Basis */ = {
+			isa = PBXGroup;
+			children = (
+				1B1F124619B612B900F3C511 /* JYBaseLine.h */,
+				1B1F124719B612B900F3C511 /* JYBaseLine.m */,
+			);
+			path = Basis;
+			sourceTree = "<group>";
+		};
 		1B8D8FB919A8C94800B72EA5 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -696,6 +800,7 @@
 		1B8D900719A8D10900B72EA5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1B1F124519B6129400F3C511 /* Basis */,
 				1B8D900819A8D10900B72EA5 /* Header */,
 				1B8D900F19A8D10900B72EA5 /* Main */,
 				1B8D901E19A8D10900B72EA5 /* Menu */,
@@ -760,9 +865,58 @@
 			children = (
 				1B8D907619A9F6A500B72EA5 /* ISUContactDetailViewController.h */,
 				1B8D907719A9F6A500B72EA5 /* ISUContactDetailViewController.m */,
-				1B8D907819A9F6A500B72EA5 /* ISUContactDetailViewController.xib */,
 			);
 			name = ContactDetail;
+			sourceTree = "<group>";
+		};
+		1BBCD09819B33C7D003D6507 /* EventEditor */ = {
+			isa = PBXGroup;
+			children = (
+				1BBCD09919B33CAA003D6507 /* ISUEventEditorViewController.h */,
+				1BBCD09A19B33CAA003D6507 /* ISUEventEditorViewController.m */,
+			);
+			name = EventEditor;
+			sourceTree = "<group>";
+		};
+		1BBCD0AB19B342B2003D6507 /* EventEditor */ = {
+			isa = PBXGroup;
+			children = (
+				1BBCD0A219B33D95003D6507 /* ISUEventEditorBaseCell.h */,
+				1BBCD0A319B33D95003D6507 /* ISUEventEditorBaseCell.m */,
+				1BBCD0A819B340DF003D6507 /* ISUEventEditorTitleCell.h */,
+				1BBCD0A919B340DF003D6507 /* ISUEventEditorTitleCell.m */,
+				1BEA54E819BAF41C0085799E /* ISUEventEditorLocationCell.h */,
+				1BEA54E919BAF41C0085799E /* ISUEventEditorLocationCell.m */,
+				1BBCD09F19B33D10003D6507 /* ISUEventEditorNoteCell.h */,
+				1BBCD0A019B33D10003D6507 /* ISUEventEditorNoteCell.m */,
+				1BBCD09C19B33CFC003D6507 /* ISUEventEditorRemindCell.h */,
+				1BBCD09D19B33CFC003D6507 /* ISUEventEditorRemindCell.m */,
+				1BBCD0AF19B346B2003D6507 /* ISUEventEditorStartTimeCell.h */,
+				1BBCD0B019B346B2003D6507 /* ISUEventEditorStartTimeCell.m */,
+				1BEA54EB19BAF6ED0085799E /* ISUEventEditorEndTimeCell.h */,
+				1BEA54EC19BAF6ED0085799E /* ISUEventEditorEndTimeCell.m */,
+				1BEA54EE19BAF7110085799E /* ISUEventEditorAllDayCell.h */,
+				1BEA54EF19BAF7110085799E /* ISUEventEditorAllDayCell.m */,
+				1BEA54F219BAFA5F0085799E /* ISUEventEditorRepeatCell.h */,
+				1BEA54F319BAFA5F0085799E /* ISUEventEditorRepeatCell.m */,
+				1BEA54FC19BB2DA60085799E /* ISUEventEditorDatePickerCell.h */,
+				1BEA54FD19BB2DA60085799E /* ISUEventEditorDatePickerCell.m */,
+			);
+			name = EventEditor;
+			sourceTree = "<group>";
+		};
+		1BBCD0B519B34B69003D6507 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				1BBCD0B219B34AA1003D6507 /* ISUPickerView.h */,
+				1BBCD0B319B34AA1003D6507 /* ISUPickerView.m */,
+				1B1F122D19B35AF800F3C511 /* ISUTimePickerView.h */,
+				1B1F122E19B35AF800F3C511 /* ISUTimePickerView.m */,
+				1BEA54E319BAE6660085799E /* ISUDatePickerView.h */,
+				1BEA54E419BAE6660085799E /* ISUDatePickerView.m */,
+				1BEA54E619BAE71E0085799E /* ISUDatePickerView.xib */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 		FA2167CA17CC98AB0026F1CD = {
@@ -827,10 +981,11 @@
 				FA2167EC17CC98AB0026F1CD /* Default-568h@2x.png */,
 				FA2167E817CC98AB0026F1CD /* Default.png */,
 				FA2167EA17CC98AB0026F1CD /* Default@2x.png */,
-				FA2167DF17CC98AB0026F1CD /* InfoPlist.strings */,
+				1B8472BF19AA345E0065032C /* InfoPlist.strings */,
 				FA2167E217CC98AB0026F1CD /* main.m */,
 				FA2167DE17CC98AB0026F1CD /* MobileContactApplication-Info.plist */,
 				FA2167E417CC98AB0026F1CD /* MobileContactApplication-Prefix.pch */,
+				1B5C6C2019AA36D000E21834 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -870,6 +1025,8 @@
 		FA21681917CC99550026F1CD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1BBCD0B519B34B69003D6507 /* Base */,
+				1BBCD0AB19B342B2003D6507 /* EventEditor */,
 				FAA608EE17DDF39400A5BAAC /* Keyboard */,
 				FA85369D17D38E8D00696D28 /* Cells */,
 			);
@@ -879,6 +1036,7 @@
 		FA21681A17CC995A0026F1CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1BBCD09819B33C7D003D6507 /* EventEditor */,
 				1B8D907219A9F62F00B72EA5 /* ContactDetail */,
 				1B8D906419A9C50400B72EA5 /* Calendar */,
 				1B8D8FB919A8C94800B72EA5 /* Menu */,
@@ -889,7 +1047,7 @@
 				FA6739F117E726F7006DB3C2 /* Login */,
 				FA4776A517E5DD2A00BDB510 /* ContactList */,
 				FA4776A417E5DD2100BDB510 /* Group */,
-				FAA6090417DEF60200A5BAAC /* AbstractClasses */,
+				FAA6090417DEF60200A5BAAC /* Base */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -920,6 +1078,8 @@
 		FA21682417CC9A230026F1CD /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				1B1F122A19B34D4300F3C511 /* UIView+CGRectUtil.h */,
+				1B1F122B19B34D4300F3C511 /* UIView+CGRectUtil.m */,
 				FAC7A57917E45299002B7EF9 /* NSFileManager+ISUAdditions.h */,
 				FAC7A57A17E45299002B7EF9 /* NSFileManager+ISUAdditions.m */,
 				FA8B347417E59F3F006B5FA1 /* NSString+ISUAdditions.h */,
@@ -930,6 +1090,12 @@
 				FA6739F617E74FDB006DB3C2 /* NSManagedObject+ISUAdditions.m */,
 				1B8D906B19A9ECE700B72EA5 /* UIImage+ISUAddition.h */,
 				1B8D906C19A9ECE700B72EA5 /* UIImage+ISUAddition.m */,
+				1BD60F0419AB6CCF007F4FCA /* UIBarButtonItem+ISUAdditions.h */,
+				1BD60F0519AB6CCF007F4FCA /* UIBarButtonItem+ISUAdditions.m */,
+				1BD60F0719AB73FE007F4FCA /* UIImageView+ISUAdditions.h */,
+				1BD60F0819AB73FE007F4FCA /* UIImageView+ISUAdditions.m */,
+				1BEA54F619BB08640085799E /* UIColor+ISUAdditions.h */,
+				1BEA54F719BB08640085799E /* UIColor+ISUAdditions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -937,6 +1103,7 @@
 		FA21682517CC9A4D0026F1CD /* Themes */ = {
 			isa = PBXGroup;
 			children = (
+				1B5C6C2819AA480C00E21834 /* contact_detail_background@2x.png */,
 			);
 			name = Themes;
 			sourceTree = "<group>";
@@ -1009,6 +1176,8 @@
 			children = (
 				FA85369417D372AF00696D28 /* ISUContactCollectionViewController.h */,
 				FA85369517D372B000696D28 /* ISUContactCollectionViewController.m */,
+				1BD60F0A19AB87BD007F4FCA /* ISUCollectionSearchBar.h */,
+				1BD60F0B19AB87BD007F4FCA /* ISUCollectionSearchBar.m */,
 				1B8D906819A9DFF800B72EA5 /* ISUCollectionViewFlowLayout.h */,
 				1B8D906919A9DFF800B72EA5 /* ISUCollectionViewFlowLayout.m */,
 			);
@@ -1069,6 +1238,7 @@
 		FA85369717D37BB100696D28 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				1B1F124119B60C0900F3C511 /* ColorUtils */,
 				1B8D8FBD19A8D10900B72EA5 /* JYCalendar */,
 				FA3BFA0D17F16549001FC93F /* KYCircleMenu */,
 				FACF43E717EDD21C001CF26C /* DroppableView */,
@@ -1111,11 +1281,11 @@
 			name = Keyboard;
 			sourceTree = "<group>";
 		};
-		FAA6090417DEF60200A5BAAC /* AbstractClasses */ = {
+		FAA6090417DEF60200A5BAAC /* Base */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = AbstractClasses;
+			name = Base;
 			sourceTree = "<group>";
 		};
 		FAA6090E17DF54AA00A5BAAC /* Sounds */ = {
@@ -1242,6 +1412,14 @@
 				FA4776A717E5DE9A00BDB510 /* ISUUser+function.m */,
 				FAB60BB217F5BDF70027F0B5 /* ISUSearchItem+function.h */,
 				FAB60BB317F5BDF70027F0B5 /* ISUSearchItem+function.m */,
+				1B8472B819AA2FE60065032C /* ISUPhone+function.h */,
+				1B5C6C2219AA388800E21834 /* ISUEmail+function.h */,
+				1B5C6C2319AA388800E21834 /* ISUEmail+function.m */,
+				1B8472B919AA2FE60065032C /* ISUPhone+function.m */,
+				1B5C6C2519AA3A4B00E21834 /* ISUDate+function.h */,
+				1B5C6C2619AA3A4B00E21834 /* ISUDate+function.m */,
+				1BEA54F919BB0A220085799E /* ISUEvent+function.h */,
+				1BEA54FA19BB0A220085799E /* ISUEvent+function.m */,
 			);
 			name = Functions;
 			sourceTree = "<group>";
@@ -1249,6 +1427,8 @@
 		FAE8215D17CCB2B0003C39B0 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				1BEA54FF19BB39CE0085799E /* ISUEvent.h */,
+				1BEA550019BB39CE0085799E /* ISUEvent.m */,
 				FAB60BAF17F5AF720027F0B5 /* ISUContact.h */,
 				FAB60BB017F5AF720027F0B5 /* ISUContact.m */,
 				FAB60BAC17F5AEFE0027F0B5 /* ISUSearchItem.h */,
@@ -1359,6 +1539,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = FA2167CA17CC98AB0026F1CD;
 			productRefGroup = FA2167D417CC98AB0026F1CD /* Products */;
@@ -1377,6 +1558,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B8D904A19A8D10900B72EA5 /* weather-broken@2x.png in Resources */,
+				1B5C6C1E19AA36D000E21834 /* Localizable.strings in Resources */,
+				1B8472BD19AA345E0065032C /* InfoPlist.strings in Resources */,
 				1B8D902C19A8D10900B72EA5 /* clock_hand@2x.png in Resources */,
 				FA2167ED17CC98AB0026F1CD /* Default-568h@2x.png in Resources */,
 				FA7F852817F099E500DB972F /* original@2x.png in Resources */,
@@ -1386,6 +1569,7 @@
 				1B8D903419A8D10900B72EA5 /* comm_ico_timeline_pm@2x.png in Resources */,
 				FA7F852517F099E500DB972F /* 2.png in Resources */,
 				1B8D902B19A8D10900B72EA5 /* clock@2x.png in Resources */,
+				1BEA54E719BAE71E0085799E /* ISUDatePickerView.xib in Resources */,
 				FA321CC617F186CC009FB497 /* KYICircleMenuButton06.png in Resources */,
 				FA2167EB17CC98AB0026F1CD /* Default@2x.png in Resources */,
 				1B8D903F19A8D10900B72EA5 /* menu_btn_setting_normal@2x.png in Resources */,
@@ -1396,7 +1580,6 @@
 				1B8D902D19A8D10900B72EA5 /* comm_bg_picker_time@2x.png in Resources */,
 				1B8D903919A8D10900B72EA5 /* gnb_btn_menu_press@2x.png in Resources */,
 				1B8D904919A8D10900B72EA5 /* menu_ico_month_press@2x.png in Resources */,
-				FA2167E117CC98AB0026F1CD /* InfoPlist.strings in Resources */,
 				FA8536A317D4230000696D28 /* ISUCollectionContactViewCell.xib in Resources */,
 				1B8D903219A8D10900B72EA5 /* comm_ico_timeline_all@2x.png in Resources */,
 				1B8D905019A8D10900B72EA5 /* weather-rain-night@2x.png in Resources */,
@@ -1407,7 +1590,7 @@
 				1B8D905519A8D10900B72EA5 /* weather-tstorm@2x.png in Resources */,
 				1B8D903619A8D10900B72EA5 /* detail_btn_write_press@2x.png in Resources */,
 				1B8D903319A8D10900B72EA5 /* comm_ico_timeline_am@2x.png in Resources */,
-				1B8D907A19A9F6A500B72EA5 /* ISUContactDetailViewController.xib in Resources */,
+				1B5C6C2919AA480C00E21834 /* contact_detail_background@2x.png in Resources */,
 				FA321CC517F186CC009FB497 /* KYICircleMenuButton05@2x.png in Resources */,
 				FA321CC117F186CC009FB497 /* KYICircleMenuButton03@2x.png in Resources */,
 				FA85ECCB17DC601500F6FC7F /* Icon.png in Resources */,
@@ -1581,16 +1764,21 @@
 				1B8D902319A8D10900B72EA5 /* NSString+JYCalendar.m in Sources */,
 				FA85370D17DA074600696D28 /* ISUAddress+function.m in Sources */,
 				1B8D902419A8D10900B72EA5 /* UIView+JYCalendar.m in Sources */,
+				1BEA54ED19BAF6ED0085799E /* ISUEventEditorEndTimeCell.m in Sources */,
 				1B8D906019A8D10900B72EA5 /* JYCalendarWeekView.m in Sources */,
+				1BD60F0619AB6CCF007F4FCA /* UIBarButtonItem+ISUAdditions.m in Sources */,
 				1B8D902819A8D10900B72EA5 /* JYDate.m in Sources */,
 				1B8D906D19A9ECE700B72EA5 /* UIImage+ISUAddition.m in Sources */,
 				FA7F851A17F0994300DB972F /* ISUIntroductionViewController.m in Sources */,
 				FA85370417D82FDB00696D28 /* ISUAddress.m in Sources */,
 				1B8D905F19A8D10900B72EA5 /* JYCalendarWeekDetailView.m in Sources */,
 				FA787DF617CE3CC400F676E2 /* ISUAddressBookImportOperation.m in Sources */,
+				1BEA54F019BAF7110085799E /* ISUEventEditorAllDayCell.m in Sources */,
 				FAE8216117CCB2F7003C39B0 /* ISUAddressBookUtility.m in Sources */,
 				FA2167E717CC98AB0026F1CD /* ISUAppDelegate.m in Sources */,
 				1B8D907919A9F6A500B72EA5 /* ISUContactDetailViewController.m in Sources */,
+				1B1F122C19B34D4300F3C511 /* UIView+CGRectUtil.m in Sources */,
+				1BBCD0B419B34AA1003D6507 /* ISUPickerView.m in Sources */,
 				FA8536A017D38EAE00696D28 /* ISUCollectionContactViewCell.m in Sources */,
 				FA85369617D372B000696D28 /* ISUContactCollectionViewController.m in Sources */,
 				1B8D902219A8D10900B72EA5 /* NSDate+JYCalendar.m in Sources */,
@@ -1600,6 +1788,7 @@
 				FA8536B517D4900A00696D28 /* ISUContactSource+function.m in Sources */,
 				1B8D902A19A8D10900B72EA5 /* JYWeatherManager.m in Sources */,
 				1B8D902119A8D10900B72EA5 /* NSCalendar+JYCalendar.m in Sources */,
+				1B1F124419B60C0900F3C511 /* ColorUtils.m in Sources */,
 				1B8D906A19A9DFF800B72EA5 /* ISUCollectionViewFlowLayout.m in Sources */,
 				FA8536F617D6E02C00696D28 /* ISUDate.m in Sources */,
 				1B8D902919A8D10900B72EA5 /* JYEvent.m in Sources */,
@@ -1609,29 +1798,44 @@
 				FAE8218D17CCB981003C39B0 /* ISUGroup+function.m in Sources */,
 				FA8536D617D639CD00696D28 /* ISUGroup.m in Sources */,
 				FA85369317D319AF00696D28 /* ISULogger.m in Sources */,
+				1BEA54F819BB08640085799E /* UIColor+ISUAdditions.m in Sources */,
+				1BEA550119BB39CE0085799E /* ISUEvent.m in Sources */,
+				1B5C6C2719AA3A4B00E21834 /* ISUDate+function.m in Sources */,
 				FA787DE417CDEE5000F676E2 /* ISUPersistentManager.m in Sources */,
 				FAB60BAE17F5AEFE0027F0B5 /* ISUSearchItem.m in Sources */,
 				FAB60BB417F5BDF70027F0B5 /* ISUSearchItem+function.m in Sources */,
 				FA8536D317D639CD00696D28 /* ISUPhone.m in Sources */,
 				FA8536E217D639CE00696D28 /* ISURelatedName.m in Sources */,
+				1BBCD0AA19B340DF003D6507 /* ISUEventEditorTitleCell.m in Sources */,
+				1BBCD0A119B33D10003D6507 /* ISUEventEditorNoteCell.m in Sources */,
 				FA85371017DA091400696D28 /* ISUSocialProfile+function.m in Sources */,
 				FA85370A17D9B75000696D28 /* ISUSocialProfile.m in Sources */,
 				FAE49EFA17F4769E00215FB4 /* ISUGroupTableViewCell.m in Sources */,
+				1BD60F0C19AB87BD007F4FCA /* ISUCollectionSearchBar.m in Sources */,
+				1BEA54F419BAFA5F0085799E /* ISUEventEditorRepeatCell.m in Sources */,
 				1B8D905819A8D10900B72EA5 /* JYCalendarMonthPickerView.m in Sources */,
 				1B8D902519A8D10900B72EA5 /* JYCalendarViewController.m in Sources */,
 				FA8536DF17D639CE00696D28 /* ISUUrl.m in Sources */,
+				1BBCD0A419B33D95003D6507 /* ISUEventEditorBaseCell.m in Sources */,
 				FA8536BE17D615A800696D28 /* ISUUtility.m in Sources */,
 				FAB60BB117F5AF720027F0B5 /* ISUContact.m in Sources */,
 				FA2167F317CC98AB0026F1CD /* ISUGroupTableViewController.m in Sources */,
 				1B8D905D19A8D10900B72EA5 /* JYCalendarMonthCell.m in Sources */,
 				1B8D905A19A8D10900B72EA5 /* JYCalendarDateDetailEmptyCell.m in Sources */,
+				1BEA54EA19BAF41D0085799E /* ISUEventEditorLocationCell.m in Sources */,
+				1B1F122F19B35AF800F3C511 /* ISUTimePickerView.m in Sources */,
+				1BBCD09B19B33CAA003D6507 /* ISUEventEditorViewController.m in Sources */,
+				1BBCD09E19B33CFC003D6507 /* ISUEventEditorRemindCell.m in Sources */,
 				1B8D905C19A8D10900B72EA5 /* JYCalendarDateView.m in Sources */,
 				1B8D905E19A8D10900B72EA5 /* JYCalendarTitleView.m in Sources */,
 				FAE49EF317F464CC00215FB4 /* ISUNotificationMessager.m in Sources */,
 				FA7F850C17F08E7D00DB972F /* ISUDailyNoteViewController.m in Sources */,
+				1BEA54FB19BB0A220085799E /* ISUEvent+function.m in Sources */,
+				1BEA54FE19BB2DA60085799E /* ISUEventEditorDatePickerCell.m in Sources */,
 				FA2167E317CC98AB0026F1CD /* main.m in Sources */,
 				FAE8217C17CCB595003C39B0 /* Model.xcdatamodeld in Sources */,
 				FAA608F117DDF3D000A5BAAC /* ISUDialKeyboardView.m in Sources */,
+				1B8472BA19AA2FE60065032C /* ISUPhone+function.m in Sources */,
 				FAA608F617DE084700A5BAAC /* ISUSearchTableViewController.m in Sources */,
 				FAA6090317DEF56C00A5BAAC /* ISUSearchTableViewCell.m in Sources */,
 				FAA6093317DF550500A5BAAC /* ISUPhoneNumberFormatter.m in Sources */,
@@ -1639,10 +1843,12 @@
 				1B8D8FBC19A8C97500B72EA5 /* ISUMenuViewController.m in Sources */,
 				FAC7A57B17E45299002B7EF9 /* NSFileManager+ISUAdditions.m in Sources */,
 				FAC7A57F17E456A2002B7EF9 /* ISUMigrationManager.m in Sources */,
+				1B1F124819B612B900F3C511 /* JYBaseLine.m in Sources */,
 				FA8B347617E59F3F006B5FA1 /* NSString+ISUAdditions.m in Sources */,
 				FA47769A17E5D43100BDB510 /* ISUOperationManager.m in Sources */,
 				1B8D902619A8D10900B72EA5 /* JYClient.m in Sources */,
 				FA47769D17E5D4BE00BDB510 /* ISUAbstractOperation.m in Sources */,
+				1B5C6C2419AA388800E21834 /* ISUEmail+function.m in Sources */,
 				FA4776A017E5D86700BDB510 /* ISUUser.m in Sources */,
 				1B8D905B19A8D10900B72EA5 /* JYCalendarDateDetailListCell.m in Sources */,
 				FA4776A317E5D86800BDB510 /* ISUContactSource.m in Sources */,
@@ -1650,11 +1856,14 @@
 				FA4776B217E5E4F300BDB510 /* ISUOperationQueue.m in Sources */,
 				FA4776B817E5FA9B00BDB510 /* NSError+ISUAdditions.m in Sources */,
 				FA6739F417E72711006DB3C2 /* ISULoginViewController.m in Sources */,
+				1BD60F0919AB73FE007F4FCA /* UIImageView+ISUAdditions.m in Sources */,
 				FA6739F717E74FDB006DB3C2 /* NSManagedObject+ISUAdditions.m in Sources */,
+				1BEA54E519BAE6660085799E /* ISUDatePickerView.m in Sources */,
 				FAA807B817E87E4800CF5FEA /* RHPerson+function.m in Sources */,
 				1B8D906719A9C51F00B72EA5 /* ISUCalendarViewController.m in Sources */,
 				1B8D905719A8D10900B72EA5 /* JYCalendarMonthPickerLayout.m in Sources */,
 				1B8D902719A8D10900B72EA5 /* JYCondition.m in Sources */,
+				1BBCD0B119B346B2003D6507 /* ISUEventEditorStartTimeCell.m in Sources */,
 				FA3BFA1317F16872001FC93F /* KYCircleMenu.m in Sources */,
 				FAA807BB17E8801500CF5FEA /* RHGroup+function.m in Sources */,
 				FAC68B6E17EF40D50080376D /* ISUNotificationCenterViewController.m in Sources */,
@@ -1689,10 +1898,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		FA2167DF17CC98AB0026F1CD /* InfoPlist.strings */ = {
+		1B5C6C2019AA36D000E21834 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FA2167E017CC98AB0026F1CD /* en */,
+				1B5C6C1F19AA36D000E21834 /* en */,
+				1B5C6C2119AA36D500E21834 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		1B8472BF19AA345E0065032C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B8472BE19AA345E0065032C /* en */,
+				1B8472C019AA34D20065032C /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1701,6 +1920,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				FA21680417CC98AB0026F1CD /* en */,
+				1B8472C119AA34D20065032C /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1733,7 +1953,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1757,7 +1977,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

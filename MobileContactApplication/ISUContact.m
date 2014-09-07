@@ -21,7 +21,6 @@
 @implementation ISUContact
 
 @dynamic birthday;
-@dynamic contactName;
 @dynamic department;
 @dynamic firstName;
 @dynamic firstNamePhonetic;
