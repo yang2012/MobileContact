@@ -15,7 +15,6 @@ PODS:
   - AFNetworking/Serialization (2.0.0)
   - AFNetworking/UIKit (2.0.0):
     - AFNetworking/NSURLConnection
-  - DAKeyboardControl (2.2.0)
   - DKLiveBlur (0.0.1)
   - EAIntroView (2.6.3)
   - FLKAutoLayout (0.1.1)
@@ -51,7 +50,6 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - DAKeyboardControl (~> 2.2.0)
   - DKLiveBlur (~> 0.0.1)
   - EAIntroView (~> 2.6)
   - FLKAutoLayout (~> 0.1)
@@ -75,7 +73,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 6d4a33f2a7edf1d394455c543b446fdfae6b4082
-  DAKeyboardControl: 723b8854d230f6d0c07d4a52a7f1683f422db9f5
   DKLiveBlur: 2ebf69a05286c0f0d2a6e71af5c70c9153597b6d
   EAIntroView: 45924b81c153d1206ee24f4fa654e9d9dae79e93
   FLKAutoLayout: 9fa39aac2903b274fbeed6be74154cdb937a04fc
