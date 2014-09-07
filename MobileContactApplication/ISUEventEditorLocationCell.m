@@ -26,7 +26,7 @@
         [self.contentView addSubview:self.locationTextField];
                 
         [self.locationTextField alignLeading:@"15" trailing:@"-15" toView:self.contentView];
-        [self.locationTextField alignCenterYWithView:self.contentView predicate:nil];
+        [self.locationTextField alignTop:@"0" bottom:@"0" toView:self.contentView];
     }
     return self;
 }

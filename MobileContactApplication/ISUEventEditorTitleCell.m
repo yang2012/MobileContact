@@ -25,7 +25,7 @@
         [self.contentView addSubview:self.titleTextField];
         
         [self.titleTextField alignLeading:@"15" trailing:@"-15" toView:self.contentView];
-        [self.titleTextField alignCenterYWithView:self.contentView predicate:nil];
+        [self.titleTextField alignTop:@"0" bottom:@"0" toView:self.contentView];
     }
     return self;
 }

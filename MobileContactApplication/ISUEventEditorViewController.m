@@ -49,6 +49,8 @@ typedef NS_ENUM(NSInteger, ISUEventEditorSection) {
 
 @property (nonatomic, strong) NSArray *sections;
 
+@property (nonatomic, strong) NSIndexPath *datePickerIndexPath;
+
 @end
 
 @implementation ISUEventEditorViewController
@@ -64,6 +66,8 @@ typedef NS_ENUM(NSInteger, ISUEventEditorSection) {
         
         self.event = [ISUEvent new];
         self.event.allDay = @(YES);
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isu_hideDatePicker) name:UIKeyboardWillShowNotification object:nil];
         
 //        ISUTimePickerView *timePicker = [[ISUTimePickerView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
 //        timePicker.backgroundColor = [UIColor redColor];
@@ -163,23 +167,47 @@ typedef NS_ENUM(NSInteger, ISUEventEditorSection) {
     
     ISUEventEditorCell cellType = [self isu_cellTypeForRowAtIndexPath:indexPath];
     if (cellType == ISUEventEditorCellStartTime || cellType == ISUEventEditorCellEndTime) {
-        NSNumber *sectionKey = [[[self.sections objectAtIndex:indexPath.section] allKeys] firstObject];
-        NSMutableArray *cells = [[self.sections objectAtIndex:indexPath.section] objectForKey:sectionKey];
-        
-        NSUInteger row = [cells indexOfObject:@(ISUEventEditorCellDatePicker)];
-        if (row == NSNotFound) {
-            [cells insertObject:@(ISUEventEditorCellDatePicker) atIndex:indexPath.row + 1];
-            NSIndexPath *pickerIndexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
-            [self.tableView insertRowsAtIndexPaths:@[pickerIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-        } else {
-            [cells removeObject:@(ISUEventEditorCellDatePicker)];
-            NSIndexPath *pickerIndexPath = [NSIndexPath indexPathForRow:row inSection:indexPath.section];
-            [self.tableView deleteRowsAtIndexPaths:@[pickerIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-        }
+        [self.view endEditing:YES];
+        [self isu_showDatePickerBelowIndex:indexPath];
     } else {
         NSLog(@"select");
     }
 }
+
+- (void)isu_showDatePickerBelowIndex:(NSIndexPath *)indexPath
+{
+    if (self.datePickerIndexPath) {
+        [self isu_hideDatePicker];
+    } else {
+        // No need to hide
+    }
+    
+    NSIndexPath *pickerIndexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
+    
+    NSNumber *sectionKey = [[[self.sections objectAtIndex:indexPath.section] allKeys] firstObject];
+    NSMutableArray *cells = [[self.sections objectAtIndex:indexPath.section] objectForKey:sectionKey];
+    [cells insertObject:@(ISUEventEditorCellDatePicker) atIndex:indexPath.row + 1];
+    
+    [self.tableView insertRowsAtIndexPaths:@[pickerIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    self.datePickerIndexPath = pickerIndexPath;
+}
+
+- (void)isu_hideDatePicker
+{
+    if (self.datePickerIndexPath) {
+        NSNumber *sectionKey = [[[self.sections objectAtIndex:self.datePickerIndexPath.section] allKeys] firstObject];
+        NSMutableArray *cells = [[self.sections objectAtIndex:self.datePickerIndexPath.section] objectForKey:sectionKey];
+        [cells removeObject:@(ISUEventEditorCellDatePicker)];
+        
+        [self.tableView deleteRowsAtIndexPaths:@[self.datePickerIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else {
+        // No need to hide
+    }
+    
+    self.datePickerIndexPath = nil;
+}
+
 
 #pragma mark - Util
 
