@@ -7,11 +7,12 @@
 //
 
 #import "ISUEventEditorBaseCell.h"
+#import "ISUTextView.h"
 
 extern CGFloat ISUEventEditorContentDefaultHeight;
 
 @interface ISUEventEditorNoteCell : ISUEventEditorBaseCell
 
-@property (nonatomic, strong) UITextView *contentTextView;
+@property (nonatomic, strong) ISUTextView *contentTextView;
 
 @end

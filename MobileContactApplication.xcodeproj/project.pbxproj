@@ -108,6 +108,7 @@
 		1BEA54FB19BB0A220085799E /* ISUEvent+function.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA54FA19BB0A220085799E /* ISUEvent+function.m */; };
 		1BEA54FE19BB2DA60085799E /* ISUEventEditorDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA54FD19BB2DA60085799E /* ISUEventEditorDatePickerCell.m */; };
 		1BEA550119BB39CE0085799E /* ISUEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA550019BB39CE0085799E /* ISUEvent.m */; };
+		1BEA550419BC6A060085799E /* ISUTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA550319BC6A060085799E /* ISUTextView.m */; };
 		DAEF9F403FBC45CFA15AE3B9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2CD10FC8C34550BF23C3B9 /* libPods.a */; };
 		FA02207A17EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02207917EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m */; };
 		FA2167D717CC98AB0026F1CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167D617CC98AB0026F1CD /* UIKit.framework */; };
@@ -408,6 +409,8 @@
 		1BEA54FD19BB2DA60085799E /* ISUEventEditorDatePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEventEditorDatePickerCell.m; sourceTree = "<group>"; };
 		1BEA54FF19BB39CE0085799E /* ISUEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEvent.h; sourceTree = "<group>"; };
 		1BEA550019BB39CE0085799E /* ISUEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEvent.m; sourceTree = "<group>"; };
+		1BEA550219BC6A060085799E /* ISUTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUTextView.h; sourceTree = "<group>"; };
+		1BEA550319BC6A060085799E /* ISUTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUTextView.m; sourceTree = "<group>"; };
 		1D6B351CD0B344F4AD360484 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		DF2CD10FC8C34550BF23C3B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA02207917EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUSocialProfileFunctionCategoryTest.m; sourceTree = "<group>"; };
@@ -915,6 +918,8 @@
 				1BEA54E319BAE6660085799E /* ISUDatePickerView.h */,
 				1BEA54E419BAE6660085799E /* ISUDatePickerView.m */,
 				1BEA54E619BAE71E0085799E /* ISUDatePickerView.xib */,
+				1BEA550219BC6A060085799E /* ISUTextView.h */,
+				1BEA550319BC6A060085799E /* ISUTextView.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -1840,6 +1845,7 @@
 				FAA6090317DEF56C00A5BAAC /* ISUSearchTableViewCell.m in Sources */,
 				FAA6093317DF550500A5BAAC /* ISUPhoneNumberFormatter.m in Sources */,
 				FAA6093617DF559E00A5BAAC /* ISUSoundEffect.m in Sources */,
+				1BEA550419BC6A060085799E /* ISUTextView.m in Sources */,
 				1B8D8FBC19A8C97500B72EA5 /* ISUMenuViewController.m in Sources */,
 				FAC7A57B17E45299002B7EF9 /* NSFileManager+ISUAdditions.m in Sources */,
 				FAC7A57F17E456A2002B7EF9 /* ISUMigrationManager.m in Sources */,

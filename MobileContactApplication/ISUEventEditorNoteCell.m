@@ -7,7 +7,6 @@
 //
 
 #import "ISUEventEditorNoteCell.h"
-#import <FLKAutoLayout/UIView+FLKAutoLayout.h>
 
 @implementation ISUEventEditorNoteCell
 
@@ -15,10 +14,12 @@
 {
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
-        self.contentTextView = [UITextView new];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        self.contentTextView = [ISUTextView new];
+        self.contentTextView.placeholder = NSLocalizedString(@"Note", nil);
         self.contentTextView.font = [UIFont systemFontOfSize:15.0f];
         self.contentTextView.textColor = [UIColor isu_defaultTextColor];
-        self.contentTextView.text = NSLocalizedString(@"Note", nil);
         [self.contentView addSubview:self.contentTextView];
         
         [self.contentTextView alignLeading:@"12" trailing:@"-15" toView:self.contentView];

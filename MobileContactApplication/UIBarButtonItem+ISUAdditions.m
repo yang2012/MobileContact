@@ -40,12 +40,13 @@
 
 + (instancetype)barButtonItemWithTitle:(NSString *)title target:(id)target action:(SEL)selector
 {
-    UIButton *itemBtn = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 48.0, 30.0)];
-    [itemBtn setTitle:title forState:UIControlStateNormal];
-    [itemBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    itemBtn.titleLabel.font = [UIFont boldSystemFontOfSize:13.0];
-    [itemBtn addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
-    return [[UIBarButtonItem alloc] initWithCustomView:itemBtn];
+    return [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:target action:selector];
+//    UIButton *itemBtn = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 44.0, 44.0)];
+//    [itemBtn setTitle:title forState:UIControlStateNormal];
+//    [itemBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+//    itemBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14.0];
+//    [itemBtn addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
+//    return [[UIBarButtonItem alloc] initWithCustomView:itemBtn];
 }
 
 @end

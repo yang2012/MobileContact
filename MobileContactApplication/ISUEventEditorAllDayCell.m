@@ -15,6 +15,8 @@
 {
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         self.textLabel.text = NSLocalizedString(@"All-day", nil);
         self.textLabel.font = [UIFont systemFontOfSize:15.0f];
         self.textLabel.textColor = [UIColor isu_defaultTextColor];
