@@ -8,9 +8,9 @@
 
 @interface UIView (JYCalendar)
 
-@property float x;
-@property float y;
-@property float width;
-@property float height;
+@property CGFloat x;
+@property CGFloat y;
+@property CGFloat width;
+@property CGFloat height;
 
 @end

@@ -22,9 +22,9 @@
 
 @implementation JYCalendarDateView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)init
 {
-    self = [super initWithFrame:frame];
+    self = [super init];
     if (self) {
         [self _addSubviews];
         self.selected    = NO;
