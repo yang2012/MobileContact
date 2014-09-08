@@ -123,6 +123,7 @@
 		1BF6508719BDE01D00A124AA /* SignInTwitterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6508319BDE01D00A124AA /* SignInTwitterButton@2x.png */; };
 		1BF6508819BDE01D00A124AA /* SignInTwitterButtonTap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6508419BDE01D00A124AA /* SignInTwitterButtonTap@2x.png */; };
 		1BF6508A19BDE02D00A124AA /* VineLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6508919BDE02D00A124AA /* VineLogo@2x.png */; };
+		1BF6508D19BDE51A00A124AA /* ISUAutocompleteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6508C19BDE51A00A124AA /* ISUAutocompleteManager.m */; };
 		DAEF9F403FBC45CFA15AE3B9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2CD10FC8C34550BF23C3B9 /* libPods.a */; };
 		FA02207A17EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02207917EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m */; };
 		FA2167D717CC98AB0026F1CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167D617CC98AB0026F1CD /* UIKit.framework */; };
@@ -447,6 +448,8 @@
 		1BF6508319BDE01D00A124AA /* SignInTwitterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignInTwitterButton@2x.png"; sourceTree = "<group>"; };
 		1BF6508419BDE01D00A124AA /* SignInTwitterButtonTap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignInTwitterButtonTap@2x.png"; sourceTree = "<group>"; };
 		1BF6508919BDE02D00A124AA /* VineLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VineLogo@2x.png"; sourceTree = "<group>"; };
+		1BF6508B19BDE51A00A124AA /* ISUAutocompleteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAutocompleteManager.h; sourceTree = "<group>"; };
+		1BF6508C19BDE51A00A124AA /* ISUAutocompleteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAutocompleteManager.m; sourceTree = "<group>"; };
 		1D6B351CD0B344F4AD360484 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		DF2CD10FC8C34550BF23C3B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA02207917EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUSocialProfileFunctionCategoryTest.m; sourceTree = "<group>"; };
@@ -1546,6 +1549,8 @@
 			isa = PBXGroup;
 			children = (
 				FAE49EF717F46C9900215FB4 /* NotificationMessage */,
+				1BF6508B19BDE51A00A124AA /* ISUAutocompleteManager.h */,
+				1BF6508C19BDE51A00A124AA /* ISUAutocompleteManager.m */,
 				FA787DF717CE416600F676E2 /* Constants.h */,
 				FAE8215F17CCB2F7003C39B0 /* ISUAddressBookUtility.h */,
 				FAE8216017CCB2F7003C39B0 /* ISUAddressBookUtility.m */,
@@ -1908,6 +1913,7 @@
 				1B8D905819A8D10900B72EA5 /* JYCalendarMonthPickerView.m in Sources */,
 				1B8D902519A8D10900B72EA5 /* JYCalendarViewController.m in Sources */,
 				FA8536DF17D639CE00696D28 /* ISUUrl.m in Sources */,
+				1BF6508D19BDE51A00A124AA /* ISUAutocompleteManager.m in Sources */,
 				1BBCD0A419B33D95003D6507 /* ISUEventEditorBaseCell.m in Sources */,
 				FA8536BE17D615A800696D28 /* ISUUtility.m in Sources */,
 				FAB60BB117F5AF720027F0B5 /* ISUContact.m in Sources */,

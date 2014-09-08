@@ -7,9 +7,13 @@
 //
 
 #import "ISURegisterViewController.h"
+
+#import "HTAutocompleteTextField.h"
+#import "ISUAutocompleteManager.h"
+#import "AFViewShaker.h"
+
 #import "NSString+ISUAdditions.h"
 #import "ISUUser+function.h"
-#import "AFViewShaker.h"
 
 @interface ISURegisterViewController () <BZGFormFieldDelegate>
 
@@ -34,6 +38,15 @@
     self.emailField.delegate = self;
     [self.view addSubview:self.emailField];
     
+    HTAutocompleteTextField *textField = [[HTAutocompleteTextField alloc] initWithFrame:CGRectMake(0,0,100,31)];
+    textField.autocompleteDataSource = [ISUAutocompleteManager sharedManager];
+    textField.autocompleteType = ISUAutocompleteTypeEmail;
+    textField.delegate = self.emailField;
+    
+    [self.emailField.textField removeFromSuperview];
+    self.emailField.textField = textField;
+    [self.emailField addSubview:textField];
+        
     self.usernameField = [[BZGFormField alloc] initWithFrame:CGRectMake(20.0f, 150.0f, 280.0f, 40.0f)];
     self.usernameField.backgroundColor = [UIColor colorWithRed:0 green:0.5 blue:0.5 alpha:0.7];
     self.usernameField.textField.placeholder = NSLocalizedString(@"Name", nil);
