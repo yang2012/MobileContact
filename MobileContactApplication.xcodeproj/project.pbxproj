@@ -111,8 +111,18 @@
 		1BEA54F819BB08640085799E /* UIColor+ISUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA54F719BB08640085799E /* UIColor+ISUAdditions.m */; };
 		1BEA54FB19BB0A220085799E /* ISUEvent+function.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA54FA19BB0A220085799E /* ISUEvent+function.m */; };
 		1BEA54FE19BB2DA60085799E /* ISUEventEditorDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA54FD19BB2DA60085799E /* ISUEventEditorDatePickerCell.m */; };
-		1BEA550119BB39CE0085799E /* ISUEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA550019BB39CE0085799E /* ISUEvent.m */; };
 		1BEA550419BC6A060085799E /* ISUTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA550319BC6A060085799E /* ISUTextView.m */; };
+		1BF6506F19BDAEB000A124AA /* ISUEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6506E19BDAEB000A124AA /* ISUEvent.m */; };
+		1BF6507319BDB31300A124AA /* ISUNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6507219BDB31300A124AA /* ISUNavigator.m */; };
+		1BF6507619BDB75D00A124AA /* ISUUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6507519BDB75D00A124AA /* ISUUser.m */; };
+		1BF6507819BDD46200A124AA /* background.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6507719BDD46200A124AA /* background.mp4 */; };
+		1BF6507C19BDD77300A124AA /* AFViewShaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6507B19BDD77300A124AA /* AFViewShaker.m */; };
+		1BF6508019BDDEEC00A124AA /* ISURegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6507F19BDDEEC00A124AA /* ISURegisterViewController.m */; };
+		1BF6508519BDE01D00A124AA /* SignInMailButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6508119BDE01D00A124AA /* SignInMailButton@2x.png */; };
+		1BF6508619BDE01D00A124AA /* SignInMailButtonTap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6508219BDE01D00A124AA /* SignInMailButtonTap@2x.png */; };
+		1BF6508719BDE01D00A124AA /* SignInTwitterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6508319BDE01D00A124AA /* SignInTwitterButton@2x.png */; };
+		1BF6508819BDE01D00A124AA /* SignInTwitterButtonTap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6508419BDE01D00A124AA /* SignInTwitterButtonTap@2x.png */; };
+		1BF6508A19BDE02D00A124AA /* VineLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF6508919BDE02D00A124AA /* VineLogo@2x.png */; };
 		DAEF9F403FBC45CFA15AE3B9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2CD10FC8C34550BF23C3B9 /* libPods.a */; };
 		FA02207A17EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02207917EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m */; };
 		FA2167D717CC98AB0026F1CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2167D617CC98AB0026F1CD /* UIKit.framework */; };
@@ -148,7 +158,6 @@
 		FA3BFA1317F16872001FC93F /* KYCircleMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3BFA1217F16872001FC93F /* KYCircleMenu.m */; };
 		FA47769A17E5D43100BDB510 /* ISUOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA47769917E5D43100BDB510 /* ISUOperationManager.m */; };
 		FA47769D17E5D4BE00BDB510 /* ISUAbstractOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA47769C17E5D4BE00BDB510 /* ISUAbstractOperation.m */; };
-		FA4776A017E5D86700BDB510 /* ISUUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FA47769F17E5D86700BDB510 /* ISUUser.m */; };
 		FA4776A317E5D86800BDB510 /* ISUContactSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4776A217E5D86800BDB510 /* ISUContactSource.m */; };
 		FA4776A817E5DE9A00BDB510 /* ISUUser+function.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4776A717E5DE9A00BDB510 /* ISUUser+function.m */; };
 		FA4776B217E5E4F300BDB510 /* ISUOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4776B117E5E4F300BDB510 /* ISUOperationQueue.m */; };
@@ -420,10 +429,24 @@
 		1BEA54FA19BB0A220085799E /* ISUEvent+function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISUEvent+function.m"; sourceTree = "<group>"; };
 		1BEA54FC19BB2DA60085799E /* ISUEventEditorDatePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEventEditorDatePickerCell.h; sourceTree = "<group>"; };
 		1BEA54FD19BB2DA60085799E /* ISUEventEditorDatePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEventEditorDatePickerCell.m; sourceTree = "<group>"; };
-		1BEA54FF19BB39CE0085799E /* ISUEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEvent.h; sourceTree = "<group>"; };
-		1BEA550019BB39CE0085799E /* ISUEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEvent.m; sourceTree = "<group>"; };
 		1BEA550219BC6A060085799E /* ISUTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUTextView.h; sourceTree = "<group>"; };
 		1BEA550319BC6A060085799E /* ISUTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUTextView.m; sourceTree = "<group>"; };
+		1BF6506D19BDAEB000A124AA /* ISUEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUEvent.h; sourceTree = "<group>"; };
+		1BF6506E19BDAEB000A124AA /* ISUEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUEvent.m; sourceTree = "<group>"; };
+		1BF6507119BDB31300A124AA /* ISUNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUNavigator.h; sourceTree = "<group>"; };
+		1BF6507219BDB31300A124AA /* ISUNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUNavigator.m; sourceTree = "<group>"; };
+		1BF6507419BDB75D00A124AA /* ISUUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUUser.h; sourceTree = "<group>"; };
+		1BF6507519BDB75D00A124AA /* ISUUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUUser.m; sourceTree = "<group>"; };
+		1BF6507719BDD46200A124AA /* background.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = background.mp4; sourceTree = "<group>"; };
+		1BF6507A19BDD77300A124AA /* AFViewShaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFViewShaker.h; sourceTree = "<group>"; };
+		1BF6507B19BDD77300A124AA /* AFViewShaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFViewShaker.m; sourceTree = "<group>"; };
+		1BF6507E19BDDEEC00A124AA /* ISURegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISURegisterViewController.h; sourceTree = "<group>"; };
+		1BF6507F19BDDEEC00A124AA /* ISURegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISURegisterViewController.m; sourceTree = "<group>"; };
+		1BF6508119BDE01D00A124AA /* SignInMailButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignInMailButton@2x.png"; sourceTree = "<group>"; };
+		1BF6508219BDE01D00A124AA /* SignInMailButtonTap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignInMailButtonTap@2x.png"; sourceTree = "<group>"; };
+		1BF6508319BDE01D00A124AA /* SignInTwitterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignInTwitterButton@2x.png"; sourceTree = "<group>"; };
+		1BF6508419BDE01D00A124AA /* SignInTwitterButtonTap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignInTwitterButtonTap@2x.png"; sourceTree = "<group>"; };
+		1BF6508919BDE02D00A124AA /* VineLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VineLogo@2x.png"; sourceTree = "<group>"; };
 		1D6B351CD0B344F4AD360484 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		DF2CD10FC8C34550BF23C3B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA02207917EC1DD300FBC3C2 /* ISUSocialProfileFunctionCategoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUSocialProfileFunctionCategoryTest.m; sourceTree = "<group>"; };
@@ -469,8 +492,6 @@
 		FA47769917E5D43100BDB510 /* ISUOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUOperationManager.m; sourceTree = "<group>"; };
 		FA47769B17E5D4BE00BDB510 /* ISUAbstractOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUAbstractOperation.h; sourceTree = "<group>"; };
 		FA47769C17E5D4BE00BDB510 /* ISUAbstractOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUAbstractOperation.m; sourceTree = "<group>"; };
-		FA47769E17E5D86700BDB510 /* ISUUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUUser.h; sourceTree = "<group>"; };
-		FA47769F17E5D86700BDB510 /* ISUUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUUser.m; sourceTree = "<group>"; };
 		FA4776A117E5D86700BDB510 /* ISUContactSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISUContactSource.h; sourceTree = "<group>"; };
 		FA4776A217E5D86800BDB510 /* ISUContactSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISUContactSource.m; sourceTree = "<group>"; };
 		FA4776A617E5DE9A00BDB510 /* ISUUser+function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISUUser+function.h"; sourceTree = "<group>"; };
@@ -945,6 +966,34 @@
 			name = Base;
 			sourceTree = "<group>";
 		};
+		1BF6507019BDB2E900A124AA /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				1BF6507119BDB31300A124AA /* ISUNavigator.h */,
+				1BF6507219BDB31300A124AA /* ISUNavigator.m */,
+			);
+			name = Navigation;
+			sourceTree = "<group>";
+		};
+		1BF6507919BDD77300A124AA /* AFViewShaker */ = {
+			isa = PBXGroup;
+			children = (
+				1BF6507A19BDD77300A124AA /* AFViewShaker.h */,
+				1BF6507B19BDD77300A124AA /* AFViewShaker.m */,
+			);
+			name = AFViewShaker;
+			path = Vendor/AFViewShaker;
+			sourceTree = SOURCE_ROOT;
+		};
+		1BF6507D19BDDED000A124AA /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				1BF6507E19BDDEEC00A124AA /* ISURegisterViewController.h */,
+				1BF6507F19BDDEEC00A124AA /* ISURegisterViewController.m */,
+			);
+			name = Register;
+			sourceTree = "<group>";
+		};
 		FA2167CA17CC98AB0026F1CD = {
 			isa = PBXGroup;
 			children = (
@@ -1062,6 +1111,8 @@
 		FA21681A17CC995A0026F1CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1BF6507D19BDDED000A124AA /* Register */,
+				1BF6507019BDB2E900A124AA /* Navigation */,
 				1BBCD09819B33C7D003D6507 /* EventEditor */,
 				1B8D907219A9F62F00B72EA5 /* ContactDetail */,
 				1B8D906419A9C50400B72EA5 /* Calendar */,
@@ -1138,6 +1189,11 @@
 		FA21682617CC9A560026F1CD /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				1BF6508119BDE01D00A124AA /* SignInMailButton@2x.png */,
+				1BF6508219BDE01D00A124AA /* SignInMailButtonTap@2x.png */,
+				1BF6508319BDE01D00A124AA /* SignInTwitterButton@2x.png */,
+				1BF6508419BDE01D00A124AA /* SignInTwitterButtonTap@2x.png */,
+				1BF6508919BDE02D00A124AA /* VineLogo@2x.png */,
 				1B8D906F19A9EE7A00B72EA5 /* avatar_default@2x.png */,
 				FA85ECC817DC5C8700F6FC7F /* Icon@2x.png */,
 				FA85ECCA17DC601500F6FC7F /* Icon.png */,
@@ -1265,6 +1321,7 @@
 		FA85369717D37BB100696D28 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				1BF6507919BDD77300A124AA /* AFViewShaker */,
 				1B1F124119B60C0900F3C511 /* ColorUtils */,
 				1B8D8FBD19A8D10900B72EA5 /* JYCalendar */,
 				FA3BFA0D17F16549001FC93F /* KYCircleMenu */,
@@ -1387,6 +1444,7 @@
 		FAC7A58917E55D9A002B7EF9 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				1BF6507719BDD46200A124AA /* background.mp4 */,
 				FA321CA717F186A0009FB497 /* CircleMenu */,
 				FA7F851B17F099BB00DB972F /* Introduction */,
 			);
@@ -1454,16 +1512,16 @@
 		FAE8215D17CCB2B0003C39B0 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				1BEA54FF19BB39CE0085799E /* ISUEvent.h */,
-				1BEA550019BB39CE0085799E /* ISUEvent.m */,
+				1BF6507419BDB75D00A124AA /* ISUUser.h */,
+				1BF6507519BDB75D00A124AA /* ISUUser.m */,
+				1BF6506D19BDAEB000A124AA /* ISUEvent.h */,
+				1BF6506E19BDAEB000A124AA /* ISUEvent.m */,
 				FAB60BAF17F5AF720027F0B5 /* ISUContact.h */,
 				FAB60BB017F5AF720027F0B5 /* ISUContact.m */,
 				FAB60BAC17F5AEFE0027F0B5 /* ISUSearchItem.h */,
 				FAB60BAD17F5AEFE0027F0B5 /* ISUSearchItem.m */,
 				FA4776A117E5D86700BDB510 /* ISUContactSource.h */,
 				FA4776A217E5D86800BDB510 /* ISUContactSource.m */,
-				FA47769E17E5D86700BDB510 /* ISUUser.h */,
-				FA47769F17E5D86700BDB510 /* ISUUser.m */,
 				FA85370217D82FDA00696D28 /* ISUAddress.h */,
 				FA85370317D82FDB00696D28 /* ISUAddress.m */,
 				FA8536F417D6E02900696D28 /* ISUDate.h */,
@@ -1594,9 +1652,11 @@
 				FA2167E917CC98AB0026F1CD /* Default.png in Resources */,
 				1B8D904519A8D10900B72EA5 /* menu_ico_day_press@2x.png in Resources */,
 				1B8D903419A8D10900B72EA5 /* comm_ico_timeline_pm@2x.png in Resources */,
+				1BF6508A19BDE02D00A124AA /* VineLogo@2x.png in Resources */,
 				FA7F852517F099E500DB972F /* 2.png in Resources */,
 				1B8D902B19A8D10900B72EA5 /* clock@2x.png in Resources */,
 				1BEA54E719BAE71E0085799E /* ISUDatePickerView.xib in Resources */,
+				1BF6508519BDE01D00A124AA /* SignInMailButton@2x.png in Resources */,
 				FA321CC617F186CC009FB497 /* KYICircleMenuButton06.png in Resources */,
 				FA2167EB17CC98AB0026F1CD /* Default@2x.png in Resources */,
 				1B8D903F19A8D10900B72EA5 /* menu_btn_setting_normal@2x.png in Resources */,
@@ -1605,6 +1665,7 @@
 				1B8D903D19A8D10900B72EA5 /* menu_btn_close_normal@2x.png in Resources */,
 				1B8D902F19A8D10900B72EA5 /* comm_btn_popup_next_press@2x.png in Resources */,
 				1B8D902D19A8D10900B72EA5 /* comm_bg_picker_time@2x.png in Resources */,
+				1BF6508819BDE01D00A124AA /* SignInTwitterButtonTap@2x.png in Resources */,
 				1B8D903919A8D10900B72EA5 /* gnb_btn_menu_press@2x.png in Resources */,
 				1B8D904919A8D10900B72EA5 /* menu_ico_month_press@2x.png in Resources */,
 				FA8536A317D4230000696D28 /* ISUCollectionContactViewCell.xib in Resources */,
@@ -1626,9 +1687,11 @@
 				FA321CC717F186CC009FB497 /* KYICircleMenuButton06@2x.png in Resources */,
 				1B8D903719A8D10900B72EA5 /* detail_ico_schedule_none@2x.png in Resources */,
 				1B8D904E19A8D10900B72EA5 /* weather-mist@2x.png in Resources */,
+				1BF6508719BDE01D00A124AA /* SignInTwitterButton@2x.png in Resources */,
 				1B8D904B19A8D10900B72EA5 /* weather-clear@2x.png in Resources */,
 				FA321CBC17F186CC009FB497 /* KYICircleMenuButton01.png in Resources */,
 				FAA6090617DF116900A5BAAC /* ISUDialKeyboardView.xib in Resources */,
+				1BF6507819BDD46200A124AA /* background.mp4 in Resources */,
 				FA321CC417F186CC009FB497 /* KYICircleMenuButton05.png in Resources */,
 				FA321CBA17F186CC009FB497 /* KYICircleMenuCenterButtonBackground.png in Resources */,
 				FAA6092017DF54C400A5BAAC /* silence.caf in Resources */,
@@ -1645,6 +1708,7 @@
 				FAA6092417DF54C400A5BAAC /* 3.wav in Resources */,
 				FA321CBE17F186CC009FB497 /* KYICircleMenuButton02.png in Resources */,
 				1B8D905119A8D10900B72EA5 /* weather-rain@2x.png in Resources */,
+				1BF6508619BDE01D00A124AA /* SignInMailButtonTap@2x.png in Resources */,
 				1B8D904319A8D10900B72EA5 /* menu_ico_calendar_press@2x.png in Resources */,
 				FA321CB917F186CC009FB497 /* KYICircleMenuCenterButton@2x.png in Resources */,
 				1B8D904819A8D10900B72EA5 /* menu_ico_month_normal@2x.png in Resources */,
@@ -1801,6 +1865,7 @@
 				1B8D905F19A8D10900B72EA5 /* JYCalendarWeekDetailView.m in Sources */,
 				FA787DF617CE3CC400F676E2 /* ISUAddressBookImportOperation.m in Sources */,
 				1BEA54F019BAF7110085799E /* ISUEventEditorAllDayCell.m in Sources */,
+				1BF6507C19BDD77300A124AA /* AFViewShaker.m in Sources */,
 				FAE8216117CCB2F7003C39B0 /* ISUAddressBookUtility.m in Sources */,
 				FA2167E717CC98AB0026F1CD /* ISUAppDelegate.m in Sources */,
 				1B8D907919A9F6A500B72EA5 /* ISUContactDetailViewController.m in Sources */,
@@ -1827,7 +1892,6 @@
 				FA8536D617D639CD00696D28 /* ISUGroup.m in Sources */,
 				FA85369317D319AF00696D28 /* ISULogger.m in Sources */,
 				1BEA54F819BB08640085799E /* UIColor+ISUAdditions.m in Sources */,
-				1BEA550119BB39CE0085799E /* ISUEvent.m in Sources */,
 				1B5C6C2719AA3A4B00E21834 /* ISUDate+function.m in Sources */,
 				FA787DE417CDEE5000F676E2 /* ISUPersistentManager.m in Sources */,
 				FAB60BAE17F5AEFE0027F0B5 /* ISUSearchItem.m in Sources */,
@@ -1863,6 +1927,7 @@
 				1BEA54FE19BB2DA60085799E /* ISUEventEditorDatePickerCell.m in Sources */,
 				FA2167E317CC98AB0026F1CD /* main.m in Sources */,
 				FAE8217C17CCB595003C39B0 /* Model.xcdatamodeld in Sources */,
+				1BF6507619BDB75D00A124AA /* ISUUser.m in Sources */,
 				FAA608F117DDF3D000A5BAAC /* ISUDialKeyboardView.m in Sources */,
 				1B8472BA19AA2FE60065032C /* ISUPhone+function.m in Sources */,
 				FAA608F617DE084700A5BAAC /* ISUSearchTableViewController.m in Sources */,
@@ -1880,7 +1945,6 @@
 				1B8D902619A8D10900B72EA5 /* JYClient.m in Sources */,
 				FA47769D17E5D4BE00BDB510 /* ISUAbstractOperation.m in Sources */,
 				1B5C6C2419AA388800E21834 /* ISUEmail+function.m in Sources */,
-				FA4776A017E5D86700BDB510 /* ISUUser.m in Sources */,
 				1B8D905B19A8D10900B72EA5 /* JYCalendarDateDetailListCell.m in Sources */,
 				FA4776A317E5D86800BDB510 /* ISUContactSource.m in Sources */,
 				FA4776A817E5DE9A00BDB510 /* ISUUser+function.m in Sources */,
@@ -1888,7 +1952,10 @@
 				1BE9611819BD8369005F31B0 /* ISUHamburgerButton.m in Sources */,
 				FA4776B817E5FA9B00BDB510 /* NSError+ISUAdditions.m in Sources */,
 				FA6739F417E72711006DB3C2 /* ISULoginViewController.m in Sources */,
+				1BF6507319BDB31300A124AA /* ISUNavigator.m in Sources */,
+				1BF6508019BDDEEC00A124AA /* ISURegisterViewController.m in Sources */,
 				1BD60F0919AB73FE007F4FCA /* UIImageView+ISUAdditions.m in Sources */,
+				1BF6506F19BDAEB000A124AA /* ISUEvent.m in Sources */,
 				FA6739F717E74FDB006DB3C2 /* NSManagedObject+ISUAdditions.m in Sources */,
 				1BEA54E519BAE6660085799E /* ISUDatePickerView.m in Sources */,
 				FAA807B817E87E4800CF5FEA /* RHPerson+function.m in Sources */,

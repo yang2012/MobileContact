@@ -27,4 +27,20 @@
     return self;
 }
 
++ (ISUEvent *)findOrCreatePersonWithRecordId:(NSInteger)recordId
+                                       context:(NSManagedObjectContext *)context
+{
+    if (recordId < 0) {
+        NSLog(@"Invalid recrodId: %zd", recordId);
+        return nil;
+    }
+    
+//    ISUContact *contact = [ISUContact findPersonWithRecordId:recordId context:context];
+//    if (contact == nil) {
+//        contact = [ISUContact createPersonWithRecordId:recordId context:context];
+//        contact.recordId = recordId;
+//    }
+//    return contact;
+}
+
 @end

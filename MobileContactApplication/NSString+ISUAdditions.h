@@ -15,4 +15,7 @@
 + (NSString *)normalizedDescriptionOfAlerType:(ISUAlertValue)alertValue;
 + (NSString *)normalizedDescriptionOfEventRepeatType:(ISUEventRepeatValue)repeatValue;
 
+- (BOOL)isValidEmailAddress;
+- (BOOL)isValidUsername;
+
 @end

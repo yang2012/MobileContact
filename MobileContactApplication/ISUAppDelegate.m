@@ -14,6 +14,8 @@
 #import "ISUIntroductionViewController.h"
 #import "ISUMenuViewController.h"
 
+#import "ISULoginViewController.h"
+
 #import <Crashlytics/Crashlytics.h>
 
 @interface ISUAppDelegate () <ISUMigrationManagerDelegate>
@@ -50,7 +52,9 @@
     [ISUPersistentManager setAutomaticallyResetsPersistentStore:YES];
     
     ISUCalendarViewController *calendarViewController = [[ISUCalendarViewController alloc] init];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:calendarViewController];
+    
+    ISULoginViewController *loginViewController = [[ISULoginViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
     
     ISUMenuViewController *menuViewController = [[ISUMenuViewController alloc] init];
     

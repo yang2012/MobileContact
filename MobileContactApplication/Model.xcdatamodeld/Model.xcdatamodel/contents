@@ -67,6 +67,7 @@
         <attribute name="repeatValue" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ISUUser" inverseName="events" inverseEntity="ISUUser" syncable="YES"/>
     </entity>
     <entity name="ISUGroup" representedClassName="ISUGroup" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -103,8 +104,10 @@
         <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ISUContact" inverseName="urls" inverseEntity="ISUContact" syncable="YES"/>
     </entity>
     <entity name="ISUUser" representedClassName="ISUUser" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="contactSources" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ISUContactSource" inverseName="user" inverseEntity="ISUContactSource" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ISUEvent" inverseName="user" inverseEntity="ISUEvent" syncable="YES"/>
     </entity>
     <elements>
         <element name="ISUAddress" positionX="0" positionY="0" width="128" height="163"/>
@@ -112,13 +115,13 @@
         <element name="ISUContactSource" positionX="0" positionY="0" width="128" height="105"/>
         <element name="ISUDate" positionX="0" positionY="0" width="128" height="90"/>
         <element name="ISUEmail" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="ISUEvent" positionX="9" positionY="153" width="128" height="165"/>
+        <element name="ISUEvent" positionX="9" positionY="153" width="128" height="178"/>
         <element name="ISUGroup" positionX="0" positionY="0" width="128" height="105"/>
         <element name="ISUPhone" positionX="0" positionY="0" width="128" height="90"/>
         <element name="ISURelatedName" positionX="0" positionY="0" width="128" height="90"/>
         <element name="ISUSearchItem" positionX="0" positionY="0" width="128" height="105"/>
         <element name="ISUSocialProfile" positionX="0" positionY="0" width="128" height="120"/>
         <element name="ISUUrl" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="ISUUser" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="ISUUser" positionX="0" positionY="0" width="128" height="103"/>
     </elements>
 </model>

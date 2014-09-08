@@ -8,17 +8,68 @@
 
 #import "ISUUser+function.h"
 #import "ISUAppDelegate.h"
+#import "NSString+ISUAdditions.h"
+#import "NSUserDefaults+helpers.h"
 
 static ISUUser *_currentUser = nil;
 
 @implementation ISUUser (function)
 
+static NSString *kCurrentUserNameKey = @"ISUCurrentUserNameKey";
+
++ (ISUErrorCode)loginWithUsername:(NSString *)username email:(NSString *)email
+{
+    NSManagedObjectContext *context = [self mainQueueContext];
+    if (![username isValidUsername]) {
+        return ISUErrorCodeInvalidUsername;
+    }
+    
+    if (![email isValidEmailAddress]) {
+        return ISUErrorCodeInvalidEmailAddress;
+    }
+    
+    ISUUser *user = [ISUUser findUserWithUsername:username context:context];
+    if (user != nil) {
+        return ISUErrorCodeDuplicate;
+    }
+    
+    user = [ISUUser createUserWithUsername:username context:context];
+    if (user == nil) {
+        return ISUErrorCodeInvalidUsername;
+    }
+    
+    user.email = email;
+    [user save];
+    
+    [NSUserDefaults saveObject:username forKey:kCurrentUserNameKey];
+    
+    return ISUErrorCodeNone;
+}
+
++ (void)logout
+{
+    [NSUserDefaults deleteObjectForKey:kCurrentUserNameKey];
+}
+
++ (NSString *)currentUsername
+{
+    return [NSUserDefaults retrieveObjectForKey:kCurrentUserNameKey];
+}
+
++ (BOOL)isLogin
+{
+    return [NSUserDefaults retrieveObjectForKey:kCurrentUserNameKey] != nil;
+}
+
 + (ISUUser *)currentUser
 {
-    // FIXME: get the current user
+    if (![ISUUser isLogin]) {
+        return nil;
+    }
+
     if (_currentUser == nil) {
         NSManagedObjectContext *context = [self mainQueueContext];
-        _currentUser = [ISUUser findOrCreateUserWithUsername:@"justin" context:context];
+        _currentUser = [ISUUser findUserWithUsername:[ISUUser currentUsername] context:context];
     }
     return _currentUser;
 }

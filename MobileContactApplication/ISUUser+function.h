@@ -7,8 +7,17 @@
 //
 
 #import "ISUUser.h"
+#import "ISUConstants.h"
 
 @interface ISUUser (function)
+
++ (NSString *)currentUsername;
+
++ (BOOL)isLogin;
+
++ (ISUErrorCode)loginWithUsername:(NSString *)name email:(NSString *)email;
+
++ (void)logout;
 
 + (ISUUser *)currentUser;
 

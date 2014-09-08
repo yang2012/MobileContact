@@ -34,4 +34,12 @@ typedef NS_ENUM(NSInteger, ISUEventRepeatValue) {
     ISUEventRepeatValueTotalNum
 };
 
+typedef NS_ENUM(NSInteger, ISUErrorCode) {
+    ISUErrorCodeNone,
+    ISUErrorCodeUnknown,
+    ISUErrorCodeInvalidEmailAddress,
+    ISUErrorCodeInvalidUsername,
+    ISUErrorCodeDuplicate
+};
+
 #endif
