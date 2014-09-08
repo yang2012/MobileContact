@@ -53,6 +53,15 @@
     @weakify(self);
     [RACObserve(event, endTime) subscribeNext:^(NSDate *date) {
         @strongify(self);
+        if (event.allDay.boolValue) {
+            self.format = NSLocalizedString(@"YYYY-MM-dd EE", nil);
+        } else {
+            if (date.isToday) {
+                self.format =  NSLocalizedString(@"aHH:mm", nil);
+            } else {
+                self.format =  NSLocalizedString(@"YYYY-MM-dd aHH:mm", nil);
+            }
+        }
         self.date = date;
     }];
     

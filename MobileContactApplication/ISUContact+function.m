@@ -196,7 +196,7 @@ static NSString *const kSearchItemForContactEmailsProperty = @"emailsProperty";
                                        context:(NSManagedObjectContext *)context
 {
     if (recordId < 0) {
-        NSLog(@"Invalid recrodId: %ld", recordId);
+        NSLog(@"Invalid recrodId: %zd", recordId);
         return nil;
     }
     
@@ -212,7 +212,7 @@ static NSString *const kSearchItemForContactEmailsProperty = @"emailsProperty";
                                context:(NSManagedObjectContext *)context
 {
     if (recordId < 0) {
-        NSLog(@"Invalid recrodId: %ld", recordId);
+        NSLog(@"Invalid recrodId: %zd", recordId);
         return nil;
     }
     

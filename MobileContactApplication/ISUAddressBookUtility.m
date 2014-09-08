@@ -260,7 +260,7 @@
     ABRecordID personId = (ABRecordID)recordId;
     RHPerson *record = [self.addressBook personForABRecordID:personId];
     if (record == nil) {
-        NSString *msg = [NSString stringWithFormat:@"Cannot find person with specify record id %i", recordId];
+        NSString *msg = [NSString stringWithFormat:@"Cannot find person with specify record id %zd", recordId];
         ISULog(msg, ISULogPriorityHigh);
         if (error) {
             *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
@@ -283,7 +283,7 @@
     ABRecordID groupId = (ABRecordID)recordId;
     RHGroup *group = [self.addressBook groupForABRecordID:groupId];
     if (group == nil) {
-        NSString *msg = [NSString stringWithFormat:@"Cannot find group with specify record id %i", recordId];
+        NSString *msg = [NSString stringWithFormat:@"Cannot find group with specify record id %zd", recordId];
         ISULog(msg, ISULogPriorityHigh);
         if (error) {
             *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
@@ -359,7 +359,7 @@
         return NO;
     }
     
-    RHGroup *coreGroup = [self.addressBook groupForABRecordID:group.recordId];
+    RHGroup *coreGroup = [self.addressBook groupForABRecordID:(ABRecordID)group.recordId];
     if (coreGroup == nil) {
         if (error) {
             *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
@@ -367,7 +367,7 @@
         return NO;
     }
     
-    RHPerson *coreContact = [self.addressBook personForABRecordID:contact.recordId];
+    RHPerson *coreContact = [self.addressBook personForABRecordID:(ABRecordID)contact.recordId];
     if (coreContact == nil) {
         if (error) {
             *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
@@ -387,7 +387,7 @@
         return NO;
     }
     
-    RHGroup *coreGroup = [self.addressBook groupForABRecordID:group.recordId];
+    RHGroup *coreGroup = [self.addressBook groupForABRecordID:(ABRecordID)group.recordId];
     if (coreGroup == nil) {
         if (error) {
             *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];
@@ -395,7 +395,7 @@
         return NO;
     }
     
-    RHPerson *coreContact = [self.addressBook personForABRecordID:contact.recordId];
+    RHPerson *coreContact = [self.addressBook personForABRecordID:(ABRecordID)contact.recordId];
     if (coreContact == nil) {
         if (error) {
             *error = [NSError errorWithErrorCode:ISUErrorCodeInvalide];

@@ -16,9 +16,9 @@
     NSString *description = @"";
     if (self.date) {
         if (self.date.day < 10) {
-            description = [NSString stringWithFormat:@"0%d", self.date.day];
+            description = [NSString stringWithFormat:@"0%zd", self.date.day];
         } else {
-            description = [NSString stringWithFormat:@"%d", self.date.day];
+            description = [NSString stringWithFormat:@"%zd", self.date.day];
         }
     } else {
         description = @"";

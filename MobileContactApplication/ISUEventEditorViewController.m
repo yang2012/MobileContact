@@ -26,11 +26,15 @@
 #import "UIView+CGRectUtil.h"
 #import "UIBarButtonItem+ISUAdditions.h"
 
+#import "ISUHamburgerButton.h"
+
 @interface ISUEventEditorViewController () <ISUAlertPickerViewControllerDelegate, ISURepeatPickerViewControllerDelegate>
 
 @property (nonatomic, strong) NSArray *sections;
 
 @property (nonatomic, strong) NSIndexPath *datePickerIndexPath;
+
+@property (nonatomic, strong) ISUHamburgerButton *button;
 
 @end
 
@@ -46,6 +50,8 @@
         self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
         
         self.event = [ISUEvent new];
+        
+        self.button = [[ISUHamburgerButton alloc] initWithFrame:CGRectMake(200, 0, 54.0f, 54.0f)];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isu_hideDatePicker) name:UIKeyboardWillShowNotification object:nil];
         
@@ -164,6 +170,8 @@
         repeatViewController.delegate = self;
         repeatViewController.selectedRepeatValue = self.event.repeatValue.integerValue;
         [self.navigationController pushViewController:repeatViewController animated:YES];
+    } else if (cellType == ISUEventEditorCellInvitees) {
+        self.button.showMenu = !self.button.showMenu;
     } else {
         
     }
@@ -390,7 +398,9 @@
         }
         case ISUEventEditorCellInvitees:
         {
-            return [UITableViewCell new];
+            UITableViewCell *cell = [UITableViewCell new];
+            [cell.contentView addSubview:self.button];
+            return cell;
         }
         case ISUEventEditorCellAlert:
         {

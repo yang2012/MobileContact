@@ -44,7 +44,7 @@
             }
             else
             {
-                NSLog(@"Error (%ld) loading sound at path: %@", error, path);
+                NSLog(@"Error (%zd) loading sound at path: %@", error, path);
                 self = nil;
             }
         }

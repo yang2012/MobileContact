@@ -29,7 +29,7 @@ NSString *kNameOfDefaultGroup = @"All";
                                     context:(NSManagedObjectContext *)context
 {
     if (recordId < 0) {
-        NSLog(@"Invalid recrodId when calling findOrCreateGroupWithRecordId:inContext: : %ld", recordId);
+        NSLog(@"Invalid recrodId when calling findOrCreateGroupWithRecordId:inContext: : %zd", recordId);
         return nil;
     }
     
