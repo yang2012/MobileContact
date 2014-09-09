@@ -17,6 +17,9 @@
 #import "ISULoginViewController.h"
 
 #import <Crashlytics/Crashlytics.h>
+#ifdef DEBUG
+#import <PDDebugger.h>
+#endif
 
 @interface ISUAppDelegate () <ISUMigrationManagerDelegate>
 
@@ -38,6 +41,19 @@
         [migrationManager migrate:nil];
     }
     
+    // Pony Debug
+#ifdef DEBUG
+    PDDebugger *debugger = [PDDebugger defaultInstance];
+    [debugger connectToURL:[NSURL URLWithString:@"ws://localhost:9000/device"]];
+    [debugger enableNetworkTrafficDebugging];
+    [debugger forwardAllNetworkTraffic];
+    [debugger enableCoreDataDebugging];
+    [debugger enableViewHierarchyDebugging];
+    [debugger setDisplayedViewAttributeKeyPaths:@[@"frame", @"hidden", @"alpha", @"opaque"]];
+    [debugger enableRemoteLogging];
+    [debugger addManagedObjectContext:[ISUPersistentManager mainQueueContext] withName:@"Main Context"];
+#endif
+
     // Set Uncaught Exception Handler
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     
