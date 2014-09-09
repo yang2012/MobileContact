@@ -6,7 +6,6 @@
 //  Copyright (c) 2013年 Nanjing University. All rights reserved.
 //
 
-#import "Constants.h"
 #import "ISUAddressBookUtility.h"
 #import "NSError+ISUAdditions.h"
 #import "RHPerson+function.h"

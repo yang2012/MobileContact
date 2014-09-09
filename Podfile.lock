@@ -1,26 +1,30 @@
 PODS:
-  - AFNetworking (2.0.0):
+  - AFNetworking (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.0.0):
+  - AFNetworking/NSURLConnection (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.0.0)
-  - AFNetworking/Security (2.0.0)
-  - AFNetworking/Serialization (2.0.0)
-  - AFNetworking/UIKit (2.0.0):
+  - AFNetworking/NSURLSession (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
   - BZGFormField (1.1.2)
-  - DKLiveBlur (0.0.1)
   - EAIntroView (2.6.3)
   - FLKAutoLayout (0.1.1)
-  - FXBlurView (1.3.1)
-  - HTAutocompleteTextField (1.2.2)
+  - FXBlurView (1.3.3)
+  - HTAutocompleteTextField (1.2.6)
   - KLSwitch (1.5)
   - Mantle (1.5):
     - Mantle/extobjc
@@ -30,29 +34,26 @@ PODS:
   - OHHTTPStubs (2.0.0)
   - PonyDebugger (0.3.1):
     - SocketRocket
-  - ReactiveCocoa (2.0):
-    - ReactiveCocoa/Core
+  - ReactiveCocoa (2.3.1):
+    - ReactiveCocoa/UI
+  - ReactiveCocoa/Core (2.3.1):
     - ReactiveCocoa/no-arc
-    - ReactiveCocoa/RACExtensions
-  - ReactiveCocoa/Core (2.0):
-    - ReactiveCocoa/no-arc
-  - ReactiveCocoa/no-arc (2.0)
-  - ReactiveCocoa/RACExtensions (2.0):
+  - ReactiveCocoa/no-arc (2.3.1)
+  - ReactiveCocoa/UI (2.3.1):
     - ReactiveCocoa/Core
   - RESideMenu (4.0.6)
-  - RHAddressBook (1.0.2)
+  - RHAddressBook (1.0.4)
   - RNThemeManager (0.1.0)
   - RSCategories (0.1)
   - SocketRocket (0.3.1-beta2)
   - SSDataKit (0.1.5)
-  - TMCache (1.2.0)
-  - UIImageViewModeScaleAspect (1.1)
+  - TMCache (1.2.1)
+  - UIImageViewModeScaleAspect (1.3)
   - WSCoachMarksView (0.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - BZGFormField
-  - DKLiveBlur (~> 0.0.1)
   - EAIntroView (~> 2.6)
   - FLKAutoLayout (~> 0.1)
   - FXBlurView (~> 1.3.1)
@@ -74,28 +75,27 @@ DEPENDENCIES:
   - WSCoachMarksView (~> 0.2)
 
 SPEC CHECKSUMS:
-  AFNetworking: 6d4a33f2a7edf1d394455c543b446fdfae6b4082
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   BZGFormField: c469a07c251a9fd8bd8d8fce023896b15d752a99
-  DKLiveBlur: 2ebf69a05286c0f0d2a6e71af5c70c9153597b6d
   EAIntroView: 45924b81c153d1206ee24f4fa654e9d9dae79e93
   FLKAutoLayout: 9fa39aac2903b274fbeed6be74154cdb937a04fc
-  FXBlurView: af715ed77b62faa4ac88022becd8d2c401bd4d13
-  HTAutocompleteTextField: f28e0eda3af616d8919bdcce823004bff53cb1b4
+  FXBlurView: 293bebfe93f9ea34ea3d6a4448fdb618adb006f9
+  HTAutocompleteTextField: 92ca48eb8f2a7fba756fb9f19bc54cba3391b8f4
   KLSwitch: 59cf72290c72f7104147ab12231e63f3a9041104
   Mantle: c67a7e45e14196ed42b2a7cbb98ff6a9920e6b92
   MCSwipeTableViewCell: 6fa07d7eebfbcbc377062ee9b6c5fc4d44187c46
   MJNIndexView: da55d920100e7e598b1f01027617f5e6e0883e6e
   OHHTTPStubs: 6aaaa08e9763f5d8013128a885e8a54a3b678606
   PonyDebugger: 256e19c15c093e15f950f92b1a5017f3feb3c87e
-  ReactiveCocoa: 27cc8d4b5baa6460881f961131ce917813538929
+  ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
   RESideMenu: 1d9293d36a2b23cac86c86033b80ee06c7dc9e71
-  RHAddressBook: c9db0bcc084161b0c96185ee1c8fad85772c6f71
+  RHAddressBook: 819c76f8e5649b81afd581e04a8c659e756ad1d1
   RNThemeManager: 3c5da94d26124f33aa46b50be607ab697fd06c17
   RSCategories: 3db1a7e644ee4ff1988b3f1c36b137bfe8ce2aae
   SocketRocket: 79a68ae186063c65e1fe6f638b1ae2927aa5f304
   SSDataKit: bdd910129d53a39a65ecb68357cd50ea255d4cc5
-  TMCache: ea1c509badaf9a1245422aabf3c975b3277ab138
-  UIImageViewModeScaleAspect: ec85041f9e06aa92b5e64df7a65d81f11b408bec
+  TMCache: ed936c5b4684e4ea15113d46fba8829ed3baadad
+  UIImageViewModeScaleAspect: 61ea5fbcbddab6ff8ae5fe86a657f9208dd19fda
   WSCoachMarksView: 77046a7df4ec38acb81edfacc717e5275f97a363
 
 COCOAPODS: 0.33.1

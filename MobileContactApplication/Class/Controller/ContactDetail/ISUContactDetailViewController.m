@@ -8,8 +8,6 @@
 
 #import "ISUContactDetailViewController.h"
 
-#import "DKLiveBlurView.h"
-
 #import "ISUAddress+function.h"
 #import "ISUPhone+function.h"
 #import "ISUEmail+function.h"
@@ -91,13 +89,6 @@ typedef NS_ENUM(NSUInteger, ISUcontactDetailCell) {
         self.fullNameLabel.textAlignment = NSTextAlignmentCenter;
         [headerView addSubview:self.fullNameLabel];
         
-        DKLiveBlurView *backgroundView = [[DKLiveBlurView alloc] initWithFrame:self.view.bounds];
-        backgroundView.originalImage = [UIImage imageNamed:@"contact_detail_background"];
-        backgroundView.tableView = self.tableView;
-        backgroundView.isGlassEffectOn = YES;
-        
-        self.tableView.backgroundView = backgroundView;
-        self.tableView.contentInset = UIEdgeInsetsMake(200.0f, 0, 0, 0);
         self.tableView.showsVerticalScrollIndicator = NO;
         [self.view addSubview:self.tableView];
     }
