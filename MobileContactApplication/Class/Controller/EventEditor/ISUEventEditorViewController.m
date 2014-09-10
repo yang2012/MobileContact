@@ -23,7 +23,6 @@
 #import "ISUEventEditorNoteCell.h"
 #import "ISUEventEditorDatePickerCell.h"
 
-#import "UIView+CGRectUtil.h"
 #import "UIBarButtonItem+ISUAdditions.h"
 
 #import "ISUHamburgerButton.h"

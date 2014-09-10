@@ -8,7 +8,6 @@
 
 #import "ISUTimePickerView.h"
 #import "ISUPickerView.h"
-#import "UIView+CGRectUtil.h"
 
 @implementation ISUTimePickerView
 

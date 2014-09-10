@@ -18,4 +18,5 @@
     #import <ReactiveCocoa/ReactiveCocoa.h>
     #import <RACEXTScope.h>
     #import <FLKAutoLayout/UIView+FLKAutoLayout.h>
+    #import "UIView+CGRectUtil.h"
 #endif

@@ -7,7 +7,6 @@
 //
 
 #import "ISUPickerView.h"
-#import "UIView+CGRectUtil.h"
 
 @interface ISUPickerItemView : UIView
 
